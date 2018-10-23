@@ -8,7 +8,9 @@ class CreateProjectMetaDataAction extends BasicCreateProjectMetaDataAction {
 
      protected function getDefaultValues(){
         $metaDataValues = parent::getDefaultValues();
-        $metaDataValues['fitxercontinguts'] = $id.":".array_pop(explode(":", $metaDataValues['plantilla']));
+        if ($metaDataValues['plantilla']) {
+            $metaDataValues['fitxercontinguts'] = $this->params['id'].":".array_pop(explode(":", $metaDataValues['plantilla']));
+        }
         return $metaDataValues;
      }
 }

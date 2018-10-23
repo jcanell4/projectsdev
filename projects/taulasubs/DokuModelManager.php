@@ -31,7 +31,6 @@ class DokuModelManager extends AbstractModelManager{
     static $defMainClass = array(
                'DokuModelAdapter'     => self::MOD."BasicModelAdapter.php",
                'FactoryAuthorization' => self::PRJ."authorization/FactoryAuthorization.php",
-               'FactoryExporter'      => self::PRJ."export/FactoryExporter.php"
            );
 
     public function getAuthorizationManager($str_command) {

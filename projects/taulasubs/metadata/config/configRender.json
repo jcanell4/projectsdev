@@ -2,16 +2,13 @@
     "typesDefinition": {
         "document": {
             "render": {
-                "typeDef":"document",
+                "typeDef":"main",
                 "class": "exportDocument",
-                "fields": ["titol","autor","responsable","fitxercontinguts"]
+                "fields": ["titol","autor","responsable"]
             },
             "keys": {
                 "titol": {
                     "render": {"class": "render_title"}
-                },
-                "fitxercontinguts": {
-                    "render": {"class": "renderFile"}
                 }
             }
         },
