@@ -113,7 +113,8 @@ class pblactivityProjectModel extends AbstractProjectModel {
      */
     private function includePageProjectToUserShortcut($parArr) {
         $summary = "include Page Project To User Shortcut";
-        $shortcutText = "\n[[${parArr['link_page']}|accés als continguts del projecte ${parArr['id']}]]";
+        $comment = ($parArr['link_page'] === $parArr['id']) ? "al" : "als continguts del";
+        $shortcutText = "\n[[${parArr['link_page']}|accés $comment projecte ${parArr['id']}]]\n";
         $text = $this->getPageDataQuery()->getRaw($parArr['user_shortcut']);
         if ($text == "") {
             //La página dreceres.txt del usuario no existe
