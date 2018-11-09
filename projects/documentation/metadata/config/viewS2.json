@@ -1,0 +1,100 @@
+{
+    "definition": {
+        "n_columns": 12,
+        "n_rows": 8,
+        "chars_column": 10,
+        "rows_row": 1
+    },
+    "groups": {
+        "main": {
+            "parent": "",
+            "label": "Principal",
+            "n_columns": 5,
+            "n_rows": 8,
+            "frame": true
+        },
+        "dades": {
+            "parent": "",
+            "label": "Dades generals",
+            "n_columns": 7,
+            "n_rows": 8,
+            "frame": true,
+            "config": {
+                "collapsable": true,
+                "collapsed": true
+            }
+        },
+        "admin": {
+            "parent": "dades",
+            "label": "administració",
+            "n_columns": 4,
+            "n_rows": 1,
+            "frame": true,
+            "config": {
+                "collapsable": true,
+                "collapsed": false
+            }
+        },
+        "files": {
+            "parent": "dades",
+            "label": "fitxers del projecte",
+            "n_columns": 8,
+            "n_rows": 1,
+            "frame": true
+        }
+    },
+    "fields": {
+        "nsproject": {
+            "type": "hidden",
+            "props": {
+                "readonly": true
+            }
+        },
+        "responsable": {
+            "n_columns": 12,
+            "group": "admin",
+            "props": {
+                "required": true
+            },
+            "config": {
+                "readonly": {
+                    "class": "ValidationByRoles",
+                    "data" : ["admin"]
+                }
+            }
+        },
+        "autor": {
+            "n_columns": 12,
+            "group": "admin",
+            "props": {
+                "required": true
+            },
+            "config": {
+                "readonly": true
+            }
+        },
+        "abstract": {
+            "n_columns": 12,
+            "type": "textarea",
+            "n_rows": 10,
+            "props": {
+                "data-editable-element": "textarea"
+            }
+        },
+        "plantilla": {
+            "n_columns": 12,
+            "group": "files",
+            "props": {
+                "readonly": true
+            }
+        },
+        "fitxercontinguts": {
+            "label": "ruta de l'arxiu de continguts",
+            "n_columns": 12,
+            "group": "files",
+            "props": {
+                "readonly": true
+            }
+        }
+    }
+}

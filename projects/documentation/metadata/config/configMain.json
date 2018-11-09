@@ -49,40 +49,52 @@
     "metaDataProjectStructure": [
         {
             "s2": "meta.mdpr",
+            "viewfiles": ["viewS2"],
             "mainType": {
                 "type": "object",
-                "typeDef": "entry-s2-prova"
+                "typeDef": "defs2"
             },
             "typesDefinition": {
-                "entry-s2-prova": {
+                "defs2": {
                     "type": "object",
                     "keys": {
-                        "key": {
+                        "autor": {
                             "type": "string",
                             "mandatory": true
                         },
-                        "value1": {
-                            "type": "string"
+                        "abstract": {
+                            "type": "string",
+                            "default": "abstract",
+                            "config": {
+                                "renderable": true,
+                                "mode": "xhtml"
+                            }
                         },
-                        "value2": {
-                            "type": "string"
+                        "nsproject": {
+                            "type": "string",
+                            "mandatory": true
                         },
-                        "value3": {
-                            "type": "string"
+                        "plantilla": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "plantilles:projects:continguts"
                         },
-                        "value4": {
-                            "type": "string"
-                        }
+                        "fitxercontinguts": {
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "responsable": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true
+                        }                        
                     }
-                },
-                "taula-s2-prova": {
-                    "type": "objectArray",
-                    "typeDef":"entry-s2-prova"
                 }
             }
         },
         {
             "main": "meta.mdpr",
+            "viewfiles": ["defaultView"],
             "mainType": {
                 "type": "object",
                 "typeDef": "document"
