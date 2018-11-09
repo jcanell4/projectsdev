@@ -68,10 +68,7 @@
           "required": true
         },
         "config": {
-          "readonly": {
-            "class": "ValidationByRoles",
-            "data" : ["admin"]
-          }
+          "readonly": {"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}
         }
       },
       "autor": {
