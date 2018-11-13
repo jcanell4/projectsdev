@@ -70,23 +70,10 @@
                                 "mode": "xhtml"
                             }
                         },
-                        "nsproject": {
-                            "type": "string",
-                            "mandatory": true
-                        },
-                        "plantilla": {
+                        "actiu": {
                             "type": "string",
                             "mandatory": true,
-                            "default": "plantilles:projects:continguts"
-                        },
-                        "fitxercontinguts": {
-                            "type": "string",
-                            "mandatory": true
-                        },
-                        "responsable": {
-                            "type": "string",
-                            "struc_chars": "40",
-                            "mandatory": true
+                            "default": "No"
                         }                        
                     }
                 }
