@@ -158,7 +158,7 @@
                             "type": "string",
                             "default": "../media"
                         },
-                        "nom-de-prova": {
+                        "taula_dades": {
                             "type": "taula-de-prova",
                             "mandatory": true
                         }                        
