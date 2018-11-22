@@ -13,8 +13,8 @@ require_once (WIKI_IOC_MODEL . "datamodel/AbstractProjectModel.php");
 
 class pblactivityProjectModel extends AbstractProjectModel {
 
-    public function __construct($persistenceEngine, $projectTypeDir=NULL)  {
-        parent::__construct($persistenceEngine, $projectTypeDir);
+    public function __construct($persistenceEngine)  {
+        parent::__construct($persistenceEngine);
     }
 
     public function generateProject() {

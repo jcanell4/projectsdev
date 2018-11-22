@@ -137,11 +137,8 @@ class MetaDataRender extends \MetaDataRenderAbstract {
         $ret;
         switch ($properties["type"]) {
             case "boolean":
-//                $dv = false;
             case "number":
-//                $dv = isset($dv)?$dv:0;
             case "string":
-//                $dv = isset($dv)?$dv:"";
                 $dv = self::$DEFAULT_SINGLE_VALUES[$properties["type"]];
                 $ret = $this->_getSingleValue($values[$field], $properties, $types, $dv);
                 break;
@@ -173,12 +170,12 @@ class MetaDataRender extends \MetaDataRenderAbstract {
     }
 
     private function _getDefaultSingleArrayItem($properties, $types){
-        $cols = isset($properties['array_columns'])?$properties['array_columns']:1;
+        $cols = isset($properties['array_columns']) ? $properties['array_columns'] : 1;
         $singleValue = $this->_getValue("", array(), array("type" => $properties['typeDef']), $types)['value'];
-        if($cols>1){
+        if ($cols>1){
             $_vcols = [];
-            for($j=0; $j<$cols; $j++){
-                $_vcols[]= $singleValue;
+            for ($j=0; $j<$cols; $j++){
+                $_vcols[] = $singleValue;
             }
             $_value = $_vcols;
         }else{
@@ -188,14 +185,14 @@ class MetaDataRender extends \MetaDataRenderAbstract {
     }
 
     private function _getDefaultSingleArray($properties, $types, $defaultRow){
-        if(isset($properties['default'])){
+        if (isset($properties['default'])){
             $_values = $properties['default'];
         }else{
-            $_values= [];
+            $_values = [];
 
-            $rows = isset($properties['array_rows'])?$properties['array_rows']:0;
+            $rows = isset($properties['array_rows']) ? $properties['array_rows'] : 0;
             for($i=0; $i<$rows; $i++){
-                $_values[]= $defaultRow;
+                $_values[] = $defaultRow;
             }
         }
         return $_values;
@@ -208,14 +205,14 @@ class MetaDataRender extends \MetaDataRenderAbstract {
         if ($values) {
             $_values['value'] = $values;
         }else{
-            $_values['value'] =$_values['default'];
+            $_values['value'] = $_values['default'];
         }
         return $_values;
     }
 
     private function _getSingleValue($values, $properties, $types, $dv){
         $_values = [];
-        $_values['default'] = isset($properties['default'])?$properties['default']:$dv;
+        $_values['default'] = isset($properties['default']) ? $properties['default'] : $dv;
         if ($values) {
             $_values['value'] = $values;
         }else{
@@ -243,23 +240,13 @@ class MetaDataRender extends \MetaDataRenderAbstract {
         if (isset($values[$field])) {
             $_values['value'] = $values[$field];
         }else{
-            $_values['value'] =$_values['default'];
+            $_values['value'] = $_values['default'];
         }
         return $_values;
     }
 
     private function _getDefaultObjectArrayValue($properties, $types, $defaultRow){
-        if(isset($properties['default'])){
-            $_values = $properties['default'];
-        }else{
-            $_values= [];
-
-            $rows = isset($properties['array_rows'])?$properties['array_rows']:0;
-            for($i=0; $i<$rows; $i++){
-                $_values[]= $defaultRow;
-            }
-        }
-        return $_values;
+        return $this->_getDefaultSingleArray($properties, $types, $defaultRow);
     }
 
     private function _getObjectArrayValue($field, $values, $properties, $types){
@@ -269,7 +256,7 @@ class MetaDataRender extends \MetaDataRenderAbstract {
         if (isset($values[$field])) {
             $_values['value'] = $values[$field];
         }else{
-            $_values['value'] =$_values['default'];
+            $_values['value'] = $_values['default'];
         }
         return $_values;
     }

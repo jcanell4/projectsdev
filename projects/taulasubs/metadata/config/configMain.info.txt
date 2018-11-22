@@ -359,7 +359,7 @@ En el següent exemple es poden veure els diferents elements de configuració de
                             "renderAsMultiField":true,
                             "mandatory": true
                         },
-                        "nom-de-prova": {
+                        "taula_dades": {
                             "type": "taula-de-prova",
                             "mandatory": true
                         }                        

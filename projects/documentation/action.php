@@ -17,7 +17,7 @@ class action_plugin_projectsdev_projects_documentation extends WikiIocPluginActi
         parent::__construct();
         $this->projectType = $projectType;
         $this->dirProjectType = $dirProjectType;
-        $this->viewArray = $this->projectMetaDataQuery->getMetaViewConfig($this->projectType, "controls", $dirProjectType);
+        $this->viewArray = $this->projectMetaDataQuery->getMetaViewConfig("controls", $this->projectType);
     }
 
     function register(Doku_Event_Handler $controller) {

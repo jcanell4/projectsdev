@@ -136,7 +136,7 @@
         },
         "type": "select"
       },
-      "nom-de-prova": {
+      "taula_dades": {
         "label": "Taula de prova",
         "n_columns": 12,
         "type": "editableObject",

@@ -29,7 +29,6 @@ class RevertProjectMetaDataAction extends ProjectMetadataAction {
     private function localRunProcess() {
         $id = $this->params[ProjectKeys::KEY_ID];
         $model = $this->getModel();
-        $modelAttributes = $model->getModelAttributes();
 
         //sólo se ejecuta si existe el proyecto
         if ($model->existProject()) {
@@ -42,7 +41,6 @@ class RevertProjectMetaDataAction extends ProjectMetadataAction {
                 ProjectKeys::KEY_PERSISTENCE => $this->persistenceEngine,
                 ProjectKeys::KEY_PROJECT_TYPE => $this->params[ProjectKeys::KEY_PROJECT_TYPE],
                 ProjectKeys::KEY_METADATA_SUBSET => $this->params[ProjectKeys::KEY_METADATA_SUBSET],
-                ProjectKeys::KEY_PROJECTTYPE_DIR => $modelAttributes[ProjectKeys::KEY_PROJECTTYPE_DIR],
                 ProjectKeys::KEY_FILTER => $this->params[ProjectKeys::KEY_FILTER],  //opcional
                 ProjectKeys::KEY_METADATA_VALUE => json_encode($dataRevision)
             ];

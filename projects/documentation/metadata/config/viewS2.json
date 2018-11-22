@@ -34,32 +34,9 @@
                 "collapsable": true,
                 "collapsed": false
             }
-        },
-        "files": {
-            "parent": "dades",
-            "label": "fitxers del projecte",
-            "n_columns": 8,
-            "n_rows": 1,
-            "frame": true
         }
     },
     "fields": {
-        "nsproject": {
-            "type": "hidden",
-            "props": {
-                "readonly": true
-            }
-        },
-        "responsable": {
-            "n_columns": 12,
-            "group": "admin",
-            "props": {
-                "required": true
-            },
-            "config": {
-                "readonly": {"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}
-            }
-        },
         "autor": {
             "n_columns": 12,
             "group": "admin",
@@ -78,20 +55,9 @@
                 "data-editable-element": "textarea"
             }
         },
-        "plantilla": {
+        "actiu": {
             "n_columns": 12,
-            "group": "files",
-            "props": {
-                "readonly": true
-            }
-        },
-        "fitxercontinguts": {
-            "label": "ruta de l'arxiu de continguts",
-            "n_columns": 12,
-            "group": "files",
-            "props": {
-                "readonly": true
-            }
+            "group": "dades"
         }
     }
 }
