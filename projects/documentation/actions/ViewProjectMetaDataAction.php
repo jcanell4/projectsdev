@@ -9,7 +9,6 @@ class ViewProjectMetaDataAction extends BasicViewProjectMetaDataAction{
     protected function runAction() {
         $response = parent::runAction();
 
-        $metaDataSubSet = $this->params[ProjectKeys::KEY_METADATA_SUBSET];
         $confProjectType = $this->modelManager->getConfigProjectType();
 
         //obtenir la ruta de la configuració per a aquest tipus de projecte
@@ -20,13 +19,13 @@ class ViewProjectMetaDataAction extends BasicViewProjectMetaDataAction{
 
         $configProjectModel->init([ProjectKeys::KEY_ID              => $projectTypeConfigFile,
                                    ProjectKeys::KEY_PROJECT_TYPE    => $confProjectType,
-                                   ProjectKeys::KEY_METADATA_SUBSET => $metaDataSubSet,
+                                   ProjectKeys::KEY_METADATA_SUBSET => ProjectKeys::VAL_DEFAULTSUBSET
                                 ]);
 
-        $configResponse = $configProjectModel->getData();
+        $metaDataConfigProject = $configProjectModel->getDataProject();
 
-        if ($configResponse['projectMetaData']['arraytaula']['value']) {
-            $arraytaula = json_decode($configResponse['projectMetaData']['arraytaula']['value']);
+        if ($metaDataConfigProject['arraytaula']) {
+            $arraytaula = json_decode($metaDataConfigProject['arraytaula'], TRUE);
 
             foreach ($arraytaula as $e) {
                 $elem = json_decode(json_encode($e), TRUE);

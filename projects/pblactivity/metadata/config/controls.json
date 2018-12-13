@@ -3,7 +3,7 @@
         "class": "WikiIocButton",
         "parms": {
             "DOM": {
-               "id": "pblactivity_packHtml",
+               "id": "pblactivityPackHtml",
                "title": "packHtml",
                "class": "iocDisplayBlock"
             },
@@ -41,7 +41,7 @@
         "class": "WikiIocButton",
         "parms": { 
             "DOM": {
-               "id": "pblactivity_export",
+               "id": "pblactivityExport",
                "title": "export",
                "class": "iocDisplayBlock"
             },

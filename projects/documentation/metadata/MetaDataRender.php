@@ -253,7 +253,7 @@ class MetaDataRender extends \MetaDataRenderAbstract {
         $_values = [];
         $_values['defaultRow'] = $this->_getObjectValue("", array(), $properties, $types)['value'];
         $_values['default'] = $this->_getDefaultObjectArrayValue($properties, $types, $_values['defaultRow']);
-        if (isset($values[$field])) {
+        if (isset($values[$field]) && !empty($values[$field])) {
             $_values['value'] = $values[$field];
         }else{
             $_values['value'] = $_values['default'];

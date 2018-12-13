@@ -21,7 +21,7 @@
             "frame": true,
             "config": {
                 "collapsable": true,
-                "collapsed": true
+                "collapsed": false
             }
         },
         "admin": {
@@ -56,7 +56,7 @@
             }
         },
         "actiu": {
-            "n_columns": 12,
+            "n_columns": 2,
             "group": "dades"
         }
     }

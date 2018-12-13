@@ -48,7 +48,7 @@
     ],
     "metaDataProjectStructure": [
         {
-            "s2": "meta.mdpr",
+            "s2": "seta.mdpr",
             "viewfiles": ["viewS2"],
             "mainType": {
                 "type": "object",

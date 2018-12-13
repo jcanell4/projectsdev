@@ -68,6 +68,8 @@ class RevertProjectMetaDataAction extends ProjectMetadataAction {
             $response[ProjectKeys::KEY_REV] = $this->projectModel->getProjectRevisionList(0);
 
             $response['info'] = $this->generateInfo("info", WikiIocLangManager::getLang('project_reverted'), $id);
+            //Tal vez haya que sustituir la línea anterior por la siguiente generateMessageInfoForSubSetProject() para incluir el subSet
+            //$response['info'] = $this->generateMessageInfoForSubSetProject($id, $this->params[ProjectKeys::KEY_METADATA_SUBSET], 'project_reverted');
             $response[ProjectKeys::KEY_ID] = $this->idToRequestId($id);
         }
 

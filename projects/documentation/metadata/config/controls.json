@@ -1,9 +1,27 @@
 {
+    "generateProject": {
+        "parms": { 
+            "DOM": {
+               "id": "generateProjectButton",
+               "title": "Generar Projecte docum"
+            }
+        },
+
+        "scripts": {
+            "updateHandler": {
+                "conditions": {
+                    "page.action": "'project_view'",
+                    "page.generated":"false"
+                }
+            }
+        }
+
+    },
     "reversion": {
         "class": "WikiIocButton",
         "parms": { 
             "DOM": {
-               "id": "documentation_reversion",
+               "id": "documentationReversion",
                "title": "Revertir",
                "class": "iocDisplayBlock"
             },
@@ -43,8 +61,8 @@
         "class": "WikiIocButton",
         "parms": { 
             "DOM": {
-               "id": "documentation_pdfExport",
-               "title": "pdfExport",
+               "id": "documentationPdfExport",
+               "title": "PDF Export",
                "class": "iocDisplayBlock"
             },
             "DJO": {
@@ -82,8 +100,8 @@
         "class": "WikiIocButton",
         "parms": {
             "DOM": {
-               "id": "documentation_htmlExport",
-               "title": "htmlExport",
+               "id": "documentationHtmlExport",
+               "title": "HTML Export",
                "class": "iocDisplayBlock"
             },
             "DJO": {
