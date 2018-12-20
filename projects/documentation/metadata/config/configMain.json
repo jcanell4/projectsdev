@@ -58,7 +58,7 @@
                 "defs2": {
                     "type": "object",
                     "keys": {
-                        "autor": {
+                        "editor": {
                             "type": "string",
                             "mandatory": true
                         },

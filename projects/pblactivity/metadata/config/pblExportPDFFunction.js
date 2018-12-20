@@ -5,7 +5,7 @@ require([
         "dojo/domReady!"
     ], function (registry, dom, domForm) {
         
-        var trifidsButton = registry.byId('pblactivity_export');
+        var trifidsButton = registry.byId('pblactivityPDFExport');
         
         var fOnClick=function(){
             var id = this.dispatcher.getGlobalState().getCurrentId();

@@ -76,7 +76,7 @@ class action_plugin_projectsdev_projects_documentation extends WikiIocPluginActi
             //Construcción de los valores de sustitución de los patrones para el template UpdateViewHandler
             //changeWidgetProperty para todos los botones
             $changeWidgetPropertyFalse .= "disp.changeWidgetProperty('${id}', 'visible', false);\n\t\t\t";
-            $changeWidgetPropertyCondition .= "disp.changeWidgetProperty('${id}', 'visible', is${id}ButtonVisible);\n\t\t\t\t";
+            $changeWidgetPropertyCondition .= "disp.changeWidgetProperty('${id}', 'visible', is${id}ButtonVisible);\n\t\t\t\t\t";
             $VarsIsButtonVisible .= "var is${id}ButtonVisible = true;\n\t\t\t\t\t";
 
             //bucle para que los permisos determinen si el botón correspondiente es visible u oculto
@@ -110,7 +110,7 @@ class action_plugin_projectsdev_projects_documentation extends WikiIocPluginActi
                 }
                 $condButtonVisible = substr($condButtonVisible, 0, -4) . ");";
             }
-            $conditionsButtonVisible .= $condButtonVisible . "\n\t\t\t\t\t\t";
+            $conditionsButtonVisible .= $condButtonVisible . "\n\t\t\t\t\t";
         }
 
         $aReplacements["search"] = ["//%_changeWidgetPropertyFalse_%",

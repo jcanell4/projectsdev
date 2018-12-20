@@ -3,7 +3,16 @@
         "parms": { 
             "DOM": {
                "id": "generateProjectButton",
-               "title": "Generar Projecte docum"
+               "title": "Generar Projecte docum",
+               "class": "iocDisplayBlock"
+            },
+            "DJO": {
+                "query": "'do=generate'",
+                "autoSize": true,
+                "visible": false,
+                "iconClass": "'iocIconFactory'",
+                "standbyId": "'bodyContent'",
+                "urlBase": "'lib/exe/ioc_ajax.php?call=project'"
             }
         },
 

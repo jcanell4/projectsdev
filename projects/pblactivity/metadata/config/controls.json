@@ -1,9 +1,9 @@
 {
-    "packHtml": {
+    "exportHtml": {
         "class": "WikiIocButton",
         "parms": {
             "DOM": {
-               "id": "pblactivityPackHtml",
+               "id": "pblactivityHTMLExport",
                "title": "packHtml",
                "class": "iocDisplayBlock"
             },
@@ -20,7 +20,7 @@
        
         "scripts": {
             "getFunctions": {
-                "path": "packHtmlGetFunction.js"
+                "path": "pblExportHTMLFunction.js"
             },
             "updateHandler": {
                 "permissions": [
@@ -37,11 +37,11 @@
             }
         }
     },
-    "export": {
+    "exportPDF": {
         "class": "WikiIocButton",
         "parms": { 
             "DOM": {
-               "id": "pblactivityExport",
+               "id": "pblactivityPDFExport",
                "title": "export",
                "class": "iocDisplayBlock"
             },
@@ -58,7 +58,7 @@
 
         "scripts": {
             "getFunctions": {
-                "path": "exportGetFunction.js"
+                "path": "pblExportPDFFunction.js"
             },
             "updateHandler": {
                 "permissions": [

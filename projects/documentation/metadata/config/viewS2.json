@@ -37,7 +37,7 @@
         }
     },
     "fields": {
-        "autor": {
+        "editor": {
             "n_columns": 12,
             "group": "admin",
             "props": {
