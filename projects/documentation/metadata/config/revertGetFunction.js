@@ -3,7 +3,7 @@ require([
     "dojo/domReady!"
 ], function (registry) {
         
-    var reversionButton = registry.byId('documentation_reversion');
+    var reversionButton = registry.byId('documentationReversion');
 
     var fOnClick = function(){
         var id = this.dispatcher.getGlobalState().getCurrentId();
@@ -15,10 +15,13 @@ require([
         var id = globalState.getCurrentId();
         var ns = globalState.getContent(id).ns,
             rev = globalState.getContent(id).rev,
-            pType = globalState.getContent(id).projectType;
+            pType = globalState.getContent(id).projectType,
+            subSet = globalState.getContent(id).metaDataSubSet;
 
         var ret = (this.query) ? this.query : "do=revert";
         ret += "&id="+ns + "&projectType="+pType + "&rev="+rev;
+        if (subSet)
+            ret += "&metaDataSubSet="+subSet;
         return ret;
     };
 
