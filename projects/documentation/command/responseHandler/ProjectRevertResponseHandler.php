@@ -30,8 +30,9 @@ class projectRevertResponseHandler extends ProjectResponseHandler {
 
         //afegir la metadata de revisions com a resposta
         if ($responseData[ProjectKeys::KEY_REV] && count($responseData[ProjectKeys::KEY_REV]) > 0) {
-            $responseData[ProjectKeys::KEY_REV]['call_diff'] = "project&do=diff&projectType=$pType";
-            $responseData[ProjectKeys::KEY_REV]['call_view'] = "project&do=view&projectType=$pType";
+            $subSet = ($this->getSubSet($requestParams[ProjectKeys::KEY_METADATA_SUBSET])) ? "&metaDataSubSet=".$requestParams[ProjectKeys::KEY_METADATA_SUBSET] : "";
+            $responseData[ProjectKeys::KEY_REV]['call_diff'] = "project&do=diff&projectType=$pType$subSet";
+            $responseData[ProjectKeys::KEY_REV]['call_view'] = "project&do=view&projectType=$pType$subSet";
             $responseData[ProjectKeys::KEY_REV]['urlBase'] = "lib/exe/ioc_ajax.php?call=".$responseData[ProjectKeys::KEY_REV]['call_diff'];
             $ajaxCmdResponseGenerator->addRevisionsTypeResponse($id, $responseData[ProjectKeys::KEY_REV]);
         }else {
