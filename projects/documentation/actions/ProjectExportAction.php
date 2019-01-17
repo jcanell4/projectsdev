@@ -7,14 +7,10 @@
 if (!defined('DOKU_INC')) die();
 if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC . "lib/plugins/");
 if (!defined('WIKI_IOC_MODEL')) define('WIKI_IOC_MODEL', DOKU_PLUGIN . "wikiiocmodel/");
-if (!defined('EXPORT_TMP')) define('EXPORT_TMP', DOKU_PLUGIN . "tmp/latex/");
-define('WIKI_IOC_PROJECT', DOKU_PLUGIN . "projectsdev/projects/documentation/");
 
 require_once WIKI_IOC_MODEL."persistence/ProjectMetaDataQuery.php";
 
 class ProjectExportAction  extends AbstractWikiAction{
-    const PATH_RENDERER = WIKI_IOC_PROJECT."exporter/";
-    const PATH_CONFIG_FILE = WIKI_IOC_PROJECT."metadata/config/";
     const CONFIG_TYPE_FILENAME = "configMain.json";
     const CONFIG_RENDER_FILENAME = "configRender.json";
 
@@ -59,7 +55,11 @@ class ProjectExportAction  extends AbstractWikiAction{
                           'filetype'        => $this->filetype,
                           'typesDefinition' => $this->typesDefinition,
                           'typesRender'     => $this->typesRender]);
-        $render = $fRenderer->createRender($this->typesDefinition[$this->mainTypeName], $this->typesRender[$this->mainTypeName], array("id"=> $this->projectID));
+
+        $render = $fRenderer->createRender($this->typesDefinition[$this->mainTypeName],
+                                           $this->typesRender[$this->mainTypeName],
+                                           array("id"=> $this->projectID));
+
         $result = $render->process($this->dataArray);
         $result['ns'] = $this->projectID;
 
@@ -81,7 +81,7 @@ class ProjectExportAction  extends AbstractWikiAction{
      *                  Si se indica el metaDataSubSet, es que espera encontrar una estructura
      */
     private function getProjectConfigFile($filename, $rama, $metaDataSubSet=NULL) {
-        $config = @file_get_contents(self::PATH_CONFIG_FILE.$filename);
+        $config = @file_get_contents(WikiIocPluginController::getProjectTypeDir($this->projectType) . "metadata/config/" . $filename);
         if ($config != FALSE) {
             $array = json_decode($config, true);
             if ($metaDataSubSet) {

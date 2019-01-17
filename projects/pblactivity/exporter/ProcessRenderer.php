@@ -14,8 +14,6 @@ require_once WIKI_IOC_PROJECT."exporter/FactoryRenderer.php";
 require_once WIKI_IOC_PROJECT."exporter/exporterClasses.php";
 
 class ProcessRenderer extends AbstractRenderer {
-
-    const PATH_RENDERER = WIKI_IOC_PROJECT."exporter/";
     const PATH_CONFIG_FILE = WIKI_IOC_PROJECT."metadata/config/";
     const CONFIG_TYPE_FILENAME = "configMain.json";
     const CONFIG_RENDER_FILENAME = "configRender.json";

@@ -7,7 +7,7 @@ if (!defined('DOKU_INC')) die();
 if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC . 'lib/plugins/');
 require_once(DOKU_PLUGIN . 'iocexportl/action.php');
 
-class command_plugin_wikiiocmodel_projects_platreballfp_projectExport extends abstract_project_command_class {
+class command_plugin_projectsdev_projects_platreballfp_projectExport extends abstract_project_command_class {
 
     public function __construct() {
         parent::__construct();
@@ -26,10 +26,7 @@ class command_plugin_wikiiocmodel_projects_platreballfp_projectExport extends ab
                   );
         $modelManager = $this->getModelManager();
         $action = $modelManager->getActionInstance("ProjectExportAction", $modelManager->getExporterManager());
-//        $content = $action->get($params);
-//        $projectId = str_replace(":", "_", $action->getProjectID());
-//        return array(ProjectKeys::KEY_ID => $projectId, 'meta' => $content);
-        return $action->get($params); //JOSEP: JA RETORNA l'ARRAY
+        return $action->get($params);
     }
 
     protected function getDefaultResponse($response, &$ret) {
