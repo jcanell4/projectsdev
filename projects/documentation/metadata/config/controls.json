@@ -17,6 +17,9 @@
         },
 
         "scripts": {
+            "getFunctions": {
+                "path": "generateFunction.js"
+            },
             "updateHandler": {
                 "conditions": {
                     "page.action": "'project_view'",
