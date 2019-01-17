@@ -154,6 +154,9 @@
                         "input_on_new_row": true,
                         "type": "textarea"
                     },
+                    "value1": {
+                        "type": "string"
+                    },
                     "value2": {
                         "input_on_new_row": true,
                         "type": "textarea"
