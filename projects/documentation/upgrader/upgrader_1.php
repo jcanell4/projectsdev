@@ -5,10 +5,26 @@
  * @author rafael
  */
 if (!defined("DOKU_INC")) die();
+if (!defined('DOKU_LIB_IOC')) define('DOKU_LIB_IOC', DOKU_INC."lib/lib_ioc/");
+require_once DOKU_LIB_IOC . "upgrader/CommonUpgrader.php";
 
-class upgrader_1 {
+class upgrader_1 extends CommonUpgrader {
+
+    protected $model;
+    protected $metaDataSubSet;
+
+    public function __construct($model) {
+        $this->model = $model;
+        $this->metaDataSubSet = $this->model->getMetaDataSubSet();
+    }
 
     public function process() {
+        $dataProject = $this->model->getMetaDataProject($this->metaDataSubSet);
+        $name_0 = "addressmedia";  //nombre de clave original (versión 0)
+        $name_1 = "media_address";   //nuevo nombre de clave (versión 1)
+        $dataChanged = $this->changeFieldName($dataProject, $name_0, $name_1);
 
+        $this->model->setDataProject(json_encode($dataChanged), "Upgrade: version 0 to 1");
     }
+
 }
