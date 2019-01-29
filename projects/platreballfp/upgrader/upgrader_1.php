@@ -20,29 +20,28 @@ class upgrader_1 extends CommonUpgrader {
 
     public function process() {
         $dataProject = $this->model->getMetaDataProject($this->metaDataSubSet);
-        if (!is_array($dataProject))
+        if (!is_array($dataProject)) {
             $dataProject = json_decode($dataProject, TRUE);
+        }
+        $name0 = "activitatsAprenentatge";  //nombre de clave original (versión 0)
+        $name1 = "actvtsAprntg";            //nuevo nombre de clave (versión 1)
+        $dataChanged = $this->changeFieldName($dataProject, $name0, $name1);
 
-        $name_0 = "activitatsAprenentatge";  //nombre de clave original (versión 0)
-        $name_1 = "actvtsAprenentatge";   //nuevo nombre de clave (versión 1)
-        $dataChanged = $this->changeFieldName($dataProject, $name_0, $name_1);
-
-        $name_0 = "einesAprenentatge:eina";  //nombre de clave original (versión 0)
-        $name_1 = "einesAprenentatge:herramienta";  //nuevo nombre de clave (versión 1)
-
-        //-------- INICIO PRUEBAS -----------------
-        ////build array
-        //$data = array();
-        //$this->buildArrayFromStringTokenized($data, $name_0);
-        ////get value
-        //$value = $this->getValueArrayFromIndexString($data, $name_0);
-
-        //$pathresult = $this->getKeyPathArray($arrayDataProject, "eina");
-        //-------- FIN PRUEBAS -----------------
-
-        $dataChanged = $this->changeFieldNameArray($dataProject, $name_0, $name_1);
+        $name0 = ['taulaDadesUF', 'unitat formativa'];
+        $name1 = ['TUF', 'UF'];
+        $dataChanged = $this->changeFieldNameInArrayMultiRow($dataProject, $name0, $name1);
 
         //$this->model->setDataProject(json_encode($dataChanged), "Upgrade: version 0 to 1");
     }
 
+
+    public function processProves() {
+        ////build array
+        //$data = array();
+        //$this->buildArrayFromStringTokenized($data, $name0);
+        ////get value
+        //$value = $this->getValueArrayFromIndexString($data, $name0);
+
+        //$pathresult = $this->getKeyPathArray($arrayDataProject, "eina");
+    }
 }
