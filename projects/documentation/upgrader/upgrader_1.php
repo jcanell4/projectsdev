@@ -20,11 +20,12 @@ class upgrader_1 extends CommonUpgrader {
 
     public function process() {
         $dataProject = $this->model->getMetaDataProject($this->metaDataSubSet);
-        $name_0 = "addressmedia";  //nombre de clave original (versión 0)
-        $name_1 = "media_address";   //nuevo nombre de clave (versión 1)
-        $dataChanged = $this->changeFieldName($dataProject, $name_0, $name_1);
 
-        $this->model->setDataProject(json_encode($dataChanged), "Upgrade: version 0 to 1");
+        //Cambiar el nombre de un campo del primer nivel
+        $name0 = "addressmedia";  //nombre de clave original (versión 0)
+        $name1 = "media_address";   //nuevo nombre de clave (versión 1)
+        $dataChanged = $this->changeFieldName($dataProject, $name0, $name1);
+        //$this->model->setDataProject(json_encode($dataChanged), "Upgrade: version 0 to 1");
     }
 
 }

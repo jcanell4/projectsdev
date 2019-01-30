@@ -23,15 +23,23 @@ class upgrader_1 extends CommonUpgrader {
         if (!is_array($dataProject)) {
             $dataProject = json_decode($dataProject, TRUE);
         }
+        //Cambiar el nombre de un campo del primer nivel
         $name0 = "activitatsAprenentatge";  //nombre de clave original (versión 0)
         $name1 = "actvtsAprntg";            //nuevo nombre de clave (versión 1)
         $dataChanged = $this->changeFieldName($dataProject, $name0, $name1);
+        //$this->model->setDataProject(json_encode($dataChanged), "Upgrade: version 0 to 1");
 
+        //Cambiar el nombre de un campo y de las subclaves indicadas en la ruta completa
         $name0 = ['taulaDadesUF', 'unitat formativa'];
         $name1 = ['TUF', 'UF'];
-        $dataChanged = $this->changeFieldNameInArrayMultiRow($dataProject, $name0, $name1);
-
+        $dataChanged = $this->changeFieldNameInArray($dataProject, $name0, $name1);
         //$this->model->setDataProject(json_encode($dataChanged), "Upgrade: version 0 to 1");
+
+        // Aplica una nueva plantilla a un documento creado con una plantilla antigua
+        $t0 = @file_get_contents("/home/rafael/nb-projectes/dokuwiki_30/data/pages/plantilles/docum_ioc/pla_treball_fp/loe/continguts0.txt");
+        $t1 = @file_get_contents("/home/rafael/nb-projectes/dokuwiki_30/data/pages/plantilles/docum_ioc/pla_treball_fp/loe/continguts1.txt");
+        $doc = @file_get_contents("/home/rafael/nb-projectes/dokuwiki_30/data/pages/plantilles/docum_ioc/pla_treball_fp/loe/document.txt");
+        $dataChanged = $this->comparaTemplates($t0, $t1, $doc);
     }
 
 
