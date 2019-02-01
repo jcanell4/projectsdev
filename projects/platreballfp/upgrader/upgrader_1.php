@@ -36,10 +36,16 @@ class upgrader_1 extends CommonUpgrader {
         //$this->model->setDataProject(json_encode($dataChanged), "Upgrade: version 0 to 1");
 
         // Aplica una nueva plantilla a un documento creado con una plantilla antigua
-        $t0 = @file_get_contents("/home/rafael/nb-projectes/dokuwiki_30/data/pages/plantilles/docum_ioc/pla_treball_fp/loe/continguts0.txt");
-        $t1 = @file_get_contents("/home/rafael/nb-projectes/dokuwiki_30/data/pages/plantilles/docum_ioc/pla_treball_fp/loe/continguts1.txt");
-        $doc = @file_get_contents("/home/rafael/nb-projectes/dokuwiki_30/data/pages/plantilles/docum_ioc/pla_treball_fp/loe/document.txt");
-        $dataChanged = $this->comparaTemplates($t0, $t1, $doc);
+        $t0 = @file_get_contents("/home/rafael/clone/continguts0.txt");
+        $t1 = @file_get_contents("/home/rafael/clone/continguts1.txt");
+        $doc = @file_get_contents("/home/rafael/clone/document.txt");
+        $dataChanged = $this->updateDocToNewTemplate($t0, $t1, $doc);
+
+        // Aplica una nueva plantilla, con token numerado, a un documento creado con una plantilla antigua
+        $t0 = @file_get_contents("/home/rafael/clone/continguts_00.txt");
+        $t1 = @file_get_contents("/home/rafael/clone/continguts_01.txt");
+        $doc = @file_get_contents("/home/rafael/clone/document_00.txt");
+        $dataChanged = $this->updateDocToNewTemplateNumbered($t0, $t1, $doc);
     }
 
 
