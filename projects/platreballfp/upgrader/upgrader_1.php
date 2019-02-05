@@ -35,6 +35,37 @@ class upgrader_1 extends CommonUpgrader {
         $dataChanged = $this->changeFieldNameInArray($dataProject, $name0, $name1);
         //$this->model->setDataProject(json_encode($dataChanged), "Upgrade: version 0 to 1");
 
+        /**************** PLANTILLAS **********************************************************/
+        //LECTURA DE LOS FICHEROS ORIGINALES
+        $t0 = @file_get_contents("/home/rafael/clone/continguts_00.txt");
+        $t1 = @file_get_contents("/home/rafael/clone/continguts_01.txt");
+        $doc = @file_get_contents("/home/rafael/clone/document_00.txt");
+
+        //DELETE
+        $aTokDel = ["\s+\* té una ponderació .*\"Qualificació final QF\"\)\.",
+                    "\<WIOCCL:IF.*\>",
+                    "\s+\- Ha patit un accident.*a la convocatòria JT\."];
+        $t0 = $this->updateTemplateDelete($t0, $aTokDel);
+        $doc = $this->updateTemplateDelete($doc, $aTokDel);
+
+        //INSERT
+        $aTokIns[] = ['regexp' => "^L'exercici .* formativa:$",
+                      'text' => "\n  * té una ponderació en la **qualificació final** del mòdul (vegeu l'apartat \"Qualificació final QF\").",
+                      'pos' => 1,
+                      'modif' => "m"];
+        $t0 = $this->updateTemplateInsert($t0, $aTokIns);
+        $doc = $this->updateTemplateInsert($doc, $aTokIns);
+
+        //MOVE
+        $aTokMov[] = ['regexp0' => "\s+\* té una durada màxima de.*\[##TODO_3:.*##\]\.$",
+                      'regexp1' => "\s+\* té una ponderació .* \(vegeu l'apartat \"Qualificació final QF\"\)\.$",
+                      'pos' => 1,
+                      'modif' => "m"];
+        $t0 = $this->updateTemplateMove($t0, $aTokMov);
+        $doc = $this->updateTemplateMove($doc, $aTokMov);
+
+        /************************* Tratamiento de PLANTILLAS *************************************/
+
         // Aplica una nueva plantilla a un documento creado con una plantilla antigua
         $t0 = @file_get_contents("/home/rafael/clone/continguts0.txt");
         $t1 = @file_get_contents("/home/rafael/clone/continguts1.txt");
@@ -46,6 +77,29 @@ class upgrader_1 extends CommonUpgrader {
         $t1 = @file_get_contents("/home/rafael/clone/continguts_01.txt");
         $doc = @file_get_contents("/home/rafael/clone/document_00.txt");
         $dataChanged = $this->updateDocToNewTemplateNumbered($t0, $t1, $doc);
+
+        // Elimina de un documento los trozos de texto que cumplen con cada una de las expresiones regulares
+        $doc = @file_get_contents("/home/rafael/clone/document_00.txt");
+        $aTokDel = ["<WIOCCL:IF.*>","[##TODO_6:.*##]."];
+        $dataChanged = $this->updateTemplateDelete($doc, $aTokDel);
+        //$this->model->setDataProject(json_encode($dataChanged), "Upgrade: version 0 to 1");
+
+        // Inserta en el documento trozos de texto en las posiciones indicadas por cada una de las expresiones regulares
+        $doc = @file_get_contents("/home/rafael/clone/document_00.txt");
+        $aTokIns[] = ['regexp' => "^L'exercici .* formativa:$",
+                      'text' => "\n  * té una ponderació en la **qualificació final** del mòdul (vegeu l'apartat \"Qualificació final QF\".",
+                      'pos' => 1];
+        $dataChanged = $this->updateTemplateInsert($doc, $aTokIns);
+        //$this->model->setDataProject(json_encode($dataChanged), "Upgrade: version 0 to 1");
+
+        // Aplica una nueva plantilla a un documento creado con una plantilla antigua
+        $t0 = @file_get_contents("/home/rafael/clone/continguts_00.txt");
+        $t1 = @file_get_contents("/home/rafael/clone/continguts_01.txt");
+        $doc = @file_get_contents("/home/rafael/clone/document_00.txt");
+        $token0 = "\[##TODO.*##\]";
+        $aTokens = ["0","1","2","3"];
+        $dataChanged = $this->updateTemplateReplace($t0, $t1, $doc, $token0, $aTokens);
+        //$this->model->setDataProject(json_encode($dataChanged), "Upgrade: version 0 to 1");
     }
 
 
