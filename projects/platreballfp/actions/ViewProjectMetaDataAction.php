@@ -56,7 +56,7 @@ class ViewProjectMetaDataAction extends BasicViewProjectMetaDataAction{
 
                 if ($inici_semestre) {
                     if ($inici_semestre > $fi_semestre) {
-                        $fi_semestre = date_add($fi_semestre, new DateInterval('P1Y'));
+                        $inici_semestre = date_sub($inici_semestre, new DateInterval('P1Y'));
                     }
                     $interval = !($dataActual >= $inici_semestre && $dataActual <= $fi_semestre);
                     $response['activarUpdateButton'] = ($interval) ? "1" : "0";
