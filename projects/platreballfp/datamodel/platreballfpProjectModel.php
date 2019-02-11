@@ -15,6 +15,10 @@ class platreballfpProjectModel extends AbstractProjectModel {
         parent::__construct($persistenceEngine);
     }
 
+    public function getProjectDocumentName() {
+        $ret = $this->getMetaDataProject();
+        return $ret['fitxercontinguts'];
+    }
 
     public function getContentDocumentId($responseData){
         if ($responseData['projectMetaData']["fitxercontinguts"]['value']){
