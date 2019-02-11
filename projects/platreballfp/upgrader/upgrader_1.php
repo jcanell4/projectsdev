@@ -115,6 +115,9 @@ class upgrader_1 extends CommonUpgrader {
         $aTokens = ["0","1","2","3"];
         $dataChanged = $this->updateTemplateReplacingTokens($t0, $t1, $doc, $token0, $aTokens);
         //$this->model->setDataProject(json_encode($dataChanged), "Upgrade: version 0 to 1");
+
+
+        return TRUE; //si tot ha anat bé
     }
 
 
