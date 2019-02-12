@@ -1,7 +1,7 @@
 <?php
 /**
- * upgrader_1: Transforma los datos del proyecto "documentation"
- *             desde la estructura de la versión 0 a la estructura de la versión 1
+ * upgrader_1: Procesos de transformación de estructuras, datos, plantillas, etc.
+ *             del proyecto "documentation" desde la versión 0 a la versión 1
  * @author rafael
  */
 if (!defined("DOKU_INC")) die();
@@ -18,14 +18,26 @@ class upgrader_1 extends CommonUpgrader {
         $this->metaDataSubSet = $this->model->getMetaDataSubSet();
     }
 
-    public function process() {
-        $dataProject = $this->model->getMetaDataProject($this->metaDataSubSet);
+    public function process($type, $key=NULL) {
 
-        //Cambiar el nombre de un campo del primer nivel
-        $name0 = "addressmedia";  //nombre de clave original (versión 0)
-        $name1 = "media_address";   //nuevo nombre de clave (versión 1)
-        $dataChanged = $this->changeFieldName($dataProject, $name0, $name1);
-        //$this->model->setDataProject(json_encode($dataChanged), "Upgrade: version 0 to 1");
+        switch ($type) {
+            case "fields":
+                //Transforma los datos del proyecto "documentation" desde la estructura de la versión 0 a la versión 1
+                $dataProject = $this->model->getMetaDataProject($this->metaDataSubSet);
+                if (!is_array($dataProject)) {
+                    $dataProject = json_decode($dataProject, TRUE);
+                }
+                $name0 = "addressmedia";  //nombre de clave original (versión 0)
+                $name1 = "media_address";   //nuevo nombre de clave (versión 1)
+                //Este proceso cambia el nombre de un campo del primer nivel
+                $dataChanged = $this->changeFieldName($dataProject, $name0, $name1);
+                //$this->model->setDataProject(json_encode($dataChanged), "Upgrade: version 0 to 1");
+                break;
+            case "templates":
+                //$key contiene el nombre de la plantilla
+                break;
+        }
+        return $ret;
     }
 
 }

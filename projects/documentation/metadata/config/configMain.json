@@ -82,7 +82,10 @@
         {
             "main": "meta.mdpr",
             "viewfiles": ["defaultView"],
-            "version": 1,
+            "versions": {
+                "templates": {"continguts":1},
+                "fields": 1
+            },
             "mainType": {
                 "type": "object",
                 "typeDef": "document"
