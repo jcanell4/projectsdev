@@ -14,26 +14,30 @@ require([
     };
 
     var fGetQuery=function(){
+        var filetype = "";
         var globalState = this.dispatcher.getGlobalState();
         var id = globalState.getCurrentId();
         var ns = globalState.getContent(id).ns;
         var projectType = globalState.getContent(id)["projectType"];
 
-        var aux = [];
         var nodeForm = dom.byId("export__form_" + id);
-        for(var i=0; i<nodeForm.elements.length; i++){
-            aux[i] = nodeForm.elements[i].disabled;
-            if(aux[i]){
-                nodeForm.elements[i].disabled=false;
+        if (nodeForm) {
+            var aux = [];
+            for(var i=0; i<nodeForm.elements.length; i++){
+                aux[i] = nodeForm.elements[i].disabled;
+                if(aux[i]){
+                    nodeForm.elements[i].disabled=false;
+                }
+            }
+            var form = domForm.toObject(nodeForm);
+            filetype = "&filetype="+form.filetype;
+
+            for(var i=0; i<nodeForm.elements.length; i++){
+                nodeForm.elements[i].disabled = aux[i];
             }
         }
-        var form = domForm.toObject(nodeForm);
-        var ret = "id="+ns + "&projectType="+projectType + "&mode=pdf" + "&filetype="+form.filetype;
-
-        for(var i=0; i<nodeForm.elements.length; i++){
-            nodeForm.elements[i].disabled = aux[i];
-        }
-
+        
+        var ret = "id="+ns + "&projectType="+projectType + "&mode=pdf" + filetype;
         return ret;
     };
 
