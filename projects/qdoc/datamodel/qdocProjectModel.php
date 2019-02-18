@@ -15,28 +15,14 @@ class qdocProjectModel extends AbstractProjectModel {
         parent::__construct($persistenceEngine);
     }
 
-//    public function getId(){
-//        return $this->id;
-//    }
+    public function preUpgradeProject($subSet) {
+        return systemUpgrader::preUpgrade($this, $subSet);
+    }
 
     public function getProjectDocumentName() {
         $ret = $this->getMetaDataProject();
         return $ret['fitxercontinguts'];
     }
-
-//    public function getContentDocumentId($responseData){
-//        if ($responseData['projectMetaData']["fitxercontinguts"]['value']){
-//            $contentName = $responseData['projectMetaData']["fitxercontinguts"]['value'];
-//        }else{
-//            $contentName = end(explode(":", $this->getTemplateContentDocumentId($responseData)));
-//        }
-//        return $this->id.":" .$contentName;
-//    }
-//
-//    public function getTemplateContentDocumentId($responseData){
-//        $plantilla = $responseData['projectMetaData']["plantilla"]['value'];
-//        return $plantilla;
-//    }
 
     public function generateProject() {} //abstract obligatorio
 
@@ -70,14 +56,6 @@ class qdocProjectModel extends AbstractProjectModel {
         }
         return $ret;
     }
-
-//    public function createTemplateDocument($data){
-//        $plantilla = $this->getTemplateContentDocumentId($data);
-//        $destino = $this->getContentDocumentId($data);
-//
-//        //1.1 Crea el archivo 'continguts', en la carpeta del proyecto, a partir de la plantilla especificada
-//        $this->createPageFromTemplate($destino, $plantilla, NULL, "generate project");
-//    }
 
     /**
      * Modifica los permisos en el fichero de ACL y la página de atajos del autor
