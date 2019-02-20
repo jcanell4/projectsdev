@@ -53,19 +53,19 @@ class ProjectExportAction extends ProjectMetadataAction{
 
     public function responseProcess() {
         $ret = array();
-        $fRenderer = $this->factoryRender;
-        $fRenderer->init(['mode'            => $this->mode,
-                          'filetype'        => $this->filetype,
-                          'typesDefinition' => $this->typesDefinition,
-                          'typesRender'     => $this->typesRender]);
-        $render = $fRenderer->createRender($this->typesDefinition[$this->mainTypeName],
-                                           $this->typesRender[$this->mainTypeName],
-                                           array(ProjectKeys::KEY_ID => $this->projectID));
-        $result = $render->process($this->dataArray);
+        $this->factoryRender->init(['mode'            => $this->mode,
+                                    'filetype'        => $this->filetype,
+                                    'typesDefinition' => $this->typesDefinition,
+                                    'typesRender'     => $this->typesRender]);
 
+        $render = $this->factoryRender->createRender($this->typesDefinition[$this->mainTypeName],
+                                                     $this->typesRender[$this->mainTypeName],
+                                                     array(ProjectKeys::KEY_ID => $this->projectID));
+
+        $result = $render->process($this->dataArray);
         $result['ns'] = $this->projectNS;
-        $ret=["id" => str_replace(":", "_", $this->projectID)];
-        $ret["ns"] = $this->projectNS;
+        $ret['id'] = str_replace(":", "_", $this->projectID);
+        $ret['ns'] = $this->projectNS;
 
         switch ($this->mode) {
             case 'pdf':
@@ -122,27 +122,19 @@ class ProjectExportAction extends ProjectMetadataAction{
         if ($result['error']) {
             throw new Exception ("Error");
         }else{
-            if ($result["zipFile"]) {
-                if (!self::copyZip($result)) {
-                    throw new Exception("Error en la còpia de l'arxiu zip des de la ubicació temporal");
-                }
-            }
-            $file = WikiGlobalConfig::getConf('mediadir').'/'. preg_replace('/:/', '/', $result['ns']) .'/'.preg_replace('/:/', '_', $result['ns']);
-            $ret.= self::_getHtmlMetadata($result['ns'], $file, ".pdf");
+            $path = WikiGlobalConfig::getConf('mediadir').'/'. preg_replace('/:/', '/', $result['ns']);
+            $file = preg_replace('/:/', '_', $result['ns']);
+            self::_copyPdf($result["tmp_dir"], $path, $file.".pdf");
+            $ret.= self::_getHtmlMetadata($result['ns'], "$path/$file", ".pdf");
         }
         return $ret;
     }
 
     private static function _getHtmlMetadata($ns, $file, $ext) {
-        if ($ext === ".zip") {
-            $P = ""; $nP = "";
-            $class = "mf_zip";
-            $mode = "HTML";
-        }else {
-            $P = "<p>"; $nP = "</p>";
-            $class = "mf_pdf";
-            $mode = "PDF";
-        }
+        $P = "<p>"; $nP = "</p>";
+        $class = "mf_pdf";
+        $mode = "PDF";
+
         if (@file_exists($file.$ext)) {
             $ret = '';
             $filename = str_replace(':','_',basename($ns)).$ext;
@@ -171,13 +163,11 @@ class ProjectExportAction extends ProjectMetadataAction{
         return $ret;
     }
 
-    private static function copyZip($result){
-        $dest = preg_replace('/:/', '/', $result['ns']);
-        $path_dest = WikiGlobalConfig::getConf('mediadir').'/'.$dest;
-        if (!file_exists($path_dest)){
-            mkdir($path_dest, 0755, TRUE);
+    private static function _copyPdf($origin, $path, $file){
+        if (!file_exists($path)){
+            mkdir($path, 0755, TRUE);
         }
-        $ok = copy($result["zipFile"], $path_dest.'/'.$result["zipName"]);
+        $ok = copy($origin, "$path/$file");
         return $ok;
     }
 
