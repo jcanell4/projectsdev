@@ -124,7 +124,9 @@ class ProjectExportAction extends ProjectMetadataAction{
         }else{
             $path = WikiGlobalConfig::getConf('mediadir').'/'. preg_replace('/:/', '/', $result['ns']);
             $file = preg_replace('/:/', '_', $result['ns']);
-            self::_copyPdf($result["tmp_dir"], $path, $file.".pdf");
+            if ($result["tmp_dir"]) {
+                self::_copyPdf($result["tmp_dir"], $path, $file.".pdf");
+            }
             $ret.= self::_getHtmlMetadata($result['ns'], "$path/$file", ".pdf");
         }
         return $ret;
