@@ -16,10 +16,6 @@ class documentationProjectModel extends AbstractProjectModel {
         parent::__construct($persistenceEngine);
     }
 
-    public function preUpgradeProject($subSet) {
-        return systemUpgrader::preUpgrade($this, $subSet);
-    }
-
     public function generateProject() {
         //0. Obtiene los datos del proyecto
         $ret = $this->getData();   //obtiene la estructura y el contenido del proyecto

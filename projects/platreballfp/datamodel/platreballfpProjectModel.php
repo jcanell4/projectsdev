@@ -15,10 +15,6 @@ class platreballfpProjectModel extends AbstractProjectModel {
         parent::__construct($persistenceEngine);
     }
 
-    public function preUpgradeProject($subSet) {
-        return systemUpgrader::preUpgrade($this, $subSet);
-    }
-
     public function getProjectDocumentName() {
         $ret = $this->getMetaDataProject();
         return $ret['fitxercontinguts'];
