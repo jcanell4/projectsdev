@@ -211,8 +211,9 @@ class renderArray extends renderComposite {
     }
 }
 
-
-
+/**
+ * class IocTcPdf
+ */
 require_once (DOKU_INC.'inc/inc_ioc/tcpdf/tcpdf_include.php');
 
 class IocTcPdf extends TCPDF{
@@ -262,12 +263,14 @@ class IocTcPdf extends TCPDF{
         $this->SetFont($footerfont[0], $footerfont[1], $footerfont[2]);
         $this->SetY($y_position);   //Position from bottom
 
-        $w1 = max(10, strlen($this->peu['codi']), strlen($this->peu['versio'])) * 2;
+        $codi = " codi: ".$this->peu['codi'];
+        $versio = " versió: ".$this->peu['versio'];
+        $w1 = max(10, strlen($codi), strlen($versio)) * 2;
         $w1 = min(30, $w1);
         $w2 = 22;
 
-        $this->MultiCell($w1, $cell_height, $this->peu['codi'], 1, 'C', 0, 1, "", "", true, 0, false, true, $cell_height, 'M');
-        $this->MultiCell($w1, $cell_height, $this->peu['versio'], 1, 'C', 0, 0, "", "", true, 0, false, true, $cell_height, 'M');
+        $this->MultiCell($w1, $cell_height, $codi, 1, 'L', 0, 1, "", "", true, 0, false, true, $cell_height, 'M');
+        $this->MultiCell($w1, $cell_height, $versio, 1, 'L', 0, 0, "", "", true, 0, false, true, $cell_height, 'M');
         $this->SetY($y_position);
         $titol_w = $this->getPageWidth()-$margins['right']-($w1+$w2-5);
         $this->MultiCell($titol_w, $cell_height*2, $this->peu['titol'], 1, 'C', 0, 0, "", "", true, 0, false, true, $cell_height*2, 'M');
@@ -289,6 +292,8 @@ class IocTcPdf extends TCPDF{
 class StaticPdfRenderer{
     static $tableCounter = 0;
     static $tableReferences = array();
+    static $figureCounter = 0;
+    static $figureReferences = array();
     static $headerNum = array(0,0,0,0,0,0);
     static $headerFont = "helvetica";
     static $headerFontSize = 10;
@@ -370,10 +375,12 @@ class StaticPdfRenderer{
     }
 
     private static function resolveReferences($content){
-        if ($content["type"]===TableFrame::TABLEFRAME_TYPE_TABLE
-                || $content["type"]===TableFrame::TABLEFRAME_TYPE_ACCOUNTING){
+        if ($content["type"]===TableFrame::TABLEFRAME_TYPE_TABLE || $content["type"]===TableFrame::TABLEFRAME_TYPE_ACCOUNTING){
             self::$tableCounter++;
             self::$tableReferences[$content["id"]] = self::$tableCounter;
+        }elseif ($content["type"]===FigureFrame::FRAME_TYPE_FIGURE) {
+            self::$figureCounter++;
+            self::$figureReferences[$content["id"]] = self::$figureCounter;
         }
         for ($i=0; $i<count($content["content"]); $i++){
             self::resolveReferences($content["content"][$i]);
@@ -399,30 +406,78 @@ class StaticPdfRenderer{
         }
     }
 
-    private static function renderFooter($footer, IocTcPdf &$iocTcPdf){
-//        $level = $footer["level"]-1;
-//        $iocTcPdf->SetFont('Times', 'B', 12);
-//        $title = $footer["title"];
-//        $iocTcPdf->Bookmark($title, $level, 0);
-//        $iocTcPdf->Ln(5);
-//        $iocTcPdf->Cell(0, 0, $title, 0,1, "L");
-//        $iocTcPdf->Ln(3);
-//        for ($i=0; $i<count($footer["content"]); $i++){
-//            self::renderContent($footer["content"][$i], $iocTcPdf);
-//        }
-//        for ($i=0; $i<count($footer["children"]); $i++){
-//            self::renderFooter($footer["children"][$i], $iocTcPdf);
-//        }
-    }
-
     private static function renderContent($content, IocTcPdf &$iocTcPdf, $pre="", $post=""){
         $iocTcPdf->SetFont('helvetica', '', 10);
-        $iocTcPdf->writeHTML( self::getContent($content), TRUE, FALSE);
+        if ($content['type'] === FigureFrame::FRAME_TYPE_FIGURE ||
+           ($content['type'] === StructuredNodeDoc::PARAGRAPH_TYPE && $content['content'][0]['type'] === ImageNodeDoc::IMAGE_TYPE)) {
+            //$iocTcPdf->writeHTML(self::getFrameContent($content, $iocTcPdf), TRUE, FALSE);
+            self::getFrameContent($content, $iocTcPdf);
+        }
+        else {
+            $iocTcPdf->writeHTML(self::getContent($content), TRUE, FALSE);
+        }
+
         if($content["type"] == StructuredNodeDoc::ORDERED_LIST_TYPE
                 || $content["type"] == StructuredNodeDoc::UNORDERED_LIST_TYPE
                 || $content["type"] == StructuredNodeDoc::PARAGRAPH_TYPE){
             $iocTcPdf->Ln(3);
         }
+    }
+
+    private static function getFrameContent($content, IocTcPdf &$iocTcPdf){
+        switch ($content['type']){
+            case ImageNodeDoc::IMAGE_TYPE:
+                preg_match('/\.(.+)$/', $content['src'], $match);
+                $ext = ($match) ? $match[1] : "JPG";
+                $link = $_SERVER['HTTP_REFERER']."?id=".$content['id'];
+                //càlcul de les dimensions de la imatge
+                list($w0, $h0) = getimagesize($content['src']);
+                $w = ($content['width']) ? $content['width'] / 5 : 0;
+                if ($w) $pcw = $w / $w0;
+                $h = ($content['height']) ? $content['height'] / 5 : $h0 * $pcw;
+                //inserció de la imatge
+                $iocTcPdf->Image($content['src'], '', '', $w, $h, $ext, $link, 'T');
+                $iocTcPdf->SetY($iocTcPdf->GetY() + $h); //correcció de la coordinada Y desprès de insertar la imatge
+                //inserció del títol a sota de la imatge
+                $ret = "<p  style=\"text-align:justify; font-size:80%;\">{$content['title']}</p>";
+                $iocTcPdf->writeHTML($ret, TRUE, FALSE);
+                break;
+
+            case FigureFrame::FRAME_TYPE_FIGURE:
+                if ($content["hasBorder"]) {
+                    $style ="style=\"border:1px solid gray;\"";
+                }
+                $ret = "<div $style nobr=\"true\">";
+                if ($content['title']){
+                    $ret .= "<h4 style=\"text-align:center;\"> Figura ".self::$figureReferences[$content['id']].". ".$content['title']."</h4>";
+                }
+                $iocTcPdf->writeHTML($ret, TRUE, FALSE);
+                $ret = self::getFrameStructuredContent($content, $iocTcPdf);
+                if ($content['footer']){
+                    if ($content['title']){
+                        $ret .= "<p style=\"text-align:justify; font-size:80%;\">".$content['footer']."</p>";
+                    }else{
+                        $ret .= "<p style=\"text-align:justify; font-size:80%;\"> Figura ".self::$figureReferences[$content['id']].". ".$content['footer']."</p>";
+                    }
+                }
+                $ret .= "</div>";
+                $iocTcPdf->writeHTML($ret, TRUE, FALSE);
+                break;
+                
+            default:
+                self::getFrameStructuredContent($content, $iocTcPdf);
+                break;
+        }
+        return "";
+    }
+
+    private static function getFrameStructuredContent($content, IocTcPdf &$iocTcPdf){
+        $ret = "";
+        $limit = count($content['content']);
+        for ($i=0; $i<$limit; $i++){
+            $ret .= self::getFrameContent($content['content'][$i], $iocTcPdf);
+        }
+        return $ret;
     }
 
     private static function getContent($content){
@@ -478,12 +533,36 @@ class StaticPdfRenderer{
             case StructuredNodeDoc::UNORDERED_LIST_TYPE:
                 $ret = "<ul>".self::getStructuredContent($content)."</ul>";
                 break;
+            case LeafNodeDoc::SMILEY_TYPE:
+                $ret = self::getTextContent($content); //Debe ser sustituido por el gif
+                break;
+            case FigureFrame::FRAME_TYPE_FIGURE:
+                if ($content["hasBorder"]) {
+                    $style ="style=\"border:1px solid gray;\"";
+                }
+                $ret = "<div $style nobr=\"true\">";
+                if ($content["title"]){
+                    $ret .= "<h4 style=\"text-align:center;\"> Figura ".self::$figureReferences[$content['id']].". ".$content['title']."</h4>";
+                }
+                $ret .= self::getStructuredContent($content);
+                if ($content["footer"]){
+                    if ($content["title"]){
+                        $ret .= "<p style=\"text-align:justify; font-size:80%;\">".$content['footer']."</p>";
+                    }else{
+                        $ret .= "<p style=\"text-align:justify; font-size:80%;\"> Figura ".self::$figureReferences[$content['id']].". ".$content['footer']."</p>";
+                    }
+                }
+                $ret .= "</div>";
+                break;
+            case ImageNodeDoc::IMAGE_TYPE:
+                $ret = "<img src=\"".$content["src"]."\" title=\"".$content["title"]."\" />";
+                break;
             case TableFrame::TABLEFRAME_TYPE_TABLE:
             case TableFrame::TABLEFRAME_TYPE_ACCOUNTING:
                 $style ="";
-                $ret = "<div$style  nobr=\"true\">";
+                $ret = "<div $style nobr=\"true\">";
                 if ($content["title"]){
-                    $ret .= "<h4  style=\"text-align:center;\"> Taula ".self::$tableReferences[$content["id"]].". ".$content["title"]."</h4>";
+                    $ret .= "<h4 style=\"text-align:center;\"> Taula ".self::$tableReferences[$content["id"]].". ".$content["title"]."</h4>";
                 }
                 $ret .= self::getStructuredContent($content);
                 if ($content["footer"]){
@@ -527,8 +606,25 @@ class StaticPdfRenderer{
                 $ret = self::getTextContent($content);
                 break;
             case ReferenceNodeDoc::REFERENCE_TYPE:
-                if($content["referenceType"] === ReferenceNodeDoc::REF_TABLE_TYPE){
-                    $ret = " <em>Taula ".self::$tableReferences[trim($content["referenceId"])]."</em> ";
+                switch ($content["referenceType"]) {
+                    case ReferenceNodeDoc::REF_TABLE_TYPE:
+                        $id = trim($content["referenceId"]);
+                        $ret = " <a href=\"#".$id."\"><em>Taula ".self::$tableReferences[$id]."</em></a> ";
+                        break;
+                    case ReferenceNodeDoc::REF_FIGURE_TYPE:
+                        $id = trim($content["referenceId"]);
+                        $ret = " <a href=\"#".$id."\"><em>Figura ".self::$figureReferences[$id]."</em></a> ";
+                        break;
+                    case ReferenceNodeDoc::REF_WIKI_LINK:
+                        $file = $_SERVER['HTTP_REFERER']."?id=".$content["referenceId"];
+                        $ret = " <a href=\"".$file."\">".$content["referenceTitle"]."</a> ";
+                        break;
+                    case ReferenceNodeDoc::REF_INTERNAL_LINK:
+                        $ret = " <a href='".$content["referenceId"]."'>".$content["referenceTitle"]."</a> ";
+                        break;
+                    case ReferenceNodeDoc::REF_EXTERNAL_LINK:
+                        $ret = " <a href=\"".$content["referenceId"]."\">".$content["referenceTitle"]."</a> ";
+                        break;
                 }
                 break;
             case TextNodeDoc::PREFORMATED_TEXT_TYPE:
