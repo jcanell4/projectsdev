@@ -195,11 +195,13 @@ class MetaDataRender extends \MetaDataRenderAbstract {
                 break;
             default:
                 if(array_key_exists($properties['type'], $types)){
-                    $properties['type']=$types[$properties['type']]['type'] ;
-                    if(isset($types[$properties['type']]['typeDef'])){
-                        $properties['typeDef']=$types[$properties['type']]['typeDef'];
-                    }else if(isset($types[$properties['type']]['keys'])){
-                        $properties['keys']=$types[$properties['type']]['keys'];
+                    $typeDef = $properties['type'];
+                    $properties['type']=$types[$properties['type']]['type'] ;                     
+//                    if(isset($types[$properties['type']]['typeDef'])){
+                    if(isset($types[$typeDef]['typeDef'])){
+                        $properties['typeDef']=$types[$typeDef]['typeDef'];
+                    }else if(isset($types[$typeDef]['keys'])){
+                        $properties['keys']=$types[$typeDef]['keys'];
                     }
                     $ret = $this->_getValue($field, $values, $properties, $types);
                 }else{

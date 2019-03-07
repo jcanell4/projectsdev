@@ -79,7 +79,7 @@ class guiesgesProjectModel extends AbstractProjectModel {
      */
     public function modifyACLPageToUser($parArr) {
         $project_ns = $parArr['id'].":*";
-
+        
         //Se ha modificado el Autor del proyecto
         if ($parArr['old_autor'] !== $parArr['new_autor']) {
             if ($parArr['old_autor'] !== $parArr['old_responsable']) {
@@ -101,7 +101,7 @@ class guiesgesProjectModel extends AbstractProjectModel {
             $ns = $parArr['userpage_ns'].$parArr['new_autor'].":";
             PagePermissionManager::updatePagePermission($ns."*", $parArr['new_autor'], AUTH_DELETE, TRUE);
             //Escribe un acceso a la página del proyecto en el archivo de atajos de de new_autor
-            $link_page = ($parArr['old_autor']!=="") ? $parArr['link_page'] : $parArr['id'];
+            $link_page = $parArr['id'];
             $params = [
                  'id' => $parArr['id']
                 ,'autor' => $parArr['new_autor']
@@ -178,4 +178,12 @@ class guiesgesProjectModel extends AbstractProjectModel {
                                        PageKeys::KEY_SUM => $summary]);
     }
 
+    public function createTemplateDocument($data){
+//        $plantilla = $this->getTemplateContentDocumentId($data);
+//        $destino = $this->getContentDocumentId($data);
+//
+//        //1.1 Crea el archivo 'continguts', en la carpeta del proyecto, a partir de la plantilla especificada
+//        $this->createPageFromTemplate($destino, $plantilla, NULL, "generate project");
+        
+    }
 }

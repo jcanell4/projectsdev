@@ -49,9 +49,9 @@
                             "default": 0
                         },
                         "ponderacio": {
-                            "type": "satring",
+                            "type": "number",
                             "mandatory": true,
-                            "default": "0"
+                            "default": 0
                         }
                     }
                 },
@@ -80,15 +80,33 @@
                             "type": "date",
                             "mandatory": true
                         },
-                        "percentage":{
+                        "percentatge":{
                             "type": "string",
                             "mandatory": true
                         }
                     }
                 },
                 "lliuramentsDef": {
-                    "type": "lliuramentDef",
-                    "mandatory": true
+                    "type": "object",
+                    "keys":{
+                        "lliurament1":{
+                            "type": "lliuramentDef",
+                            "mandatory": true
+                        },
+                        "lliurament2":{
+                            "type": "lliuramentDef",
+                            "mandatory": true
+                        },
+                        "lliurament3":{
+                            "type": "lliuramentDef",
+                            "mandatory": true
+                        },
+                        "lliurament4":{
+                            "type": "lliuramentDef",
+                            "mandatory": true
+                        }
+                    },
+                    "mandatory":true
                 },                                                
                 "dadesguies": {
                     "type": "object",
@@ -138,7 +156,8 @@
                         "lliuraments":{
                             "type":"object",
                             "typeDef":"lliuramentsDef",
-                            "mandatory":true
+                            "mandatory":true,
+                            "default":"{\"lliurament1\":{\"id\":\"LL1\", \"nom\":\"Lliurament 1\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25},\"lliurament2\":{\"id\":\"LL2\", \"nom\":\"Lliurament 2\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25},\"lliurament3\":{\"id\":\"LL3\", \"nom\":\"Lliurament 3\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25},\"lliurament4\":{\"id\":\"LL4\", \"nom\":\"Lliurament 4\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25}}"
                         },
                         "sequenciaDidactica":{
                             "type":"taulaSequenciaDidacticaDef",
