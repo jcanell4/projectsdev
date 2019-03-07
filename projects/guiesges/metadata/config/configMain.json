@@ -1,0 +1,181 @@
+{
+    "metaDataClassesNameSpaces": [
+        {
+            "main": {
+                "MetaDataDAO": "defaultProject",
+                "MetaDataEntity": "defaultProject",
+                "MetaDataRender": "guiesges"
+            }
+        }
+    ],
+    "metaDataProjectConfig": [
+        {
+            "main": {
+                "projectTypeConfigFile": "admconfig:guiesges"
+            }
+        }        
+    ],
+    "metaDataProjectStructure": [
+        {
+            "main": "meta.mdpr",
+            "versions": {
+                "fields": 0,
+                "templates": {"gdocent":0, "gestudi":0}
+            },
+            "mainType": {
+                "type": "object",
+                "typeDef": "dadesguies"
+            },
+            "typesDefinition": {
+                "entradaTaulaSequenciaDidactica": {
+                    "type": "object",
+                    "keys": {
+                        "idLliurament": {
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "id": {
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "descripcio": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Indiqueu el nom de la unitat"
+                        },
+                        "hores": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": 0
+                        },
+                        "ponderacio": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": 0
+                        }
+                    }
+                },
+                "taulaSequenciaDidacticaDef": {
+                    "type": "objectArray",
+                    "typeDef":"entradaTaulaSequenciaDidactica"
+                },                                                
+                "lliuramentDef": {
+                    "type": "object",
+                    "keys":{
+                        "id":{
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "LL99"
+                        },
+                        "nom":{
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Escriviu un nom descriptiu del lliurament"
+                        },
+                        "dataInici":{
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "dataFinal":{
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "percentatge":{
+                            "type": "string",
+                            "mandatory": true
+                        }
+                    }
+                },
+                "lliuramentsDef": {
+                    "type": "object",
+                    "keys":{
+                        "lliurament1":{
+                            "type": "lliuramentDef",
+                            "mandatory": true
+                        },
+                        "lliurament2":{
+                            "type": "lliuramentDef",
+                            "mandatory": true
+                        },
+                        "lliurament3":{
+                            "type": "lliuramentDef",
+                            "mandatory": true
+                        },
+                        "lliurament4":{
+                            "type": "lliuramentDef",
+                            "mandatory": true
+                        }
+                    },
+                    "mandatory":true
+                },                                                
+                "dadesguies": {
+                    "type": "object",
+                    "keys": {
+                        "trimestre": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default":1
+                        },
+                        "codi_modul": {
+                            "type": "string",
+                            "default": "Indiqueu el codi del mòdul",
+                            "mandatory": true
+                        },
+                        "modul": {
+                            "type": "string",
+                            "default": "Indiqueu el nom del mòdul",
+                            "mandatory": true
+                        },
+                        "ambit": {
+                            "type": "string",
+                            "default": "Indiqueu l'àmbit al que pertany el mòdul",
+                            "mandatory": true
+                        },
+                        "nivell": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default":1
+                        },
+                        "opcionalitat": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "comú"
+                        },
+                        "dedicacio": {
+                            "type": "string",
+                            "default": 0,
+                            "mandatory": true,
+                            "props":{
+                                "readonly":true
+                            }
+                        },
+                        "professor": {
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "lliuraments":{
+                            "type":"object",
+                            "typeDef":"lliuramentsDef",
+                            "mandatory":true,
+                            "default":"{\"lliurament1\":{\"id\":\"LL1\", \"nom\":\"Lliurament 1\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25},\"lliurament2\":{\"id\":\"LL2\", \"nom\":\"Lliurament 2\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25},\"lliurament3\":{\"id\":\"LL3\", \"nom\":\"Lliurament 3\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25},\"lliurament4\":{\"id\":\"LL4\", \"nom\":\"Lliurament 4\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25}}"
+                        },
+                        "sequenciaDidactica":{
+                            "type":"taulaSequenciaDidacticaDef",
+                            "mandatory": true
+                        },
+                        "autor": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true
+                        },
+                        "responsable": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

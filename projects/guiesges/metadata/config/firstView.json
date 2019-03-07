@@ -1,0 +1,354 @@
+{
+    "definition": {
+        "n_columns": 12,
+        "n_rows": 10,
+        "chars_column": 10, 
+        "rows_row": 1
+    },
+    "groups": {
+        "authorship": {
+            "parent": "main",
+            "label": "Autoria",
+            "n_columns": 12,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
+        },
+        "dadesBasiques": {
+            "parent": "main",
+            "label": "Dades bàsiques",
+            "n_columns": 12,
+            "n_rows": 8,
+            "frame": true,
+            "config":{
+                "collapsable":false,
+                "collapsed":false
+            }
+        },
+        "lliuraments": {
+            "parent": "main",
+            "label": "Lliuraments",
+            "n_columns": 12,
+            "n_rows": 15,
+            "frame": true,
+            "config":{
+                "collapsable":false,
+                "collapsed":false
+            }
+        },
+        "main": {
+            "parent": "",
+            "label": " ",
+            "n_columns": 12,
+            "n_rows": 1,
+            "frame": false,
+            "config":{
+                "collapsable":false,
+                "collapsed":false
+            }
+        }        
+    },
+    "fields":{
+      "ambit":{
+        "type":"select",
+        "n_columns": 4,
+        "label": "àmbit",
+        "group": "dadesBasiques",
+        "props": {
+          "required": true,
+          "title" : "indiqueu l'àmbit al que pertany el mòdul."
+        },
+        "config":{
+            "options":[
+                {"description":"Àmbit científic", "value":"A_CIEN"},
+                {"description":"Àmbit social", "value":"A_SOCI"}, 
+                {"description":"Àmbit comunicatiu", "value":"A_COMU"}
+            ]
+        }
+      },
+      "codi_modul": {
+        "label" : "Codi del mòdul",
+        "n_columns": 3,
+        "group": "dadesBasiques",
+        "props": {
+          "required": true,
+          "title": "indiqueu el codi del mòdul"
+        }
+      },
+      "modul": {
+        "label" : "Nom del mòdul",
+        "n_columns": 5,
+        "group": "dadesBasiques",
+        "props": {
+          "required": true,
+          "title": "indiqueu el nom del mòdul"
+        }
+      },
+      "professor": {
+        "label" : "Professor responsable",
+        "n_columns": 12,
+        "group": "dadesBasiques",
+        "props": {
+          "required": true,
+          "title": "Indiqueu el nom del professor responsable"
+        }
+      },
+      "nivell": {
+        "type":"number",
+        "label" : "Nivell",
+        "n_columns": 3,
+        "group": "dadesBasiques",
+        "props": {
+          "required": true,
+          "title": "indiqueu el nivell al que pertany el mòdul"
+        }
+      },
+      "dedicacio": {
+        "type":"number",
+        "label" : "Dedicació setmanal",
+        "n_columns": 4,
+        "group": "dadesBasiques",
+        "props": {
+          "required": true,
+          "title": "indiqueu el número d'hores de dedicació setmanal"
+        }
+      },
+      "opcionalitat":{
+        "label": "Comú/Opcional",
+        "type":"select",
+        "n_columns":5,
+        "group": "dadesBasiques",
+        "props": {
+          "required": true,
+          "title": "Indiqueu si el mòdul és comú o opcional"      
+        },
+         "config":{
+            "options":[
+                {"description":"Comú","value":"COMU"}, 
+                {"description":"Opcional","value":"OPCI"}
+            ]
+         }            
+      },
+      "lliuraments#lliurament1#id": {
+        "label": "id lliurament 1",
+        "n_columns": 3,
+        "group": "lliuraments",
+        "props": {
+            "required": true
+        }
+      },
+      "lliuraments#lliurament1#nom": {
+        "label": "nom lliurament 1",
+        "n_columns": 5,
+        "group": "lliuraments",
+        "props": {
+            "required": true
+        }
+      },
+      "lliuraments#lliurament1#dataInici": {
+        "type" : "hidden"
+      },
+      "lliuraments#lliurament1#dataFinal": {
+        "type" : "hidden"
+      },
+      "lliuraments#lliurament1#percentatge": {
+        "label": "percentatge lliurament 1",
+        "n_columns": 4,
+        "group": "lliuraments",
+        "type":"number",
+        "props": {
+            "required": true
+        }
+      },
+      "lliuraments#lliurament2#id": {
+        "label": "id lliurament 2",
+        "n_columns": 3,
+        "group": "lliuraments",
+        "props": {
+            "required": true
+        }
+      },
+      "lliuraments#lliurament2#nom": {
+        "label": "nom del lliurament 2",
+        "n_columns": 5,
+        "group": "lliuraments",
+        "props": {
+            "required": true
+        }
+      },
+      "lliuraments#lliurament2#dataInici": {
+        "type" : "hidden"
+      },
+      "lliuraments#lliurament2#dataFinal": {
+        "type" : "hidden"
+      },
+      "lliuraments#lliurament2#percentatge": {
+        "label": "percentatge lliurament 2",
+        "n_columns": 4,
+        "group": "lliuraments",
+        "type":"number",
+        "props": {
+            "required": true
+        }
+      },
+      "lliuraments#lliurament3#id": {
+        "label": "id lliurament 3",
+        "n_columns": 3,
+        "group": "lliuraments",
+        "props": {
+            "required": true
+        }
+      },
+      "lliuraments#lliurament3#nom": {
+        "label": "nom del lliurament 3",
+        "n_columns": 5,
+        "group": "lliuraments",
+        "props": {
+            "required": true
+        }
+      },
+      "lliuraments#lliurament3#dataInici": {
+        "type" : "hidden"
+      },
+      "lliuraments#lliurament3#dataFinal": {
+        "type" : "hidden"
+      },
+      "lliuraments#lliurament3#percentatge": {
+        "label": "percentatge lliurament 3",
+        "n_columns": 4,
+        "group": "lliuraments",
+        "type":"number",
+        "props": {
+            "required": true
+        }
+      },
+      "lliuraments#lliurament4#id": {
+        "label": "id lliurament 4",
+        "n_columns": 3,
+        "group": "lliuraments",
+        "props": {
+            "required": true
+        }
+      },
+      "lliuraments#lliurament4#nom": {
+        "label": "nom del lliurament 4",
+        "n_columns": 5,
+        "group": "lliuraments",
+        "props": {
+            "required": true
+        }
+      },
+      "lliuraments#lliurament4#dataInici": {
+        "type" : "hidden"
+      },
+      "lliuraments#lliurament4#dataFinal": {
+        "type" : "hidden"
+      },
+      "lliuraments#lliurament4#percentatge": {
+        "label": "percentatge lliurament 4",
+        "n_columns": 4,
+        "group": "lliuraments",
+        "type":"number",
+        "props": {
+            "required": true
+        }
+      },
+      "sequenciaDidactica": {
+        "label": "Seqüència didàctica",
+        "n_columns": 12,
+        "type": "editableObject",
+        "group": "lliuraments",
+        "n_rows": 8,
+        "props": {
+          "data-editable-element": "table",
+          "title": "Detalleu la seqüència didàctica que ha de seguir l'alumne."      
+        },
+        "config": {
+          "actions": {
+            "add_row": "Afegir un nou ítem de la seqüència",
+            "remove_rows": "Eliminar els ítems seleccionats"
+          },
+          "fields":{
+                "idLliurament": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "descripcio": {
+                    "type": "string"
+                },
+                "hores": {
+                    "type": "number"
+                },
+                "ponderacio": {
+                    "type": "number"
+                }
+                
+          },
+          "layout": [
+            {
+              "defaultCell": {
+                "width" : "10%"
+              },
+              "cells": [
+                {
+                  "name": "Id lliurament",
+                  "field": "idLliurament",
+                  "editable": true
+                },
+                {
+                  "name": "Id",
+                  "field": "id",
+                  "editable": true
+                },
+                {
+                  "name": "Descripció",
+                  "field": "descripcio",
+                  "editable": true
+                },
+                {
+                  "name": "Hores",
+                  "field": "hores",
+                  "editable": true
+                },
+
+                {
+                  "name": "Percentatge",
+                  "field": "ponderacio",
+                  "editable": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "responsable": {
+        "label": "Responsable de la creació (responsable)",
+        "n_columns": 6,
+        "group": "authorship",
+        "props": {
+            "required": true
+        },
+        "config":{
+           "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByInfoPerm", "data":{"perm":4, "deniedResponse":true}}]}
+        }
+      },
+      "autor": {
+        "label": "Autor (autor)",
+        "n_columns": 6,
+        "group": "authorship",
+        "props": {
+            "required": true
+        },
+        "config":{
+           "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByInfoPerm", "data":{"perm":4, "deniedResponse":true}}]}
+        }
+      },
+      "trimestre": {
+        "type" : "hidden"
+      }
+    }
+}

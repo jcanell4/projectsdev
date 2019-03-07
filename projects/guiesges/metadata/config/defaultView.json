@@ -83,8 +83,7 @@
             "options":[
                 {"value":"mòdul"},
                 {"value":"1r. bloc"}, 
-                {"value":"2n. bloc"},
-                {"value":"3r. bloc"}
+                {"value":"2n. bloc"}
             ]
         }
       },
@@ -112,7 +111,7 @@
         "group": "main",
         "props": {
           "required": true,
-          "title": "indiqueu el nom del mòdul i el bloc si cal. Per exemple: M02 Seguretat i alta disponibilitat"
+          "title": "indiqueu el nom del mòdul i el bloc si cal"
         }
       },
       "durada": {
@@ -314,7 +313,6 @@
               "type": "number"
             }
           },
-          "display_fields": ["hores", "unitat formativa", "unitat", "nom"],
           "layout": [
             {
               "defaultCell": {
@@ -322,26 +320,26 @@
               },
               "cells": [
                 {
-                  "name": "Unitat Formativa",
+                  "name": "unitat formativa",
                   "field": "unitat formativa",
                   "editable": true
                 },
 
                 {
-                  "name": "Unitat",
+                  "name": "unitat",
                   "field": "unitat",
                   "editable": true
                 },
 
                 {
-                  "name": "Nom",
+                  "name": "nom",
                   "field": "nom",
                    "width":"55%",
                   "editable": true
                 },
 
                 {
-                  "name": "Hores",
+                  "name": "hores",
                   "field": "hores",
                   "editable": false
                 }
