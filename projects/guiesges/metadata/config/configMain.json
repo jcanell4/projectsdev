@@ -30,10 +30,6 @@
                 "entradaTaulaSequenciaDidactica": {
                     "type": "object",
                     "keys": {
-                        "idLliurament": {
-                            "type": "string",
-                            "mandatory": true
-                        },
                         "id": {
                             "type": "string",
                             "mandatory": true
@@ -81,7 +77,18 @@
                             "mandatory": true
                         },
                         "percentatge":{
+                            "type": "number",
+                            "mandatory": true
+                        },
+                        "hores":{
                             "type": "string",
+                            "props":{
+                                "readonly":true
+                            },
+                            "mandatory": true
+                        },
+                        "sequenciaDidactica":{
+                            "type":"taulaSequenciaDidacticaDef",
                             "mandatory": true
                         }
                     }
@@ -159,8 +166,12 @@
                             "mandatory":true,
                             "default":"{\"lliurament1\":{\"id\":\"LL1\", \"nom\":\"Lliurament 1\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25},\"lliurament2\":{\"id\":\"LL2\", \"nom\":\"Lliurament 2\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25},\"lliurament3\":{\"id\":\"LL3\", \"nom\":\"Lliurament 3\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25},\"lliurament4\":{\"id\":\"LL4\", \"nom\":\"Lliurament 4\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25}}"
                         },
-                        "sequenciaDidactica":{
-                            "type":"taulaSequenciaDidacticaDef",
+                        "hiHaPValidacio": {
+                            "type": "boolean",
+                            "mandatory": true
+                        },
+                        "dataPValidacio": {
+                            "type": "date",
                             "mandatory": true
                         },
                         "autor": {
