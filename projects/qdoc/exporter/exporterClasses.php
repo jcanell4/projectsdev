@@ -612,25 +612,23 @@ class StaticPdfRenderer{
                 $ret .= "</div>";
                 break;
             case TableNodeDoc::TABLE_TYPE:
-                $ret = "<table$style   cellpadding=\"5\" nobr=\"true\">";
-                $ret .= self::getStructuredContent($content)."</table>";
+                $ret = '<table cellpadding="5" nobr="true">'.self::getStructuredContent($content)."</table>";
                 break;
             case StructuredNodeDoc::TABLEROW_TYPE:
                 $ret = "<tr>".self::getStructuredContent($content)."</tr>";
                 break;
             case CellNodeDoc::TABLEHEADER_TYPE:
-                $align = $content["align"]?"text-align:{$content["align"]};":"text-align:center;";
-                $style = $content["hasBorder"]?' style="border:1px solid black; border-collapse:collapse; '.$align.' font-weight:bold; background-color:#808080;"':"style=\"$align font-weight:bold; background-color:#808080;\"";
-                $colspan = $content["colspan"]>1?' colspan="'.$content["colspan"].'"':"";
-                $rowspan = $content["rowspan"]>1?' rowspan="'.$content["rowspan"].'"':"";
+                $align = $content["align"] ? "text-align:{$content["align"]};" : "text-align:center;";
+                $style = $content["hasBorder"] ? ' style="border:1px solid black; border-collapse:collapse; '.$align.' font-weight:bold; background-color:#F0F0F0;"' : ' style="'.$align.' font-weight:bold; background-color:#F0F0F0;"';
+                $colspan = $content["colspan"]>1 ? ' colspan="'.$content["colspan"].'"' : "";
+                $rowspan = $content["rowspan"]>1 ? ' rowspan="'.$content["rowspan"].'"' : "";
                 $ret = "<th$colspan$rowspan$style>".self::getStructuredContent($content)."</th>";
                 break;
             case CellNodeDoc::TABLECELL_TYPE:
-                $align = $content["align"]?"text-align:{$content["align"]};":"text-align:center";
-                $style = $content["hasBorder"]?' style="border:1px solid black; border-collapse:collapse; '.$align.'"':"style=\"$align\"";
-                $style = $content["hasBorder"]?' style="border:1px solid black; border-collapse:collapse; '.$align.'"':"";
-                $colspan = $content["colspan"]>1?' colspan="'.$content["colspan"].'"':"";
-                $rowspan = $content["rowspan"]>1?' rowspan="'.$content["rowspan"].'"':"";
+                $align = $content["align"] ? "text-align:{$content["align"]};" : "text-align:center;";
+                $style = $content["hasBorder"] ? ' style="border:1px solid black; border-collapse:collapse; '.$align.'"' : " style=\"$align\"";
+                $colspan = $content["colspan"]>1 ? ' colspan="'.$content["colspan"].'"' : "";
+                $rowspan = $content["rowspan"]>1 ? ' rowspan="'.$content["rowspan"].'"' : "";
                 $ret = "<td$colspan$rowspan$style>".self::getStructuredContent($content)."</td>";
                 break;
             case CodeNodeDoc::CODE_TEXT_TYPE:
