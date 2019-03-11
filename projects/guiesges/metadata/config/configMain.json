@@ -164,7 +164,7 @@
                             "type":"object",
                             "typeDef":"lliuramentsDef",
                             "mandatory":true,
-                            "default":"{\"lliurament1\":{\"id\":\"LL1\", \"nom\":\"Lliurament 1\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25},\"lliurament2\":{\"id\":\"LL2\", \"nom\":\"Lliurament 2\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25},\"lliurament3\":{\"id\":\"LL3\", \"nom\":\"Lliurament 3\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25},\"lliurament4\":{\"id\":\"LL4\", \"nom\":\"Lliurament 4\", \"dataInici\":\"\", \"dataFinal\":\"\", \"percentatge\":25}}"
+                            "default":{"lliurament1":{"id":"LL1", "nom":"Lliurament 1", "dataInici":"", "dataFinal":"", "percentatge":25, "hores":0, "sequenciaDidactica":"[]"},"lliurament2":{"id":"LL2", "nom":"Lliurament 2", "dataInici":"", "dataFinal":"", "percentatge":25, "hores":0, "sequenciaDidactica":"[]"},"lliurament3":{"id":"LL3", "nom":"Lliurament 3", "dataInici":"", "dataFinal":"", "percentatge":25, "hores":0, "sequenciaDidactica":"[]"},"lliurament4":{"id":"LL4", "nom":"Lliurament 4", "dataInici":"", "dataFinal":"", "percentatge":25, "hores":0, "sequenciaDidactica":"[]"}}
                         },
                         "hiHaPValidacio": {
                             "type": "boolean",
