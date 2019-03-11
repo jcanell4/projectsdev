@@ -36,29 +36,29 @@ class ViewProjectMetaDataAction extends BasicViewProjectMetaDataAction{
                 $dataActual = new DateTime();
 
                 foreach ($arraytaula as $elem) {
-                    if ($response['projectMetaData']['semestre']['value'] == "1") { //$response['projectMetaData']['semestre']['value'] Semestre actual indicado en los datos del proyecto
-                        if ($elem['key']==="inici_semestre_1") {
-                            $inici_semestre = $this->_obtenirData($elem['value'], $anyActual);
+                    if ($response['projectMetaData']['trimestre']['value'] == "1") { //$response['projectMetaData']['trimestre']['value'] Semestre actual indicado en los datos del proyecto
+                        if ($elem['key']==="inici_trimestre_1") {
+                            $inici_trimestre = $this->_obtenirData($elem['value'], $anyActual);
                         }
-                        else if ($elem['key']==="fi_semestre_1") {
-                            $fi_semestre = $this->_obtenirData($elem['value'], $anyActual);
+                        else if ($elem['key']==="fi_trimestre_1") {
+                            $fi_trimestre = $this->_obtenirData($elem['value'], $anyActual);
                         }
                     }
-                    else if ($response['projectMetaData']['semestre']['value'] == "2") {
-                        if ($elem['key']==="inici_semestre_2") {
-                            $inici_semestre = $this->_obtenirData($elem['value'], $anyActual);
+                    else if ($response['projectMetaData']['trimestre']['value'] == "2") {
+                        if ($elem['key']==="inici_trimestre_2") {
+                            $inici_trimestre = $this->_obtenirData($elem['value'], $anyActual);
                         }
-                        else if ($elem['key']==="fi_semestre_2") {
-                            $fi_semestre = $this->_obtenirData($elem['value'], $anyActual);
+                        else if ($elem['key']==="fi_trimestre_2") {
+                            $fi_trimestre = $this->_obtenirData($elem['value'], $anyActual);
                         }
                     }
                 }
 
-                if ($inici_semestre) {
-                    if ($inici_semestre > $fi_semestre) {
-                        $inici_semestre = date_sub($inici_semestre, new DateInterval('P1Y'));
+                if ($inici_trimestre) {
+                    if ($inici_trimestre > $fi_trimestre) {
+                        $inici_trimestre = date_sub($inici_trimestre, new DateInterval('P1Y'));
                     }
-                    $interval = !($dataActual >= $inici_semestre && $dataActual <= $fi_semestre);
+                    $interval = !($dataActual >= $inici_trimestre && $dataActual <= $fi_trimestre);
                     $response['activarUpdateButton'] = ($interval) ? "1" : "0";
                 }
             }
