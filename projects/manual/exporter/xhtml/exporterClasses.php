@@ -7,7 +7,6 @@
 if (!defined('DOKU_INC')) die();
 if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', realpath(DOKU_INC."lib/plugins/"));
 require_once DOKU_INC."inc/parserutils.php";
-//require_once DOKU_PLUGIN . "wikiocmodel/projects/documentation/exporter/exporterClasses.php";
 
 class MainRender extends renderObject {
     protected $max_menu;
@@ -17,8 +16,6 @@ class MainRender extends renderObject {
     protected $tree_names = array();
     protected $web_folder = 'WebContent';
     protected $initialized = FALSE;
-    protected $export_html = TRUE;
-
 
     public function initParams(){
         $langFile = $this->cfgExport->langDir.$this->cfgExport->lang.'.conf';
@@ -35,12 +32,12 @@ class MainRender extends renderObject {
 
 class renderDate extends AbstractRenderer {
     private $sep;
-    
+
     public function __construct($factory, $cfgExport=NULL, $sep="-") {
         parent::__construct($factory, $cfgExport);
         $this->sep = $sep;
     }
-    
+
     public function process($date) {
         $dt = strtotime(str_replace('/', '-', $date));
         return date("d". $this->sep."m".$this->sep."Y", $dt);
@@ -70,18 +67,9 @@ class renderRenderizableText extends AbstractRenderer {
         return $html;
     }
 }
-        
-//        if($this->viewMode &&  $plugin_controller->getProjectOwner()){
-//            $counter = 0;
-//            $text = preg_replace("/~~USE:WIOCCL~~\n/", "", $event->result, 1, $counter);
-//            if($counter>0){
-//                $dataSource = $plugin_controller->getCurrentProjectDataSource();
-//                $parser = new WiocclParser($text, [], $dataSource);
-//                $event->result = $parser->getValue();                
-//            }
-//        }
 
 class renderFileToPsDom extends renderFile {
+
     protected function render($instructions, &$renderData){
         return p_latex_render('wikiiocmodel_psdom', $instructions, $renderData);
     }
@@ -96,20 +84,21 @@ class renderFile extends AbstractRenderer {
             session_start();
             $startedHere = true;
         }
-        $_SESSION['export_html'] = $this->export_html;
+        $_SESSION['export_html'] = $this->cfgExport->export_html;
         $_SESSION['tmp_dir'] = $this->cfgExport->tmp_dir;
         $_SESSION['latex_images'] = &$this->cfgExport->latex_images;
         $_SESSION['media_files'] = &$this->cfgExport->media_files;
         $_SESSION['graphviz_images'] = &$this->cfgExport->graphviz_images;
         $_SESSION['gif_images'] = &$this->cfgExport->gif_images;
         $_SESSION['alternateAddress'] = TRUE;
+        $_SESSION['dir_images'] = "img/";
 
         if(preg_match("/".$this->cfgExport->id."/", $data)!=1){
             $fns = $this->cfgExport->id.":".$data;
         }
         $file = wikiFN($fns);
         $text = io_readFile($file);
-        
+
         $counter = 0;
         $text = preg_replace("/~~USE:WIOCCL~~\n/", "", $text, 1, $counter);
         if($counter>0){
@@ -128,7 +117,7 @@ class renderFile extends AbstractRenderer {
 
         return $html;
     }
-    
+
     protected function render($instructions, &$renderData){
         return p_render('wikiiocmodel_ptxhtml', $instructions, $renderData);
     }

@@ -27,7 +27,7 @@ abstract class AbstractRenderer {
             $this->cfgExport = new cfgExporter();
         }
     }
-    
+
     public function getTocs(){
         return $this->cfgExport->tocs;
     }
@@ -64,6 +64,7 @@ class cfgExporter {
     public $toc=NULL;
     public $tocs=array();
     public $permissionToExport = TRUE;
+    public $export_html = TRUE;
 
     public function __construct() {
         $this->tmp_dir = realpath(EXPORT_TMP)."/".rand();;
@@ -141,7 +142,7 @@ class renderObject extends renderComposite {
                     $allKeys = array_keys($this->typedef["keys"]);
                     foreach ($allKeys as $key) {
                         if($this->typedef["keys"][$key]["mandatory"]){
-                          $ret [] = $key;  
+                          $ret [] = $key;
                         }
                     }
                     break;

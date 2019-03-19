@@ -23,7 +23,7 @@ class exportDocument extends MainRender {
             $this->cfgExport->lang = preg_replace('/\n/', '', $this->cfgExport->lang);
             $this->log = isset($params['log']);
         }
-        $this->export_html = TRUE;
+        $this->cfgExport->export_html = TRUE;
         parent::initParams();
     }
 

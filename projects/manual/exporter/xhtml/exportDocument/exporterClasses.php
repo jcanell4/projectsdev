@@ -4,7 +4,6 @@
  * exportDocument: clase que renderiza grupos de elementos
  */
 if (!defined('DOKU_INC')) die();
-//require_once DOKU_PLUGIN . "wikiocmodel/projects/documentation/exporter/xhtml/exporterClasses.php";
 
 class exportDocument extends MainRender {
 
@@ -18,13 +17,13 @@ class exportDocument extends MainRender {
         $this->time_start = microtime(TRUE);
         $this->ioclangcontinue = array('ca'=>'continuació', 'de'=>'fortsetzung', 'en'=>'continued','es'=>'continuación','fr'=>'suite','it'=>'continua');
         $this->cfgExport->langDir = dirname(__FILE__)."/lang/";
-        if($params){
+        if ($params){
             $this->cfgExport->id = $params['id'];
             $this->cfgExport->lang = (!isset($params['ioclanguage']))?'ca':strtolower($params['ioclanguage']);
             $this->cfgExport->lang = preg_replace('/\n/', '', $this->cfgExport->lang);
             $this->log = isset($params['log']);
         }
-        $this->export_html = TRUE;
+        $this->cfgExport->export_html = TRUE;
         parent::initParams();
     }
 
@@ -42,50 +41,42 @@ class exportDocument extends MainRender {
         $res = $zip->open($zipFile, ZipArchive::CREATE);
 
         if ($res === TRUE) {
-            $document = $this->replaceInTemplate($data, "$pathTemplate/index.html");
+            $document = $this->replaceInTemplate($data, "$pathTemplate/manual.tpl");
 
             if ($zip->addFromString('index.html', $document)) {
                 $allPathTemplate = $this->rendererPath . "/$pathTemplate";
+                $this->addFilesToZip($zip, $allPathTemplate, "", "css");
                 $this->addFilesToZip($zip, $allPathTemplate, "", "img");
-                $zip->addFile($allPathTemplate."/main.css", "main.css");
-                $this->addFilesToZip($zip, $allPathTemplate, "", "pt_sencer", TRUE);
-//                $parsedDocument = $this->getParsedDocument($data, "$pathTemplate/pt_sencer/pt.tpl");
-                $ptSencer = $this->replaceInTemplate($data, "$pathTemplate/pt_sencer/pt.tpl");
-                $zip->addFromString('/pt_sencer/pt.html', $ptSencer);
-                
-                $semestre = ($data["semestre"]==1?"Setembre ":"Febrer ").date("Y");                
-                $cicle = html_entity_decode(htmlspecialchars_decode($data["cicle"], ENT_COMPAT|ENT_QUOTES));
-                $modul = html_entity_decode(htmlspecialchars_decode($data["modul"], ENT_COMPAT|ENT_QUOTES));
-                $tipusBlocModul = html_entity_decode(htmlspecialchars_decode($data["tipusBlocModul"], ENT_COMPAT|ENT_QUOTES));
-                $durada = html_entity_decode(htmlspecialchars_decode($data["durada"], ENT_COMPAT|ENT_QUOTES));
-                $professors = html_entity_decode(htmlspecialchars_decode($data["professors"], ENT_COMPAT|ENT_QUOTES));
-                $coordinador = html_entity_decode(htmlspecialchars_decode($data["coordinador"], ENT_COMPAT|ENT_QUOTES));
-                
+                $this->addFilesToZip($zip, $allPathTemplate, "", "js");
+
+                $titol = html_entity_decode(htmlspecialchars_decode($data["titol"], ENT_COMPAT|ENT_QUOTES));
+                $subtitol = html_entity_decode(htmlspecialchars_decode($data["subtitol"], ENT_COMPAT|ENT_QUOTES));
+                $nom_real = html_entity_decode(htmlspecialchars_decode($data["nom_real"], ENT_COMPAT|ENT_QUOTES));
+                $data_fitxer = html_entity_decode(htmlspecialchars_decode($data["data_fitxercontinguts"], ENT_COMPAT|ENT_QUOTES));
+
                 $params = array(
                     "id" => $this->cfgExport->id,
                     "path_templates" => $this->rendererPath . "/pdf/exportDocument/templates",  // directori on es troben les plantilles latex usades per crear el pdf
                     "tmp_dir" => $this->cfgExport->tmp_dir,    //directori temporal on crear el pdf
-                    "lang" => strtoupper($this->cfgExport->lang),  // idioma usat (CA, EN, ES, ...)
+                    "lang" => strtoupper($this->cfgExport->lang),
                     "mode" => isset($this->mode) ? $this->mode : $this->filetype,
                     "data" => array(
-                        "header_page_logo" => $this->rendererPath . "/resources/escutGene.jpg",
-                        "header_page_wlogo" => 9.9,
-                        "header_page_hlogo" => 11.1,
-                        "header_ltext" => "Generalitat de Catalunya\nDepartament d'Ensenyament\nInstitud Obert de Catalunya",
-                        "header_rtext" => $cicle."\n".$modul."-".$tipusBlocModul."\n".$semestre,
-                        "titol" => array(
-                            "Formació Professional",
-                            "Pla de Treball",
-                            $cicle,
-                            $modul."-".$tipusBlocModul,
-                            $semestre,
-                        ),    //títol del document
+                        "header" => ["logo"  => $this->rendererPath . "/resources/escutGene.jpg",
+                                     "wlogo" => 9.9,
+                                     "hlogo" => 11.1,
+                                     "ltext" => "Generalitat de Catalunya\nDepartament d'Ensenyament\nInstitut Obert de Catalunya",
+                                     "rtext" => $titol],
+                        "titol" => ['titol'    => $titol,
+                                    'subtitol' => $subtitol,
+                                    'autor'    => $nom_real,
+                                    'data'     => $data_fitxer],
                         "contingut" => json_decode($data["pdfDocument"], TRUE)   //contingut latex ja rendaritzat
                     )
                 );
-                StaticPdfRenderer::renderDocument($params, "pt.pdf");
-                $zip->addFile($this->cfgExport->tmp_dir."/pt.pdf", "/pt_sencer/pt.pdf");
-                
+                $filenamepdf = "manual.pdf";    //$filenamepdf = "manual_".end(explode($this->cfgExport->id)).".pdf";
+                StaticPdfRenderer::renderDocument($params, $filenamepdf);
+                $zip->addFile($this->cfgExport->tmp_dir."/$filenamepdf", "/$filenamepdf");
+
                 $this->attachMediaFiles($zip);
 
                 $result["zipFile"] = $zipFile;
@@ -107,22 +98,15 @@ class exportDocument extends MainRender {
         return $result;
     }
 
-//    private function getParsedDocument($data, $document) {
-//        $ret = array();
-//        $tmplt = $this->loadTemplateFile($document);
-//        $ret["data"] = WiocclParser::getValue($tmplt, [], $data);
-//        $ret["toc"] = $this->cfgExport->toc;
-//        return $ret;
-//    }
-    
     private function replaceInTemplate($data, $file) {
         $tmplt = $this->loadTemplateFile($file);
         $document = WiocclParser::getValue($tmplt, [], $data);
+
         foreach ($this->cfgExport->toc as $tocKey => $tocItem) {
             $toc ="";
-            if($tocItem){
+            if ($tocItem){
                 foreach ($tocItem as $elem) {
-                    if($elem['level']==1){
+                    if ($elem['level']==1){
                         $toc .= "<a href='{$elem['link']}'>".htmlentities($elem['title'])."</a>\n";
                     }
                 }
@@ -133,33 +117,33 @@ class exportDocument extends MainRender {
     }
 
     private function attachMediaFiles(&$zip) {
-        global $conf;
         //Attach media files
-        foreach($this->cfgExport->media_files as $f){
+        foreach(array_unique($this->cfgExport->media_files) as $f){
             resolve_mediaid(getNS($f), $f, $exists);
             if ($exists) {
-                //eliminamos el primer nivel del ns
-                $arr = explode(":", $f);
-                array_shift($arr);
-                $zip->addFile(mediaFN($f), 'img/'.implode("/", $arr));
+//                //eliminamos el primer nivel del ns (exigencias -mal entendidas- de la antigua sintaxis)
+//                $arr = explode(":", $f);
+//                array_shift($arr);
+//                $zip->addFile(mediaFN($f), 'img/'.implode("/", $arr));
+                $zip->addFile(mediaFN($f), 'img/'.str_replace(":", "/", $f));
             }
         }
         $this->cfgExport->media_files = array();
 
         //Attach latex files
-        foreach($this->cfgExport->latex_images as $f){
+        foreach(array_unique($this->cfgExport->latex_images) as $f){
             if (file_exists($f)) $zip->addFile($f, 'img/'.basename($f));
         }
         $this->cfgExport->latex_images = array();
 
         //Attach graphviz files
-        foreach($this->cfgExport->graphviz_images as $f){
+        foreach(array_unique($this->cfgExport->graphviz_images) as $f){
             if (file_exists($f)) $zip->addFile($f, 'img/'.basename($f));
         }
         $this->cfgExport->graphviz_images = array();
 
         //Attach gif (png, jpg, etc) files
-        foreach($this->cfgExport->gif_images as $m){
+        foreach(array_unique($this->cfgExport->gif_images) as $m){
             if (file_exists(mediaFN($m))) $zip->addFile(mediaFN($m), "img/". str_replace(":", "/", $m));
         }
         $this->cfgExport->gif_images = array();
@@ -199,7 +183,7 @@ class exportDocument extends MainRender {
         }
         return $files;
     }
-    
+
     private function getDirFiles($dir){
         $files = array();
         if (file_exists($dir) && is_dir($dir) && is_readable($dir)) {
@@ -216,10 +200,3 @@ class exportDocument extends MainRender {
         return $files;
     }
 }
-   
-//class render_title extends renderField {
-//    public function process($data) {
-//        $ret = parent::process($data);
-//        return $ret;
-//    }
-//}

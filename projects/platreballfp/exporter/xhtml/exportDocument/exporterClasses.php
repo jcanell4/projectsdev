@@ -23,7 +23,7 @@ class exportDocument extends MainRender {
             $this->cfgExport->lang = preg_replace('/\n/', '', $this->cfgExport->lang);
             $this->log = isset($params['log']);
         }
-        $this->export_html = TRUE;
+        $this->cfgExport->export_html = TRUE;
         parent::initParams();
     }
 
@@ -153,7 +153,7 @@ class exportDocument extends MainRender {
         }
         return $files;
     }
-    
+
     private function getDirFiles($dir){
         $files = array();
         if (file_exists($dir) && is_dir($dir) && is_readable($dir)) {
@@ -170,7 +170,7 @@ class exportDocument extends MainRender {
         return $files;
     }
 }
-   
+
 //class render_title extends renderField {
 //    public function process($data) {
 //        $ret = parent::process($data);
