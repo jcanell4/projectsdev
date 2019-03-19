@@ -2,7 +2,7 @@
     "definition": {
         "n_columns": 12,
         "n_rows": 10,
-        "chars_column": 10, 
+        "chars_column": 10,
         "rows_row": 1
     },
     "groups": {
@@ -14,83 +14,125 @@
             "frame": true,
             "config":{
                 "collapsable":true,
+                "collapsed":false
+            }
+        },
+        "authorship": {
+            "parent": "",
+            "label": "Dades d'autoria",
+            "n_columns": 12,
+            "n_rows": 1,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
+        },
+        "extres": {
+            "parent": "",
+            "label": "Dades extres",
+            "n_columns": 12,
+            "n_rows": 1,
+            "frame": true,
+            "config":{
+                "collapsable":true,
                 "collapsed":true
             }
-        }       
+        }
     },
     "fields": {
-      "titol":{
-        "n_columns": 6,
-        "label": "Títol del manual (titol)",
-        "group": "main",
-        "props": {
-          "required": true,
-          "title" : "indiqueu el títol del manual."
-        }
-      },
-      "subtitol": {
-        "label" : "Subtítol del manual (subtitol)",
-        "n_columns": 6,
-        "group": "main",
-        "props": {
-          "required": true,
-          "title": "indiqueu el suntítol del manual"
-        }
-      },
-      "dadesExtres": {
-        "n_columns": 12,
-        "group": "extres",
-        "n_rows": 4,
-        "type": "editableObject",
-        "props": {
-          "data-editable-element": "table"
-        },
-        "config": {
-          "actions": {
-            "add_default_row": "Afegir una nova dada",
-            "remove_rows": "Eliminar les dades seleccionades"        
-          },
-          "fields": {
-            "nom": {
-              "type": "string"
-            },
-            "tipus": {
-              "type": "select",
-              "options": ["dada"]                           
-            },
-            "valor": {
-              "type": "string"
+        "titol":{
+            "n_columns": 6,
+            "label": "Títol del manual (titol)",
+            "group": "main",
+            "props": {
+                "required": true,
+                "title" : "indiqueu el títol del manual."
             }
-          }
-        }
-      },
-      "responsable": {
-        "label": "Responsable de la creació (responsable)",
-        "n_columns": 6,
-        "group": "authorship",
-        "props": {
-            "required": true
         },
-        "config":{
-           "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByInfoPerm", "data":{"perm":4, "deniedResponse":true}}]}
-        }        
-      },
-      "autor": {
-        "label": "Autor (autor)",
-        "n_columns": 6,
-        "group": "authorship",
-        "props": {
-           "required": true
+        "subtitol": {
+            "label" : "Subtítol del manual (subtitol)",
+            "n_columns": 6,
+            "group": "main",
+            "props": {
+                "required": true,
+                "title": "indiqueu el suntítol del manual"
+            }
         },
-        "config":{
-           "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByInfoPerm", "data":{"perm":4, "deniedResponse":true}}]}
+        "responsable": {
+            "label": "Responsable de la creació (responsable)",
+            "n_columns": 6,
+            "group": "authorship",
+            "props": {
+                "required": true
+            },
+            "config":{
+                "readonly": {
+                    "and":[
+                        {"class":"ValidationByRoles",
+                         "data":{"roles":["responsable"], "deniedResponse":true}},
+                        {"class":"ValidationByInfoPerm",
+                         "data":{"perm":4, "deniedResponse":true}}
+                    ]
+                }
+            }
+        },
+        "autor": {
+            "label": "Autor (autor)",
+            "n_columns": 6,
+            "group": "authorship",
+            "props": {
+                "required": true
+            },
+            "config":{
+                "readonly": {
+                    "and":[
+                        {"class":"ValidationByRoles",
+                         "data":{"roles":["responsable"], "deniedResponse":true}},
+                        {"class":"ValidationByInfoPerm", 
+                         "data":{"perm":4, "deniedResponse":true}}
+                    ]
+                }
+            }
+        },
+        "dadesExtres": {
+            "n_columns": 12,
+            "group": "extres",
+            "n_rows": 4,
+            "type": "editableObject",
+            "props": {
+                "data-editable-element": "table"
+            },
+            "config": {
+                "actions": {
+                    "add_default_row": "Afegir una nova dada",
+                    "remove_rows": "Eliminar les dades seleccionades"
+                },
+                "fields": {
+                    "nom": {
+                        "type": "string"
+                    },
+                    "tipus": {
+                        "type": "select",
+                        "options": ["dada"]
+                    },
+                    "valor": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "plantilla": {
+            "type" : "hidden"
+        },
+        "fitxercontinguts": {
+            "type" : "hidden"
+        },
+        "nom_real": {
+            "type" : "hidden"
+        },
+        "data_fitxercontinguts": {
+            "type" : "hidden"
         }
-      },
-      "plantilla": {
-        "type" : "hidden"
-      },
-      "fitxercontinguts": {
-        "type" : "hidden"
-      }
     }
 }

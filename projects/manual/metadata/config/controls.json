@@ -1,4 +1,5 @@
-{    "manualHtmlExport": {
+{
+    "manualHtmlExport": {
         "class": "WikiIocButton",
         "parms": {
             "DOM": {
@@ -16,7 +17,7 @@
                "disableOnSend": true
             }
         },
-       
+
         "scripts": {
             "getFunctions": {
                 "path": "HtmlExportGetFunction.js"
@@ -32,8 +33,7 @@
                 ],
                 "conditions": {
                     "page.action": "'project_view'",
-                    "page.generated":"true",
-                    "page.updateButton": "0"
+                    "page.generated":"true"
                 }
             }
         }

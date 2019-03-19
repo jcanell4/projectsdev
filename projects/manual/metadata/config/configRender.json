@@ -1,8 +1,8 @@
 {
     "typesDefinition": {
-        "pla": {
+        "manual": {
             "render": {
-                "typeDef":"pla",
+                "typeDef":"manual",
                 "class": "exportDocument",
                 "fields": "ALL",
                 "extraFields": [{"name":"pdfDocument", "valueType":"field", "value":"fitxercontinguts"}]

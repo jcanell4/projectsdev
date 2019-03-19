@@ -9,6 +9,7 @@ if (!defined('WIKI_IOC_MODEL')) define('WIKI_IOC_MODEL', DOKU_PLUGIN . "wikiiocm
 require_once (DOKU_INC . "inc/pageutils.php");
 require_once (WIKI_IOC_MODEL . "WikiIocPluginAction.php");
 
+//class action_plugin_wikiiocmodel_projects_manual extends WikiIocPluginAction {
 class action_plugin_projectsdev_projects_manual extends WikiIocPluginAction {
     private $dirProjectType;
     private $viewArray;

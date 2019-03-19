@@ -100,7 +100,7 @@ class FactoryExporter {
             case 'array':  $ret = "renderArray"; break;
             case 'object': $ret = "renderObject"; break;
             case 'date':   $ret = "renderDate"; break;
-            case 'string':   $ret = "renderText";break;
+            case 'string': $ret = "renderText"; break;
             default:       $ret = "renderField"; break;
         }
         return $ret;

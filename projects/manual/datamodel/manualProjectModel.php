@@ -15,72 +15,50 @@ class manualProjectModel extends AbstractProjectModel {
         parent::__construct($persistenceEngine);
     }
 
-
-    public function getContentDocumentId($responseData){
-        if ($responseData['projectMetaData']["fitxercontinguts"]['value']){
-            $contentName = $responseData['projectMetaData']["fitxercontinguts"]['value'];
-        }else{
-            $contentName = end(explode(":", $this->getTemplateContentDocumentId($responseData)));
-        }
-        return $this->id.":" .$contentName;
+    public function getProjectDocumentName() {
+        $ret = $this->getMetaDataProject();
+        return $ret['fitxercontinguts'];
     }
 
-    public function getTemplateContentDocumentId($responseData){
-        $plantilla = $responseData['projectMetaData']["plantilla"]['value'];
-//        preg_match("/##.*?##/s", $plantilla, $matches);
-//        $field = substr($matches[0],2,-2);
-//        $plantilla = preg_replace("/##.*?##/s", $responseData['projectMetaData'][$field]['value'], $plantilla);
-        $plantilla = preg_replace("/##.*?##/s", "loe", $plantilla);
-        return $plantilla;
+    // Obtiene un array de claves=>valores (datos ampliados) para unirlos a los datos del proyecto
+    public function getExtendedData($id, $autor, $fitxercontinguts) {
+        $nom_real = PagePermissionManager::getUserList($autor)['values'][0]['name'];
+        $fitxer = $this->getPageDataQuery()->getFileName("$id:$fitxercontinguts");
+        $data = date("d/m/Y", filemtime($fitxer));
+        return ['nom_real' => $nom_real, 'data_fitxercontinguts' => $data];
     }
 
-    public function generateProject() {
-        $ret = array();
-        //0. Obtiene los datos del proyecto
-//        $data = $this->getData();   //obtiene la estructura y el contenido del proyecto
-        $ret = $this->getData();   //obtiene la estructura y el contenido del proyecto
-//        
-//        //1.1 Crea el archivo 'continguts', en la carpeta del proyecto, a partir de la plantilla especificada
-//        $this->createTemplateDocument($data);
+    public function generateProject() {} //abstract obligatorio
+
+    public function directGenerateProject($data) {
+        //1. $data
+        $plantilla = $data['projectMetaData']["plantilla"]['value'];
+        $destino = $this->id.":".end(explode(":", $plantilla));
+        $this->createPageFromTemplate($destino, $plantilla, NULL, "generate project");
 
         //2. Establece la marca de 'proyecto generado'
-        $ret[ProjectKeys::KEY_GENERATED] = $this->projectMetaDataQuery->setProjectGenerated();
-        if($ret[ProjectKeys::KEY_GENERATED]){
+        $ret = $this->projectMetaDataQuery->setProjectGenerated();
+        if ($ret){
             //3a. Otorga, al Autor, permisos sobre el directorio de proyecto
-//            PagePermissionManager::updatePagePermission($this->id.":*", $data['projectMetaData']["autor"]['value'], AUTH_UPLOAD);
-            PagePermissionManager::updatePagePermission($this->id.":*", $ret['projectMetaData']["autor"]['value'], AUTH_UPLOAD);
+            PagePermissionManager::updatePagePermission($this->id.":*", $data['projectMetaData']["autor"]['value'], AUTH_UPLOAD);
 
             //3b. Otorga, al Responsable, permisos sobre el directorio de proyecto
-//            if ($data['projectMetaData']["autor"]['value'] !== $data['projectMetaData']["responsable"]['value'])
-            if ($ret['projectMetaData']["autor"]['value'] !== $ret['projectMetaData']["responsable"]['value'])
-//                PagePermissionManager::updatePagePermission($this->id.":*", $data['projectMetaData']["responsable"]['value'], AUTH_UPLOAD);
-                PagePermissionManager::updatePagePermission($this->id.":*", $ret['projectMetaData']["responsable"]['value'], AUTH_UPLOAD);
+            if ($data['projectMetaData']["autor"]['value'] !== $data['projectMetaData']["responsable"]['value'])
+                PagePermissionManager::updatePagePermission($this->id.":*", $data['projectMetaData']["responsable"]['value'], AUTH_UPLOAD);
 
             //4a. Otorga permisos al autor sobre su propio directorio (en el caso de que no los tenga)
-//            $ns = WikiGlobalConfig::getConf('userpage_ns','wikiiocmodel').$data['projectMetaData']["autor"]['value'].":";
-            $ns = WikiGlobalConfig::getConf('userpage_ns','wikiiocmodel').$ret['projectMetaData']["autor"]['value'].":";
-//            PagePermissionManager::updatePagePermission($ns."*", $data['projectMetaData']["autor"]['value'], AUTH_DELETE, TRUE);
-            PagePermissionManager::updatePagePermission($ns."*", $ret['projectMetaData']["autor"]['value'], AUTH_DELETE, TRUE);
+            $ns = WikiGlobalConfig::getConf('userpage_ns','wikiiocmodel').$data['projectMetaData']["autor"]['value'].":";
+            PagePermissionManager::updatePagePermission($ns."*", $data['projectMetaData']["autor"]['value'], AUTH_DELETE, TRUE);
             //4b. Incluye la página del proyecto en el archivo de atajos del Autor
             $params = [
                  'id' => $this->id
-//                ,'autor' => $data['projectMetaData']["autor"]['value']
-                ,'autor' => $ret['projectMetaData']["autor"]['value']
+                ,'autor' => $data['projectMetaData']["autor"]['value']
                 ,'link_page' => $this->id
                 ,'user_shortcut' => $ns.WikiGlobalConfig::getConf('shortcut_page_name','wikiiocmodel')
             ];
             $this->includePageProjectToUserShortcut($params);
         }
-
         return $ret;
-    }
-    
-    public function createTemplateDocument($data){
-        $plantilla = $this->getTemplateContentDocumentId($data);
-        $destino = $this->getContentDocumentId($data);
-
-        //1.1 Crea el archivo 'continguts', en la carpeta del proyecto, a partir de la plantilla especificada
-        $this->createPageFromTemplate($destino, $plantilla, NULL, "generate project");
     }
 
     /**
