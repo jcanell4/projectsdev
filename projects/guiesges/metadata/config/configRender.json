@@ -1,10 +1,10 @@
 {
     "typesDefinition": {
-        "pla": {
+        "dadesguies": {
             "render": {
-                "typeDef":"pla",
+                "typeDef":"dadesguies",
                 "class": "exportDocument",
-                "fields": "ALL"
+                "fields": "ALL"                
             },
             "keys": {
                 "descripcio": {
@@ -12,8 +12,15 @@
                 },
                 "fitxercontinguts": {
                     "render": {"class": "renderFile"}
+                },
+                "lliuraments": {
+                    "render": {
+                        "fields": "ALL"
+                    },
+                   "keys": {}
                 }
             }
         }
-    }
+    },
+    "defaultValueForObjectFields":"ALL"
 }

@@ -15,7 +15,7 @@ h1, h2, h3, h4, h5, h6, p, li, ul {
 }
 
 h2 {
-  color: #be176b;
+  color: #de4e61;
 }
 
 h3 {
@@ -27,7 +27,7 @@ h3 {
 }
 
 a {
-  color: #be176b;
+  color: #de4e61;
 
   font-weight: bold;
   line-height: 1.4;
@@ -44,7 +44,7 @@ a {
 .main_header {
   width: 100%;
   padding-bottom: 28px;
-  background-color: #be176b;
+  background-color: #de4e61;
 }
 
 .main_header h1 {
@@ -69,7 +69,7 @@ a {
 .secondary_header h2 {
   font-size: 19px;
   font-weight: bold;
-  color: #be176b;
+  color: #de4e61;
   text-align: left;
 }
 
@@ -87,7 +87,7 @@ a {
 
 hr {
   width: 56px;
-  border: .5px solid #be176b;
+  border: .5px solid #de4e61;
   -webkit-transition: width .4s;
   transition: width .4s;
 }
@@ -260,7 +260,7 @@ hr {
 
 
 .section3 h3 span {
-  color: #be176b;
+  color: #de4e61;
 }
 
 
@@ -306,7 +306,7 @@ hr {
 }
 
 .section3 .requadre_itinerari .rectangle_destacat {
-  background-color: #be176b;
+  background-color: #de4e61;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -372,7 +372,7 @@ color: #ffffff;
           justify-content: center;
   width: 148px;
   height: 44px;
-  background-color: #be176b;
+  background-color: #de4e61;
 
 }
 
@@ -403,23 +403,23 @@ color: #ffffff;
 .section3 .requadre_distribucio .rectangle_simple:nth-of-type(5) {
   border-bottom-left-radius: 3px;
   font-size: 17px;
-  color: #be176b;
+  color: #de4e61;
 }
 
 .section3 .requadre_distribucio .rectangle_simple:nth-of-type(6) {
   font-size: 17px;
-  color: #be176b;
+  color: #de4e61;
 }
 
 .section3 .requadre_distribucio .rectangle_simple:nth-of-type(7) {
   font-size: 17px;
-  color: #be176b;
+  color: #de4e61;
 }
 
 .section3 .requadre_distribucio .rectangle_simple:nth-of-type(8) {
   border-bottom-right-radius: 3px;
   font-size: 17px;
-  color: #be176b;
+  color: #de4e61;
 }
 
 .section3 .requadre_distribucio .rectangle_simple:nth-of-type(9) {
@@ -693,7 +693,7 @@ color: #ffffff;
 .section5 .own_table th {
   height: 40px;
   width: 145px;
-  background-color: #be176b;
+  background-color: #de4e61;
   color: #ffffff;
   font-size: 10.5px;
   font-weight: bold;
@@ -706,7 +706,7 @@ color: #ffffff;
   width: 145px;
   background-color: #f9c9e1;
   font-size: 13px;
-  color: #be176b;
+  color: #de4e61;
 }
 
 .section5 .own_table th[rowspan] {
@@ -735,7 +735,7 @@ color: #ffffff;
 .section6 .own_table th {
   height: 40px;
   width: 145px;
-  background-color: #be176b;
+  background-color: #de4e61;
   color: #ffffff;
   font-size: 10.5px;
   font-weight: bold;
@@ -747,7 +747,7 @@ color: #ffffff;
   height: 40px;
   background-color: #f9c9e1;
   font-size: 12px;
-  color: #be176b;
+  color: #de4e61;
 }
 
 .section6 .own_table th:first-of-type {
@@ -758,7 +758,7 @@ color: #ffffff;
 
 .section6 p span {
   font-weight: 700;
-  color: #be176b;
+  color: #de4e61;
 }
 
 /* Section 7 */
@@ -782,12 +782,12 @@ color: #ffffff;
       flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
-          justify-content: space-between;
+          justify-content: center;
   -ms-flex-line-pack: justify;
       align-content: space-between;
   margin: 0 auto;
   width: 280px;
-  height: 300px;
+  height: 150px;
 
 }
 
@@ -814,7 +814,7 @@ color: #ffffff;
 .section7 h3 {
   font-size: 16px;
   text-align: center;
-  color: #be176b;
+  color: #de4e61;
   margin-bottom: 27px;
 }
 
@@ -837,7 +837,7 @@ color: #ffffff;
 
 .section7 p span {
   font-weight: 700;
-  color: #be176b;
+  color: #de4e61;
 }
 
 /* Section 8 */
@@ -888,7 +888,7 @@ color: #ffffff;
 #final p {
   font-weight: bold;
   letter-spacing: 0.9px;
-  color: #be176b;
+  color: #de4e61;
 }
 
 .section8 .percentatges_chart {
@@ -928,7 +928,7 @@ color: #ffffff;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     background-color: #f9c9e1;
-    color: #be176b;
+    color: #de4e61;
     margin-right: 2px;
     font-size: 12.5px;
 }
@@ -948,7 +948,7 @@ color: #ffffff;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     background-color: #f9c9e1;
-    color: #be176b;
+    color: #de4e61;
     font-size: 15px;
     margin-right: 2px;
     font-size: 12.5px;
@@ -1122,7 +1122,7 @@ color: #ffffff;
     top: 109px;
     height: 19px;
     width: 2000px;
-    background-color: #be176b;
+    background-color: #de4e61;
     margin-left: -2020px;
   }
 
@@ -1514,7 +1514,7 @@ color: #ffffff;
 
   .section5 .own_table td {
     font-size: 15px;
-    color: #be176b;
+    color: #de4e61;
   }
 
   .section5 .own_table th[rowspan] {
@@ -1544,7 +1544,7 @@ color: #ffffff;
 
   .section6 .own_table td {
     font-size: 15px;
-    color: #be176b;
+    color: #de4e61;
   }
 
   .section6 .own_table th:first-of-type {

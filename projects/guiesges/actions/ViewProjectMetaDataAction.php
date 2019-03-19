@@ -52,13 +52,22 @@ class ViewProjectMetaDataAction extends BasicViewProjectMetaDataAction{
                             $fi_trimestre = $this->_obtenirData($elem['value'], $anyActual);
                         }
                     }
+                    else if ($response['projectMetaData']['trimestre']['value'] == "3") {
+                        if ($elem['key']==="inici_trimestre_3") {
+                            $inici_trimestre = $this->_obtenirData($elem['value'], $anyActual);
+                        }
+                        else if ($elem['key']==="fi_trimestre_3") {
+                            $fi_trimestre = $this->_obtenirData($elem['value'], $anyActual);
+                        }
+                    }
                 }
 
                 if ($inici_trimestre) {
                     if ($inici_trimestre > $fi_trimestre) {
                         $inici_trimestre = date_sub($inici_trimestre, new DateInterval('P1Y'));
                     }
-                    $interval = !($dataActual >= $inici_trimestre && $dataActual <= $fi_trimestre);
+                    $updetedDate = $projectModel->getProjectSubSetAttr("updatedDate");
+                    $interval = (!$updetedDate  || $updetedDate < $inici_trimestre->getTimestamp()) && !($dataActual >= $inici_trimestre && $dataActual <= $fi_trimestre);
                     $response['activarUpdateButton'] = ($interval) ? "1" : "0";
                 }
             }
