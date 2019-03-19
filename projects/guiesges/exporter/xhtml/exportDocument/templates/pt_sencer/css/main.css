@@ -145,7 +145,7 @@ p.llegenda {
 /* Header*/
 
 .main_header {
-    background-color: #be176b;
+    background-color: #de4e61;
     padding-bottom: 10px;
 }
  
@@ -276,7 +276,7 @@ p.llegenda {
     box-sizing: border-box;
     border-radius: 3px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.17);
-    background-color: #be176b;
+    background-color: #de4e61;
     width: 200px;
     margin: 32px auto 46px auto;
     cursor: pointer;

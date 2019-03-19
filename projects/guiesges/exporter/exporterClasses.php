@@ -100,7 +100,14 @@ abstract class renderComposite extends AbstractRenderer {
         return ($key === NULL) ? $this->renderdef : $this->renderdef[$key];
     }
     public function getTypedefKeyField($field) { //@return array : objeto key solicitado (del configMain.json)
-        return $this->getTypeDef('keys')[$field];
+        $ret = $this->getTypeDef('keys')[$field];
+        while($this->factory->getTypesDefinition($ret["type"])){
+            $ret = array_merge($ret, $this->factory->getTypesDefinition($ret["type"]));
+//            while($this->factory->getTypesDefinition($ret["typeDef"])){
+//                $ret = $this->factory->getTypesDefinition($ret["typeDef"]);
+//            }
+        }        
+        return $ret;
     }
     public function getRenderKeyField($field) { //@return array : objeto key solicitado (del configRender.json)
         return $this->getRenderDef('keys')[$field];
@@ -132,9 +139,15 @@ class renderObject extends renderComposite {
 
     public function getRenderFields() { //devuelve el array de campos establecidos para el render
         $ret = $this->getRenderDef('render')['fields'];
+        if(!isset($ret) && $this->factory->getDefaultValueForObjectFields()){
+            $ret = $this->factory->getDefaultValueForObjectFields();
+        }            
         if(is_string($ret)){
             switch (strtoupper($ret)){
                 case "ALL":
+                    if(!isset($this->typedef["keys"])){
+                        $this->typedef = $this->factory->getTypesDefinition($this->typedef["typeDef"]);
+                    }
                     $ret = array_keys($this->typedef["keys"]);
                     break;
                 case "MANDATORY":
@@ -160,14 +173,15 @@ class renderObject extends renderComposite {
     }
 
     public function cocinandoLaPlantillaConDatos($param) {
-        if (is_array($param)) {
-            foreach ($param as $value) {
-                $ret .= (is_array($value)) ? $this->cocinandoLaPlantillaConDatos($value)."\n" : $value."\n";
-            }
-        }else {
-            $ret = $param;
-        }
-        return $ret;
+//        if (is_array($param)) {
+//            foreach ($param as $value) {
+//                $ret .= (is_array($value)) ? $this->cocinandoLaPlantillaConDatos($value)."\n" : $value."\n";
+//            }
+//        }else {
+//            $ret = $param;
+//        }
+//        return $ret;
+        return $param;
     }
 }
 
