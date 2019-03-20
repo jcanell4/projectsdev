@@ -1,5 +1,4 @@
 /* General rules */
-
 body {
     font-family: "Lato", sans-serif;
     color: #01172f;
@@ -146,9 +145,55 @@ p.llegenda {
     opacity: 0;
 }
 
+table {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table .leftalign {
+    text-align: left;
+}
+
+table .centeralign {
+    text-align: center;
+}
+
+table .rightalign {
+    text-align: right;
+}
+
+table .inline {
+    background-color: transparent;
+    min-width: 300px;
+    margin: 0 auto 2em;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-left: 0 none;
+    border-right: 0 none;
+    font-size: 90%;
+}
+table .inline th {
+    background-color: transparent;
+    border-top: 0 none;
+    border-bottom: 1px solid;
+    border-left: 0 none;
+    border-right: 0 none;
+    padding: 0.3em 0.5em;
+    vertical-align: top;
+}
+table .inline td {
+    border: 0 none;
+    padding: 0.3em 0.5em;
+}
+
+section p{
+    text-align: justify;
+}
 
 /* Header*/
-
 .main_header {
     background-color: #be176b;
     padding-bottom: 10px;
@@ -280,6 +325,15 @@ p.llegenda {
     text-align: center;
 }
 
+div.iocfigure {
+    margin: auto;
+    text-align: center;
+}
+
+div.footfigure {
+    margin: -0.3em auto 0;
+    text-align: center;
+}
 
 /* Botó imprimir*/
 
@@ -312,16 +366,6 @@ p.llegenda {
     color: #ffffff;
     text-transform: uppercase;
 }
-
-    table {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    section p{
-        text-align: justify;
-    }
-
 
 /* Layout media queries */
 
