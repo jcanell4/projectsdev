@@ -108,23 +108,6 @@ hr {
           flex-direction: column;
 }
 
-.section1_content_row1 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-}
 
 .section1_content_row2 {
   display: -webkit-box;
@@ -160,24 +143,10 @@ hr {
   background-image: url("img/durada-icona.svg");
 }
 
-#professor_icona {
-  height: 54px;
-  background-image: url("img/professor-icona.svg");
-}
-
-#material_icona {
-  height: 56px;
-  background-image: url("img/material-icona.svg");
-}
 
 #dedicacio_icona {
   height: 60px;
   background-image: url("img/dedicacio-icona.svg");
-}
-
-#requisits_icona {
-  height: 57px;
-  background-image: url("img/requisits-icona.svg");
 }
 
 .section1_element img {
@@ -198,484 +167,8 @@ hr {
   font-size: 13px;
 }
 
-/* Section 2 */
 
-.section2 {
-  margin: 33px 0 37px 0;
-}
 
-/* Section 3 */
-
-
-/*** Itinerari recomanat */
-
-.section3 {
-  margin: 34px 0 26px 0;
-}
-
-.section3 h2 {
-  font-size: 19px;
-  font-weight: bold;
-  text-align: center;
-  padding-bottom: 42px;
-}
-
-.section3 h2:last-of-type {
-  margin-top: 28px;
-  padding-bottom: 18px;
-}
-
-.section3_itinerari {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  padding-bottom: 40px;
-}
-
-.section3 h3 {
-  -ms-flex-item-align: center;
-      align-self: center;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 1.2;
-  text-align: center;
-  width: 80%;
-  color: rgba(39, 33, 60, 0.65);
-  text-transform: none;
-  margin-bottom: 14px;
-  letter-spacing: 0 !important;
-}
-
-
-.section3 h3 span {
-  color: #de4e61;
-}
-
-
-.section3 .requadre_itinerari {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-line-pack: justify;
-      align-content: space-between;
-  margin: 0 auto;
-  width: 299px;
-  height: 90px;
-}
-
-.section3 .requadre_itinerari .rectangle {
-  width: 73px;
-  height: 44px;
-  background-color: #f9c9e1;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 2px;
-}
-
-.section3 .requadre_itinerari .rectangle:nth-of-type(1) {
-  border-top-left-radius: 3px;
-}
-
-.section3 .requadre_itinerari .rectangle:nth-of-type(4) {
-  border-top-right-radius: 3px;
-}
-
-.section3 .requadre_itinerari .rectangle:nth-of-type(5) {
-  border-bottom-left-radius: 3px;
-}
-
-.section3 .requadre_itinerari .rectangle:nth-of-type(8) {
-  border-bottom-right-radius: 3px;
-}
-
-.section3 .requadre_itinerari .rectangle_destacat {
-  background-color: #de4e61;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.section3 .requadre_itinerari .rectangle_destacat p {
-font-size: 14px;
-font-weight: bold;
-line-height: 1.14;
-text-align: center;
-color: #ffffff;
-}
-
-/*** Distribució horària */
-
-.section3 .requadre_distribucio {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-line-pack: justify;
-      align-content: space-between;
-  width: 298px;
-  height: 182px;
-  margin: 0 auto;
-}
-
-.section3 .requadre_distribucio .rectangle_simple {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 73px;
-  height: 44px;
-  background-color: #f9c9e1;
-
-}
-
-.section3 .requadre_distribucio .rectangle_doble {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 148px;
-  height: 44px;
-  background-color: #de4e61;
-
-}
-
-.section3 .requadre_distribucio .rectangle_doble:nth-of-type(1) {
-  background-color: #ffffff !important;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.section3 .requadre_distribucio .rectangle_doble:nth-of-type(2) {
-  background-color: #ffffff !important;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.section3 .requadre_distribucio .rectangle_doble:nth-of-type(3) {
-  border-top-left-radius: 3px;
-  font-size: 17px;
-  color: #ffffff;
-}
-
-.section3 .requadre_distribucio .rectangle_doble:nth-of-type(4) {
-  border-top-right-radius: 3px;
-  font-size: 17px;
-  color: #ffffff;
-}
-
-.section3 .requadre_distribucio .rectangle_simple:nth-of-type(5) {
-  border-bottom-left-radius: 3px;
-  font-size: 17px;
-  color: #de4e61;
-}
-
-.section3 .requadre_distribucio .rectangle_simple:nth-of-type(6) {
-  font-size: 17px;
-  color: #de4e61;
-}
-
-.section3 .requadre_distribucio .rectangle_simple:nth-of-type(7) {
-  font-size: 17px;
-  color: #de4e61;
-}
-
-.section3 .requadre_distribucio .rectangle_simple:nth-of-type(8) {
-  border-bottom-right-radius: 3px;
-  font-size: 17px;
-  color: #de4e61;
-}
-
-.section3 .requadre_distribucio .rectangle_simple:nth-of-type(9) {
-  background-color: #ffffff !important;
-  font-size: 14px;
-}
-
-.section3 .requadre_distribucio .rectangle_simple:nth-of-type(10) {
-  background-color: #ffffff !important;
-  font-size: 14px;
-}
-
-.section3 .requadre_distribucio .rectangle_simple:nth-of-type(11) {
-  background-color: #ffffff !important;
-  font-size: 14px;
-}
-
-.section3 .requadre_distribucio .rectangle_simple:nth-of-type(12) {
-  background-color: #ffffff !important;
-  font-size: 14px;
-}
-
-.containerDistribHoraria {
-  margin: 34px 0 26px 0;
-  font-family: 'Lato', sans-serif;
-}
-
-.rowDistribHoraria {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin: 0 auto;
-  height: 50px;
-  width: 420px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-.cellDistribHoraria {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  /* Style */
-  height: 100%;
-  width: 100%;
-  border: 1px solid #ffffff;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-#rowDistribHoraria1 .cellDistribHoraria {
-  color: #4C4C4C;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-#rowDistribHoraria2 .cellDistribHoraria {
-  background-color: #BE176B;
-  color: #ffffff;
-  font-size: 19px;
-}
-
-#rowDistribHoraria2 .cellDistribHoraria:first-child {
-  border-top-left-radius: 4px;
-}
-
-#rowDistribHoraria2 .cellDistribHoraria:last-child {
-  border-top-right-radius: 4px;
-}
-
-#rowDistribHoraria3 .cellDistribHoraria {
-  background-color: #F9C9E1;
-  color: #BE176B;
-  font-size: 19px;
-}
-
-#rowDistribHoraria2 .cellDistribHoraria:first-child {
-  border-top-left-radius: 4px;
-}
-
-#rowDistribHoraria2 .cellDistribHoraria:last-child {
-  border-top-right-radius: 4px;
-}
-
-#rowDistribHoraria1 .cellDistribHoraria {
-  color: #4C4C4C;
-  font-size: 16px;
-}
-
-/* Section 4 */
-
-.section4 {
-  margin: 34px 0 26px 0;
-}
-
-.section4 h2 {
-  font-size: 19px;
-  font-weight: bold;
-  text-align: center;
-  padding-bottom: 42px;
-}
-
-.requadre_eines {
-  width: 280px;
-  height: 400px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.requadre_eines h4 {
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 0.94;
-  text-align: center;
-  color: #3F3850;
-}
-
-.requadre_eines h3 {
-  font-size: 8.5px;
-  font-weight: bold;
-  letter-spacing: 0.6px;
-  text-align: center;
-  margin-top: 3px;
-}
-
-.puzzle {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-}
-
-#puzzle1 {
-  width: 280px;
-  height: 90px;
-  background-image: url("img/puzzle-dalt.svg");
-  background-size: cover;
-  position: absolute;
-  top: 0px;
-}
-
-#puzzle2 {
-  width: 281px;
-  height: 92px;
-  background-image: url("img/puzzle-mig.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: absolute;
-  top: 72px;
-}
-
-#puzzle3 {
-  width: 281px;
-  height: 92px;
-  background-image: url("img/puzzle-mig.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: absolute;
-  top: 146px;
-}
-
-#puzzle4 {
-  width: 281px;
-  height: 92px;
-  background-image: url("img/puzzle-mig.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: absolute;
-  top: 220px;
-}
-
-#puzzle5 {
-  width: 279px;
-  height: 73px;
-  background-image: url("img/puzzle-baix.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: absolute;
-  top: 294.5px;
-  left: 2px;
-}
-
-.section4_icona {
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin-right: 12px;
-}
-
-#llibre_icona {
-  height: 21px;
-  width: 27px;
-  background-image: url("img/llibre-icona.svg");
-  margin-bottom: 10px;
-}
-
-#exercicis_icona {
-  height: 20px;
-  width: 29px;
-  background-image: url("img/exercicis-icona.svg");
-  margin-bottom: 4px;
-}
-
-#forum_icona {
-  height: 18px;
-  width: 29px;
-  background-image: url("img/forum-icona.svg");
-  margin-bottom: 4px;
-}
-
-#questionari_icona {
-  height: 22px;
-  width: 20px;
-  background-image: url("img/questionari-icona.svg");
-}
-
-#avaluacio_icona {
-  height: 21px;
-  width: 22px;
-  background-image: url("img/avaluacio-icona.svg");
-}
-
-
-.puzzle_baix img,
-.puzzle_baix h4 {
-    margin-top: 8px;
-}
-
-.puzzle_dalt img,
-.puzzle_dalt h4 {
-    margin-top: -10px;
-}
 
 /* Section 5 */
 
@@ -704,7 +197,7 @@ color: #ffffff;
 .section5 .own_table td {
   height: 40px;
   width: 145px;
-  background-color: #f9c9e1;
+  background-color: #FAC7CA;
   font-size: 13px;
   color: #de4e61;
 }
@@ -714,52 +207,6 @@ color: #ffffff;
   font-size: 12px;
 }
 
-/* Section 6 */
-
-.section6 {
-  margin: 34px 0 56px 0;
-}
-
-.section6 h2 {
-  font-size: 19px;
-  font-weight: bold;
-  text-align: center;
-  padding-bottom: 42px;
-}
-
-.section6 .own_table {
-  margin-top: 32px;
-  margin-bottom: 32px;
-}
-
-.section6 .own_table th {
-  height: 40px;
-  width: 145px;
-  background-color: #de4e61;
-  color: #ffffff;
-  font-size: 10.5px;
-  font-weight: bold;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-}
-
-.section6 .own_table td {
-  height: 40px;
-  background-color: #f9c9e1;
-  font-size: 12px;
-  color: #de4e61;
-}
-
-.section6 .own_table th:first-of-type {
-  width: 65px;
-  font-size: 12px;
-  padding: 0 5px;
-}
-
-.section6 p span {
-  font-weight: 700;
-  color: #de4e61;
-}
 
 /* Section 7 */
 
@@ -927,7 +374,7 @@ color: #ffffff;
     height: 40px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    background-color: #f9c9e1;
+    background-color: #FAC7CA;
     color: #de4e61;
     margin-right: 2px;
     font-size: 12.5px;
@@ -947,7 +394,7 @@ color: #ffffff;
     height: 40px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    background-color: #f9c9e1;
+    background-color: #FAC7CA;
     color: #de4e61;
     font-size: 15px;
     margin-right: 2px;
@@ -1025,8 +472,8 @@ color: #ffffff;
 }
 
 [id*="title_row"] .cellQualificacio {
-  background-color: #F9C9E1;
-  color: #BE176B;
+  background-color: #FAC7CA;
+  color: #de4e61;
   font-size: 15px;
   border: 1px solid #ffffff;
 }
@@ -1053,7 +500,7 @@ color: #ffffff;
 }
 
 [id*="title_row"]:last-child .cellQualificacio:first-child {
-  color: #BE176B;
+  color: #de4e61;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: .8px;
@@ -1072,15 +519,19 @@ color: #ffffff;
   font-size: 12px;
   line-height: .9;
   text-align: center;
-  -webkit-transform: translateY(28px);
+/*  -webkit-transform: translateY(28px);
       -ms-transform: translateY(28px);
-          transform: translateY(28px);
+          transform: translateY(28px);*/
+  -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
 }
 
-[id*="title_row"] .smallCell span:before {
+/*[id*="title_row"] .smallCell span:before {
   content: "↑ ";
   display: block;
-}
+  font-size: 20px;
+}*/
 
 /* Media queries */
 
@@ -1155,40 +606,9 @@ color: #ffffff;
             flex-direction: column;
   }
 
-  .section1_content_row1 {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -ms-flex-line-pack: start;
-        align-content: flex-start;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-  }
 
-  .section1_content_row2 {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -ms-flex-line-pack: start;
-        align-content: flex-start;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+  .section1_content_row2,
+  .section1_content_row3 {
     margin-top: 56px;
   }
 
@@ -1204,21 +624,10 @@ color: #ffffff;
     height: 70px;
   }
 
-  #professor_icona {
-    height: 69px;
-  }
-
-  #material_icona {
-    height: 71px;
-  }
-
   #dedicacio_icona {
     height: 76px;
   }
 
-  #requisits_icona {
-    height: 72px;
-  }
 
   .section1_content_row2 .section1_element:first-child {
     margin-right: 60px;
@@ -1234,267 +643,13 @@ color: #ffffff;
     font-size: 15px;
   }
 
-  /* Section 3 media query */
 
-  /*** Itinerari recomanat */
-
-  .section3 {
-    margin: 62px 0 48px 0;
-  }
-
-  .section3_itinerari {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    padding-bottom: 40px;
-  }
-
-  .section3 h2 {
-    font-size: 20px;
-    text-align: center;
-    padding-bottom: 60px;
-  }
-
-  .section3 h2:last-of-type {
-    margin-top: 76px;
-    padding-bottom: 30px;
-  }
-
-  .section3 h3 {
-    font-size: 16px;
+  
+  .section1 li {
+    font-size: 15px;
     text-align: left;
-    width: 170px;
-    color: rgba(39, 33, 60, 0.65);
-    text-transform: none;
-    margin-bottom: 0px;
-    letter-spacing: 0 !important;
   }
 
-  .section3 .requadre_itinerari {
-    width: 299px;
-    height: 90px;
-  }
-
-  .section3 .requadre_itinerari .rectangle {
-    width: 73px;
-    height: 44px;
-  }
-
-  .section3 .requadre_itinerari .rectangle_destacat p {
-    font-size: 14px;
-  }
-
-  /*** Distribució horària */
-
-  .section3 .requadre_distribucio {
-    width: 413px;
-    height: 206px;
-  }
-
-  .section3 .requadre_distribucio .rectangle_simple {
-    width: 101px;
-    height: 50px;
-  }
-
-  .section3 .requadre_distribucio .rectangle_doble {
-    width: 205px;
-    height: 50px;
-  }
-
-  .section3 .requadre_distribucio .rectangle_doble:nth-of-type(1) {
-    font-size: 16px;
-  }
-
-  .section3 .requadre_distribucio .rectangle_doble:nth-of-type(2) {
-    font-size: 16px;
-  }
-
-  .section3 .requadre_distribucio .rectangle_doble:nth-of-type(3) {
-    font-size: 19px;
-  }
-
-  .section3 .requadre_distribucio .rectangle_doble:nth-of-type(4) {
-    font-size: 19px;
-  }
-
-  .section3 .requadre_distribucio .rectangle_simple:nth-of-type(5) {
-    font-size: 19px;
-  }
-
-  .section3 .requadre_distribucio .rectangle_simple:nth-of-type(6) {
-    font-size: 19px;
-  }
-
-  .section3 .requadre_distribucio .rectangle_simple:nth-of-type(7) {
-    font-size: 19px;
-  }
-
-  .section3 .requadre_distribucio .rectangle_simple:nth-of-type(8) {
-    font-size: 19px;
-  }
-
-  .section3 .requadre_distribucio .rectangle_simple:nth-of-type(9) {
-    font-size: 16px;
-  }
-
-  .section3 .requadre_distribucio .rectangle_simple:nth-of-type(10) {
-    font-size: 16px;
-  }
-
-  .section3 .requadre_distribucio .rectangle_simple:nth-of-type(11) {
-    font-size: 16px;
-  }
-
-  .section3 .requadre_distribucio .rectangle_simple:nth-of-type(12) {
-    font-size: 16px;
-  }
-
-  /* Section 4 media query */
-
-  .section4 {
-    margin: 66px 0 -14px 0;
-  }
-
-  .section4 h2 {
-    font-size: 20px;
-    padding-bottom: 62px;
-  }
-
-  .requadre_eines {
-    width: 370px;
-    height: 600px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .requadre_eines h4 {
-    font-size: 17px;
-    font-weight: bold;
-    line-height: 0.94;
-    text-align: center;
-    color: #3F3850;
-  }
-
-  .requadre_eines h3 {
-    font-size: 10px;
-    font-weight: bold;
-    letter-spacing: 0.6px;
-    text-align: center;
-    margin-top: 5px;
-  }
-
-  .puzzle {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -ms-flex-line-pack: center;
-        align-content: center;
-  }
-
-  #puzzle1 {
-    width: 372px;
-    height: 120px;
-    background-image: url("img/puzzle-dalt.svg");
-    background-size: contain;
-    top: 0px;
-  }
-
-  #puzzle2 {
-    width: 372px;
-    height: 122.5px;
-    background-image: url("img/puzzle-mig.svg");
-    background-size: cover;
-    top: 96px;
-  }
-
-  #puzzle3 {
-    width: 372px;
-    height: 122.5px;
-    background-image: url("img/puzzle-mig.svg");
-    background-size: cover;
-    top: 195px;
-  }
-
-  #puzzle4 {
-    width: 372px;
-    height: 122.5px;
-    background-image: url("img/puzzle-mig.svg");
-    background-size: cover;
-    top: 293.5px;
-  }
-
-  #puzzle5 {
-    width: 372px;
-    height: 120px;
-    background-image: url("img/puzzle-baix.svg");
-    background-size: contain;
-    top: 394px;
-    left: 1px;
-  }
-
-  .section4_icona {
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin-right: 22px;
-  }
-
-  #llibre_icona {
-    height: 31px;
-    width: 40px;
-    background-image: url("img/llibre-icona.svg");
-    margin-bottom: 12px;
-  }
-
-  #exercicis_icona {
-    height: 31px;
-    width: 43px;
-    background-image: url("img/exercicis-icona.svg");
-    margin-bottom: 6px;
-  }
-
-  #forum_icona {
-    height: 25px;
-    width: 40px;
-    background-image: url("img/forum-icona.svg");
-    margin-bottom: 8px;
-  }
-
-  #questionari_icona {
-    height: 35px;
-    width: 31px;
-    background-image: url("img/questionari-icona.svg");
-    margin-bottom: 2px;
-  }
-
-  #avaluacio_icona {
-    height: 34px;
-    width: 35px;
-    background-image: url("img/avaluacio-icona.svg");
-    margin-bottom: 4px;
-  }
-
-  .puzzle_baix img,
-  .puzzle_baix h4 {
-      margin-top: 0px;
-  }
-
-  .puzzle_dalt img,
-  .puzzle_dalt h4 {
-      margin-top: -14px;
-  }
 
   /* Section 5 media query */
 
@@ -1518,36 +673,6 @@ color: #ffffff;
   }
 
   .section5 .own_table th[rowspan] {
-    font-size: 15px;
-  }
-
-  /* Section 6 media query */
-
-  .section6 {
-    margin: 66px 0 80px 0;
-  }
-
-  .section6 h2 {
-    font-size: 20px;
-    padding-bottom: 62px;
-  }
-
-  .section6 .own_table {
-    margin-top: 44px;
-    margin-bottom: 44px;
-  }
-
-  .section6 .own_table th {
-    font-size: 11.5px;
-    letter-spacing: 0.6px;
-  }
-
-  .section6 .own_table td {
-    font-size: 15px;
-    color: #de4e61;
-  }
-
-  .section6 .own_table th:first-of-type {
     font-size: 15px;
   }
 

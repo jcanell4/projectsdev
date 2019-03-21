@@ -55,7 +55,8 @@ class ProjectExportAction  extends ProjectMetadataAction{
                           'filetype'        => $this->filetype,
                           'typesDefinition' => $this->typesDefinition,
                           'typesRender'     => $this->typesRender,
-                          'defaultValueForObjectFields'     => $this->defaultValueForObjectFields ]);
+                          'defaultValueForObjectFields'     => $this->defaultValueForObjectFields,
+                          'projectModel' => $this->getModel()]);
 
         $render = $fRenderer->createRender($this->typesDefinition[$this->mainTypeName],
                                            $this->typesRender[$this->mainTypeName],

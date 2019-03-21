@@ -15,28 +15,6 @@ class guiesgesProjectModel extends AbstractProjectModel {
         parent::__construct($persistenceEngine);
     }
 
-    public function getProjectDocumentName() {
-        $ret = $this->getMetaDataProject();
-        return $ret['fitxercontinguts'];
-    }
-
-    public function getContentDocumentId($responseData){
-        if ($responseData['projectMetaData']["fitxercontinguts"]['value']){
-            $contentName = $responseData['projectMetaData']["fitxercontinguts"]['value'];
-        }else{
-            $contentName = end(explode(":", $this->getTemplateContentDocumentId($responseData)));
-        }
-        return $this->id.":" .$contentName;
-    }
-
-    public function getTemplateContentDocumentId($responseData){
-        $plantilla = $responseData['projectMetaData']["plantilla"]['value'];
-        preg_match("/##.*?##/s", $plantilla, $matches);
-        $field = substr($matches[0],2,-2);
-        $plantilla = preg_replace("/##.*?##/s", $responseData['projectMetaData'][$field]['value'], $plantilla);
-        return $plantilla;
-    }
-
     public function generateProject() {
         //0. Obtiene los datos del proyecto
         $ret = $this->getData();   //obtiene la estructura y el contenido del proyecto
@@ -179,11 +157,16 @@ class guiesgesProjectModel extends AbstractProjectModel {
     }
 
     public function createTemplateDocument($data){
-//        $plantilla = $this->getTemplateContentDocumentId($data);
-//        $destino = $this->getContentDocumentId($data);
-//
-//        //1.1 Crea el archivo 'continguts', en la carpeta del proyecto, a partir de la plantilla especificada
-//        $this->createPageFromTemplate($destino, $plantilla, NULL, "generate project");
-        
+        $pdir = $this->getProjectMetaDataQuery()->getProjectTypeDir()."metadata/plantilles/";
+        $scdir = scandir($pdir);
+        foreach($scdir as $file){
+            if($file !== '.' && $file !== '..' && substr($file, -3)==="txt") {
+                $plantilla = file_get_contents($pdir.$file);
+                $name = substr($file, 0, strlen($file)-4);
+                $this->dokuPageModel->setData([PageKeys::KEY_ID => $this->id.":".$name,
+                                       PageKeys::KEY_WIKITEXT => $plantilla,
+                                       PageKeys::KEY_SUM => "generate project"]);
+            }            
+        }
     }
 }

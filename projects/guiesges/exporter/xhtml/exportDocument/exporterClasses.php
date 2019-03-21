@@ -47,9 +47,40 @@ class exportDocument extends MainRender {
                 $allPathTemplate = $this->rendererPath . "/$pathTemplate";
                 $this->addFilesToZip($zip, $allPathTemplate, "", "img");
                 $zip->addFile($allPathTemplate."/main.css", "main.css");
-                $this->addFilesToZip($zip, $allPathTemplate, "", "pt_sencer", TRUE);
-                $ptSencer = $this->replaceInTemplate($data, "$pathTemplate/pt_sencer/pt.tpl");
-                $zip->addFromString('/pt_sencer/pt.html', $ptSencer);
+                $this->addFilesToZip($zip, $allPathTemplate, "", "ge_sencera", TRUE);
+                $ptSencer = $this->replaceInTemplate($data, "$pathTemplate/ge_sencera/ge.tpl");
+                $zip->addFromString('/ge_sencera/ge.html', $ptSencer);
+                
+                $trimestre = ($data["trimestre"]==1?"Tardor ":($data["trimestre"]==2?"Hivern ":"Primavera ")).date("Y");
+                $modul = html_entity_decode(htmlspecialchars_decode($data["codi_modul"], ENT_COMPAT|ENT_QUOTES));
+                $modul .= "-";
+                $modul .= html_entity_decode(htmlspecialchars_decode($data["modul"], ENT_COMPAT|ENT_QUOTES));
+                $durada = html_entity_decode(htmlspecialchars_decode($data["dedicacio"], ENT_COMPAT|ENT_QUOTES));
+
+                $params = array(
+                    "id" => $this->cfgExport->id,
+                    "path_templates" => $this->rendererPath . "/pdf/exportDocument/templates",  // directori on es troben les plantilles latex usades per crear el pdf
+                    "tmp_dir" => $this->cfgExport->tmp_dir,    //directori temporal on crear el pdf
+                    "lang" => strtoupper($this->cfgExport->lang),  // idioma usat (CA, EN, ES, ...)
+                    "mode" => isset($this->mode) ? $this->mode : $this->filetype,
+                    "data" => array(
+                        "header_page_logo" => $this->rendererPath . "/resources/escutGene.jpg",
+                        "header_page_wlogo" => 9.9,
+                        "header_page_hlogo" => 11.1,
+                        "header_ltext" => "Generalitat de Catalunya\nDepartament d'Ensenyament\nInstitud Obert de Catalunya",
+                        "header_rtext" => $modul."\n".$trimestre,
+                        "titol" => array(
+                            "Estudis de GES",
+                            "Guia d'estudi",
+                            $modul,
+                            $trimestre,
+                        ),    //títol del document
+                        "contingut" => json_decode($data["pdfge"], TRUE)   //contingut latex ja rendaritzat
+                    )
+                );
+                StaticPdfRenderer::renderDocument($params, "ge.pdf");
+                $zip->addFile($this->cfgExport->tmp_dir."/ge.pdf", "/ge_sencera/ge.pdf");
+                
                 $this->attachMediaFiles($zip);
 
                 $result["zipFile"] = $zipFile;
@@ -77,7 +108,7 @@ class exportDocument extends MainRender {
         foreach ($this->cfgExport->toc as $tocKey => $tocItem) {
             $toc ="";
             foreach ($tocItem as $elem) {
-                if($elem['level']==1){
+                if($elem['level']<=2){
                     $toc .= "<a href='{$elem['link']}'>".htmlentities($elem['title'])."</a>\n";
                 }
             }
