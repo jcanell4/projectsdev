@@ -18,86 +18,23 @@ Professor responsable: {##professor##}
 </WIOCCL:SET>###:
 
 [##TODO:Descriure ql que cal posar en aquest dos paràgrafs##]
-Aquest mòdul és del nivell 1 del Graduat en Secundària. S'ha de fer abans d'haver cursat els altres mòduls de matemàtiques de GES. 
-
-És convenient que l'estudiant que l'ha de cursar tingui estudis primaris. Però, al tractar-se d'un mòdul inicial del GES, el nivell és assequible a gairebé tothom.
-
 
 ====== Per a què ensenyem? ======
 
 ===== Competències desenvolupades en aquest mòdul =====
 
-**Competències pròpies de l'àmbit**
-
-La competència científica es defineix com la capacitat de buscar, processar i comunicar informació i transformar-la en coneixement. Està estretament relacionada amb la competència clau del coneixement i la interacció amb el món físic.
-
-Assolir la competència científica comporta:
-
-  - **Desenvolupar habilitats per cercar, processar, comunicar informació i transformar-la en coneixement, tot utilitzant diferents suports, entre els quals destaquen les tecnologies de la informació i la comunicació**.
-  - **Fer ús habitual dels recursos tecnològics disponibles per resoldre problemes reals de manera eficient**.
-  - Pensar científicament a partir de construir i utilitzar versions elementals dels models de la ciència. Aquests coneixements han de proporcionar estratègies útils per descriure els fenòmens relacionats amb problemes socialment rellevants.
-  - **Esdevenir persones autònomes, eficaces, crítiques i reflexives en la selecció, tractament, utilització de la informació i les seves fonts, en diferents suports i tecnologies**.
-  - Comunicar en llenguatge científic les dades, les idees i les conclusions utilitzant diferents models comunicatius, i argumentar-les tenint en compte punts de vista diferents del propi.
-  - Tenir actitud crítica, reflexiva i responsable en el procés d'obtenció i comunicació de la informació disponible, contrastant-la quan calgui i respectant les normes de conducta acordades socialment per regular l'ús de la informació.
-  - **Plantejar-se i resoldre problemes. Llegir i entendre l'enunciat, planificar i desenvolupar estratègies de resolució i verificar la validesa de les solucions**.
-  - **Planificar i utilitzar estratègies per resoldre situacions problemàtiques de la vida personal o quotidiana com l'economia administrativa, laboral i domèstica**.
-  - Utilitzar el coneixement científic per argumentar de manera fonamentada i creativa les actuacions com a ciutadans i ciutadanes responsables, especialment les relacionades amb la gestió sostenible del medi, la salut pròpia i la comunitària, i l'ús d'aparells i materials en la vida quotidiana.
-  - Relacionar la ciència i la tecnologia amb els factors que caracteritzen el desenvolupament econòmic i social, tot cercant propostes solidàries i sostenibles.
-
-**Aportacions de l'àmbit a les competències bàsiques**
-
-El desenvolupament dels continguts de l'àmbit cientificotecnològic contribueix a l'assoliment de les competències bàsiques de manera transversal tal com es detalla a continuació.
-
-  - Competència comunicativa lingüística i audiovisual. L'àmbit cientificotecnològic contribueix en aquesta competència aportant el coneixement del llenguatge de la ciència descrivint els fets i els fenòmens, argumentar-los i definir-los.
-  - **La competència en el tractament de la informació incorpora diferents habilitats, que van des de l'accés a la informació fins a la seva transmissió, tot usant diferents suports, incloent la utilització de les tecnologies de la informació i la comunicació. Per això és una competència transversal que cal atendre i particularitzar en cadascun dels mòdul i àmbits**.
-  - Més enllà de les seves aplicacions, l'aprenentatge de la ciència possibilita accedir a formes d'explicar, de raonar, de valorar i actuar sovint des del sentit comú.
-  - Aprendre a aprendre implica la consciència, gestió i control de les pròpies capacitats i coneixements des d'un sentiment de competència o eficàcia personal, i el maneig eficient d'un conjunt de recursos i tècniques de treball. Tot això es desenvolupa per mitjà d'experiències d'aprenentatges conscients, tant individuals com col·lectius.
-  - **Autonomia i iniciativa personal. Els continguts de l'àmbit permet preveure situacions problemàtiques de la vida quotidiana i saber trobar-ne l'explicació o valorar-ne les conseqüències d'una manera autònoma i sent conscient de les pròpies capacitats**.
-  - Els avenços científics i tecnològics ens mostren la rellevància del treball en equip, això implica desenvolupar destreses socials cada cop més necessàries. Per tant, el treball col·laboratiu en ciència permet assolir la capacitat de treballar en grup i desenvolupar les relacions socials.
-  - La competència social i ciutadana fa possible comprendre la realitat social en què es viu, cooperar conviure i exercir la ciutadania democràtica en una societat plural. Si bé aquesta competència és més de l'àmbit social, mobilitza recursos dels altres àmbits del currículum.
-
 
 ===== Objectius d'aprenentatge =====
-
-Aquest mòdul pretén que, en acabar-lo, l'estudiant sigui capaç de: 
-
-  - Sumar, restar, multiplicar i dividir nombres naturals, enters, racionals i decimals. 
-  - Conèixer la prioritat dels operadors i dels parèntesis 
-  - Ordenar els diferents tipus de nombres 
-  - Representar gràficament els nombres dins d'una recta 
-  - Aplicar aquests coneixements a la resolució de problemes 
-  - Utilitzar el full de càlcul per resoldre contextos de càlcul
-
 
 ====== Què ensenyem? ======
 
 
 ===== Continguts =====
 
-  - Nombres naturals. 
-  - Nombres enters. Ordenació i representació. 
-  - Les operacions amb nombres enters, suma, resta multiplicació i divisió. 
-  - Distinció de la funció dels signes + i – en els nombres i en les operacions d’addició i de subtracció. 
-  - Utilització correcta dels parèntesis. Operacions combinades i jerarquia d'operacions.
-  - Resolució de problemes que impliquin l’ús de nombres enters. 
-  - Concepte de múltiple i divisor, i les seves propietats. Divisibilitat. 
-  - Fraccions i càlcul amb fraccions. Comparació i ordenació de fraccions. 
-  - La proporcionalitat aritmètica. Raó de proporcionalitat. 
-  - Aplicacions de la proporcionalitat aritmètica: interessos, descomptes i recàrrecs. El tant per cent. 
-  - Concepte de potència i arrels. Operacions amb potències, arrels i operacions combinades aplicant la jerarquia de les operacions. 
-  - Representació de nombres racionals sobre la recta. 
-  - Càlcul amb nombres racionals positius expressats de manera decimal, fraccionària o com a percentatge. 
-  - Resoldre problemes aritmètics. Ús del full de càlcul per resoldre contextos de càlcul. 
-
-
 ====== Com i quan ensenyem? ======
 
 
 ===== Enfocament didàctic =====
-
-Aquest mòdul comú permet la comprensió dels nombres, dels seus usos diversos, de les seves formes de representació i del sistema de numeració en el qual s'expressen; també la comprensió dels significats de les operacions i de les relacions que hi ha entre unes i altres així com la jerarquia entre elles. Treballa els diferents grups de nombres: naturals, enters, reals i les seves representacions i interpretacions.
-
-L'enfocament d'aquest mòdul està relacionat amb temes quotidians de les persones adultes que els permeti adquirir l'autonomia i enfrontar amb èxit els problemes de la vida quotidiana, com el càlcul de factures, comptes bancaris, aplicació de l'IVA, calcular descomptes, proporcions i percentatges, full de càlcul, etc.
 
 ===== Lliurament 1 =====
 
@@ -163,25 +100,16 @@ L'enfocament d'aquest mòdul està relacionat amb temes quotidians de les person
 
 ===== Obtenció de les qualificacions =====
 
-Els criteris generals de qualificació dels mòduls estan descrits a les Concrecions Curriculars de GES.
-
-Aquest mòdul se supera a través de l’avaluació contínua. La qualificació final del mòdul s’obté de la mitjana de les qualificacions finals dels quatre lliuraments.
-
-
+:###
 Les qualificacions finals dels 4 lliuraments s’obtenen de la següent forma:
 
-:###
 | Lliurament 1 | <WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament1#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{##item[ponderacio]##}% {##item[id]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>        |
 | Lliurament 2 | <WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament2#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{##item[ponderacio]##}% {##item[id]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>        |
 | Lliurament 3 | <WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament3#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{##item[ponderacio]##}% {##item[id]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>        |
-| Lliurament 4 | <WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament4#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{##item[ponderacio]##}% {##item[id]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>
-
+| Lliurament 4 | <WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament4#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{##item[ponderacio]##}% {##item[id]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>        |
 ###:
 
 ====== Mesures d’atenció a la diversitat ======
 
-El mòdul preveu un tractament específic per a l’alumnat que l’ha repetit més d’una vegada. El professorat té eines per a identificar aquest alumnat i li aplica uns models de retroacció molt més dirigits a fites concretes i una major intensitat de seguiment entre lliuraments -veure com ha evolucionat respecte les indicacions donades en l’anterior correcció-.
-
-En casos d’alumnat NESE, el professorat aplicarà les indicacions vinculades al Procediment d’atenció a l’alumnat NESE.
 
 
