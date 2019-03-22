@@ -4,7 +4,6 @@
  * exportDocument: clase que renderiza grupos de elementos
  */
 if (!defined('DOKU_INC')) die();
-//require_once DOKU_PLUGIN . "wikiocmodel/projects/documentation/exporter/xhtml/exporterClasses.php";
 
 class exportDocument extends MainRender {
 
@@ -44,7 +43,7 @@ class exportDocument extends MainRender {
             $document = $this->replaceInTemplate($data, "$pathTemplate/index.html");
 
             if ($zip->addFromString('index.html', $document)) {
-                $allPathTemplate = $this->rendererPath . "/$pathTemplate";
+                $allPathTemplate = $this->cfgExport->rendererPath . "/$pathTemplate";
                 $this->addFilesToZip($zip, $allPathTemplate, "", "img");
                 $zip->addFile($allPathTemplate."/main.css", "main.css");
                 $this->addFilesToZip($zip, $allPathTemplate, "", "pt_sencer", TRUE);

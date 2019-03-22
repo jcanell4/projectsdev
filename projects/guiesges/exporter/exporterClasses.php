@@ -1,5 +1,6 @@
 <?php
 /**
+ * projecte 'guiesges'
  * exporterClasses: clases de procesos, establecidas en el fichero de configuración,
  *                  correspondientes a los tipos de datos del proyecto
  * @culpable Rafael Claver
@@ -106,7 +107,7 @@ abstract class renderComposite extends AbstractRenderer {
 //            while($this->factory->getTypesDefinition($ret["typeDef"])){
 //                $ret = $this->factory->getTypesDefinition($ret["typeDef"]);
 //            }
-        }        
+        }
         return $ret;
     }
     public function getRenderKeyField($field) { //@return array : objeto key solicitado (del configRender.json)
@@ -141,7 +142,7 @@ class renderObject extends renderComposite {
         $ret = $this->getRenderDef('render')['fields'];
         if(!isset($ret) && $this->factory->getDefaultValueForObjectFields()){
             $ret = $this->factory->getDefaultValueForObjectFields();
-        }            
+        }
         if(is_string($ret)){
             switch (strtoupper($ret)){
                 case "ALL":

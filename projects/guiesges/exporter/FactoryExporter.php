@@ -1,6 +1,6 @@
 <?php
 /**
- * FactoryRenderer
+ * FactoryExporter (projecte 'guiesges')
  * @culpable Rafael Claver
  */
 if (!defined('DOKU_INC')) die();
@@ -36,7 +36,7 @@ class FactoryExporter {
         require_once $path."/".$this->mode."/exporterClasses.php";
         if(@file_exists($path."/".$this->mode."/".$class."/exporterClasses.php")){
             require_once $path."/".$this->mode."/".$class."/exporterClasses.php";
-        }
+    }
 
         $class = $this->validateClass($class, $typedef['type']);
 
@@ -48,7 +48,7 @@ class FactoryExporter {
                 case "file":   $render = new $class($this, $params); break;
                 case "date":   $render = new $class($this, $params, "/"); break;
                 default:       $render = new $class($this, $params); break;
-            }
+}
         }else{
             switch ($typedef['type']) {
                 case "array":  $render = new $class($this, $typedef, $renderdef); break;
