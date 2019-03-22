@@ -36,6 +36,10 @@ class action_plugin_projectsdev_projects_guiesges extends WikiIocPluginAction {
             if (!isset($event->data['responseData'][ProjectKeys::KEY_CODETYPE])) {
                 $result['ns'] = getID();
                 $result['id'] = str_replace(':', '_', $result['ns']);
+                $result['fileNames'] = array("{$result['id']}.zip", "{$result['id']}_gd.pdf");
+                $dest = preg_replace('/:/', '/', $result['ns']);
+                $path_dest = WikiGlobalConfig::getConf('mediadir').'/'.$dest;
+                $result['dest'] = array($path_dest."/{$result['id']}.zip", $path_dest."/{$result['id']}_gd.pdf");
                 if (class_exists("ProjectExportAction", TRUE)){
                     $html = ProjectExportAction::get_html_metadata($result) ;
                 }

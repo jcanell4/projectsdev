@@ -33,7 +33,7 @@ class command_plugin_projectsdev_projects_guiesges_projectExport extends abstrac
         if ($response) {
             $response[ProjectKeys::PROJECT_TYPE] = $this->params[ProjectKeys::PROJECT_TYPE];
             $title = WikiIocLangManager::getLang("metadata_export_title");
-            $pageId = $this->params[ProjectKeys::KEY_ID];
+            $pageId = $response[ProjectKeys::KEY_ID];
             $ret->addExtraMetadata($pageId, $pageId."_iocexport", $title, $response["meta"]);
         }else {
             $ret->addError(1000, "EXPORTACIÓ NO REALITZADA");

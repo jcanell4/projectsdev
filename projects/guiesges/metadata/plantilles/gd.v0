@@ -3,6 +3,7 @@
 
 Per ajudar-vos a fer la guia docent, a la Sala de Profes GES disposeu del [[https://portaljuridic.gencat.cat/ca/pjur_ocults/pjur_resultats_fitxa/?action=fitxa&mode=single&documentId=504619&language=ca_ES|Decret 161/2009]], un [[https://ioc.xtec.cat/campus/mod/resource/view.php?id=675657|document sobre com fer programacions competencials a l'ESO]] i un [[https://ioc.xtec.cat/campus/mod/resource/view.php?id=676430|model de guia docent del mòdul SO4]].##]
 ====== Dades generals ======
+
 :###<WIOCCL:SET var="mAmbit" type="map" value="{##ambit##}" map="{''A_CIEN'':''Científic-Matemàtic'',''A_SOCI'':''Social'',''A_COMU'':''de la Comunicació''}">
 <WIOCCL:SET var="mOpcionalitat" type="map" value="{##opcionalitat##}" map="{''COMU'':''comú'',''OPCI'':''opcional''}">
 {##codi_modul##} {##modul##}
@@ -17,89 +18,40 @@ Professor responsable: {##professor##}
 </WIOCCL:SET>
 </WIOCCL:SET>###:
 
-[##TODO:Descriure ql que cal posar en aquest dos paràgrafs##]
-Aquest mòdul és del nivell 1 del Graduat en Secundària. S'ha de fer abans d'haver cursat els altres mòduls de matemàtiques de GES. 
+[##TODO:Descriure en un paràgraf la posició recomanada d'aquest mòdul al sí de l'itinerari de GES, si es recomana haver cursat altres mòduls prèviament, si està pensat per alumnes que comencen els estudis, etc.##]
 
-És convenient que l'estudiant que l'ha de cursar tingui estudis primaris. Però, al tractar-se d'un mòdul inicial del GES, el nivell és assequible a gairebé tothom.
+[##TODO:Descriure les capacitats prèvies que cal tenir per poder cursar aquest mòdul. Mirada restrictiva: només allò imprescindible i que molt difícilment podrà adquirir esforçant-s'hi molt al mòdul. Per exemple: un determinat nivell d'anglès.##]
+
 
 
 ====== Per a què ensenyem? ======
 
 ===== Competències desenvolupades en aquest mòdul =====
 
-**Competències pròpies de l'àmbit**
-
-La competència científica es defineix com la capacitat de buscar, processar i comunicar informació i transformar-la en coneixement. Està estretament relacionada amb la competència clau del coneixement i la interacció amb el món físic.
-
-Assolir la competència científica comporta:
-
-  - **Desenvolupar habilitats per cercar, processar, comunicar informació i transformar-la en coneixement, tot utilitzant diferents suports, entre els quals destaquen les tecnologies de la informació i la comunicació**.
-  - **Fer ús habitual dels recursos tecnològics disponibles per resoldre problemes reals de manera eficient**.
-  - Pensar científicament a partir de construir i utilitzar versions elementals dels models de la ciència. Aquests coneixements han de proporcionar estratègies útils per descriure els fenòmens relacionats amb problemes socialment rellevants.
-  - **Esdevenir persones autònomes, eficaces, crítiques i reflexives en la selecció, tractament, utilització de la informació i les seves fonts, en diferents suports i tecnologies**.
-  - Comunicar en llenguatge científic les dades, les idees i les conclusions utilitzant diferents models comunicatius, i argumentar-les tenint en compte punts de vista diferents del propi.
-  - Tenir actitud crítica, reflexiva i responsable en el procés d'obtenció i comunicació de la informació disponible, contrastant-la quan calgui i respectant les normes de conducta acordades socialment per regular l'ús de la informació.
-  - **Plantejar-se i resoldre problemes. Llegir i entendre l'enunciat, planificar i desenvolupar estratègies de resolució i verificar la validesa de les solucions**.
-  - **Planificar i utilitzar estratègies per resoldre situacions problemàtiques de la vida personal o quotidiana com l'economia administrativa, laboral i domèstica**.
-  - Utilitzar el coneixement científic per argumentar de manera fonamentada i creativa les actuacions com a ciutadans i ciutadanes responsables, especialment les relacionades amb la gestió sostenible del medi, la salut pròpia i la comunitària, i l'ús d'aparells i materials en la vida quotidiana.
-  - Relacionar la ciència i la tecnologia amb els factors que caracteritzen el desenvolupament econòmic i social, tot cercant propostes solidàries i sostenibles.
-
-**Aportacions de l'àmbit a les competències bàsiques**
-
-El desenvolupament dels continguts de l'àmbit cientificotecnològic contribueix a l'assoliment de les competències bàsiques de manera transversal tal com es detalla a continuació.
-
-  - Competència comunicativa lingüística i audiovisual. L'àmbit cientificotecnològic contribueix en aquesta competència aportant el coneixement del llenguatge de la ciència descrivint els fets i els fenòmens, argumentar-los i definir-los.
-  - **La competència en el tractament de la informació incorpora diferents habilitats, que van des de l'accés a la informació fins a la seva transmissió, tot usant diferents suports, incloent la utilització de les tecnologies de la informació i la comunicació. Per això és una competència transversal que cal atendre i particularitzar en cadascun dels mòdul i àmbits**.
-  - Més enllà de les seves aplicacions, l'aprenentatge de la ciència possibilita accedir a formes d'explicar, de raonar, de valorar i actuar sovint des del sentit comú.
-  - Aprendre a aprendre implica la consciència, gestió i control de les pròpies capacitats i coneixements des d'un sentiment de competència o eficàcia personal, i el maneig eficient d'un conjunt de recursos i tècniques de treball. Tot això es desenvolupa per mitjà d'experiències d'aprenentatges conscients, tant individuals com col·lectius.
-  - **Autonomia i iniciativa personal. Els continguts de l'àmbit permet preveure situacions problemàtiques de la vida quotidiana i saber trobar-ne l'explicació o valorar-ne les conseqüències d'una manera autònoma i sent conscient de les pròpies capacitats**.
-  - Els avenços científics i tecnològics ens mostren la rellevància del treball en equip, això implica desenvolupar destreses socials cada cop més necessàries. Per tant, el treball col·laboratiu en ciència permet assolir la capacitat de treballar en grup i desenvolupar les relacions socials.
-  - La competència social i ciutadana fa possible comprendre la realitat social en què es viu, cooperar conviure i exercir la ciutadania democràtica en una societat plural. Si bé aquesta competència és més de l'àmbit social, mobilitza recursos dels altres àmbits del currículum.
+[##TODO:Descriure a través d'una llista numerada les competències. Cal copiar exactament les competències que apareixen al currículum oficial de GES -decret 161/2009, al capítol de l'àmbit al que pertany el mòdul. Es seleccionen tant les competències pròpies de l'àmbit com les Aportacions de l'àmbit a les competències bàsiques, sense fer distincions. Mirada restrictiva: només aquelles competències que es treballin al mòdul de manera conscient.##]
 
 
 ===== Objectius d'aprenentatge =====
 
-Aquest mòdul pretén que, en acabar-lo, l'estudiant sigui capaç de: 
-
-  - Sumar, restar, multiplicar i dividir nombres naturals, enters, racionals i decimals. 
-  - Conèixer la prioritat dels operadors i dels parèntesis 
-  - Ordenar els diferents tipus de nombres 
-  - Representar gràficament els nombres dins d'una recta 
-  - Aplicar aquests coneixements a la resolució de problemes 
-  - Utilitzar el full de càlcul per resoldre contextos de càlcul
+[##TODO:Els objectius d’aprenentatge són els enunciats que descriuen els aprenentatges que es preveu que adquiriran els alumnes en cada lliurament del mòdul. No són continguts sinó capacitats i s'expressen amb un verb. S’han de formular com a capacitats que els alumnes han de desenvolupar al llarg del mòdul perquè adquireixin les competències. Per tant, el seu referent directe són les competències enunciades en els apartats anteriors. En certa manera, els objectius de la unitat concreten aquestes competències al context i al nivell educatiu en què tenen lloc els aprenentatges. Han de ser de collita pròpia i s'han de posar en una llista numerada.##]
 
 
 ====== Què ensenyem? ======
 
 
 ===== Continguts =====
-
-  - Nombres naturals. 
-  - Nombres enters. Ordenació i representació. 
-  - Les operacions amb nombres enters, suma, resta multiplicació i divisió. 
-  - Distinció de la funció dels signes + i – en els nombres i en les operacions d’addició i de subtracció. 
-  - Utilització correcta dels parèntesis. Operacions combinades i jerarquia d'operacions.
-  - Resolució de problemes que impliquin l’ús de nombres enters. 
-  - Concepte de múltiple i divisor, i les seves propietats. Divisibilitat. 
-  - Fraccions i càlcul amb fraccions. Comparació i ordenació de fraccions. 
-  - La proporcionalitat aritmètica. Raó de proporcionalitat. 
-  - Aplicacions de la proporcionalitat aritmètica: interessos, descomptes i recàrrecs. El tant per cent. 
-  - Concepte de potència i arrels. Operacions amb potències, arrels i operacions combinades aplicant la jerarquia de les operacions. 
-  - Representació de nombres racionals sobre la recta. 
-  - Càlcul amb nombres racionals positius expressats de manera decimal, fraccionària o com a percentatge. 
-  - Resoldre problemes aritmètics. Ús del full de càlcul per resoldre contextos de càlcul. 
-
+[##TODO:Fer una llista dels continguts que utilitzem en la seqüència del mòdul. Ha de ser de collita pròpia, entenent que s'ha de moure en el marc que dibuixen els continguts descrits al 161/2009. No cal fer una llarga llista extremadament detallada però han de ser interpretables al nivell d'un índex de continguts d'un llibre de text. S'han de relacionar en una llista numerada.##]
 
 ====== Com i quan ensenyem? ======
 
 
 ===== Enfocament didàctic =====
 
-Aquest mòdul comú permet la comprensió dels nombres, dels seus usos diversos, de les seves formes de representació i del sistema de numeració en el qual s'expressen; també la comprensió dels significats de les operacions i de les relacions que hi ha entre unes i altres així com la jerarquia entre elles. Treballa els diferents grups de nombres: naturals, enters, reals i les seves representacions i interpretacions.
-
-L'enfocament d'aquest mòdul està relacionat amb temes quotidians de les persones adultes que els permeti adquirir l'autonomia i enfrontar amb èxit els problemes de la vida quotidiana, com el càlcul de factures, comptes bancaris, aplicació de l'IVA, calcular descomptes, proporcions i percentatges, full de càlcul, etc.
+[##TODO:Cal fer un redactat amb una certa profunditat sobre amb quin enfocament i per quina estratègia hem dissenyat el mòdu. És una explicació com la que faríem si presentessim el mòdul a un grup de professors. Aquesta explicació ha de dibuixar un sentit concret d'allò que fem i plasmar l'autèntica feina artesanal i intransferible que caracteritza el paper de professor responsable.##]
 
 ===== Lliurament 1 =====
+
+[##TODO:Descriure breument en un paràgraf en què consisteix el lliurament i quin és l'objectiu de la seqüència.##]
 
 :###{##lliuraments[lliurament1][nom]##}
 
@@ -110,6 +62,8 @@ L'enfocament d'aquest mòdul està relacionat amb temes quotidians de les person
 
 ===== Lliurament 2 =====
 
+[##TODO:Repetir el mateix esquema de continguts que en la secció 1##]
+
 :###{##lliuraments#lliurament2#nom##}
 
 ^ Seqüència                                    ^
@@ -118,6 +72,7 @@ L'enfocament d'aquest mòdul està relacionat amb temes quotidians de les person
 </WIOCCL:FOREACH>###:
 
 ===== Lliurament 3 =====
+[##TODO:Repetir el mateix esquema de continguts que en la secció 1##]
 
 :###{##lliuraments[lliurament3][nom]##}
 
@@ -127,6 +82,8 @@ L'enfocament d'aquest mòdul està relacionat amb temes quotidians de les person
 </WIOCCL:FOREACH>###:
 
 ===== Lliurament 4 =====
+
+[##TODO:Repetir el mateix esquema de continguts que en la secció 1##]
 
 :###{##lliuraments#lliurament4#nom##}
 
@@ -141,41 +98,37 @@ L'enfocament d'aquest mòdul està relacionat amb temes quotidians de les person
 
 ===== Criteris i indicadors d'avaluació =====
 
-^ Criteri d'avaluació 1: Calcular, respectant les prioritats dels operadors, operacions matemàtiques amb nombres (naturals, enters, racionals i decimals) i percentatges.  ^^^
+[##TODO:En aquest apartat es fa una relació dels criteris d'avaluació del mòdul. És com si fessim una rúbrica del global del mòdul, però en cap cas fent una suma de les rúbriques de les activitats concretes, sinó fent criteris globals. Hi ha d'haver un màxim de 6 o 7 criteris d'avaluació. Els criteris es posen en taules, seguint l'esquema següent:##]
+
+^ Criteri davaluació 1: Descripció del criteri  ^^^
 | //Nivell de suficiència// | //Nivell de notabilitat// | //Nivell d'excel·lència// |
-| Coneix les prioritats i les aplica sovint de manera correcta | Coneix les prioritats i les aplica normalment de manera correcta | Coneix les prioritats i les aplica sempre de manera correcta | 
+| Descripció de l'indicador | Descripció de l'indicador | Descripció de l'indicador |
 
-
-^ Criteri d'avaluació 2: Calcular metòdicament el m.c.m. i el m.c.d. de nombres naturals.  ^^^
+^ Criteri d'avaluació 2: Descripció del criteri  ^^^
 | //Nivell de suficiència// | //Nivell de notabilitat// | //Nivell d'excel·lència// |
-| Coneix el mètode i l'aplica sovint de manera correcta | Coneix el mètode i l'aplica normalment de manera correcta | Coneix el mètode i l'aplica sempre de manera correcta | 
+| Descripció de l'indicador | Descripció de l'indicador | Descripció de l'indicador |
 
 
-^ Criteri d'avaluació 3: Ordenar i representar gràficament els diferents tipus de nombres (naturals, enters, racionals i reals).   ^^^
+^ Criteri d'avaluació n: Descripció del criteri  ^^^
 | //Nivell de suficiència// | //Nivell de notabilitat// | //Nivell d'excel·lència// |
-| Entèn els conceptes i els aplica sovint de manera correcta | Entèn els conceptes i els aplica normalment de manera correcta | Entèn els conceptes i els aplica sempre de manera correcta | 
-
-
-^ Criteri d'avaluació 4: Resoldre matemàticament, i amb el full de càlcul, problemes senzills o quotidians.  ^^^
-| //Nivell de suficiència// | //Nivell de notabilitat// | //Nivell d'excel·lència// |
-| Sovint sap resoldre els problemes de manera correcta i amb l'ajut del full de càlcul | Normalment sap resoldre els problemes de manera correcta i amb l'ajut del full de càlcul | Sempre sap resoldre els problemes de manera correcta i amb l'ajut del full de càlcul | 
+| Descripció de l'indicador | Descripció de l'indicador | Descripció de l'indicador |
 
 
 ===== Obtenció de les qualificacions =====
 
-Els criteris generals de qualificació dels mòduls estan descrits a les Concrecions Curriculars de GES.
+[##TODO:En aquest paràgraf cal optar per una de les dues opcions següents:
 
-Aquest mòdul se supera a través de l’avaluació contínua. La qualificació final del mòdul s’obté de la mitjana de les qualificacions finals dels quatre lliuraments.
+Aquest mòdul se supera a través de l’avaluació contínua. La qualificació final del mòdul s’obté de la ponderació de les qualificacions finals dels quatre lliuraments.
 
-
-Les qualificacions finals dels 4 lliuraments s’obtenen de la següent forma:
+Aquest mòdul se supera aprovant l'avaluació contínua i fent correctament la prova de validació. La qualificació final de l'avaluació contínua s'obté de la ponderació de les qualificacions finals dels quatre lliuraments.##]
 
 :###
+Les qualificacions finals dels 4 lliuraments s’obtenen de la següent forma:
+
 | Lliurament 1 | <WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament1#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{##item[ponderacio]##}% {##item[id]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>        |
 | Lliurament 2 | <WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament2#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{##item[ponderacio]##}% {##item[id]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>        |
 | Lliurament 3 | <WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament3#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{##item[ponderacio]##}% {##item[id]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>        |
-| Lliurament 4 | <WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament4#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{##item[ponderacio]##}% {##item[id]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>
-
+| Lliurament 4 | <WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament4#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{##item[ponderacio]##}% {##item[id]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>        |
 ###:
 
 ====== Mesures d’atenció a la diversitat ======
@@ -183,5 +136,9 @@ Les qualificacions finals dels 4 lliuraments s’obtenen de la següent forma:
 El mòdul preveu un tractament específic per a l’alumnat que l’ha repetit més d’una vegada. El professorat té eines per a identificar aquest alumnat i li aplica uns models de retroacció molt més dirigits a fites concretes i una major intensitat de seguiment entre lliuraments -veure com ha evolucionat respecte les indicacions donades en l’anterior correcció-.
 
 En casos d’alumnat NESE, el professorat aplicarà les indicacions vinculades al Procediment d’atenció a l’alumnat NESE.
+
+[##TODO:Aquests són els dos textos que com a mínim ha de tenir aquest apartat. Si teniu altres mesures d'atenció a la diversitat com itineraris diferenciats, activitats per gent que parteix de més avall, etc. poseu-ho aquí. No s'ha de posar res referit als NESE a banda del text que ja hi ha, perquè la qüestió dels NESE es descriurà en un document a part que vincula tots els mòduls de GES##]
+
+
 
 
