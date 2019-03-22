@@ -104,7 +104,7 @@ abstract class renderComposite extends AbstractRenderer {
         $ret = $this->getTypeDef('keys')[$field];
         while($this->factory->getTypesDefinition($ret["type"])){
             $ret = array_merge($ret, $this->factory->getTypesDefinition($ret["type"]));
-        }        
+        }
         return $ret;
     }
     public function getRenderKeyField($field) { //@return array : objeto key solicitado (del configRender.json)
@@ -113,8 +113,8 @@ abstract class renderComposite extends AbstractRenderer {
 }
 
 class renderObject extends renderComposite {
-    private static $deepLevel=0; 
-    
+    private static $deepLevel=0;
+
     protected $data = array();
     /**
      * @param array $data : array correspondiente al campo actual del archivo de datos del proyecto
@@ -156,7 +156,7 @@ class renderObject extends renderComposite {
                     $arrayDeDatosParaLaPlantilla[$item["name"]] = $render->process($dataField, $item["name"]);
                 }
             }
-        }        
+        }
         $ret = $this->cocinandoLaPlantillaConDatos($arrayDeDatosParaLaPlantilla);
         self::$deepLevel--;
         return $ret;
@@ -164,13 +164,13 @@ class renderObject extends renderComposite {
 
     public function getRenderExtraFields() { //devuelve el array de campos establecidos para el render
         if(self::$deepLevel==1){
-            $ret = $this->getRenderDef('render')['extraFields'];            
+            $ret = $this->getRenderDef('render')['extraFields'];
         }else{
-            $ret = array();            
+            $ret = array();
         }
         return $ret;
     }
-    
+
     public function getRenderFields() { //devuelve el array de campos establecidos para el render
         $ret = $this->getRenderDef('render')['fields'];
         if(!isset($ret) && $this->factory->getDefaultValueForObjectFields()){
