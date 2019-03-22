@@ -120,50 +120,55 @@ class ProjectExportAction  extends ProjectMetadataAction{
         if ($result['error']) {
             throw new Exception ("Error");
         }else{
-            if ($result["zipFile"]) {
-                if (!self::copyZip($result)) {
-                    throw new Exception("Error en la còpia de l'arxiu zip des de la ubicació temporal");
+            if (!$result["dest"]) {
+                if (!self::copyFiles($result)) {
+                    throw new Exception("Error en la còpia dels arxius d 'esportació des de la ubicació temporal");
                 }
             }
-            $file = WikiGlobalConfig::getConf('mediadir').'/'. preg_replace('/:/', '/', $result['ns']) .'/'.preg_replace('/:/', '_', $result['ns']);
-            $ret = self::_getHtmlMetadata($result['ns'], $file);
+//            $file = WikiGlobalConfig::getConf('mediadir').'/'. preg_replace('/:/', '/', $result['ns']) .'/'.preg_replace('/:/', '_', $result['ns']);
+            $ret = self::_getHtmlMetadata($result);
         }
         return $ret;
     }
 
-    private static function _getHtmlMetadata($ns, $file) {
-        $ext = ".zip";
+    private static function _getHtmlMetadata($result) {
         $P = "";
         $nP = "";
-        $class = "mf_zip";
-        $mode = "HTML";
 
-        if (@file_exists($file.$ext)) {
-            $ret = '';
-            $id = preg_replace('/:/', '_', $ns);
-            $filename = str_replace(':','_',basename($ns)).$ext;
-            $media_path = "lib/exe/fetch.php?media=$ns:$filename";
-            $data = date("d/m/Y H:i:s", filemtime($file.$ext));
+        $ret = '';
+        $ret.= $P.'<span id="exportacio" style="word-wrap: break-word;">';
+        for($i=0; $i<count($result["fileNames"]); $i++){
+            if (isset($result["dest"][$i]) && @file_exists($result["dest"][$i])) {
+                $filename = $result["fileNames"][$i];
+                $media_path = "lib/exe/fetch.php?media={$result['ns']}:$filename";
+                $data = date("d/m/Y H:i:s", filemtime($result["dest"][$i]));
+                $class = "mf_".substr($filename, -3);
 
-            $ret.= $P.'<span id="exportacio" style="word-wrap: break-word;">';
-            $ret.= '<a class="media mediafile '.$class.'" href="'.$media_path.'" target="_blank">'.$filename.'</a> ';
-            $ret.= '<span style="white-space: nowrap;">'.$data.'</span>';
-            $ret.= '</span>'.$nP;
-        }else{
-            $ret.= '<span id="exportacio">';
-            $ret.= '<p class="media mediafile '.$class.'">No hi ha cap exportació '.$mode.' feta</p>';
-            $ret.= '</span>';
+                $ret.= '<p><a class="media mediafile '.$class.'" href="'.$media_path.'" target="_blank">'.$filename.'</a> ';
+                $ret.= '<span style="white-space: nowrap;">'.$data.'</span></p>';
+            }else{
+                $ret.= '<p class="media mediafile '.$class.'">No hi ha cap exportació feta del fitxer'.$filename.'</p>';
+            }
         }
+        $ret.= '</span>'.$nP;
         return $ret;
     }
 
-    private static function copyZip($result){
+    private static function copyFiles(&$result){
+        $result["dest"]=array();
+        $ok=false;
         $dest = preg_replace('/:/', '/', $result['ns']);
         $path_dest = WikiGlobalConfig::getConf('mediadir').'/'.$dest;
         if (!file_exists($path_dest)){
             mkdir($path_dest, 0755, TRUE);
         }
-        $ok = copy($result["zipFile"], $path_dest.'/'.$result["zipName"]);
+        if(is_array($result["files"])){
+            $ok=true;
+            for($i=0; $i<count($result["files"]); $i++) {
+                $ok = $ok && copy($result["files"][$i], $path_dest.'/'.$result["fileNames"][$i]);
+                $result["dest"][$i]=$path_dest.'/'.$result["fileNames"][$i];
+            }
+        }
         return $ok;
     }
 

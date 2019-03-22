@@ -80,11 +80,15 @@ class exportDocument extends MainRender {
                 StaticPdfRenderer::renderDocument($params, "ge.pdf");
                 $zip->addFile($this->cfgExport->tmp_dir."/ge.pdf", "/ge_sencera/ge.pdf");
                 
+                $params["data"]["titol"]=array("Estudis de GES","Guia docent",$modul);
+                $params["data"]["contingut"]=json_decode($data["pdfgd"], TRUE);   //contingut latex ja rendaritzat
+                StaticPdfRenderer::renderDocument($params, "gd.pdf");
+                
                 $this->attachMediaFiles($zip);
 
-                $result["zipFile"] = $zipFile;
-                $result["zipName"] = "$output_filename.zip";
-                $result["info"] = "fitxer {$result['zipName']} creat correctement";
+                $result["files"] = array($zipFile, $this->cfgExport->tmp_dir."/gd.pdf");
+                $result["fileNames"] = array("$output_filename.zip", "{$output_filename}_gd.pdf");
+                $result["info"] = "fitxers {$result['fileNames'][0]} i {$result["fileNames"][1]} creats correctement";
             }else{
                 $result['error'] = true;
                 $result['info'] = $this->cfgExport->aLang['nozipfile'];
