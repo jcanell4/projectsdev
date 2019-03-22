@@ -24,6 +24,7 @@ class exportDocument extends MainRender {
             $this->log = isset($params['log']);
         }
         $this->cfgExport->export_html = TRUE;
+        $this->cfgExport->rendererPath = dirname(realpath(__FILE__));
         parent::initParams();
     }
 
@@ -34,7 +35,7 @@ class exportDocument extends MainRender {
             mkdir($this->cfgExport->tmp_dir, 0775, TRUE);
         }
         $output_filename = str_replace(':','_',$this->cfgExport->id);
-        $pathTemplate = "xhtml/exportDocument/templates";
+        $pathTemplate = "templates";
 
         $zip = new ZipArchive;
         $zipFile = $this->cfgExport->tmp_dir."/$output_filename.zip";
@@ -44,7 +45,7 @@ class exportDocument extends MainRender {
             $document = $this->replaceInTemplate($data, "$pathTemplate/manual.tpl");
 
             if ($zip->addFromString('index.html', $document)) {
-                $allPathTemplate = $this->rendererPath . "/$pathTemplate";
+                $allPathTemplate = $this->cfgExport->rendererPath . "/$pathTemplate";
                 $this->addFilesToZip($zip, $allPathTemplate, "", "css");
                 $this->addFilesToZip($zip, $allPathTemplate, "", "img");
                 $this->addFilesToZip($zip, $allPathTemplate, "", "js");
@@ -56,12 +57,12 @@ class exportDocument extends MainRender {
 
                 $params = array(
                     "id" => $this->cfgExport->id,
-                    "path_templates" => $this->rendererPath . "/pdf/exportDocument/templates",  // directori on es troben les plantilles latex usades per crear el pdf
+                    "path_templates" => $this->cfgExport->rendererPath . "/pdf/exportDocument/templates",  // directori on es troben les plantilles latex usades per crear el pdf
                     "tmp_dir" => $this->cfgExport->tmp_dir,    //directori temporal on crear el pdf
                     "lang" => strtoupper($this->cfgExport->lang),
                     "mode" => isset($this->mode) ? $this->mode : $this->filetype,
                     "data" => array(
-                        "header" => ["logo"  => $this->rendererPath . "/resources/escutGene.jpg",
+                        "header" => ["logo"  => $this->cfgExport->rendererPath . "/resources/escutGene.jpg",
                                      "wlogo" => 9.9,
                                      "hlogo" => 11.1,
                                      "ltext" => "Generalitat de Catalunya\nDepartament d'Ensenyament\nInstitut Obert de Catalunya",

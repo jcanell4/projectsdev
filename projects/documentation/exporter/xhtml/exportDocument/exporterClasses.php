@@ -4,7 +4,6 @@
  * renderDocument: clase que renderiza grupos de elementos
  */
 if (!defined('DOKU_INC')) die();
-//require_once DOKU_PLUGIN . "projectsdev/projects/documentation/exporter/xhtml/exporterClasses.php";
 
 class exportDocument extends MainRender {
 
@@ -24,6 +23,7 @@ class exportDocument extends MainRender {
             $this->log = isset($params['log']);
         }
         $this->cfgExport->export_html = TRUE;
+        $this->cfgExport->rendererPath = dirname(realpath(__FILE__));
         parent::initParams();
     }
 
@@ -33,7 +33,7 @@ class exportDocument extends MainRender {
             mkdir($this->cfgExport->tmp_dir, 0775, TRUE);
         }
         $output_filename = str_replace(':','_',$this->cfgExport->id);
-        $pathTemplate = "xhtml/exportDocument/templates";
+        $pathTemplate = "templates";
 
         $zip = new ZipArchive;
         $zipFile = $this->cfgExport->tmp_dir."/$output_filename.zip";
@@ -45,7 +45,7 @@ class exportDocument extends MainRender {
             $zip->addEmptyDir("html");
             $zip->addEmptyDir("media");
             if ($zip->addFromString('html/index.html', $document)) {
-                $pathTemplate = $this->rendererPath . "/$pathTemplate";
+                $pathTemplate = $this->cfgExport->rendererPath . "/$pathTemplate";
                 $this->addFilesToZip($zip, $pathTemplate, "html/", "_/css");
                 $this->addFilesToZip($zip, $pathTemplate, "html/", "_/js");
                 $this->addFilesToZip($zip, $pathTemplate, "html/", "img");
