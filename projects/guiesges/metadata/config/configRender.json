@@ -4,21 +4,23 @@
             "render": {
                 "typeDef":"dadesguies",
                 "class": "exportDocument",
-                "fields": "ALL"                
+                "fields": "ALL",
+                "extraFields": [
+                    {"name":"ge", "valueType":"page", "value":"ge"},
+                    {"name":"pdfge", "valueType":"page", "value":"ge"},
+                    {"name":"pdfgd", "valueType":"page", "value":"gd"}
+                ]                
             },
             "keys": {
-                "descripcio": {
-                    "render": {"class": "renderRenderizableText"}
-                },
-                "fitxercontinguts": {
+                "ge": {
                     "render": {"class": "renderFile"}
                 },
-                "lliuraments": {
-                    "render": {
-                        "fields": "ALL"
-                    },
-                   "keys": {}
-                }
+                "pdfge": {
+                    "render": {"class": "renderFileToPsDom"}
+                },
+                "pdfgd": {
+                    "render": {"class": "renderFileToPsDom"}
+                }                
             }
         }
     },
