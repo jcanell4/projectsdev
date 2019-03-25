@@ -23,7 +23,6 @@ class exportDocument extends MainRender {
             $this->log = isset($params['log']);
         }
         $this->cfgExport->export_html = TRUE;
-        $this->cfgExport->rendererPath = dirname(realpath(__FILE__));
         parent::initParams();
     }
 
@@ -34,7 +33,7 @@ class exportDocument extends MainRender {
             mkdir($this->cfgExport->tmp_dir, 0775, TRUE);
         }
         $output_filename = str_replace(':','_',$this->cfgExport->id);
-        $pathTemplate = "templates";
+        $pathTemplate = "xhtml/exportDocument/templates";
 
         $zip = new ZipArchive;
         $zipFile = $this->cfgExport->tmp_dir."/$output_filename.zip";
@@ -59,12 +58,12 @@ class exportDocument extends MainRender {
 
                 $params = array(
                     "id" => $this->cfgExport->id,
-                    "path_templates" => $this->rendererPath . "/pdf/exportDocument/templates",  // directori on es troben les plantilles latex usades per crear el pdf
+                    "path_templates" => $this->cfgExport->rendererPath . "/pdf/exportDocument/templates",  // directori on es troben les plantilles latex usades per crear el pdf
                     "tmp_dir" => $this->cfgExport->tmp_dir,    //directori temporal on crear el pdf
                     "lang" => strtoupper($this->cfgExport->lang),  // idioma usat (CA, EN, ES, ...)
                     "mode" => isset($this->mode) ? $this->mode : $this->filetype,
                     "data" => array(
-                        "header_page_logo" => $this->rendererPath . "/resources/escutGene.jpg",
+                        "header_page_logo" => $this->cfgExport->rendererPath . "/resources/escutGene.jpg",
                         "header_page_wlogo" => 9.9,
                         "header_page_hlogo" => 11.1,
                         "header_ltext" => "Generalitat de Catalunya\nDepartament d'Ensenyament\nInstitud Obert de Catalunya",
