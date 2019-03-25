@@ -23,6 +23,7 @@ class exportDocument extends MainRender {
             $this->log = isset($params['log']);
         }
         $this->cfgExport->export_html = TRUE;
+        $this->cfgExport->rendererPath = dirname(realpath(__FILE__));
         parent::initParams();
     }
 
@@ -33,7 +34,7 @@ class exportDocument extends MainRender {
             mkdir($this->cfgExport->tmp_dir, 0775, TRUE);
         }
         $output_filename = str_replace(':','_',$this->cfgExport->id);
-        $pathTemplate = "xhtml/exportDocument/templates";
+        $pathTemplate = "templates";
 
         $zip = new ZipArchive;
         $zipFile = $this->cfgExport->tmp_dir."/$output_filename.zip";
@@ -49,7 +50,7 @@ class exportDocument extends MainRender {
                 $this->addFilesToZip($zip, $allPathTemplate, "", "ge_sencera", TRUE);
                 $ptSencer = $this->replaceInTemplate($data, "$pathTemplate/ge_sencera/ge.tpl");
                 $zip->addFromString('/ge_sencera/ge.html', $ptSencer);
-                
+
                 $trimestre = ($data["trimestre"]==1?"Tardor ":($data["trimestre"]==2?"Hivern ":"Primavera ")).date("Y");
                 $modul = html_entity_decode(htmlspecialchars_decode($data["codi_modul"], ENT_COMPAT|ENT_QUOTES));
                 $modul .= "-";
@@ -79,11 +80,11 @@ class exportDocument extends MainRender {
                 );
                 StaticPdfRenderer::renderDocument($params, "ge.pdf");
                 $zip->addFile($this->cfgExport->tmp_dir."/ge.pdf", "/ge_sencera/ge.pdf");
-                
+
                 $params["data"]["titol"]=array("Estudis de GES","Guia docent",$modul);
                 $params["data"]["contingut"]=json_decode($data["pdfgd"], TRUE);   //contingut latex ja rendaritzat
                 StaticPdfRenderer::renderDocument($params, "gd.pdf");
-                
+
                 $this->attachMediaFiles($zip);
 
                 $result["files"] = array($zipFile, $this->cfgExport->tmp_dir."/gd.pdf");
@@ -204,10 +205,3 @@ class exportDocument extends MainRender {
         return $files;
     }
 }
-
-//class render_title extends renderField {
-//    public function process($data) {
-//        $ret = parent::process($data);
-//        return $ret;
-//    }
-//}
