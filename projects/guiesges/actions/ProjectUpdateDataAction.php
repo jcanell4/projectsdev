@@ -54,9 +54,12 @@ class ProjectUpdateDataAction extends ViewProjectMetaDataAction {
                 $projectModel->setProjectSubSetAttr("updatedDate", time());
 
                 $response = parent::runAction();
-                if($this->getModel()->isProjectGenerated()){
-                    $id = $this->getModel()->getContentDocumentId($response);
-                    p_set_metadata($id, array('metadataProjectChanged'=>true));
+                if ($this->getModel()->isProjectGenerated()) {
+                    $arrTemplates = $this->getModel()->llistaDePlantilles();
+                    foreach ($arrTemplates as $tmpl) {
+                        p_set_metadata($tmpl, array('metadataProjectChanged'=>true));
+                    }
+
                 }
             }
         }

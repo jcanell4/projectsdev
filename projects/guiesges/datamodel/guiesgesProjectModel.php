@@ -19,12 +19,6 @@ class guiesgesProjectModel extends AbstractProjectModel {
         //0. Obtiene los datos del proyecto
         $ret = $this->getData();   //obtiene la estructura y el contenido del proyecto
 
-        $plantilla = $this->getTemplateContentDocumentId($ret);
-        $destino = $this->getContentDocumentId($ret);
-
-        //1.1 Crea el archivo 'continguts', en la carpeta del proyecto, a partir de la plantilla especificada
-        $this->createPageFromTemplate($destino, $plantilla, NULL, "generate project");
-
         //2. Establece la marca de 'proyecto generado'
         $this->projectMetaDataQuery->setProjectGenerated();
 
@@ -57,7 +51,7 @@ class guiesgesProjectModel extends AbstractProjectModel {
      */
     public function modifyACLPageToUser($parArr) {
         $project_ns = $parArr['id'].":*";
-        
+
         //Se ha modificado el Autor del proyecto
         if ($parArr['old_autor'] !== $parArr['new_autor']) {
             if ($parArr['old_autor'] !== $parArr['old_responsable']) {
@@ -166,7 +160,18 @@ class guiesgesProjectModel extends AbstractProjectModel {
                 $this->dokuPageModel->setData([PageKeys::KEY_ID => $this->id.":".$name,
                                        PageKeys::KEY_WIKITEXT => $plantilla,
                                        PageKeys::KEY_SUM => "generate project"]);
-            }            
+            }
         }
+    }
+
+    public function llistaDePlantilles() {
+        $pdir = $this->getProjectMetaDataQuery()->getProjectTypeDir()."metadata/plantilles/";
+        $scdir = scandir($pdir);
+        foreach($scdir as $file){
+            if ($file !== '.' && $file !== '..' && substr($file, -4)===".txt") {
+                $arrTemplates[] = $this->id.":".substr($file, 0, strlen($file)-4);
+            }
+        }
+        return $arrTemplates;
     }
 }
