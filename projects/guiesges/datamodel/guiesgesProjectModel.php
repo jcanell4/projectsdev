@@ -20,26 +20,34 @@ class guiesgesProjectModel extends AbstractProjectModel {
         $ret = $this->getData();   //obtiene la estructura y el contenido del proyecto
 
         //2. Establece la marca de 'proyecto generado'
-        $this->projectMetaDataQuery->setProjectGenerated();
+        $ret[ProjectKeys::KEY_GENERATED] = $this->projectMetaDataQuery->setProjectGenerated();
 
-        //3a. Otorga, al Autor, permisos sobre el directorio de proyecto
-        PagePermissionManager::updatePagePermission($this->id.":*", $ret['projectMetaData']["autor"]['value'], AUTH_UPLOAD);
+        if ($ret[ProjectKeys::KEY_GENERATED]) {
+            try {
+                //3a. Otorga, al Autor, permisos sobre el directorio de proyecto
+                PagePermissionManager::updatePagePermission($this->id.":*", $ret['projectMetaData']["autor"]['value'], AUTH_UPLOAD);
 
-        //3b. Otorga, al Responsable, permisos sobre el directorio de proyecto
-        if ($ret['projectMetaData']["autor"]['value'] !== $ret['projectMetaData']["responsable"]['value'])
-            PagePermissionManager::updatePagePermission($this->id.":*", $ret['projectMetaData']["responsable"]['value'], AUTH_UPLOAD);
+                //3b. Otorga, al Responsable, permisos sobre el directorio de proyecto
+                if ($ret['projectMetaData']["autor"]['value'] !== $ret['projectMetaData']["responsable"]['value'])
+                    PagePermissionManager::updatePagePermission($this->id.":*", $ret['projectMetaData']["responsable"]['value'], AUTH_UPLOAD);
 
-        //4a. Otorga permisos al autor sobre su propio directorio (en el caso de que no los tenga)
-        $ns = WikiGlobalConfig::getConf('userpage_ns','wikiiocmodel').$ret['projectMetaData']["autor"]['value'].":";
-        PagePermissionManager::updatePagePermission($ns."*", $ret['projectMetaData']["autor"]['value'], AUTH_DELETE, TRUE);
-        //4b. Incluye la página del proyecto en el archivo de atajos del Autor
-        $params = [
-             'id' => $this->id
-            ,'autor' => $ret['projectMetaData']["autor"]['value']
-            ,'link_page' => $this->id
-            ,'user_shortcut' => $ns.WikiGlobalConfig::getConf('shortcut_page_name','wikiiocmodel')
-        ];
-        $this->includePageProjectToUserShortcut($params);
+                //4a. Otorga permisos al autor sobre su propio directorio (en el caso de que no los tenga)
+                $ns = WikiGlobalConfig::getConf('userpage_ns','wikiiocmodel').$ret['projectMetaData']["autor"]['value'].":";
+                PagePermissionManager::updatePagePermission($ns."*", $ret['projectMetaData']["autor"]['value'], AUTH_DELETE, TRUE);
+                //4b. Incluye la página del proyecto en el archivo de atajos del Autor
+                $params = [
+                     'id' => $this->id
+                    ,'autor' => $ret['projectMetaData']["autor"]['value']
+                    ,'link_page' => $this->id
+                    ,'user_shortcut' => $ns.WikiGlobalConfig::getConf('shortcut_page_name','wikiiocmodel')
+                ];
+                $this->includePageProjectToUserShortcut($params);
+            }
+            catch (Exception $e) {
+                $ret[ProjectKeys::KEY_GENERATED] = FALSE;
+                $this->projectMetaDataQuery->setProjectSystemStateAttr("generated", FALSE);
+            }
+        }
 
         return $ret;
     }
@@ -154,9 +162,9 @@ class guiesgesProjectModel extends AbstractProjectModel {
         $pdir = $this->getProjectMetaDataQuery()->getProjectTypeDir()."metadata/plantilles/";
         $scdir = scandir($pdir);
         foreach($scdir as $file){
-            if($file !== '.' && $file !== '..' && substr($file, -3)==="txt") {
+            if($file !== '.' && $file !== '..' && substr($file, -4)===".txt") {
                 $plantilla = file_get_contents($pdir.$file);
-                $name = substr($file, 0, strlen($file)-4);
+                $name = substr($file, 0, -4);
                 $this->dokuPageModel->setData([PageKeys::KEY_ID => $this->id.":".$name,
                                        PageKeys::KEY_WIKITEXT => $plantilla,
                                        PageKeys::KEY_SUM => "generate project"]);
@@ -169,7 +177,7 @@ class guiesgesProjectModel extends AbstractProjectModel {
         $scdir = scandir($pdir);
         foreach($scdir as $file){
             if ($file !== '.' && $file !== '..' && substr($file, -4)===".txt") {
-                $arrTemplates[] = $this->id.":".substr($file, 0, strlen($file)-4);
+                $arrTemplates[] = $this->id.":".substr($file, 0, -4);
             }
         }
         return $arrTemplates;
