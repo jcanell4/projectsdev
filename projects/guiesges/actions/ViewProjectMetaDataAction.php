@@ -68,7 +68,7 @@ class ViewProjectMetaDataAction extends BasicViewProjectMetaDataAction{
                     }
                     $updetedDate = $projectModel->getProjectSubSetAttr("updatedDate");
                     $interval = (!$updetedDate  || $updetedDate < $inici_trimestre->getTimestamp()) && !($dataActual >= $inici_trimestre && $dataActual <= $fi_trimestre);
-                    $response['activarUpdateButton'] = ($interval) ? "1" : "0";
+                    $response[ProjectKeys::KEY_ACTIVA_UPDATE_BTN] = ($interval) ? "1" : "0";
                 }
             }
         }

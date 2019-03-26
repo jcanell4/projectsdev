@@ -59,7 +59,7 @@ class ViewProjectMetaDataAction extends BasicViewProjectMetaDataAction{
                         $inici_semestre = date_sub($inici_semestre, new DateInterval('P1Y'));
                     }
                     $interval = !($dataActual >= $inici_semestre && $dataActual <= $fi_semestre);
-                    $response['activarUpdateButton'] = ($interval) ? "1" : "0";
+                    $response[ProjectKeys::KEY_ACTIVA_UPDATE_BTN] = ($interval) ? "1" : "0";
                 }
             }
         }
