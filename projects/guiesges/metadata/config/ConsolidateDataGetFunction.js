@@ -3,7 +3,12 @@ require([
     "dojo/domReady!"
 ], function (registry) {
 
-    var button = registry.byId('guiesgesConsolidateData');
+    var consolidateButton = registry.byId('guiesgesConsolidateData');
+
+    var fOnClick = function(){
+        var id = this.dispatcher.getGlobalState().getCurrentId();
+        this.setStandbyId(id);
+    };
 
     var fGetQuery=function(){
         var id = this.dispatcher.getGlobalState().getCurrentId();
@@ -13,7 +18,8 @@ require([
         return ret;
     };
 
-    if (button){
-        button.getQuery=fGetQuery;
+    if (consolidateButton){
+        consolidateButton.getQuery=fGetQuery;
+        consolidateButton.onClick =fOnClick;
     }
 });
