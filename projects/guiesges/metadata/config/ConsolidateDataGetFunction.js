@@ -5,11 +5,6 @@ require([
 
     var consolidateButton = registry.byId('guiesgesConsolidateData');
 
-    var fOnClick = function(){
-        var id = this.dispatcher.getGlobalState().getCurrentId();
-        this.setStandbyId(id);
-    };
-
     var fGetQuery=function(){
         var id = this.dispatcher.getGlobalState().getCurrentId();
         var ns = this.dispatcher.getGlobalState().getContent(id)["ns"]; 
@@ -20,6 +15,5 @@ require([
 
     if (consolidateButton){
         consolidateButton.getQuery=fGetQuery;
-        consolidateButton.onClick =fOnClick;
     }
 });
