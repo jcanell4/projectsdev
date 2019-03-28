@@ -173,7 +173,7 @@
       },
       "descripcio": {
         "n_columns": 12,
-        "label" : "Descripció (descripcio)",
+        "label" : "Descripció** (descripcio)",
         "type": "textarea",
         "n_rows": 6,
         "props": {
@@ -182,7 +182,8 @@
         },
         "config": {
             "renderable": true,
-            "mode": "xhtml"
+            "mode": "xhtml",
+            "readonly": true
         },
         "group": "main"
       },

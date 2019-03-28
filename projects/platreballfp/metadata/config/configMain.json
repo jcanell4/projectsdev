@@ -4,14 +4,14 @@
             "main": {
                 "MetaDataDAO": "defaultProject",
                 "MetaDataEntity": "defaultProject",
-                "MetaDataRender": "platreballfp"
+                "MetaDataRender": "ptfploe"
             }
         }
     ],
     "metaDataProjectConfig": [
         {
             "main": {
-                "projectTypeConfigFile": "admconfig:platreballfp"
+                "projectTypeConfigFile": "admconfig:ptfploe"
             }
         }        
     ],
@@ -19,8 +19,7 @@
         {
             "main": "meta.mdpr",
             "versions": {
-                "fields": 1,
-                "templates": {"continguts":1}
+                "templates": {"continguts":4}
             },
             "mainType": {
                 "type": "object",
@@ -105,8 +104,13 @@
                 "entradaDatesAC": {
                     "type": "object",
                     "keys": {
-                        "unitat": {
+                        "id": {
                             "type": "string",
+                            "default": "EACX",
+                            "mandatory": true
+                        },
+                        "unitat": {
+                            "type": "number",
                             "default": 1,
                             "mandatory": true
                         },
@@ -132,11 +136,116 @@
                     "type": "objectArray",
                     "typeDef":"entradaDatesAC"
                 },                                                
+                "entradaDatesEAF": {
+                    "type": "object",
+                    "keys": {
+                        "id": {
+                            "type": "string",
+                            "default": "EAFX",
+                            "mandatory": true
+                        },
+                        "unitat": {
+                            "type": "number",
+                            "default": 1,
+                            "mandatory": true
+                        },
+                        "enunciat": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "lliurament": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "solució": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "qualificació": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "enunciat recuperació": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "lliurament recuperació": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "solució recuperació": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "qualificació recuperació": {
+                            "type": "date",
+                            "mandatory": true
+                        }
+                    }
+                },
+                "defDatesEAF": {
+                    "type": "objectArray",
+                    "typeDef":"entradaDatesEAF"
+                },                                                
+                "entradaDatesJT": {
+                    "type": "object",
+                    "keys": {
+                        "id": {
+                            "type": "string",
+                            "default": "JTX",
+                            "mandatory": true
+                        },
+                        "inscripció": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "llista provisional": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "llista definitiva": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "data JT": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "qualificació": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "inscripció recuperació": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "llista provisional recuperació": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "llista definitiva recuperació": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "data JT recuperació": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "qualificació recuperació": {
+                            "type": "date",
+                            "mandatory": true
+                        }
+                    }
+                },
+                "defDatesJT": {
+                    "type": "objectArray",
+                    "typeDef":"entradaDatesJT"
+                },                                                
                 "entradaCalendari": {
                     "type": "object",
                     "keys": {
                         "unitat": {
-                            "type": "string",
+                            "type": "number",
                             "mandatory": true
                         },
                         "període": {
@@ -292,15 +401,25 @@
                             "mandatory": true,
                             "default":1
                         },
-                        "tipusPla": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default":"loe"
-                        },
                         "tipusBlocModul":{
                             "type":"string",
                             "mandatory": true,
                             "default":"mòdul"
+                        },
+                        "testWidget":{
+                            "type":"string",
+                            "mandatory": true,
+                            "default":""
+                        },
+                        "testWidgetReadonly":{
+                            "type":"string",
+                            "mandatory": true,
+                            "default":"ReadOnly1, ReadOnly2"
+                        },
+                        "testWidgetUsuaris":{
+                            "type":"string",
+                            "mandatory": true,
+                            "default":""
                         },
                         "cicle": {
                             "type": "string",
@@ -309,7 +428,7 @@
                         },
                         "modul": {
                             "type": "string",
-                            "default": "Indiqueu el mòdul",
+                            "default": "MXX Indiqueu el nom mòdul",
                             "mandatory": true
                         },
                         "durada": {
@@ -358,7 +477,7 @@
                             "mandatory": true,
                             "default":1,
                             "props": {
-                                "min":1,
+                                "min":0,
                                 "max":8
                             }
                         },
@@ -367,7 +486,7 @@
                             "mandatory": true,
                             "default":1,
                             "props": {
-                                "min":1,
+                                "min":0,
                                 "max":8
                             }
                         },
@@ -405,6 +524,14 @@
                         "datesAC": {
                             "type": "defDatesAC",
                             "mandatory": true
+                        },                                                
+                        "datesEAF": {
+                            "type": "defDatesEAF",
+                            "mandatory": false
+                        },                                                
+                        "datesJT": {
+                            "type": "defDatesJT",
+                            "mandatory": false
                         },                                                
                         "notaMinimaAC": {
                             "type": "number",
@@ -468,6 +595,11 @@
                             "mandatory": true
                         },
                         "responsable": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true
+                        },
+                        "supervisor": {
                             "type": "string",
                             "struc_chars": "40",
                             "mandatory": true
