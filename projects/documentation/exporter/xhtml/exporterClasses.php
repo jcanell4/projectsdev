@@ -31,10 +31,49 @@ class MainRender extends renderObject {
     }
 }
 
+class renderDate extends AbstractRenderer {
+    private $sep;
+
+    public function __construct($factory, $cfgExport=NULL, $sep="-") {
+        parent::__construct($factory, $cfgExport);
+        $this->sep = $sep;
+    }
+
+    public function process($date) {
+        $dt = strtotime(str_replace('/', '-', $date));
+        return date("d". $this->sep."m".$this->sep."Y", $dt);
+    }
+
+}
+
+class renderText extends AbstractRenderer {
+
+    public function process($data) {
+        return htmlentities($data, ENT_QUOTES);
+    }
+}
+
 class renderField extends AbstractRenderer {
 
     public function process($data) {
         return htmlentities($data, ENT_QUOTES);
+    }
+}
+
+class renderRenderizableText extends AbstractRenderer {
+
+    public function process($data) {
+        $instructions = p_get_instructions($data);
+        $html = p_render('wikiiocmodel_ptxhtml', $instructions, $info);
+        return $html;
+    }
+}
+
+class renderFileToPsDom extends renderFile {
+    protected function render($instructions, &$renderData){
+        $ret = p_latex_render('wikiiocmodel_psdom', $instructions, $renderData);
+        Logger::debug("psDom: $ret", 0, 0, 0, 0);
+        return $ret;
     }
 }
 
