@@ -4,6 +4,8 @@
  * renderDocument: clase que renderiza grupos de elementos
  */
 if (!defined('DOKU_INC')) die();
+if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', realpath(DOKU_INC."lib/plugins/"));
+if (!defined('WIKI_IOC_MODEL')) define('WIKI_IOC_MODEL', DOKU_PLUGIN . "wikiiocmodel/");
 
 class exportDocument extends MainRender {
 
@@ -45,8 +47,9 @@ class exportDocument extends MainRender {
             $zip->addEmptyDir("media");
             if ($zip->addFromString('html/index.html', $document)) {
                 $pathTemplate = $this->cfgExport->rendererPath . "/$pathTemplate";
-                $this->addFilesToZip($zip, $pathTemplate, "html/", "_/css");
-                $this->addFilesToZip($zip, $pathTemplate, "html/", "_/js");
+                $this->addFilesToZip($zip, $pathTemplate, "html/", "css");
+                $this->addFilesToZip($zip, WIKI_IOC_MODEL."exporter/xhtml", "html/", "css");
+                $this->addFilesToZip($zip, $pathTemplate, "html/", "js");
                 $this->addFilesToZip($zip, $pathTemplate, "html/", "img");
                 $this->attachMediaFiles($zip);
 

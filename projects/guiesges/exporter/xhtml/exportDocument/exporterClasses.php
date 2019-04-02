@@ -4,6 +4,8 @@
  * exportDocument: clase que renderiza grupos de elementos
  */
 if (!defined('DOKU_INC')) die();
+if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', realpath(DOKU_INC."lib/plugins/"));
+if (!defined('WIKI_IOC_MODEL')) define('WIKI_IOC_MODEL', DOKU_PLUGIN . "wikiiocmodel/");
 
 class exportDocument extends MainRender {
 
@@ -47,6 +49,7 @@ class exportDocument extends MainRender {
                 $this->addFilesToZip($zip, $allPathTemplate, "", "img");
                 $zip->addFile($allPathTemplate."/main.css", "main.css");
                 $this->addFilesToZip($zip, $allPathTemplate, "", "ge_sencera", TRUE);
+                $this->addFilesToZip($zip, WIKI_IOC_MODEL."exporter/xhtml", "ge_sencera/", "css");
                 $ptSencer = $this->replaceInTemplate($data, "$pathTemplate/ge_sencera/ge.tpl");
                 $zip->addFromString('/ge_sencera/ge.html', $ptSencer);
 
@@ -109,13 +112,15 @@ class exportDocument extends MainRender {
         $tmplt = $this->loadTemplateFile($file);
         $document = WiocclParser::getValue($tmplt, [], $data);
         foreach ($this->cfgExport->toc as $tocKey => $tocItem) {
-            $toc ="";
-            foreach ($tocItem as $elem) {
-                if($elem['level']<=2){
-                    $toc .= "<a href='{$elem['link']}'>".htmlentities($elem['title'])."</a>\n";
+            if ($tocItem) {
+                $toc ="";
+                foreach ($tocItem as $elem) {
+                    if($elem['level']<=2){
+                        $toc .= "<a href='{$elem['link']}'>".htmlentities($elem['title'])."</a>\n";
+                    }
                 }
+                $document = str_replace("@@TOC($tocKey)@@", $toc, $document);
             }
-            $document = str_replace("@@TOC($tocKey)@@", $toc, $document);
         }
         return $document;
     }
