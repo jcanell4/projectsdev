@@ -5,8 +5,7 @@
 */
 if (!defined('DOKU_INC')) die();
 if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC."lib/plugins/");
-if (!defined('WIKI_IOC_MODEL')) define('WIKI_IOC_MODEL', DOKU_PLUGIN."wikiiocmodel/");
-require_once WIKI_IOC_MODEL."projects/pblactivity/exporter/exporterClasses.php";
+require_once DOKU_PLUGIN."projectsdev/projects/pblactivity/exporter/exporterClasses.php";
 
 class exportDocument extends MainRender {
 
