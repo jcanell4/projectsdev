@@ -8,31 +8,32 @@
 
 ===== Activitats =====
 
-L'eix central del mòdul són les activitats d'avaluació contínua. Recordeu que cal fer-les totes, en especial, les orals. 
+[##TODO: Cal explicar-hi què són les activitats, si cal fer-les totes /no i com s'han de fer. També què cal fer en cas de dubtes i com són i el temps que s'hi ha de dedicar.##]
 
-A l'enunciat de cada activitat o a les instruccions està explicat com s'han de fer. De totes maneres, si hi ha alguna qüestió que no entengueu, ja sigui dels exercicis o dels apunts, pregunteu al Fòrum del mòdul.
 
-Les activitats centrals del mòdul són activitats orals. Això vol dir que la resposta s'ha de lliurar en format d'àudio. Per tant, és important que us familiaritzeu amb les eines d'enregistrament i comunicació. Heu de dedicar una part del temps de les activitats a la preparació tècnica que no és gaire complicada, però cal que hi pareu esment.
-
-Cal dedicar temps a fer les activitats. I cal fer-les seguint les pautes i l'ordre que se us marquen. D'aquesta manera, en el fons, estalviareu temps (perquè no ho haureu de repetir) i obtindreu més bons resultats.
-
-Les pautes que se us donen a cada activitat (instruccions, rúbriques...) han de servir perquè vosaltres sapigueu què és exactament el que se us demana, de quina manera ho heu de fer i, un cop fet i abans d'enviar-ho, tenir elements per a valorar si allò ja està ben fet o cal millorar-ho abans de ser tramès per a qualificar.
 
 ===== Recursos =====
+[##TODO: Cal explicar-hi què són els recursos, quina utilitat tenen, com s'han de fer servir i quin rol tenen en el procés d'aprenentatge. ##]
 
-Per acompanyar el vostre aprenentatge, us trobareu amb tot un seguit de recursos, que expliquen detalls d'allò que treballarem i també expliquen altres casos o aspectes, que ens serveixen per a comparar i entendre allò que treballem.
 
-Aquest material d'estudi s'ha de mirar, escoltar, llegir i comprendre, però no s'ha de memoritzar literalment. Això és molt important. Els materials de consulta no són continguts que calgui aprendre's de memòria per abocar en cap examen, sinó eines per anar fent els exercicis correctament i aprendre un munt. 
 
 ====== Com s'avalua aquest mòdul? ======
-**Aquest mòdul s'aprova només fent les activitats. És a dir, el mòdul no té prova de validació final.** Per poder aprovar el mòdul cal complir tots dos objectius següents:
-Haver fet tots els lliuraments orals.
+[##TODO:Cal optar entre una de les dues fórmules que consten aquí sota##]
 
-Tenir una nota mitjana final igual o superior a 5.
+**Aquest mòdul s'aprova només fent les activitats. És a dir, el mòdul no té prova de validació final.** Per poder aprovar el mòdul cal complir tots dos objectius següents [##TODO:Els requisits ↓ poden variar segons els mòduls. Enumereu els requisits en un llista de pics.##]
+
+_________
+
+
+**Aquest mòdul s'aprova fent les activitats i la prova de validació final.**
+
+Per accedir a la prova de validació final, cal complir els requisits següents:
+
+[##TODO:Enumereu els requisits en un llista de pics##]
 
 ===== Com s'obté la nota de cada lliurament? =====
 
-El pes de les activitats en el sí de cada lliurament és diferent, segons la seva complexitat. El percentatge que cada activitat aporta a la nota final del lliurament és el següent:
+El pes de les activitats és diferent en cada lliurament, segons la seva complexitat. El percentatge que cada activitat aporta a la nota final del lliurament és el següent:
 
 :###
 LLIURAMENT 1: <WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament1#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{##item[ponderacio]##}% {##item[id]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>
@@ -50,9 +51,9 @@ LLIURAMENT 4: <WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurame
 
 ===== Com s'obté la nota final del mòdul? =====
 
-Cada lliurament té una nota global del lliurament. La nota final del mòdul és la mitjana aritmètica de les notes dels quatre lliuraments, sempre i quan s'hagin fet tots quatre: (L1 + L2 + L3 + L4) / 4 <note> --- //[[jcanell4@ioc.cat|Administrador Admin Admin]] 2019/03/15 09:23// Això és així? A les trobades i al document parlem de percentatge de cada lliurament! Cal adpatar aquesta frase o cal eliminar el percentatge?</note>
+Cada lliurament té una nota global del lliurament. La nota final del mòdul és la mitjana ponderada de les notes dels quatre lliuraments, sempre i quan s'hagin fet tots quatre: [##TODO:Escriviu la vostra fórmula de ponderació entre els lliuraments ##]
 
-Recordeu que per aprovar no n'hi ha prou que la mitjana global del mòdul doni 5, sinó que cal haver fet els exercicis. Si algú té un lliurament sense nota perquè no l'ha fet, no podrà aprovar el mòdul encara que tingui una mitjana superior a 5.
+[##TODO: Afegiu els matisos que calgui reforçar, p.e.: Recordeu que per aprovar no n'hi ha prou que la mitjana global del mòdul doni 5, sinó que cal haver fet els exercicis. Si algú té un lliurament sense nota perquè no l'ha fet, no podrà aprovar el mòdul encara que tingui una mitjana superior a 5.##]
 
 ===== Recuperació? =====
 

@@ -14,6 +14,9 @@
 
 <!-- Capçalera -->
 <header class="main_header">
+  <div>
+      <img class="logo" src="img/logo-ioc-petit.svg" alt="Institut Obert de Catalunya">
+  </div>
   <div class="own_container">
     <h1>{##modul##}</h1>
   </div>
@@ -84,11 +87,11 @@
 
 <hr>
 
-<WIOCCL:IF condition="{##hiHaPValidacio##}==true">
 <!-- Secció 7 -->
 <section class="section section7">
   <div class="own_container">
     <h3>Prova de validació</h3>
+<WIOCCL:IF condition="{##hiHaPValidacio##}==true">    
     <div class="panell_pafs">
       <div class="paf_1">
         <div class="section7_icona" id="paf-1-icona"></div>
@@ -97,17 +100,17 @@
       </div>
     </div>
     <div class="tyJCtd mGzaTb baZpAe">
-        <p id="h.p_0aRYLRUMQkoG" class="zfr3Q">Aquest mòdu<strong>l té una prova de validació final i </strong>s'aprova si es compleixen aquests requisit<strong>s: </strong></p>
-        <ul class="n8H08c UVNKR">
-            <li id="h.p_MC6KfIrEQk8V" class="zfr3Q TYR86d">Haver fet tots els lliuraments.</li>
-            <li id="h.p_S9YSyUBmQk8W" class="zfr3Q TYR86d">Tenir una nota mitjana de les activitats del mòdul igual o superior a 5.</li>
-            <li id="h.p_khYf76UKQz-B" class="zfr3Q TYR86d">Validar o superar la prova final presencial. </li>
-        </ul>
+        <p id="h.p_0aRYLRUMQkoG" class="zfr3Q">Aquest mòdul té prova de validació final. Per accedir-hi, cal haver aprovat l’avaluació contínua i complir la resta de requisits establerts.</p>
     </div>
+</WIOCCL:IF>    
+<WIOCCL:IF condition="{##hiHaPValidacio##}==false">    
+    <div class="tyJCtd mGzaTb baZpAe">
+        <p id="h.p_0aRYLRUMQkoG" class="zfr3Q">No n’hi ha.</p>
+    </div>
+</WIOCCL:IF>    
   </div>
 </section>
 <!-- /Secció 7 -->
-</WIOCCL:IF>
 
 
 <hr>
@@ -121,12 +124,12 @@
     </div>
     <script type="text/javascript"> 
 (function(){
-    var dataArray1 = [[
-                        {title:"Mòdul", percent:0}, 
-                        {title:"Ll 1", percent:"{##lliuraments#lliurament1#percentatge##}"}, 
-                        {title:"Ll 2", percent:"{##lliuraments#lliurament2#percentatge##}"}, 
-                        {title:"Ll 3", percent:"{##lliuraments#lliurament3#percentatge##}"}, 
-                        {title:"Ll 4", percent:"{##lliuraments#lliurament4#percentatge##}"} ]];
+    var dataArray1 = [
+        <WIOCCL:IF condition="0\<{#_ARRAY_LENGTH({##lliuraments#lliurament1#sequenciaDidactica##})_#}">[{title:"{##lliuraments#lliurament1#id##}", percent:0},<WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament1#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{title:"{##item[id]##}", percent:"{##item[ponderacio]##}"}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> , </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>],</WIOCCL:IF>
+        <WIOCCL:IF condition="0\<{#_ARRAY_LENGTH({##lliuraments#lliurament2#sequenciaDidactica##})_#}">[{title:"{##lliuraments#lliurament2#id##}", percent:0},<WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament2#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{title:"{##item[id]##}", percent:"{##item[ponderacio]##}"}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> , </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>],</WIOCCL:IF>
+        <WIOCCL:IF condition="0\<{#_ARRAY_LENGTH({##lliuraments#lliurament3#sequenciaDidactica##})_#}">[{title:"{##lliuraments#lliurament3#id##}", percent:0},<WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament3#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{title:"{##item[id]##}", percent:"{##item[ponderacio]##}"}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> , </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>],</WIOCCL:IF>
+        <WIOCCL:IF condition="0\<{#_ARRAY_LENGTH({##lliuraments#lliurament4#sequenciaDidactica##})_#}">[{title:"{##lliuraments#lliurament4#id##}", percent:0},<WIOCCL:SUBSET subsetvar="filtered" array="{##lliuraments#lliurament4#sequenciaDidactica##}" arrayitem="itemsub" filter="{##itemsub[ponderacio]##}!=0"><WIOCCL:FOREACH var="item" array="{##filtered##}" counter="ind">{title:"{##item[id]##}", percent:"{##item[ponderacio]##}"}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##filtered##})_#},1)_#}"> , </WIOCCL:IF></WIOCCL:FOREACH></WIOCCL:SUBSET>],</WIOCCL:IF>
+        [{title:"Mòdul", percent:0}, {title:"{##lliuraments#lliurament1#id##}", percent:"{##lliuraments#lliurament1#percentatge##}"}, {title:"{##lliuraments#lliurament2#id##}", percent:"{##lliuraments#lliurament2#percentatge##}"}, {title:"{##lliuraments#lliurament3#id##}", percent:"{##lliuraments#lliurament3#percentatge##}"}, {title:"{##lliuraments#lliurament4#id##}", percent:"{##lliuraments#lliurament4#percentatge##}"} ]];
 
 
     /*****************/
@@ -192,10 +195,40 @@
     }
 })();
     </script>
-    <a target="_blank" href="ge_sencera/ge.html">Consulteu aquí la guia d'estudi completa</a>
   </div>
 </section>
 <!-- /Secció 8 -->
+
+<hr>
+
+<!-- Secció 9 -->
+<section class="section section5">
+  <div class="own_container">
+    <div class="section5_container">
+      <div class="section5_content_row2">
+        <div class="section5_element">
+          <h2>Com comunicar-se</h2>
+          <p>Si teniu cap dubte, exposeu-lo al Fòrum del mòdul o envieu-lo per missatgeria interna. També podeu posar-vos en contacte amb el vostre tutor del Centre de suport o a través de la tutoria de l’IOC, segons on estigueu matriculats.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Secció 1 -->
+<hr>
+
+<section class="section section5">
+  <div class="own_container">
+    <div class="section5_container">
+      <div class="section5_content_row2">
+        <div class="section5_element">
+            <a target="_blank" href="ge_sencera/ge.html">Consulteu aquí la guia d'estudi completa</a>            
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 

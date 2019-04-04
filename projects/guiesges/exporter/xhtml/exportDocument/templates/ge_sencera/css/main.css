@@ -101,7 +101,7 @@ p.llegenda {
     font-size: 30px;
     cursor: pointer;
     margin-left: 14px;
-    color: #fdf0f6;
+    color: #e99aab;
     opacity: 1;
     transition: opacity .1s;
     transition-delay: .3s;
@@ -148,10 +148,16 @@ p.llegenda {
 
 
 /* Header*/
+.logo {
+    float: right;
+    padding: 15px;
+    z-index: 100;
+}
 
 .main_header {
     background-color: #de4e61;
     padding-bottom: 10px;
+    background-image: url('../../img/ges-header-bck.jpg');   
 }
  
 .main_header h1 {

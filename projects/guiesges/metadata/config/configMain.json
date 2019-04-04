@@ -34,16 +34,6 @@
                             "type": "string",
                             "mandatory": true
                         },
-                        "descripcio": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default": "Indiqueu el nom de la unitat"
-                        },
-                        "hores": {
-                            "type": "number",
-                            "mandatory": true,
-                            "default": 0
-                        },
                         "ponderacio": {
                             "type": "number",
                             "mandatory": true,
@@ -78,13 +68,6 @@
                         },
                         "percentatge":{
                             "type": "number",
-                            "mandatory": true
-                        },
-                        "hores":{
-                            "type": "string",
-                            "props":{
-                                "readonly":true
-                            },
                             "mandatory": true
                         },
                         "sequenciaDidactica":{
@@ -148,14 +131,6 @@
                             "mandatory": true,
                             "default": "comú"
                         },
-                        "dedicacio": {
-                            "type": "string",
-                            "default": 0,
-                            "mandatory": true,
-                            "props":{
-                                "readonly":true
-                            }
-                        },
                         "professor": {
                             "type": "string",
                             "mandatory": true
@@ -164,7 +139,7 @@
                             "type":"object",
                             "typeDef":"lliuramentsDef",
                             "mandatory":true,
-                            "default":{"lliurament1":{"id":"L1", "nom":"Lliurament 1", "dataInici":"", "dataFinal":"", "percentatge":25, "hores":0, "sequenciaDidactica":"[]"},"lliurament2":{"id":"L2", "nom":"Lliurament 2", "dataInici":"", "dataFinal":"", "percentatge":25, "hores":0, "sequenciaDidactica":"[]"},"lliurament3":{"id":"L3", "nom":"Lliurament 3", "dataInici":"", "dataFinal":"", "percentatge":25, "hores":0, "sequenciaDidactica":"[]"},"lliurament4":{"id":"L4", "nom":"Lliurament 4", "dataInici":"", "dataFinal":"", "percentatge":25, "hores":0, "sequenciaDidactica":"[]"}}
+                            "default":{"lliurament1":{"id":"L1", "nom":"Lliurament 1", "dataInici":"", "dataFinal":"", "percentatge":25, "sequenciaDidactica":"[]"},"lliurament2":{"id":"L2", "nom":"Lliurament 2", "dataInici":"", "dataFinal":"", "percentatge":25, "sequenciaDidactica":"[]"},"lliurament3":{"id":"L3", "nom":"Lliurament 3", "dataInici":"", "dataFinal":"", "percentatge":25, "sequenciaDidactica":"[]"},"lliurament4":{"id":"L4", "nom":"Lliurament 4", "dataInici":"", "dataFinal":"", "percentatge":25, "sequenciaDidactica":"[]"}}
                         },
                         "hiHaPValidacio": {
                             "type": "boolean",
