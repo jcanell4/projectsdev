@@ -20,8 +20,7 @@ class FactoryAuthorization extends ProjectFactoryAuthorization {
         if (empty($this->authCfg)) {
             parent::setAuthorizationCfg();
         }
-        $aCfg = ['new_documentProject' => "notAllowedCommand",
-                 'new_folderProject'   => "notAllowedCommand"
+        $aCfg = ['new_folderProject'   => "notAllowedCommand"
                 ];
         $this->authCfg = array_merge($this->authCfg, $aCfg);
     }
