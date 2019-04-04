@@ -15,16 +15,10 @@ class MetaDataRender extends \MetaDataRenderAbstract {
         $objAux = json_decode($metaDataEntityWrapper[0]->getArrayFromModel(), true);
         $structure = json_decode($objAux['metaDataStructure'], true);
         $types = json_decode($objAux['metaDataTypesDefinition'], true);
-        $values = $this->processValues(json_decode($objAux['metaDataValue'], true));
+        $values = json_decode($objAux['metaDataValue'], true);
 
         $returnTree = $this->runParser($values, $structure, $types);
         return $returnTree;
-    }
-
-    protected function processValues($values) {
-//        $values['nom_real'] = PagePermissionManager::getUserList($values['autor'])['values'][0]['name'];
-//        $values['data_fitxercontinguts'] = date('d/m/Y', filemtime(wikiFN($this->ns.":".$values['fitxercontinguts'])));
-        return $values;
     }
 
     protected function runParser($values, $structure, $types) {
