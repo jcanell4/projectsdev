@@ -9,7 +9,7 @@
         "main": {
             "parent": "",
             "label": "Dades de llarga durada",
-            "n_columns": 12,
+            "n_columns": 6,
             "n_rows": 1,
             "frame": true,
             "config":{
@@ -20,7 +20,18 @@
         "authorship": {
             "parent": "",
             "label": "Dades d'autoria",
-            "n_columns": 12,
+            "n_columns": 6,
+            "n_rows": 1,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
+        },
+        "docs": {
+            "parent": "",
+            "label": "Documents",
+            "n_columns": 4,
             "n_rows": 1,
             "frame": true,
             "config":{
@@ -31,18 +42,18 @@
         "extres": {
             "parent": "",
             "label": "Dades extres",
-            "n_columns": 12,
+            "n_columns": 8,
             "n_rows": 1,
             "frame": true,
             "config":{
                 "collapsable":true,
-                "collapsed":true
+                "collapsed":false
             }
         }
     },
     "fields": {
         "titol":{
-            "n_columns": 6,
+            "n_columns": 12,
             "label": "Títol del manual (titol)",
             "group": "main",
             "props": {
@@ -52,7 +63,7 @@
         },
         "subtitol": {
             "label" : "Subtítol del manual (subtitol)",
-            "n_columns": 6,
+            "n_columns": 12,
             "group": "main",
             "props": {
                 "required": true,
@@ -61,7 +72,7 @@
         },
         "responsable": {
             "label": "Responsable de la creació (responsable)",
-            "n_columns": 6,
+            "n_columns": 12,
             "group": "authorship",
             "props": {
                 "required": true
@@ -79,7 +90,7 @@
         },
         "autor": {
             "label": "Autor (autor)",
-            "n_columns": 6,
+            "n_columns": 12,
             "group": "authorship",
             "props": {
                 "required": true
@@ -93,6 +104,48 @@
                          "data":{"perm":4, "deniedResponse":true}}
                     ]
                 }
+            }
+        },
+        "documents": {
+            "label": "Llista de documents",
+            "n_columns": 12,
+            "group": "docs",
+            "n_rows": 4,
+            "type": "editableObject",
+            "props": {
+                "data-editable-element": "table"
+            },
+            "config": {
+                "actions": {
+                    "add_default_row": "Afegir un nou document",
+                    "remove_rows": "Eliminar un document"
+                },
+                "fields": {
+                    "ordre": {
+                        "type": "number"
+                    },
+                    "nom": {
+                        "type": "string"
+                    }
+                },
+                "layout": [
+                    {
+                        "cells": [
+                            {
+                                "name": "Número d'ordre",
+                                "field": "ordre",
+                                "width": "25%",
+                                "editable": true
+                            },
+                            {
+                                "name": "Nom del document",
+                                "field": "nom",
+                                "width": "75%",
+                                "editable": true
+                            }
+                        ]
+                    }
+                ]
             }
         },
         "dadesExtres": {

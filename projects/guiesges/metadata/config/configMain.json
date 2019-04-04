@@ -158,6 +158,16 @@
                             "type": "string",
                             "struc_chars": "40",
                             "mandatory": true
+                        },
+                        "codi": {
+                            "type": "string",
+                            "default": "102",
+                            "mandatory": true
+                        },
+                        "versio": {
+                            "type": "string",
+                            "default": "1.0",
+                            "mandatory": true
                         }
                     }
                 }

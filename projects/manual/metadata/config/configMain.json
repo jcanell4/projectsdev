@@ -8,6 +8,14 @@
             }
         }
     ],
+    "metaDataComponentTypes": [
+        {
+            "main": {
+                "documents": true,
+                "folders": false
+            }
+        }
+    ],
     "metaDataProjectConfig": [
         {
             "main": {
@@ -47,6 +55,25 @@
                     "type": "objectArray",
                     "typeDef":"entradaExtres"
                 },                                                
+                "extraDocuments": {
+                    "type":"object",
+                    "keys": {
+                        "ordre": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "NNN"
+                        },
+                        "nom": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Indiqueu el nom del document"
+                        }
+                    }                    
+                },
+                "extraDoc": {
+                    "type": "objectArray",
+                    "typeDef":"extraDocuments"
+                },                                                
                 "manual": {
                     "type": "object",
                     "keys": {
@@ -82,6 +109,10 @@
                             "type": "string",
                             "mandatory": true,
                             "default": "continguts"
+                        },
+                        "documents": {
+                            "type": "extraDoc",
+                            "default": [{"ordre":1, "nom":"continguts"}]
                         },
                         "nom_real": {
                             "type": "string",

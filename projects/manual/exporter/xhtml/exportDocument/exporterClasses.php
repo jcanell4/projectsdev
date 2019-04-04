@@ -73,7 +73,7 @@ class exportDocument extends MainRender {
                                     'subtitol' => $subtitol,
                                     'autor'    => $nom_real,
                                     'data'     => $data_fitxer],
-                        "contingut" => json_decode($data["pdfDocument"], TRUE)   //contingut latex ja rendaritzat
+                        "contingut" => json_decode($data["documentParts"], TRUE)   //contingut latex ja rendaritzat
                     )
                 );
                 $filenamepdf = "manual.pdf";    //$filenamepdf = "manual_".end(explode($this->cfgExport->id)).".pdf";
