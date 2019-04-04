@@ -6,7 +6,7 @@ class SetProjectMetaDataAction extends BasicSetProjectMetaDataAction {
      protected function responseProcess(){
          $response = parent::responseProcess();
          if($this->getModel()->isProjectGenerated()){
-             $id = $this->getModel()->getContentDocumentId($response);
+             $id = $this->getModel()->getContentDocumentId("ge");
              p_set_metadata($id, array('metadataProjectChanged' => time()));
          }
          return $response;

@@ -170,15 +170,6 @@
             ]
          }            
       },
-      "dedicacio": {
-        "label" : "Dedicació",
-        "n_columns": 4,
-        "group": "dadesBasiques",
-        "props": {
-          "readonly": true,
-          "title": "indiqueu el número d'hores de dedicació setmanal"
-        }
-      },
       "opcionalitat":{
         "label": "Comú/Opcional",
         "type":"select",
@@ -219,15 +210,6 @@
       "lliuraments#lliurament1#dataFinal": {
         "type" : "hidden"
       },
-      "lliuraments#lliurament1#hores": {
-        "label": "Dedicació",
-        "n_columns": 3,
-        "group": "lliurament1",
-        "props": {
-            "readonly": true,
-            "title":"Hores de dedicació"
-        }
-      },
       "lliuraments#lliurament1#percentatge": {
         "label": "percentatge",
         "n_columns": 3,
@@ -257,12 +239,6 @@
                 "id": {
                     "type": "string"
                 },
-                "descripcio": {
-                    "type": "string"
-                },
-                "hores": {
-                    "type": "number"
-                },
                 "ponderacio": {
                     "type": "number"
                 }
@@ -275,22 +251,10 @@
               },
               "cells": [
                 {
-                  "name": "Nom",
+                  "name": "Id",
                   "field": "id",
                   "editable": true
-                },
-                {
-                  "name": "Descripció",
-                  "field": "descripcio",
-                  "editable": true
-                },
-                {
-                  "name": "Hores",
-                  "field": "hores",
-                  "editable": true
-                },
-
-                {
+                },{
                   "name": "Percentatge",
                   "field": "ponderacio",
                   "editable": true
@@ -324,15 +288,6 @@
       "lliuraments#lliurament2#dataFinal": {
         "type" : "hidden"
       },
-      "lliuraments#lliurament2#hores": {
-        "label": "Dedicació",
-        "n_columns": 3,
-        "group": "lliurament2",
-        "props": {
-            "readonly": true,
-            "title":"Hores de dedicació"
-        }
-      },
       "lliuraments#lliurament2#percentatge": {
         "label": "percentatge",
         "n_columns": 3,
@@ -362,12 +317,6 @@
                 "id": {
                     "type": "string"
                 },
-                "descripcio": {
-                    "type": "string"
-                },
-                "hores": {
-                    "type": "number"
-                },
                 "ponderacio": {
                     "type": "number"
                 }
@@ -384,17 +333,6 @@
                   "field": "id",
                   "editable": true
                 },
-                {
-                  "name": "Descripció",
-                  "field": "descripcio",
-                  "editable": true
-                },
-                {
-                  "name": "Hores",
-                  "field": "hores",
-                  "editable": true
-                },
-
                 {
                   "name": "Percentatge",
                   "field": "ponderacio",
@@ -429,15 +367,6 @@
       "lliuraments#lliurament3#dataFinal": {
         "type" : "hidden"
       },
-      "lliuraments#lliurament3#hores": {
-        "label": "Dedicació",
-        "n_columns": 3,
-        "group": "lliurament3",
-        "props": {
-            "readonly": true,
-            "title":"Hores de dedicació"
-        }
-      },
       "lliuraments#lliurament3#percentatge": {
         "label": "percentatge",
         "n_columns": 3,
@@ -467,12 +396,6 @@
                 "id": {
                     "type": "string"
                 },
-                "descripcio": {
-                    "type": "string"
-                },
-                "hores": {
-                    "type": "number"
-                },
                 "ponderacio": {
                     "type": "number"
                 }
@@ -489,17 +412,6 @@
                   "field": "id",
                   "editable": true
                 },
-                {
-                  "name": "Descripció",
-                  "field": "descripcio",
-                  "editable": true
-                },
-                {
-                  "name": "Hores",
-                  "field": "hores",
-                  "editable": true
-                },
-
                 {
                   "name": "Percentatge",
                   "field": "ponderacio",
@@ -534,15 +446,6 @@
       "lliuraments#lliurament4#dataFinal": {
         "type" : "hidden"
       },
-      "lliuraments#lliurament4#hores": {
-        "label": "Dedicació",
-        "n_columns": 3,
-        "group": "lliurament4",
-        "props": {
-            "readonly": true,
-            "title":"Hores de dedicació"
-        }
-      },
       "lliuraments#lliurament4#percentatge": {
         "label": "percentatge",
         "n_columns": 3,
@@ -572,12 +475,6 @@
                 "id": {
                     "type": "string"
                 },
-                "descripcio": {
-                    "type": "string"
-                },
-                "hores": {
-                    "type": "number"
-                },
                 "ponderacio": {
                     "type": "number"
                 }
@@ -594,17 +491,6 @@
                   "field": "id",
                   "editable": true
                 },
-                {
-                  "name": "Descripció",
-                  "field": "descripcio",
-                  "editable": true
-                },
-                {
-                  "name": "Hores",
-                  "field": "hores",
-                  "editable": true
-                },
-
                 {
                   "name": "Percentatge",
                   "field": "ponderacio",

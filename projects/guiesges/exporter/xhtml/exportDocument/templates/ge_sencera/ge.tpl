@@ -34,13 +34,15 @@
       <h1>Guia d'estudi</h1>
       <h2>{##codi_modul##}-{##modul##}</h2>
     </div>
+    <div class="logo">
+        <img src="../img/logo-ioc-petit.svg" alt="Institut Obert de Catalunya">
+    </div>
   </header>
 
   <hr class="separador_impr">
   
   <section id="intro">
     <div class="container">
-      <p><span>Durada del mòdul</span>: {##dedicacio##} hores</p>
       <p><span><WIOCCL:IF condition="{##trimestre##}==1">Tardor</WIOCCL:IF><WIOCCL:IF condition="{##trimestre##}==2">Hivern</WIOCCL:IF><WIOCCL:IF condition="{##trimestre##}==3">Primavera</WIOCCL:IF> {#_YEAR()_#}</span></p>
     </div>
   </section>
