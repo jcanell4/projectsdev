@@ -68,22 +68,40 @@ class IocTcPdf extends TCPDF {
 
     // Page footer
     public function Footer() {
-        if ($this->PageNo() === 1) {
-            return;
-        }
+        $margins = $this->getMargins();
+        $footerfont = $this->getFooterFont();
+        $cell_height = $this->getCellHeight($footerfont[2]) / 2;
+        $y_position = -($cell_height*2 + 15);
 
-        // Position at 15 mm from bottom
-        $this->SetY(-15);
-        $this->SetFont($this->footer_font[0], $this->footer_font[1], $this->footer_font[2]);
-        // Page number
-        $this->Cell(0, 10, 'Page '.$this->getAliasNumPage().'/'.$this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
+        $this->SetFont($footerfont[0], $footerfont[1], $footerfont[2]);
+        $this->SetY($y_position);   //Position from bottom
+
+        $codi = " codi: ".$this->peu['codi'];
+        $versio = " versió: ".$this->peu['versio'];
+        $w1 = max(10, strlen($codi), strlen($versio)) * 2;
+        $w1 = min(30, $w1);
+        $w2 = 22;
+
+        $this->MultiCell($w1, $cell_height, $codi, 1, 'L', 0, 1, "", "", true, 0, false, true, $cell_height, 'M');
+        $this->MultiCell($w1, $cell_height, $versio, 1, 'L', 0, 0, "", "", true, 0, false, true, $cell_height, 'M');
+        $this->SetY($y_position);
+        $titol_w = $this->getPageWidth()-$margins['right']-($w1+$w2-5);
+        $this->MultiCell($titol_w, $cell_height*2, $this->peu['titol'], 1, 'C', 0, 0, "", "", true, 0, false, true, $cell_height*2, 'M');
+        //$page_number = "pàgina ".$this->getPage()."/".$this->getNumPages()." ";
+        $page_number = "pàgina {".$this->getAliasNumPage()."}/{".$this->getAliasNbPages()."}";
+        $this->MultiCell($w2, $cell_height*2, $page_number, 1, 'R', 0, 1, "", "", true, 0, false, true, $cell_height*2, 'M');
     }
 
     public function setHeaderData($ln='', $lw=0, $lh=0, $ht='', $hs='', $tc=array(0,0,0), $lc=array(0,0,0)) {
         parent::setHeaderData($ln, $lw, $ht, $hs, $tc, $lc);
         $this->header_logo_height = $lh;
     }
- }
+
+    public function setFooterData($data, $tc=array(0,0,0), $lc=array(0,0,0)) {
+        parent::setFooterData($tc, $lc);
+        $this->peu = $data;
+    }
+}
 
 class StaticPdfRenderer extends BasicStaticPdfRenderer {
 
@@ -107,7 +125,8 @@ class StaticPdfRenderer extends BasicStaticPdfRenderer {
         $iocTcPdf = new IocTcPdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false, false);
         $iocTcPdf->SetCreator("DOKUWIKI IOC");
 
-        $iocTcPdf->setHeaderData( $params["data"]["header_page_logo"], $params["data"]["header_page_wlogo"], $params["data"]["header_page_hlogo"], $params["data"]["header_ltext"], $params["data"]["header_rtext"]);
+        $iocTcPdf->setHeaderData($params["data"]["header"]["logo"], $params["data"]["header"]["wlogo"], $params["data"]["header"]["hlogo"], $params["data"]["header"]["ltext"], $params["data"]["header"]["rtext"]);
+        $iocTcPdf->setFooterData($params["data"]["peu"]);
 
         // set header and footer fonts
         $iocTcPdf->setHeaderFont(Array(self::$headerFont, '', self::$headerFontSize));

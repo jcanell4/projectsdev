@@ -69,15 +69,6 @@ class renderRenderizableText extends AbstractRenderer {
     }
 }
 
-        if($this->viewMode &&  $plugin_controller->getProjectOwner()){
-            $counter = 0;
-            $text = preg_replace("/~~USE:WIOCCL~~\n/", "", $event->result, 1, $counter);
-            if($counter>0){
-                $dataSource = $plugin_controller->getCurrentProjectDataSource();
-                $parser = new WiocclParser($text, [], $dataSource);
-                $event->result = $parser->getValue();
-            }
-        }
 class renderFileToPsDom extends renderFile {
     protected function render($instructions, &$renderData){
         $ret = p_latex_render('wikiiocmodel_psdom', $instructions, $renderData);

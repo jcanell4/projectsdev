@@ -58,6 +58,9 @@ class exportDocument extends MainRender {
                 $modul .= "-";
                 $modul .= html_entity_decode(htmlspecialchars_decode($data["modul"], ENT_COMPAT|ENT_QUOTES));
                 $durada = html_entity_decode(htmlspecialchars_decode($data["dedicacio"], ENT_COMPAT|ENT_QUOTES));
+                $codi = html_entity_decode(htmlspecialchars_decode($data["codi"], ENT_COMPAT|ENT_QUOTES));
+                $versio = html_entity_decode(htmlspecialchars_decode($data["versio"], ENT_COMPAT|ENT_QUOTES));
+                $titol = ["Estudis de GES", "Guia d'estudi", $modul, $trimestre];
 
                 $params = array(
                     "id" => $this->cfgExport->id,
@@ -66,17 +69,15 @@ class exportDocument extends MainRender {
                     "lang" => strtoupper($this->cfgExport->lang),  // idioma usat (CA, EN, ES, ...)
                     "mode" => isset($this->mode) ? $this->mode : $this->filetype,
                     "data" => array(
-                        "header_page_logo" => $this->cfgExport->rendererPath . "/resources/escutGene.jpg",
-                        "header_page_wlogo" => 9.9,
-                        "header_page_hlogo" => 11.1,
-                        "header_ltext" => "Generalitat de Catalunya\nDepartament d'Ensenyament\nInstitud Obert de Catalunya",
-                        "header_rtext" => $modul."\n".$trimestre,
-                        "titol" => array(
-                            "Estudis de GES",
-                            "Guia d'estudi",
-                            $modul,
-                            $trimestre,
-                        ),    //títol del document
+                        "header" => ["logo" => $this->cfgExport->rendererPath . "/resources/escutGene.jpg",
+                                     "wlogo" => 9.9,
+                                     "hlogo" => 11.1,
+                                     "ltext" => "Generalitat de Catalunya\nDepartament d'Ensenyament\nInstitut Obert de Catalunya",
+                                     "rtext" => $modul."\n".$trimestre],
+                        "titol" => $titol,
+                        "peu" => ["titol" => implode(" ", $titol),
+                                  "codi"  => $codi,
+                                  "versio"=> $versio],
                         "contingut" => json_decode($data["pdfge"], TRUE)   //contingut latex ja rendaritzat
                     )
                 );
