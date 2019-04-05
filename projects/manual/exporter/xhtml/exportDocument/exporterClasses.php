@@ -47,7 +47,7 @@ class exportDocument extends MainRender {
 
             if ($zip->addFromString('index.html', $document)) {
                 $allPathTemplate = $this->cfgExport->rendererPath . "/$pathTemplate";
-                $this->addFilesToZip($zip, $allPathTemplate, "", "css");
+                $this->addFilesToZip($zip, $allPathTemplate, "", "css", FALSE, $data['estil']);
                 $this->addFilesToZip($zip, WIKI_IOC_MODEL."exporter/xhtml", "", "css");
                 $this->addFilesToZip($zip, $allPathTemplate, "", "img");
                 $this->addFilesToZip($zip, $allPathTemplate, "", "js");
@@ -73,7 +73,7 @@ class exportDocument extends MainRender {
                                     'subtitol' => $subtitol,
                                     'autor'    => $nom_real,
                                     'data'     => $data_fitxer],
-                        "contingut" => json_decode($data["documentParts"], TRUE)   //contingut latex ja rendaritzat
+                        "contingut" => json_decode($data["documentPartsPdf"], TRUE)   //contingut latex ja rendaritzat
                     )
                 );
                 $filenamepdf = "manual.pdf";    //$filenamepdf = "manual_".end(explode($this->cfgExport->id)).".pdf";
@@ -109,8 +109,8 @@ class exportDocument extends MainRender {
             $toc ="";
             if ($tocItem){
                 foreach ($tocItem as $elem) {
-                    if ($elem['level']==1){
-                        $toc .= "<a href='{$elem['link']}'>".htmlentities($elem['title'])."</a>\n";
+                    if ($elem['level'] <= $data['nivells']) {
+                        $toc .= "<a href='{$elem['link']}' class='toc_level_{$elem['level']}'>".htmlentities($elem['title'])."</a>\n";
                     }
                 }
             }
@@ -124,10 +124,6 @@ class exportDocument extends MainRender {
         foreach(array_unique($this->cfgExport->media_files) as $f){
             resolve_mediaid(getNS($f), $f, $exists);
             if ($exists) {
-//                //eliminamos el primer nivel del ns (exigencias -mal entendidas- de la antigua sintaxis)
-//                $arr = explode(":", $f);
-//                array_shift($arr);
-//                $zip->addFile(mediaFN($f), 'img/'.implode("/", $arr));
                 $zip->addFile(mediaFN($f), 'img/'.str_replace(":", "/", $f));
             }
         }
@@ -154,13 +150,15 @@ class exportDocument extends MainRender {
         if (session_status() == PHP_SESSION_ACTIVE) session_destroy();
     }
 
-    private function addFilesToZip(&$zip, $base, $d, $dir, $recursive=FALSE) {
+    private function addFilesToZip(&$zip, $base, $d, $dir, $recursive=FALSE, $file=FALSE) {
         $zip->addEmptyDir("$d$dir");
         $files = $this->getDirFiles("$base/$dir");
-        foreach($files as $f){
-            $zip->addFile($f, "$d$dir/".basename($f));
+        foreach($files as $f) {
+            if (!$file || basename($f) === $file) {
+                $zip->addFile($f, "$d$dir/".basename($f));
+            }
         }
-        if($recursive){
+        if ($recursive) {
             $dirs = $this->getDirs("$base/$dir");
             foreach($dirs as $dd){
                 $this->addFilesToZip($zip, "$base/$dir", "$d$dir/", basename($dd));
