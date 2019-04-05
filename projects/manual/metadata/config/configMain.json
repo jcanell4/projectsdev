@@ -99,6 +99,16 @@
                         "dadesExtres": {
                             "type": "defExtres",
                             "mandatory": true
+                        },
+                        "estil": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "main"
+                        },                                                
+                        "nivells": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "3"
                         },                                                
                         "plantilla": {
                             "type": "string",
