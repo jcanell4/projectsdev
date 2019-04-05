@@ -5,11 +5,16 @@
                 "typeDef":"manual",
                 "class": "exportDocument",
                 "fields": "ALL",
-                "extraFields": [{"name":"documentParts", "valueType":"arrayFields", "value":"documents"}]
+                "extraFields": [
+                    {"name":"documentPartsPdf", "valueType":"arrayFields", "value":"documents", "type":"psdom"}, 
+                    {"name":"documentPartsHtml", "valueType":"arrayFields", "value":"documents", "type":"html"}]
             },
             "keys": {
-                "documentParts": {
+                "documentPartsPdf": {
                     "render": {"class": "renderFileToPsDom"}
+                },
+                "documentPartsHtml": {
+                    "render": {"class": "renderFile"}
                 }
             }
         }
