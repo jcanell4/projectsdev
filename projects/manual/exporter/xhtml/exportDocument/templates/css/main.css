@@ -335,8 +335,38 @@ div.footfigure {
     text-align: center;
 }
 
-/* Botó imprimir*/
+/* TOC */
+.content_index a.toc_level_1 {
+    font-size: 16px;
+    padding-left: 32px;
+}
 
+.content_index a.toc_level_2 {
+    font-size: 14px !important;
+    padding: 8px 8px 8px 42px !important;
+}
+
+.content_index a.toc_level_3 {
+    font-size: 13px !important;
+    padding: 8px 8px 8px 52px !important;
+}
+
+.content_index a.toc_level_4 {
+    font-size: 13px !important;
+    padding: 8px 8px 8px 62px !important;
+}
+
+.content_index a.toc_level_5 {
+    font-size: 12px !important;
+    padding: 6px 8px 6px 72px !important;
+}
+
+.content_index a.toc_level_6 {
+    font-size: 12px !important;
+    padding: 6px 8px 6px 82px !important;
+}
+
+/* Botó imprimir*/
 #printbtn {
     display: flex;
     justify-content: center;

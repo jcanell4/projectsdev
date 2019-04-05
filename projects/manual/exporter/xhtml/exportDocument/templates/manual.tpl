@@ -16,7 +16,7 @@
   <div id="mySidenav" class="sidenav open">
     <div class="closebtn" onclick="closeNav()">&times;</div>
     <div class="content_index fade_in" id="myContentIndex">
-        @@TOC(continguts)@@
+        @@TOC(documentPartsHtml)@@
     </div>
   </div>
   
@@ -46,7 +46,7 @@
   <br class="salt_impr">
 
   <div class="container">
-    {##fitxercontinguts##}  
+    {##documentPartsHtml##}  
     <div id="printbtn" onclick="printDoc()"><span>Descarrega't el PDF</span></div>
   </div>
     
