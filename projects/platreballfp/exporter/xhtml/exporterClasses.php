@@ -64,20 +64,11 @@ class renderRenderizableText extends AbstractRenderer {
 
     public function process($data) {
         $instructions = p_get_instructions($data);
-        $html = p_render('wikiiocmodel_ptxhtml', $instructions);
+        $html = p_render('wikiiocmodel_ptxhtml', $instructions, $info);
         return $html;
     }
 }
 
-        if($this->viewMode &&  $plugin_controller->getProjectOwner()){
-            $counter = 0;
-            $text = preg_replace("/~~USE:WIOCCL~~\n/", "", $event->result, 1, $counter);
-            if($counter>0){
-                $dataSource = $plugin_controller->getCurrentProjectDataSource();
-                $parser = new WiocclParser($text, [], $dataSource);
-                $event->result = $parser->getValue();
-            }
-        }
 class renderFile extends AbstractRenderer {
 
     public function process($data) {
