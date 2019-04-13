@@ -40,18 +40,18 @@
         }
     },
     "fields": {
-      "tipusBlocModul":{
+      "tipusBlocCredit":{
         "type":"select",
         "n_columns": 5,
-        "label": "Bloc o mòdul (tipusBlocModul)",
+        "label": "Bloc o crèdit (tipusBlocCredit)",
         "group": "dadesBasiques",
         "props": {
           "required": true,
-          "title" : "indiqueu si es tracta d'un bloc o d'un mòdul."
+          "title" : "indiqueu si es tracta d'un bloc o d'un crèdit."
         },
         "config":{
             "options":[
-                {"value":"mòdul"},
+                {"value":"crèdit"},
                 {"value":"1r. bloc"},
                 {"value":"2n. bloc"},
                 {"value":"3r. bloc"}
@@ -76,13 +76,13 @@
           "title": "Indiqueu la durada del cicle en hores"
         }
       },
-      "modul": {
-        "label" : "Nom del mòdul o bloc (modul)",
+      "credit": {
+        "label" : "Nom del crèdit o bloc (credit)",
         "n_columns": 8,
         "group": "dadesBasiques",
         "props": {
           "required": true,
-          "title": "indiqueu el nom del mòdul i el bloc si cal. Per exemple: M02 Seguretat i alta disponibilitat"
+          "title": "indiqueu el nom del crèdit i el bloc si cal. Per exemple: M02 Seguretat i alta disponibilitat"
         }
       },
       "durada": {
@@ -140,7 +140,7 @@
           "required": true,
           "min":0,
           "max":8,
-          "title": "Indiqueu en quin semestre es recomana realitzar aquest mòdul o bloc havent començat el cicle al setembre. Poseu-lo a zero si el cicle no té itinerari"
+          "title": "Indiqueu en quin semestre es recomana realitzar aquest crèdit o bloc havent començat el cicle al setembre. Poseu-lo a zero si el cicle no té itinerari"
         }
       },
       "itinerariRecomanatS2": {
@@ -151,17 +151,17 @@
           "required": true,
           "min":0,
           "max":8,
-          "title": "Indiqueu en quin semestre es recomana realitzar aquest mòdul o bloc havent començat el cicle al febrer. Poseu-lo a zero si el cicle no té itinerari"
+          "title": "Indiqueu en quin semestre es recomana realitzar aquest crèdit o bloc havent començat el cicle al febrer. Poseu-lo a zero si el cicle no té itinerari"
         }
       },
       "descripcio": {
         "n_columns": 12,
-        "label" : "Aquest bloc/mòdul tracta de... (descripcio)",
+        "label" : "Aquest bloc/crèdit tracta de... (descripcio)",
         "type": "textarea",
         "n_rows": 6,
         "props": {
           "data-editable-element": "textarea",
-          "title": "continua la frase a fí de descriure breument el contingut del bloc/mòdul"
+          "title": "continua la frase a fí de descriure breument el contingut del bloc/crèdit"
         },
         "config": {
             "renderable": true,
@@ -175,11 +175,11 @@
         "group": "dadesBasiques",
         "props": {
           "required": true,
-          "title": "indiqueu quins són els requeriments de la matrícula d'aquest mòdul o bloc"
+          "title": "indiqueu quins són els requeriments de la matrícula d'aquest crèdit o bloc"
         }
       },
-      "resultatsAprenentatge": {
-        "label": "Resultats d'aprenentatge (resultatsAprenentatge)",
+      "objectiusTerminals": {
+        "label": "Resultats d'aprenentatge (objectiusTerminals)",
         "n_columns": 12,
         "type": "editableObject",
         "group": "dadesBasiques",
@@ -190,9 +190,9 @@
         },
         "config": {
           "actions": {
-            "add_default_row": "Afegir RA",
-            "remove_rows": "Eliminar els RA seleccionats",
-            "add_default_row_before": "Afegir RA abans de la fila seleccionada"
+            "add_default_row": "Afegir OT",
+            "remove_rows": "Eliminar els OT seleccionats",
+            "add_default_row_before": "Afegir OT abans de la fila seleccionada"
           },
           "fields": {
             "id": {
@@ -237,27 +237,27 @@
           }
         }
       },
-      "taulaDadesUF": {
-        "label": "Unitats Formatives (taulaDadesUF)",
+      "taulaDadesUD": {
+        "label": "Unitats Didàctiques (taulaDadesUD)",
         "n_columns": 12,
         "type": "editableObject",
         "group": "dadesBasiques",
         "n_rows": 5,
         "props": {
           "data-editable-element": "table",
-          "title": "Detalleu les dades de cada UF. No cal que ompliu les hores de les UFs detallades en aquest bloc o mòdul, es calculen automàticament."
+          "title": "Detalleu les dades de cada Unitat Didàctica. No cal que ompliu les hores de les Unitats Didàctiques detallades en aquest bloc o crèdit, es calculen automàticament."
         },
         "config": {
           "actions": {
-            "set_multiple_default_rows": "Definir el nombre d'Unitats Formatives del mòdul",
-            "remove_rows": "Eliminar les Unitats Formatives seleccionades",
-            "add_default_row_before": "Afegir unitat abans de la fila seleccionada"
+            "set_multiple_default_rows": "Definir el nombre d'Unitats Didàctiques del crèdit",
+            "remove_rows": "Eliminar les Unitats Didàctiques seleccionades",
+            "add_default_row_before": "Afegir Unitat Didàctica abans de la fila seleccionada"
           },
           "fields": {
             "bloc":{
               "type": "number"
             },
-            "unitat formativa": {
+            "unitat didàctica": {
               "type": "number"
             },
             "nom": {
@@ -277,8 +277,8 @@
               },
               "cells": [
                 {
-                  "name": "unitat formativa",
-                  "field": "unitat formativa",
+                  "name": "unitat didàctica",
+                  "field": "unitat didàctica",
                   "editable": true
                 },
 
@@ -305,27 +305,27 @@
           ]
         }
       },
-      "taulaDadesUnitats": {
-        "label": "Unitats (taulaDadesUnitats)",
+      "taulaDadesNuclisActivitat": {
+        "label": "Nuclis d'Activitat(taulaDadesNuclisActivitat)",
         "n_columns": 12,
         "type": "editableObject",
         "group": "dadesBasiques",
         "n_rows": 8,
         "props": {
           "data-editable-element": "table",
-          "title": "Detalleu les dades referents a cada unitat. No heu d'omplir les hores de les unitat, es calculen automàticament"
+          "title": "Detalleu les dades referents a cada nucli d'activitat. No heu d'omplir les hores dels nuclis d'activitat, es calculen automàticament"
         },
         "config": {
           "actions": {
-            "set_multiple_default_rows": "Definir el nombre d'unitats",
-            "remove_rows": "Eliminar les unitats seleccionades",
-            "add_default_row_before": "Afegir unitat abans de la fila seleccionada"
+            "set_multiple_default_rows": "Definir el nombre de nuclis d'activitat",
+            "remove_rows": "Eliminar els nuclis d'activitat seleccionats",
+            "add_default_row_before": "Afegir nucli d'activitat abans de la fila seleccionada"
           },
           "fields": {
-            "unitat formativa": {
+            "unitat didàctica": {
               "type": "number"
             },
-            "unitat": {
+            "nucli activitat": {
               "type": "number"
             },
             "nom": {
@@ -342,14 +342,14 @@
               },
               "cells": [
                 {
-                  "name": "unitat formativa",
-                  "field": "unitat formativa",
+                  "name": "unitat didàctica",
+                  "field": "unitat didàctica",
                   "editable": true
                 },
 
                 {
-                  "name": "unitat",
-                  "field": "unitat",
+                  "name": "nucli activitat",
+                  "field": "nucli activitat",
                   "editable": true
                 },
 
@@ -378,7 +378,7 @@
         "n_rows": 9,
         "props": {
           "data-editable-element": "table",
-          "title": "Períodes en que seqüenciem el procés d'aprenentatge (apartats, projectes, pràctiques, etc.)"
+          "title": "Períodes en que seqüenciem el procés d'aprenentatge (projectes, pràctiques, etc.)"
         },
         "config": {
           "actions": {
@@ -387,7 +387,7 @@
             "add_default_row_before": "Afegir període abans de la fila seleccionada"
           },
           "fields": {
-            "unitat": {
+            "nucli activitat": {
               "type": "number"
             },
             "període": {
@@ -416,8 +416,8 @@
               },
               "cells": [
                 {
-                  "name": "unitat",
-                  "field": "unitat",
+                  "name": "nucli activitat",
+                  "field": "nucli activitat",
                   "width": "8%",
                   "editable": true
                 },
@@ -476,7 +476,7 @@
             "add_default_row_before": "Afegir activitat abans de la fila seleccionada"
           },
           "fields": {
-            "unitat": {
+            "nucli activitat": {
                 "type": "number"
             },
             "període": {
@@ -499,13 +499,13 @@
         "group": "avaluacio",
         "props": {
           "required": true,
-          "title": "Indiqueu si no feu avaluació inicial, si la feu a l'inici del mòdul o si en feu una per cada UF"
+          "title": "Indiqueu si no feu avaluació inicial, si la feu a l'inici del crèdit o si en feu una per cada Unitat Didàctica"
         },
          "config":{
             "options":[
                 {"description":"No es fa","value":"NO"},
                 {"description":"A l'inci","value":"INICI"},
-                {"description":"Per cada UF","value":"PER_UF"}
+                {"description":"Per cada Unitat Didàctica","value":"PER_UD"}
             ]
          }
       },
@@ -538,7 +538,7 @@
             "id": {
               "type": "string"
             },
-            "unitat": {
+            "nucli activitat": {
               "type": "number"
             },
             "enunciat": {
@@ -567,8 +567,8 @@
                   "width": "5%"
                 },
                 {
-                  "name": "unitat",
-                  "field": "unitat",
+                  "name": "unitat didàctica",
+                  "field": "unitat didàctica",
                   "width": "5%"
                 },
                 {
@@ -612,7 +612,7 @@
             "id": {
               "type": "string"
             },
-            "unitat": {
+            "nucli activitat": {
               "type": "number"
             },
             "enunciat": {
@@ -653,8 +653,8 @@
                   "width": "5%"
                 },
                 {
-                  "name": "unitat",
-                  "field": "unitat",
+                  "name": "nucli activitat",
+                  "field": "nucli activitat",
                   "width": "5%"
                 },
                 {
@@ -820,15 +820,15 @@
           "title": "Indiqueu la durada màxima de la PAF"
         }
       },
-      "dadesQualificacioUFs": {
-        "label": "Qualificació de les UF (dadesQualificacioUFs)",
+      "dadesQualificacioUD": {
+        "label": "Qualificació de les Unitats Didàctiques (dadesQualificacioUD)",
         "n_columns": 12,
         "group": "avaluacio",
         "n_rows": 10,
         "type": "editableObject",
         "props": {
           "data-editable-element": "table",
-          "title": "Detalleu com pondera L'AC i la PAF per cada UF"
+          "title": "Detalleu com pondera L'AC i la PAF per cada Unitat Didàctica"
         },
         "config": {
           "actions": {
@@ -837,7 +837,7 @@
             "add_default_row_before": "Afegir dada abans de la fila seleccionada"
           },
           "fields": {
-            "unitat formativa": {
+            "unitat didàctica": {
               "type": "number"
             },
             "tipus qualificació": {
@@ -866,7 +866,8 @@
         "config":{
            "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByInfoPerm", "data":{"perm":4, "deniedResponse":true}}]},
           "class" : {
-            "edit": "IocFieldWithSearch"
+            "edit": "IocFilteredList",
+            "view": "IocListSelectedItems"
           },
           "data": {
             "ns":"",
@@ -874,7 +875,7 @@
             "fieldName": "responsable",
             "dialogTitle" : "Cercar responsable",
             "dialogButtonLabel" : "Afegir responsable",
-            "data": "lib/exe/ioc_ajax.php?call=user_list",
+            "data": "",
             "dataQuery": {
               "filter": ""
             },
@@ -883,7 +884,8 @@
               "username": "Nom d'usuari",
               "name": "Nom"
             },
-            "fieldId": "username"
+            "fieldId": "username",
+            "defaultEntryField": "name"
           }
         }
       },
@@ -898,7 +900,8 @@
         "config":{
            "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByInfoPerm", "data":{"perm":4, "deniedResponse":true}}]},
           "class" : {
-            "edit": "IocFieldWithSearch"
+            "edit": "IocFilteredList",
+            "view": "IocListSelectedItems"
           },
           "data": {
             "ns":"",
@@ -906,7 +909,7 @@
             "fieldName": "autor",
             "dialogTitle" : "Cercar autor",
             "dialogButtonLabel" : "Afegir autor",
-            "data": "lib/exe/ioc_ajax.php?call=user_list",
+            "data": "",
             "dataQuery": {
               "filter": ""
             },
@@ -915,7 +918,8 @@
               "username": "Nom d'usuari",
               "name": "Nom"
             },
-            "fieldId": "username"
+            "fieldId": "username",
+            "defaultEntryField": "name"
           }
         }
       },
@@ -930,7 +934,8 @@
         "config":{
            "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByInfoPerm", "data":{"perm":4, "deniedResponse":true}}]},
           "class" : {
-            "edit": "IocFieldWithSearch"
+            "edit": "IocFilteredList",
+            "view": "IocListSelectedItems"
           },
           "data": {
             "ns":"",
@@ -938,7 +943,7 @@
             "fieldName": "supervisor",
             "dialogTitle" : "Cercar supervisor",
             "dialogButtonLabel" : "Afegir supervior",
-            "data": "lib/exe/ioc_ajax.php?call=user_list",
+            "data": "",
             "dataQuery": {
               "filter": ""
             },
@@ -947,7 +952,8 @@
               "username": "Nom d'usuari",
               "name": "Nom"
             },
-            "fieldId": "username"
+            "fieldId": "username",
+            "defaultEntryField": "name"
           }
         }
       },
