@@ -179,14 +179,14 @@
         }
       },
       "objectiusTerminals": {
-        "label": "Resultats d'aprenentatge (objectiusTerminals)",
+        "label": "Objectius terminals (objectiusTerminals)",
         "n_columns": 12,
         "type": "editableObject",
         "group": "dadesBasiques",
         "n_rows": 8,
         "props": {
           "data-editable-element": "table",
-          "title": "Detalleu els resultats d'aprenentatge."
+          "title": "Detalleu els objectius terminals."
         },
         "config": {
           "actions": {
@@ -306,7 +306,7 @@
         }
       },
       "taulaDadesNuclisActivitat": {
-        "label": "Nuclis d'Activitat(taulaDadesNuclisActivitat)",
+        "label": "Nuclis d'Activitat (taulaDadesNuclisActivitat)",
         "n_columns": 12,
         "type": "editableObject",
         "group": "dadesBasiques",
