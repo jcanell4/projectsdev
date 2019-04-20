@@ -1,5 +1,8 @@
 ~~USE:WIOCCL~~
+<WIOCCL:SET var="nbloc" type="map" value="{##tipusBlocCredit##}" map="{''crèdit'':0,''1r. bloc'':1,''2n. bloc'':2,''3r. bloc'':3}">
+<WIOCCL:SUBSET subsetvar="unitsFromBlock" field="unitat didàctica" array="{##taulaDadesUD##}" arrayitem="itemsub" filter="{##itemsub[bloc]##}=={##nbloc##}">
 ====== Presentació ======
+
 
 Aquest <WIOCCL:IF condition="''crèdit''!={##tipusBlocCredit##}">{##tipusBlocCredit##} del</WIOCCL:IF> crèdit {##credit##} tracta de {##descripcio##}
 
@@ -40,7 +43,7 @@ A banda de les PAF caldrà realitzar EAF durant el semestre (vegeu l'apartat d'a
 
 ===== Desplegament dels OT =====
 
-En aquest <WIOCCL:IF condition="''crèdit''=={##tipusBlocCredit##}">crèdit</WIOCCL:IF><WIOCCL:IF condition="''crèdit''!={##tipusBlocCredit##}">bloc</WIOCCL:IF> es descriuen els següents objectius terminals::
+En aquest {##tipusBlocCredit##} es descriuen els següents objectius terminals::
 
 <WIOCCL:FOREACH var="item" array="{##objectiusTerminals##}">
   ***{##item[id]##}:** {##item[descripcio]##}
@@ -54,7 +57,7 @@ Aquest crèdit està distribuït en les següents unitats didàctiques:
 ::table:T02
   :title:Unitats Didàctiques
   :type:pt_taula
-^  Núm. UF  ^  TÍTOL UNITAT DIDÀCTICA  ^  Durada  ^
+^  Núm. UD  ^  TÍTOL UNITAT DIDÀCTICA  ^  Durada  ^
 <WIOCCL:FOREACH var="item" array="{##taulaDadesUD##}">
 |  UD{##item[unitat didàctica]##}  | {##item[nom]##}  |  {##item[hores]##} h  |
 </WIOCCL:FOREACH>
@@ -70,7 +73,7 @@ El crèdit s'imparteix en dos blocs. Aquest pla de treball correspon al {##tipus
   :type:pt_taula
 <WIOCCL:FOR counter="ind" from="1" to="{#_COUNTDISTINCT({##taulaDadesUD##}, [''bloc''])_#}">
 ^BLOC {##ind##}^^  Durada  ^
-^  Núm. UF  ^  TÍTOL UNITAT DIDÀCTICA  ^  Durada  ^
+^  Núm. UD  ^  TÍTOL UNITAT DIDÀCTICA  ^  Durada  ^
 <WIOCCL:FOREACH var="item" array="{##taulaDadesUD##}" filter="{##item[bloc]##}=={##ind##}">
 |  UD{##item[unitat didàctica]##}  |  {##item[nom]##}  |  {##item[hores]##} h  |
 </WIOCCL:FOREACH>
@@ -83,7 +86,7 @@ Cada Unitat Didàctica es divideix en diferents nuclis d'activitat:
 ::table:T03
   :title:Unitats
   :type:pt_taula
-<WIOCCL:SET var="nbloc" type="map" value="{##tipusBlocCredit##}" map="{''crèdit'':0,''1r. bloc'':1,''2n. bloc'':2,''3r. bloc'':3}">
+
 <WIOCCL:FOREACH var="itemUD" array="{##taulaDadesUD##}" filter="{##itemUD[bloc]##}=={##nbloc##}">
 ^UD{##itemUD[unitat didàctica]##} ^^^^
 ^  NA  ^  Nom  ^  Durada  ^  Temporalització  ^
@@ -91,7 +94,7 @@ Cada Unitat Didàctica es divideix en diferents nuclis d'activitat:
 |  NA{##item[nucli activitat]##}  | {##item[nom]##}  |  {##item[hores]##} h  |  <WIOCCL:SUBSET subsetvar="filtered" array="{##calendari##}" arrayitem="itemsub" filter="{##item[nucli activitat]##}=={##itemsub[nucli activitat]##}"> {#_DATE("{#_FIRST({##filtered##}, "FIRST[inici]")_#}", ".")_#}-{#_DATE("{#_LAST({##filtered##}, "LAST[final]")_#}", ".")_#} </WIOCCL:SUBSET>  |
 </WIOCCL:FOREACH>
 </WIOCCL:FOREACH>
-</WIOCCL:SET>
+
 :::
 
 
@@ -101,15 +104,15 @@ Les dates clau del semestre, que també podeu consultar al calendari de l'aula, 
 
 ===== Dates de l'AC =====
 
-
 ::table:T05
   :title:Dates clau AC
   :type:pt_taula
-^ Id ^  nucli d'activitat  ^  data de publicació de l'enunciat  ^ data de publicació del lliurament ^ data de publicació de la solució ^ data de publicació de la qualificació ^
-<WIOCCL:FOREACH var="item" array="{##datesAC##}">
-| {##item[id]##} | NA{##item[nucli activitat]##} | {#_DATE("{##item[enunciat]##}")_#} | {#_DATE("{##item[lliurament]##}")_#} | {#_DATE("{##item[solució]##}")_#} | {#_DATE("{##item[qualificació]##}")_#} |
+^ Id ^  unitat didàctica  ^  data de publicació de l'enunciat  ^ data de publicació del lliurament ^ data de publicació de la solució ^ data de publicació de la qualificació ^
+<WIOCCL:FOREACH var="item" array="{##datesAC##}" filter="{##item[unitat didàctica]##} in {##unitsFromBlock##}">
+| {##item[id]##} |  {##item[unitat didàctica]##}  | {#_DATE("{##item[enunciat]##}")_#} | {#_DATE("{##item[lliurament]##}")_#} | {#_DATE("{##item[solució]##}")_#} | {#_DATE("{##item[qualificació]##}")_#} |
 </WIOCCL:FOREACH>
 :::
+
 
 <WIOCCL:IF condition="{#_ARRAY_LENGTH({##datesEAF##})_#}\>0">
 ===== Dates dels EAF i les recuperacions =====
@@ -118,18 +121,18 @@ Les dates clau del semestre, que també podeu consultar al calendari de l'aula, 
 ::table:T06
   :title:Dates clau EAF
   :type:pt_taula
-^ Id ^  nucli d'activitat  ^  data de publicació de l'enunciat  ^ data de publicació del lliurament ^ data de publicació de la solució ^ data de publicació de la qualificació ^
-<WIOCCL:FOREACH var="item" array="{##datesEAF##}">
-| {##item[id]##} | NA{##item[nucli activitat]##} | {#_DATE("{##item[enunciat]##}")_#} | {#_DATE("{##item[lliurament]##}")_#} | {#_DATE("{##item[solució]##}")_#} | {#_DATE("{##item[qualificació]##}")_#} |
+^ Id ^  unitat didàctica  ^  data de publicació de l'enunciat  ^ data de publicació del lliurament ^ data de publicació de la solució ^ data de publicació de la qualificació ^
+<WIOCCL:FOREACH var="item" array="{##datesEAF##}" filter="{##item[unitat didàctica]##} in {##unitsFromBlock##}">
+| {##item[id]##} |  {##item[unitat didàctica]##}  | {#_DATE("{##item[enunciat]##}")_#} | {#_DATE("{##item[lliurament]##}")_#} | {#_DATE("{##item[solució]##}")_#} | {#_DATE("{##item[qualificació]##}")_#} |
 </WIOCCL:FOREACH>
 :::
 
 ::table:T07
   :title:Dates clau recuperació EAF
   :type:pt_taula
-^ Id ^  nucli d'activitat  ^  data de publicació de l'enunciat  ^ data de publicació del lliurament ^ data de publicació de la solució ^ data de publicació de la qualificació ^
-<WIOCCL:FOREACH var="item" array="{##datesEAF##}">
-| {##item[id]##} | NA{##item[nucli activitat]##} | {#_DATE("{##item[enunciat recuperació]##}")_#} | {#_DATE("{##item[lliurament recuperació]##}")_#} | {#_DATE("{##item[solució recuperació]##}")_#} | {#_DATE("{##item[qualificació recuperació]##}")_#} |
+^ Id ^  unitat didàctica  ^  data de publicació de l'enunciat  ^ data de publicació del lliurament ^ data de publicació de la solució ^ data de publicació de la qualificació ^
+<WIOCCL:FOREACH var="item" array="{##datesEAF##}" filter="{##item[unitat didàctica]##} in {##unitsFromBlock##}">
+| {##item[id]##}  |  {##item[unitat didàctica]##}  | {#_DATE("{##item[enunciat recuperació]##}")_#} | {#_DATE("{##item[lliurament recuperació]##}")_#} | {#_DATE("{##item[solució recuperació]##}")_#} | {#_DATE("{##item[qualificació recuperació]##}")_#} |
 </WIOCCL:FOREACH>
 :::
 </WIOCCL:IF>
@@ -187,15 +190,13 @@ El model pedagògic de l'IOC es fonamenta en l’avaluació acadèmica de l’al
 
 L'AC es realitza a distància, es concreta en:
 
-<WIOCCL:SET var="nbloc" type="map" value="{##tipusBlocCredit##}" map="{''crèdit'':0,''1r. bloc'':1,''2n. bloc'':2,''3r. bloc'':3}">
 <WIOCCL:FOREACH var="itemUD" array="{##taulaDadesUD##}" filter="{##itemUD[bloc]##}=={##nbloc##}">
 
   * UNITAT DIDÀCTICA {##itemUD[unitat didàctica]##}
-<WIOCCL:FOREACH var="item" array="{##dadesQualificacioUD##}" filter="{##item[unitat didàctica]##}=={##itemUD[unitat didàctica]##}&&''{##item[tipus qualificació]##}''==''AC''">
+<WIOCCL:FOREACH var="item" array="{##dadesQualificacio##}" filter="{##item[unitat didàctica]##}=={##itemUD[unitat didàctica]##}&&''{##item[tipus qualificació]##}''==''AC''">
       * {##item[descripció qualificació]##} ({##item[abreviació qualificació]##})
 </WIOCCL:FOREACH>
 </WIOCCL:FOREACH>
-</WIOCCL:SET>
 
 Les activitats de l'avaluació contínua inclouen la publicació d'una solució, la valoració general al grup classe i una retroacció individual a cada estudiant.
 
@@ -252,7 +253,7 @@ Jornades presencials procedimentals del <WIOCCL:IF condition="''crèdit''!={##ti
   * es confirma la identitat de l'alumne que la realitza.
   * té una durada màxima de [##TODO: X dies. Cada dia té una durada màxima de X h. (si ho considereu oportú)##].
   * s'avalua numèricament  de entre el 0 i el 10, amb dos decimals.
-  * té una ponderació en la **qualificació final** <WIOCCL:IF condition="''crèdit''=={##tipusBlocCredit##}">del crèdit (vegeu l'apartat "Qualificació final QF"</WIOCCL:IF><WIOCCL:IF condition="''crèdit''!={##tipusBlocCredit##}">de la UD (vegeu l'apartat "Qualificació final de cada UF"</WIOCCL:IF>).
+  * té una ponderació en la **qualificació final** <WIOCCL:IF condition="''crèdit''=={##tipusBlocCredit##}">del crèdit (vegeu l'apartat "Qualificació final QF"</WIOCCL:IF><WIOCCL:IF condition="''crèdit''!={##tipusBlocCredit##}">de la UD (vegeu l'apartat "Qualificació final de cada UD"</WIOCCL:IF>).
   * es necessita una nota mínima de [##TODO: X##],00 sense arrodoniment per poder aplicar el càlcul de la QF.
 
 Per assistir a la JT és imprescindible:
@@ -270,7 +271,7 @@ S'ofereixen dues convocatòries ordinàries cada semestre: JT i recuperació JT.
 
 ===== Prova d'avaluació final (PAF) =====
 
-Al final de cada semestre l’alumne s’ha de presentar a una prova d’avaluació final (PAF) **presencial i obligatòria** per aprovar el <WIOCCL:IF condition="''crèdit''!={##tipusBlocCredit##}">{##tipusBlocCredit##}</WIOCCL:IF>(consulteu dates clau a la taula::table:T10:).
+Al final de cada semestre l’alumne s’ha de presentar a una prova d’avaluació final (PAF) **presencial i obligatòria** per aprovar el {##tipusBlocCredit##} (consulteu dates clau a la taula::table:T10:).
 
 Per poder presentar-se, **cal confirmar** l'assistència en el període establert.
 
@@ -280,7 +281,7 @@ La prova d'avaluació final (PAF):
   * consistirà en diversos exercicis: frases V/F, preguntes obertes, resolució d'un cas pràctic, etc.
   * s'avalua numèricament del 0 al 10, amb dos decimals.
   * NO inclou retroacció.
-  * té una ponderació a la Qualificació Final (QF) (vegeu l'apartat <WIOCCL:IF condition="''crèdit''=={##tipusBlocCredit##}">"Qualificació final QF"</WIOCCL:IF><WIOCCL:IF condition="''crèdit''!={##tipusBlocCredit##}">"Qualificació final de cada UD"</WIOCCL:IF>).
+  * té una ponderació a la Qualificació Final (QF) (vegeu l'apartat <WIOCCL:IF condition="''crèdit''=={##tipusBlocCredit##}">"Qualificació final QF"</WIOCCL:IF><WIOCCL:IF condition="''crèdit''!={##tipusBlocCredit##}">"Qualificació final de cada bloc"</WIOCCL:IF>).
   * s'ha d'obtenir una **nota mínima de {##notaMinimaPAF##},00 sense arrodoniment** per poder aplicar el càlcul de la QF.
 
 S'ofereixen dues convocatòries ordinàries cada semestre: PAF1 i PAF2. (consulteu dates clau a la taula::table:T10:). L'alumne pot:
@@ -290,26 +291,20 @@ S'ofereixen dues convocatòries ordinàries cada semestre: PAF1 i PAF2. (consult
 
 La convocatòria corresponent a la PAF1 s'esgota tant si l'estudiant s'hi presenta com si no (exceptuant  que l'alumne hagi anul·lat la matrícula). La convocatòria corresponent a PAF2 només s'esgota si l'estudiant s'hi presenta.
 
-====== Qualificació final del crèdit (<WIOCCL:IF condition="''crèdit''!={##tipusBlocCredit##}">{##tipusBlocCredit##}</WIOCCL:IF><WIOCCL:IF condition="''crèdit''=={##tipusBlocCredit##}">QF</WIOCCL:IF>) ======
+====== Qualificació final del <WIOCCL:IF condition="''crèdit''!={##tipusBlocCredit##}">bloc i del crèdit</WIOCCL:IF><WIOCCL:IF condition="''crèdit''=={##tipusBlocCredit##}">crèdit</WIOCCL:IF> (QF) ======
 
 La qualificació final del {##tipusBlocCredit##} (QF) es calcula a partir de l'aplicació de la fórmula següent:
 
 <WIOCCL:IF condition="''crèdit''=={##tipusBlocCredit##}">
-**QF = <WIOCCL:FOREACH var="item" array="{##dadesQualificacioUD##}" counter="indx">{##item[abreviació qualificació]##} * {##item[ponderació]##}% <WIOCCL:IF condition="{##indx##}\<{#_SUBS({#_ARRAY_LENGTH({##dadesQualificacioUD##})_#},1)_#}">+ </WIOCCL:IF></WIOCCL:FOREACH>**
+**QF = <WIOCCL:FOREACH var="item" array="{##dadesQualificacio##}" counter="indx">{##item[abreviació qualificació]##} * {##item[ponderació]##}% <WIOCCL:IF condition="{##indx##}\<{#_SUBS({#_ARRAY_LENGTH({##dadesQualificacio##})_#},1)_#}">+ </WIOCCL:IF></WIOCCL:FOREACH>**
 
 </WIOCCL:IF>
 
-
 <WIOCCL:IF condition="''crèdit''!={##tipusBlocCredit##}">
 
-<WIOCCL:SET var="blocIndex" type="map" value="{##tipusBlocCredit##}" map="{''crèdit'':0,''1r. bloc'':1,''2n. bloc'':2,''3r. bloc'':3}">
+<WIOCCL:SUBSET subsetvar="dadesQualificacioFiltrades" array="{##dadesQualificacio##}" arrayitem="itemsub" filter="{##itemsub[unitat didàctica]##} in {##unitsFromBlock##}"">
 
-<WIOCCL:SUBSET subsetvar="unitsFromBlock" field="unitat didàctica" array="{##taulaDadesUD##}" arrayitem="itemsub" filter="{##itemsub[bloc]##}=={##blocIndex##}">
-
-<WIOCCL:SUBSET subsetvar="dadesQualificacioUDFiltrades" array="{##dadesQualificacioUD##}" arrayitem="itemsub" filter="{##itemsub[unitat didàctica]##} in {##unitsFromBlock##}"">
-
-**QF = <WIOCCL:FOREACH var="item" array="{##dadesQualificacioUDFiltrades##}"  counter="indx">{##item[abreviació qualificació]##} * {##item[ponderació]##}% <WIOCCL:IF condition="{##indx##}\<{#_SUBS({#_ARRAY_LENGTH({##dadesQualificacioUDFiltrades##})_#},1)_#}">+ </WIOCCL:IF></WIOCCL:FOREACH>**</WIOCCL:SUBSET>
-</WIOCCL:SUBSET>
+**QFbloc{##nbloc##} = <WIOCCL:FOREACH var="item" array="{##dadesQualificacioFiltrades##}"  counter="indx">{##item[abreviació qualificació]##} * {##item[ponderació]##}% <WIOCCL:IF condition="{##indx##}\<{#_SUBS({#_ARRAY_LENGTH({##dadesQualificacioFiltrades##})_#},1)_#}">+ </WIOCCL:IF></WIOCCL:FOREACH>**</WIOCCL:SUBSET>
 
 </WIOCCL:IF>
 </WIOCCL:IF>
@@ -319,38 +314,41 @@ Per sumar l'AC s’ha d’obtenir una qualificació mínima de {##notaMinimaPAF#
 Si la qualificació de la PAF és inferior a {##notaMinimaPAF##},00, el càlcul de la QF serà el 70% de la nota obtinguda a la PAF.
 
 <WIOCCL:IF condition="''crèdit''!={##tipusBlocCredit##}">
-La QF del crèdit és numèrica de l'1 al 10, sense decimals; és la mitjana ponderada (segons les hores de cada bloc) de la qualificació dels dos blocs (B1 i B2),  sempre i quan estiguin superats cadascun d'ells sense arrodoniment amb un 5,00 com a mínim.
+La QF del bloc és numèrica de l'1 al 10, sense decimals; és la mitjana ponderada (segons les hores de cada bloc) de la qualificació dels dos blocs (B1 i B2),  sempre i quan estiguin superats cadascun d'ells sense arrodoniment amb un 5,00 com a mínim.
 </WIOCCL:IF>
 
 <WIOCCL:IF condition="''crèdit''=={##tipusBlocCredit##}">
-La qualificació final és numèrica de l'1 al 10, sense decimals. Es consideren positives les qualificacions iguals o superiors a 5,00 i negatives les restants.
+La qualificació final del crèdit és numèrica de l'1 al 10, sense decimals. Es consideren positives les qualificacions iguals o superiors a 5,00 i negatives les restants.
 </WIOCCL:IF>
 
 En cas de no superar el crèdit, el següent semestre s'han de tornar a realitzar totes les activitats (PAF, EAF, JT i AC). No es guardarà cap nota parcial del crèdit pel següent semestre.
 
 ====== Planificació ======
-
 <WIOCCL:SET var="nbloc" type="map" value="{##tipusBlocCredit##}" map="{''crèdit'':0,''1r. bloc'':1,''2n. bloc'':2,''3r. bloc'':3}">
 <WIOCCL:FOREACH var="itemUD" array="{##taulaDadesUD##}" filter="{##itemUD[bloc]##}=={##nbloc##}" counter="ind">
-La planificació establerta per a la UD{##ind##} és la següent: (veure:table:T11-{##itemUD[unitat didàctica]##}:)
+
+La planificació establerta per a la UD{#_SUMA({##ind##}, 1)_#} és la següent: (veure:table:T11-{##itemUD[unitat didàctica]##}:)
 ::table:T11-{##itemUD[unitat didàctica]##}
   :title:Planificació UD{##itemUD[unitat didàctica]##}.
   :footer: <sup>*</sup> Atenció: podeu mirar la data màxima de lliurament de les activitats qualificables a l'apartat de les dates clau
   :type:pt_taula, pt_planif
+
 [^ UD{##itemUD[unitat didàctica]##} ^  <WIOCCL:SUBSET subsetvar="filtered" array="{##taulaDadesUD##}" arrayitem="itemsub" filter="{##itemsub[unitat didàctica]##}=={##itemUD[unitat didàctica]##}">{#_FIRST({##filtered##}, "FIRST[nom]")_#} ({#_FIRST({##filtered##}, "FIRST[hores]")_#} h)</WIOCCL:SUBSET>  ^
-<WIOCCL:FOREACH  var="itemu" array="{##taulaDadesNuclisActivitat##}" filter="{##itemu[unitat didàctica]##}=={##itemUD[unitat didàctica]##}">
-<WIOCCL:FOREACH  var="item_per" array="{##calendari##}" filter="{##item_per[nucli activitat]##}=={##itemu[nucli activitat]##}">
-^**NA{##item_per[nucli activitat]##}: {##item_per[descripció període]##} ({##item_per[hores]##} h).     Activitats d'aprenentatge**  ^^
-| <WIOCCL:FOREACH  var="item_act" array="{##activitatsAprenentatge##}" filter="{##item_act[nucli activitat]##}=={##item_per[nucli activitat]##}&&{##item_act[període]##}=={##item_per[període]##}">{##item_act[eina]##}: {##item_act[descripció]##} \\ </WIOCCL:FOREACH>     ||
+<WIOCCL:FOREACH var="itemu" array="{##taulaDadesNuclisActivitat##}" filter="{##itemu[unitat didàctica]##}=={##itemUD[unitat didàctica]##}">
+<WIOCCL:SUBSET subsetvar="activitatsPerUD" array="{##activitatsAprenentatge##}" arrayitem="itemsub" filter="{##itemsub[unitat didàctica]##}=={##itemu[unitat didàctica]##}">
+^**NA{##itemu[nucli activitat]##}: {##itemu[nom]##} ({##itemu[hores]##} h).     Activitats d'aprenentatge**  ^^
+| <WIOCCL:FOREACH  var="item_act" array="{##activitatsPerUD##}" filter="{##item_act[nucli activitat]##}=={##itemu[nucli activitat]##}&&{##item_act[període]##}=={##itemu[període]##}">{##item_act[eina]##}: {##item_act[descripció]##} \\ </WIOCCL:FOREACH>     ||
 </WIOCCL:FOREACH>
 </WIOCCL:FOREACH>
-<WIOCCL:SUBSET  subsetvar="filtered" array="{##dadesQualificacioUD##}" arrayitem="itemsub" filter="{##itemsub[unitat didàctica]##}=={##itemUD[unitat didàctica]##}&&{##itemsub[tipus qualificació]##}!=''PAF''">
+<WIOCCL:SUBSET  subsetvar="filtered" array="{##dadesQualificacio##}" arrayitem="itemsub" filter="{##itemsub[unitat didàctica]##}=={##itemUD[unitat didàctica]##}&&{##itemsub[tipus qualificació]##}!=''PAF''">
 <WIOCCL:FOREACH  var="itemAval" array="{##filtered##}" counter="idItemAval">
 ^ <WIOCCL:IF condition="{##idItemAval##}==0">**Activitats qualificables<sup>*</sup>:**</WIOCCL:IF><WIOCCL:IF condition="{##idItemAval##}\>0">:::</WIOCCL:IF> | **{##itemAval[abreviació qualificació]##}: {##itemAval[descripció qualificació]##}** |<WIOCCL:IF condition="{#_ARRAY_LENGTH({##filtered##})_#}=={#_SUMA({##idItemAval##},1)_#}">]</WIOCCL:IF>
 
+</WIOCCL:SUBSET>
+
+:::
 </WIOCCL:FOREACH>
 </WIOCCL:SUBSET>
-:::
+</WIOCCL:SET>
 
-</WIOCCL:FOREACH>
 </WIOCCL:SET>

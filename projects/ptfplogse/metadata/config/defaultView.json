@@ -226,9 +226,6 @@
             },
             "hores": {
               "type": "number"
-            },
-            "ponderació": {
-              "type": "number"
             }
           },
           "layout": [
@@ -294,6 +291,12 @@
             },
             "hores": {
               "type": "number"
+            },
+            "inici": {
+              "type": "date"
+            },
+            "final": {
+              "type": "date"
             }
           },
           "layout": [
@@ -325,6 +328,16 @@
                   "name": "hores",
                   "field": "hores",
                   "editable": false
+                },
+                {
+                  "name": "inici",
+                  "field": "inici",
+                  "editable": true
+                },
+                {
+                  "name": "final",
+                  "field": "final",
+                  "editable": true
                 }
               ]
             }
@@ -410,7 +423,7 @@
             "nucli activitat": {
                 "type": "number"
             },
-            "període": {
+            "unitat didàctica": {
                 "type": "number"
             },
             "eina": {
@@ -439,95 +452,6 @@
                 {"description":"Per cada Unitat Didàctica","value":"PER_UD"}
             ]
          }            
-      },
-      "calendari": {
-        "label": "Temporització (calendari)",
-        "n_columns": 12,
-        "type": "editableObject",
-        "group": "actualitzables",
-        "n_rows": 9,
-        "props": {
-          "data-editable-element": "table",
-          "title": "Períodes en que seqüenciem el procés d'aprenentatge (projectes, pràctiques, etc.) i detall de la temporització"
-        },
-        "config": {
-          "actions": {
-            "add_default_row": "Afegir període",
-            "remove_rows": "Eliminar períodes seleccionats",
-            "add_default_row_before": "Afegir període abans de la fila seleccionada"
-          },
-          "fields": {
-            "nucli activitat": {
-              "type": "number"
-            },
-            "període": {
-                "type": "number"
-            },
-            "tipus període": {
-                "type": "string"
-            },
-            "descripció període": {
-                "type": "string"
-            },
-            "hores": {
-              "type": "number"
-            },
-            "inici": {
-              "type": "date"
-            },
-            "final": {
-              "type": "date"
-            }
-          },
-          "layout": [
-            {
-              "defaultCell": {
-                "width" : "10%"
-              },
-              "cells": [
-                {
-                  "name": "nucli activitat",
-                  "field": "nucli activitat",
-                  "width": "8%",               
-                  "editable": true
-                },
-                {
-                  "name": "període",
-                  "field": "període",
-                  "width": "8%",               
-                  "editable": true
-                },
-                {
-                  "name": "tipus període",
-                  "field": "tipus període",
-                  "editable": true
-                },
-                {
-                  "name": "descripció període",
-                  "field": "descripció període",
-                  "width": "46%",               
-                  "editable": true
-                },
-                {
-                  "name": "hores",
-                  "field": "hores",
-                  "width": "8%",               
-                  "editable": true
-                },
-                {
-                  "name": "inici",
-                  "field": "inici",
-                  "editable": true
-                },
-                {
-                  "name": "final",
-                  "field": "final",
-                  "editable": true
-                }
-              ]
-            }
-          ]
-        }
       },
       "notaMinimaAC": {
         "label": "Nota mínima de l'AC (notaMinimaAC)",
@@ -558,7 +482,7 @@
             "id": {
               "type": "string"
             },
-            "nucli activitat": {
+            "unitat didàctica": {
               "type": "number"
             },
             "enunciat": {
@@ -632,7 +556,7 @@
             "id": {
               "type": "string"
             },
-            "nucli activitat": {
+            "unitat didàctica": {
               "type": "number"
             },
             "enunciat": {
@@ -876,15 +800,15 @@
           "title": "Indiqueu la durada màxima de la PAF"
         }
       },
-      "dadesQualificacioUD": {
-        "label": "Qualificació de les Unitats Didàctiques (dadesQualificacioUD)",
+      "dadesQualificacio": {
+        "label": "Qualificació (dadesQualificacio)",
         "n_columns": 12,
         "group": "main",
         "n_rows": 10,
         "type": "editableObject",
         "props": {
           "data-editable-element": "table",
-          "title": "Detalleu com pondera L'AC i la PAF per cada Unitat Didàctica"
+          "title": "Detalleu com pondera L'AC i la PAF"
         },
         "config": {
           "actions": {

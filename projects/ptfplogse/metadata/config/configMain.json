@@ -19,7 +19,7 @@
         {
             "main": "meta.mdpr",
             "versions": {
-                "templates": {"continguts":5}
+                "templates": {"continguts":0}
             },
             "mainType": {
                 "type": "object",
@@ -73,7 +73,7 @@
                         }
                     }                    
                 },
-                "defQualificacioUFs": {
+                "defQualificacio": {
                     "type": "objectArray",
                     "typeDef":"entradaQualificacioUD"
                 },
@@ -109,7 +109,7 @@
                             "default": "EACX",
                             "mandatory": true
                         },
-                        "nucli activitat": {
+                        "unitat didàctica": {
                             "type": "number",
                             "default": 1,
                             "mandatory": true
@@ -144,7 +144,7 @@
                             "default": "EAFX",
                             "mandatory": true
                         },
-                        "nucli activitat": {
+                        "unitat didàctica": {
                             "type": "number",
                             "default": 1,
                             "mandatory": true
@@ -240,7 +240,7 @@
                 "defDatesJT": {
                     "type": "objectArray",
                     "typeDef":"entradaDatesJT"
-                },                                                
+                },
                 "entradaCalendari": {
                     "type": "object",
                     "keys": {
@@ -277,7 +277,7 @@
                 "defCalendari": {
                     "type": "objectArray",
                     "typeDef":"entradaCalendari"
-                },                                                
+                },
                 "entradaEinesAprenentatge": {
                     "type": "object",
                     "keys": {
@@ -326,11 +326,6 @@
                             "type": "number",
                             "mandatory": true,
                             "default": "0"
-                        },
-                        "ponderació": {
-                            "type": "number",
-                            "mandatory": true,
-                            "default": "0"
                         }
                     }
                 },
@@ -354,12 +349,20 @@
                         "nom": {
                             "type": "string",
                             "mandatory": true,
-                            "default": "Indiqueu el nom de la unitat didàctica"
+                            "default": "Indiqueu el nom del nucli d'activitat"
                         },
                         "hores": {
                             "type": "number",
                             "mandatory": true,
                             "default": 0
+                        },
+                        "inici": {
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "final": {
+                            "type": "date",
+                            "mandatory": true
                         }
                     }
                 },
@@ -370,11 +373,11 @@
                 "entradaActivitatsAprenentatge": {
                     "type": "object",
                     "keys": {
-                        "nucli activitat": {
+                        "unitat didàctica": {
                             "type": "number",
                             "mandatory": true
                         },
-                        "període": {
+                        "nucli activitat": {
                             "type": "number",
                             "mandatory": true
                         },
@@ -494,16 +497,12 @@
                         },                                                
                         "activitatsAprenentatge": {
                             "type": "defActivitatsAprenentatge",
-                            "default":[{"nucli activitat":"1","període":"1","eina":"lectura","descripció":"Lectura de l'apartat 1"},{"nucli activitat":"1","període":"1","eina":"autoavalució","descripció":"fer les activitats i exercicis d'autoavaluació"}],
+                            "default":[{"nucli activitat":"1","unitat didàctica":"1","eina":"lectura","descripció":"Lectura de l'apartat 1"},{"nucli activitat":"1","unitat didàctica":"1","eina":"autoavalució","descripció":"fer les activitats i exercicis d'autoavaluació"}],
                             "mandatory": true
                         },                                                
                         "avaluacioInicial": {
                             "type": "string",
                             "default":"no",
-                            "mandatory": true
-                        },                                                
-                        "calendari": {
-                            "type": "defCalendari",
                             "mandatory": true
                         },
                         "datesAC": {
@@ -556,8 +555,8 @@
                                 "max":10
                             }
                         },                                                
-                        "dadesQualificacioUD": {
-                            "type": "defQualificacioUFs",
+                        "dadesQualificacio": {
+                            "type": "defQualificacio",
                             "mandatory": true
                         },                                                
                         "duradaPAF": {
