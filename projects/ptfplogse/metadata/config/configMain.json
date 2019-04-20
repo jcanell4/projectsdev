@@ -413,7 +413,7 @@
                         },
                         "credit": {
                             "type": "string",
-                            "default": "MXX Indiqueu el nom crèdit",
+                            "default": "CXX Indiqueu el nom crèdit",
                             "mandatory": true
                         },
                         "durada": {
