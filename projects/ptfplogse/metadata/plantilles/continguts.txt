@@ -311,7 +311,7 @@ La qualificació final del {##tipusBlocCredit##} (QF) es calcula a partir de l'a
 
 Per sumar l'AC s’ha d’obtenir una qualificació mínima de {##notaMinimaPAF##},00 a la PAF, EAF, JT sense haver fet cap tipus arrodoniment previ.
 
-Si la qualificació de la PAF és inferior a {##notaMinimaPAF##},00, el càlcul de la QF serà el 70% de la nota obtinguda a la PAF.
+Si la qualificació de la PAF és inferior a {##notaMinimaPAF##},00, el càlcul de la QF serà el <WIOCCL:SUBSET subsetvar="filteredPAF" array="{##dadesQualificacio##}" arrayitem="itemsub" filter="{##itemsub[tipus qualificació]##}==''PAF''">{#_FIRST({##filteredPAF##}, ''FIRST[ponderació]'')_#}</WIOCCL:SUBSET>% de la nota obtinguda a la PAF.
 
 <WIOCCL:IF condition="''crèdit''!={##tipusBlocCredit##}">
 La QF del bloc és numèrica de l'1 al 10, sense decimals; és la mitjana ponderada (segons les hores de cada bloc) de la qualificació dels dos blocs (B1 i B2),  sempre i quan estiguin superats cadascun d'ells sense arrodoniment amb un 5,00 com a mínim.
