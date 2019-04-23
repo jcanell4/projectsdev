@@ -160,19 +160,19 @@
     "semestre": {
       "type" : "hidden"
     },
-    "data_inici_FCT": {
+    "dataIniciFCT": {
       "type" : "hidden"
     },
-    "data_max_inici_FCT": {
+    "dataMaxIniciFCT": {
       "type" : "hidden"
     },
-    "data_max_apte_FCT": {
+    "dataMaxApteFCT": {
       "type" : "hidden"
     },
-    "any_curs_inici": {
+    "anyCursInici": {
       "type" : "hidden"
     },
-    "any_curs_final": {
+    "anyCursFinal": {
       "type" : "hidden"
     }
 

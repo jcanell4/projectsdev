@@ -11,7 +11,7 @@
   "metaDataProjectConfig": [
     {
       "main": {
-        "projectTypeConfigFile": "admconfig:ptfploe"
+        "projectTypeConfigFile": "admconfig:fct"
       }
     }
   ],
@@ -59,27 +59,27 @@
               "mandatory": true,
               "default": 2019
             },
-            "any_curs_inici": {
+            "anyCursInici": {
               "type": "number",
               "mandatory": true,
-              "default": 2019
+              "default": 0
             },
-            "any_curs_final": {
+            "anyCursFinal": {
               "type": "number",
               "mandatory": true,
-              "default": 2020
+              "default": 0
             },
-            "data_inici_FCT": {
+            "dataIniciFCT": {
               "type": "date",
               "mandatory": true,
               "default": "01/01/2000"
             },
-            "data_max_inici_FCT": {
+            "dataMaxIniciFCT": {
               "type": "date",
               "mandatory": true,
               "default": "01/01/2000"
             },
-            "data_max_apte_FCT": {
+            "dataMaxApteFCT": {
               "type": "date",
               "mandatory": true,
               "default": "01/01/2000"
