@@ -87,7 +87,7 @@
         }
       },
       "credit": {
-        "label" : "Nom del crèdit o bloc (credit)",
+        "label" : "Nom del crèdit (credit)",
         "n_columns": 8,
         "group": "main",
         "props": {
@@ -275,8 +275,8 @@
         },
         "config": {
           "actions": {
-            "set_multiple_default_rows": "Definir el nombre de nuclis d'activitat",
-            "remove_rows": "Eliminar els nuclis d'activitat seleccioants",
+            "add_default_row": "Afegir nucli d'activitat",
+            "remove_rows": "Eliminar els nuclis d'activitat seleccionats",
             "add_default_row_before": "Afegir nucli d'activitat abans de la fila seleccionada"
           },
           "fields": {
@@ -327,7 +327,7 @@
                 {
                   "name": "hores",
                   "field": "hores",
-                  "editable": false
+                  "editable": true
                 },
                 {
                   "name": "inici",

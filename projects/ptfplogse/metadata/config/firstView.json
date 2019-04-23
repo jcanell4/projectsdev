@@ -77,7 +77,7 @@
         }
       },
       "credit": {
-        "label" : "Nom del crèdit o bloc (credit)",
+        "label" : "Nom del crèdit (credit)",
         "n_columns": 8,
         "group": "dadesBasiques",
         "props": {
@@ -314,7 +314,7 @@
         },
         "config": {
           "actions": {
-            "set_multiple_default_rows": "Definir el nombre de nuclis d'activitat",
+            "add_default_row": "Afegir nucli d'activitat",
             "remove_rows": "Eliminar els nuclis d'activitat seleccionats",
             "add_default_row_before": "Afegir nucli d'activitat abans de la fila seleccionada"
           },
@@ -366,7 +366,7 @@
                 {
                   "name": "hores",
                   "field": "hores",
-                  "editable": false
+                  "editable": true
                 },
                 {
                   "name": "inici",
@@ -384,7 +384,7 @@
         }
       },
       "activitatsAprenentatge": {
-        "label": "Activitats d'aprenentatge dels diferents períodes (activitatsAprenentatge)",
+        "label": "Activitats d'aprenentatge dels diferents NA (activitatsAprenentatge)",
         "n_columns": 12,
         "type": "editableObject",
         "group": "dadesBasiques",
