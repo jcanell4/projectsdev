@@ -106,7 +106,7 @@
        
         "scripts": {
             "getFunctions": {
-                "path": "HtmlExportGetFunction.js"
+                "path": "htmlExportGetFunction.js"
             },
             "updateHandler": {
                 "permissions": [
