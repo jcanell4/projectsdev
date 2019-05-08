@@ -44,7 +44,8 @@ Termini per presentar reclamacions: **fins al {#_LONG_DATE("{##dataReclamacions#
 Les reclamacions respecte a les qualificacions finals es resoldran d’acord amb el procediment previst en l’article [[ http://cido.diba.cat/legislacio/1144481/ordre-edu342009-de-30-de-gener-per-la-qual-sorganitzen-les-proves-especifiques-de-certificacio-dels-nivells-intermedi-i-avancat-dels-ensenyaments-didiomes-de-regim-especial-que-simparteixen-a-les-escoles-oficials-didiomes | 14 de l'Ordre EDU/34/2009]].
 
 L'[[http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf | imprès]] per presentar una reclamació es troba a la web de l'IOC, a la secció de formularis. Aquest és l'enllaç: [[http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf]].
-Un cop complimentada la sol·licitud, s'ha d'enviar a la bústia [[ididacademica@ioc.cat]] indicant com a Assumpte, //“Reclamació prova certificat nivell bàsic A2 anglès”//.
+
+Un cop complimentada la sol·licitud, s'ha d'enviar a la bústia [[ididacademica@ioc.cat]] indicant com a Assumpte, //“Reclamació prova certificat nivell bàsic B2 anglès”//.
 
 <small>**Nota: si per raons de calendari, la matrícula d'EOI IOC per a alumnes actuals, comencés durant el període de resolució de reclamacions, qualsevol incidència per qüestió de terminis de matrícula es resoldrà en benefici de l'alumne.**</small>
 
@@ -61,7 +62,7 @@ La qualificació final única de l'examen serà global i s'hi posarà Apte/a o N
 
 En cas que no s'hagi dut a terme alguna part de la prova es posarà No presentat/ada. (NP), en la part corresponent, i es posarà No qualificat/ada. (NQ) en els apartats de la puntuació global final i en la qualificació final.
 
-===== Mostres de les prova =====
+===== Mostres de les proves =====
 A les vostres aules, dins el bloc [[https://ioc.xtec.cat/campus/course/view.php?id=6972&section=10 | "Prova Certificat Nivell Bàsic"]] hi ha mostres i exemples de les diferents parts de la prova.
 
 ===== Necessitats específiques =====
