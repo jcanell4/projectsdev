@@ -181,7 +181,7 @@ class eoiProjectModel extends AbstractProjectModel
 //            }
         $values["dataReclamacions"] = $this->sumDate($values["dataResultats"], 3);
         $values["dataProvaNE1"] = $this->sumDate($values["dataProva1"], 5);
-        $values["dataProvaNE2"] = $this->sumDate($values["dataPRova2"], 5);
+        $values["dataProvaNE2"] = $this->sumDate($values["dataProva2"], 5);
 //        }
 
         $data = json_encode($values);
