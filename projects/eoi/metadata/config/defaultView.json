@@ -1,0 +1,198 @@
+{
+  "definition": {
+    "n_columns": 12,
+    "n_rows": 10,
+    "chars_column": 10,
+    "rows_row": 1
+  },
+  "groups": {
+    "authorship": {
+      "parent": "",
+      "label": "Autoria",
+      "n_columns": 12,
+      "frame": true,
+      "config": {
+        "collapsable": true,
+        "collapsed": false
+      }
+    },
+    "dadesBasiques": {
+      "parent": "",
+      "label": "Dades bàsiques",
+      "n_columns": 12,
+      "n_rows": 1,
+      "frame": true,
+      "config": {
+        "collapsable": true,
+        "collapsed": false
+      }
+    },
+    "avaluacio": {
+      "parent": "",
+      "label": "Sobre l'avaluació",
+      "n_columns": 12,
+      "n_rows": 1,
+      "frame": true,
+      "config": {
+        "collapsable": true,
+        "collapsed": false
+      }
+    }
+  },
+  "fields": {
+    "autor": {
+      "type": "amd",
+      "label": "Autor (autor)",
+      "n_columns": 6,
+      "group": "authorship",
+      "props": {
+        "required": true
+      },
+      "config": {
+        "readonly": {
+          "and": [
+            {
+              "class": "ValidationByRoles",
+              "data": {
+                "roles": [
+                  "responsable"
+                ],
+                "deniedResponse": true
+              }
+            },
+            {
+              "class": "ValidationByInfoPerm",
+              "data": {
+                "perm": 4,
+                "deniedResponse": true
+              }
+            }
+          ]
+        },
+        "class": {
+          "edit": "IocFilteredList",
+          "view": "IocListSelectedItems"
+        },
+        "data": {
+          "ns": "",
+          "buttonLabel": "Cercar",
+          "fieldName": "autor",
+          "dialogTitle": "Cercar autor",
+          "dialogButtonLabel": "Afegir autor",
+          "data": "",
+          "dataQuery": {
+            "filter": ""
+          },
+          "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
+          "fields": {
+            "username": "Nom d'usuari",
+            "name": "Nom"
+          },
+          "fieldId": "username",
+          "defaultEntryField": "name"
+        }
+      }
+    },
+    "supervisor": {
+      "type": "amd",
+      "label": "Cap de departatment (supervisor)",
+      "n_columns": 6,
+      "group": "authorship",
+      "props": {
+        "required": true
+      },
+      "config": {
+        "readonly": {
+          "and": [
+            {
+              "class": "ValidationByRoles",
+              "data": {
+                "roles": [
+                  "responsable"
+                ],
+                "deniedResponse": true
+              }
+            },
+            {
+              "class": "ValidationByInfoPerm",
+              "data": {
+                "perm": 4,
+                "deniedResponse": true
+              }
+            }
+          ]
+        },
+        "class": {
+          "edit": "IocFilteredList",
+          "view": "IocListSelectedItems"
+        },
+        "data": {
+          "ns": "",
+          "buttonLabel": "Cercar",
+          "fieldName": "supervisor",
+          "dialogTitle": "Cercar supervisor",
+          "dialogButtonLabel": "Afegir supervior",
+          "data": "",
+          "dataQuery": {
+            "filter": ""
+          },
+          "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
+          "fields": {
+            "username": "Nom d'usuari",
+            "name": "Nom"
+          },
+          "fieldId": "username",
+          "defaultEntryField": "name"
+        }
+      }
+    },
+    "dataA2iB1": {
+      "label": "Data de la prova A2 i B1 (dataA2iB1)",
+      "n_columns": 6,
+      "group": "avaluacio",
+      "props": {
+        "required": true,
+        "title": ""
+      }
+    },
+    "dataB2": {
+      "label": "Data de la prova B2 (dataB2)",
+      "n_columns": 6,
+      "group": "avaluacio",
+      "props": {
+        "required": true,
+        "title": ""
+      }
+    },
+    "dataPublicacioResultats": {
+      "label": "Data publicació dels resultats (dataPublicacioResultats)",
+      "n_columns": 6,
+      "group": "avaluacio",
+      "props": {
+        "required": true,
+        "title": ""
+      }
+    },
+    "dataPresentacioReclamacions": {
+      "type": "hidden"
+    },
+    "dataSolicitudNE": {
+      "label": "Data de sol·licitud NE (dataSolicitudNE)",
+      "n_columns": 6,
+      "group": "avaluacio",
+      "props": {
+        "required": true,
+        "title": ""
+      }
+    },
+    "dataProvaNE": {
+      "type": "hidden"
+    },
+    "plantilla": {
+      "type": "hidden"
+    },
+    "fitxercontinguts": {
+      "type": "hidden"
+    }
+  }
+}

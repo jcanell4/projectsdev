@@ -1,0 +1,87 @@
+{
+  "metaDataClassesNameSpaces": [
+    {
+      "main": {
+        "MetaDataDAO": "defaultProject",
+        "MetaDataEntity": "defaultProject",
+        "MetaDataRender": "eoi"
+      }
+    }
+  ],
+  "metaDataProjectConfig": [
+    {
+      "main": {
+        "projectTypeConfigFile": "admconfig:ptloe"
+      }
+    }
+  ],
+  "metaDataProjectStructure": [
+    {
+      "main": "meta.mdpr",
+      "versions": {
+        "templates": {
+          "continguts": 2
+        }
+      },
+      "mainType": {
+        "type": "object",
+        "typeDef": "pla"
+      },
+      "typesDefinition": {
+        "pla": {
+          "type": "object",
+          "keys": {
+            "dataA2iB1": {
+              "type": "date",
+              "mandatory": true,
+              "default": "01/01/2000"
+            },
+            "dataB2": {
+              "type": "date",
+              "mandatory": true,
+              "default": "01/01/2000"
+            },
+            "dataPublicacioResultats": {
+              "type": "date",
+              "mandatory": true,
+              "default": "01/01/2000"
+            },
+            "dataPresentacioReclamacions": {
+              "type": "date",
+              "mandatory": true,
+              "default": "01/01/2000"
+            },
+            "dataSolicitudNE": {
+              "type": "date",
+              "mandatory": true,
+              "default": "01/01/2000"
+            },
+            "dataProvaNE": {
+              "type": "date",
+              "mandatory": true,
+              "default": "01/01/2000"
+            },
+            "autor": {
+              "type": "string",
+              "mandatory": true
+            },
+            "plantilla": {
+              "type": "string",
+              "mandatory": true,
+              "default": [
+                "convocatoria_a2",
+                "convocatoria_b1",
+                "convocatoria_b2"
+              ]
+            },
+            "fitxercontinguts": {
+              "type": "string",
+              "mandatory": true,
+              "default": "continguts"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
