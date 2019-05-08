@@ -11,7 +11,7 @@
   "metaDataProjectConfig": [
     {
       "main": {
-        "projectTypeConfigFile": "admconfig:ptloe"
+        "projectTypeConfigFile": ""
       }
     }
   ],
@@ -31,38 +31,48 @@
         "pla": {
           "type": "object",
           "keys": {
-            "dataA2iB1": {
+            "dataProva1": {
               "type": "date",
               "mandatory": true,
               "default": "01/01/2000"
             },
-            "dataB2": {
+            "dataProva2": {
               "type": "date",
               "mandatory": true,
               "default": "01/01/2000"
             },
-            "dataPublicacioResultats": {
+            "dataResultats": {
               "type": "date",
               "mandatory": true,
               "default": "01/01/2000"
             },
-            "dataPresentacioReclamacions": {
+            "dataReclamacions": {
               "type": "date",
               "mandatory": true,
               "default": "01/01/2000"
             },
-            "dataSolicitudNE": {
+            "dataDemandaNE": {
               "type": "date",
               "mandatory": true,
               "default": "01/01/2000"
             },
-            "dataProvaNE": {
+            "dataProvaNE1": {
+              "type": "date",
+              "mandatory": true,
+              "default": "01/01/2000"
+            },
+            "dataProvaNE2": {
               "type": "date",
               "mandatory": true,
               "default": "01/01/2000"
             },
             "autor": {
               "type": "string",
+              "mandatory": true
+            },
+            "responsable": {
+              "type": "string",
+              "struc_chars": "40",
               "mandatory": true
             },
             "plantilla": {

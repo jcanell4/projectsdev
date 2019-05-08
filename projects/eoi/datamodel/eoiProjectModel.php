@@ -113,6 +113,9 @@ class eoiProjectModel extends AbstractProjectModel
 
     }
 
+    //
+    //ERROR: El update no es crida perque s'ha de fer al setData o al setDataProject i no es passa per cap que ho  faci, cercar que hi ha als projectes LOE i LOGSE'
+
 
     public function modifyACLPageToSupervisor($parArr)
     {
@@ -155,32 +158,60 @@ class eoiProjectModel extends AbstractProjectModel
 
         $values = json_decode($data, true);
 
-        $taulaDadesUnitats = json_decode($values["taulaDadesUD"], true);
-        $taulaCalendari = json_decode($values["calendari"], true);
-
-        if ($taulaCalendari != NULL && $taulaDadesUnitats != NULL) {
-            $hores = array();
-            $hores[0] = 0;
-            for ($i = 0; $i < count($taulaCalendari); $i++) {
-                $idU = intval($taulaCalendari[$i]["unitat didàctica"]);
-                if (!isset($hores[$idU])) {
-                    $hores[$idU] = 0;
-                }
-                $hores[$idU] += $taulaCalendari[$i]["hores"];
-                $hores[0] += $taulaCalendari[$i]["hores"];
-            }
-
-            for ($i = 0; $i < count($taulaDadesUnitats); $i++) {
-                $idU = intval($taulaDadesUnitats[$i]["unitat didàctica"]);
-                if (isset($hores[$idU])) {
-                    $taulaDadesUnitats[$i]["hores"] = $hores[$idU];
-                }
-            }
-            $values["durada"] = $hores[0];
-            $values["taulaDadesUD"] = $taulaDadesUnitats;
-        }
+//        $taulaDadesUnitats = json_decode($values["taulaDadesUD"], true);
+//        $taulaCalendari = json_decode($values["calendari"], true);
+//
+//        if ($taulaCalendari != NULL && $taulaDadesUnitats != NULL) {
+//            $hores = array();
+//            $hores[0] = 0;
+//            for ($i = 0; $i < count($taulaCalendari); $i++) {
+//                $idU = intval($taulaCalendari[$i]["unitat didàctica"]);
+//                if (!isset($hores[$idU])) {
+//                    $hores[$idU] = 0;
+//                }
+//                $hores[$idU] += $taulaCalendari[$i]["hores"];
+//                $hores[0] += $taulaCalendari[$i]["hores"];
+//            }
+//
+//            for ($i = 0; $i < count($taulaDadesUnitats); $i++) {
+//                $idU = intval($taulaDadesUnitats[$i]["unitat didàctica"]);
+//                if (isset($hores[$idU])) {
+//                    $taulaDadesUnitats[$i]["hores"] = $hores[$idU];
+//                }
+//            }
+        $values["dataReclamacions"] = $this->sumDate($values["dataResultats"], 3);
+        $values["dataProvaNE1"] = $this->sumDate($values["dataProva1"], 5);
+        $values["dataProvaNE2"] = $this->sumDate($values["dataPRova2"], 5);
+//        }
 
         $data = json_encode($values);
         return parent::updateCalculatedFields($data);
+    }
+
+    protected function sumDate($date, $days, $months = 0, $years = 0, $sep = "-")
+    {
+        if (!is_numeric($days) || !is_numeric($months) || !is_numeric($years)) {
+            return "[ERROR! paràmetres incorrectes ($days, $months, $years)]"; //TODO: internacionalitzar
+        }
+
+        $newDate = $date;
+
+        if ($days > 0) {
+            $calculated = strtotime("+" . $days . " day", strtotime($date));
+            $newDate = date("Y" . $sep . "m" . $sep . "d", $calculated);
+        }
+
+        if ($months > 0) {
+
+            $calculated = strtotime("+" . $months . " month", strtotime($newDate));
+            $newDate = date("Y" . $sep . "m" . $sep . "d", $calculated);
+        }
+
+        if ($years > 0) {
+            $calculated = strtotime("+" . $years . " year", strtotime($newDate));
+            $newDate = date("Y" . $sep . "m" . $sep . "d", $calculated);
+        }
+
+        return $newDate;
     }
 }

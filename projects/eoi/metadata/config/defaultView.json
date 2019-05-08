@@ -27,9 +27,9 @@
         "collapsed": false
       }
     },
-    "avaluacio": {
+    "dates": {
       "parent": "",
-      "label": "Sobre l'avaluació",
+      "label": "Dates importants",
       "n_columns": 12,
       "n_rows": 1,
       "frame": true,
@@ -93,45 +93,26 @@
         }
       }
     },
-    "supervisor": {
-      "type": "amd",
-      "label": "Cap de departatment (supervisor)",
-      "n_columns": 6,
+    "responsable": {
+      "type" : "amd",
+      "label": "Responsable de la creació (responsable)",
+      "n_columns": 4,
       "group": "authorship",
       "props": {
         "required": true
       },
-      "config": {
-        "readonly": {
-          "and": [
-            {
-              "class": "ValidationByRoles",
-              "data": {
-                "roles": [
-                  "responsable"
-                ],
-                "deniedResponse": true
-              }
-            },
-            {
-              "class": "ValidationByInfoPerm",
-              "data": {
-                "perm": 4,
-                "deniedResponse": true
-              }
-            }
-          ]
-        },
-        "class": {
+      "config":{
+        "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByInfoPerm", "data":{"perm":4, "deniedResponse":true}}]},
+        "class" : {
           "edit": "IocFilteredList",
           "view": "IocListSelectedItems"
         },
         "data": {
-          "ns": "",
+          "ns":"",
           "buttonLabel": "Cercar",
-          "fieldName": "supervisor",
-          "dialogTitle": "Cercar supervisor",
-          "dialogButtonLabel": "Afegir supervior",
+          "fieldName": "responsable",
+          "dialogTitle" : "Cercar responsable",
+          "dialogButtonLabel" : "Afegir responsable",
           "data": "",
           "dataQuery": {
             "filter": ""
@@ -146,46 +127,49 @@
         }
       }
     },
-    "dataA2iB1": {
-      "label": "Data de la prova A2 i B1 (dataA2iB1)",
+    "dataProva1": {
+      "label": "Data de la prova A2 i B1 (prova1)",
       "n_columns": 6,
-      "group": "avaluacio",
+      "group": "dates",
       "props": {
         "required": true,
-        "title": ""
+        "title": "Data de la prova A2 i B1"
       }
     },
-    "dataB2": {
-      "label": "Data de la prova B2 (dataB2)",
+    "dataProva2": {
+      "label": "Data de la prova B2 (prova2)",
       "n_columns": 6,
-      "group": "avaluacio",
+      "group": "dates",
       "props": {
         "required": true,
-        "title": ""
+        "title": "Data de la prova B2"
       }
     },
-    "dataPublicacioResultats": {
-      "label": "Data publicació dels resultats (dataPublicacioResultats)",
+    "dataResultats": {
+      "label": "Data publicació dels resultats (dataResultats)",
       "n_columns": 6,
-      "group": "avaluacio",
+      "group": "dates",
       "props": {
         "required": true,
-        "title": ""
+        "title": "Data de la publicació dels resultats"
       }
     },
-    "dataPresentacioReclamacions": {
+    "dataReclamacions": {
       "type": "hidden"
     },
-    "dataSolicitudNE": {
-      "label": "Data de sol·licitud NE (dataSolicitudNE)",
+    "dataDemandaNE": {
+      "label": "Data de sol·licitud NE (dataDemandaNE)",
       "n_columns": 6,
-      "group": "avaluacio",
+      "group": "dates",
       "props": {
         "required": true,
-        "title": ""
+        "title": "Data de la publicació dels resultats "
       }
     },
-    "dataProvaNE": {
+    "dataProvaNE1": {
+      "type": "hidden"
+    },
+    "dataProvaNE2": {
       "type": "hidden"
     },
     "plantilla": {
