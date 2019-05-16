@@ -3,7 +3,7 @@ require([
     "dojo/domReady!"
 ], function (registry) {
 
-    var eoiUpdateDataProjectButton = registry.byId('eoiUpdateDataProject');
+    var guiesgesUpdateDataProjectButton = registry.byId('eoiUpdateDataProject');
 
     var fGetQuery=function(){
         var id = this.dispatcher.getGlobalState().getCurrentId();
@@ -13,7 +13,7 @@ require([
         return ret;
     };
 
-    if (eoiUpdateDataProjectButton){
-        eoiUpdateDataProjectButton.getQuery=fGetQuery;
+    if (guiesgesUpdateDataProjectButton){
+        guiesgesUpdateDataProjectButton.getQuery=fGetQuery;
     }
 });

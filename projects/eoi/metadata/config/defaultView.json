@@ -174,9 +174,6 @@
     },
     "plantilla": {
       "type": "hidden"
-    },
-    "fitxercontinguts": {
-      "type": "hidden"
     }
   }
 }

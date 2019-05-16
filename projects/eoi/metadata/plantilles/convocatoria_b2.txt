@@ -12,13 +12,8 @@ Per presentar-se a la prova cal estar matriculat en el mòdul 5B de l'EOI IOC.
 La prova tindrà lloc a l'Associació de mestres Rosa Sensat.
 
 <map-table>
-[^ \\
-**EOI Barcelona Drassanes** \\
-Av. Drassanes 3. \\
-08001 Barcelona \\
-**Estacions Metro**: Drassanes; línia 3 (verda) \\
-**BUS**: 120 (A prop: 59, 21, D20, H14, V11, V13) ^ {{http://www.edu365.cat/primaria/faqs/social/catalunya.jpg}}  ^
-| | https://goo.gl/maps/6g7m1mGwdTJ2  |]
+| **EOI Barcelona Drassanes** \\ Av. Drassanes 3. \\ 08001 Barcelona \\ **Estacions Metro**: Drassanes; línia 3 (verda) \\ **BUS**: 120 (A prop: 59, 21, D20, H14, V11, V13) | {{/lib/plugins/projectsdev/projects/eoi/exporter/resources/mapa-prova-B2.png}}  |
+| | https://goo.gl/maps/6g7m1mGwdTJ2  |
 </map-table>
 
 <block>
@@ -61,7 +56,7 @@ La qualificació final única de l'examen serà global i s'hi posarà Apte/a o N
 En cas que no s'hagi dut a terme alguna part de la prova es posarà No presentat/ada. (NP), en la part corresponent, i es posarà No qualificat/ada. (NQ) en els apartats de la puntuació global final i en la qualificació final.
 
 ===== Mostre de les proves =====
-A les vostres aules, dins el bloc [[ https://ioc.xtec.cat/campus/course/view.php?id=6978&section=10 | "Prova Certificat Nivel Intermedi B2"]] hi ha mostres i exemples de les diferents parts de la prova.
+A les vostres aules, dins el bloc [[ https://ioc.xtec.cat/campus/course/view.php?id=6978&section=10 | Prova Certificat Nivel Intermedi B2]] hi ha mostres i exemples de les diferents parts de la prova.
 
 ===== Necessitats específiques =====
 Les persones aspirants amb necessitats específiques derivades de discapacitats físiques, psíquiques o sensorials o altres trastorns greus, que tinguin el reconeixement oficial de la situació de discapacitat, poden sol·licitar els recursos addicionals necessaris per desenvolupar la prova contactant amb l'IOC. No més tard del **{#_LONG_DATE("{##dataDemandaNE##}")_#}**, aquestes persones han de fer arribar  per correu certificat-missatgeria o personalment  a la seu central de l'IOC (Avinguda Paral.lel, 71 – 08004 Barcelona),una [[ http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf | sol·licitud general]] adreçada al director de l'IOC.

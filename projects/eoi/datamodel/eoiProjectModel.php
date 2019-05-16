@@ -40,82 +40,112 @@ class eoiProjectModel extends AbstractProjectModel
 
     public function generateProject()
     {
-        $ret = array();
-        //0. Obtiene los datos del proyecto
-        $ret = $this->getData();   //obtiene la estructura y el contenido del proyecto
+        // Considerem que el projecte es generat si les dates son correctes, això permet fer la exportació
 
-        //2. Establece la marca de 'proyecto generado'
-        $ret[ProjectKeys::KEY_GENERATED] = $this->projectMetaDataQuery->setProjectGenerated();
+        $success = $this->validateProjectDates(); // TODO: cridar a una funció que validi les dades
 
-        if ($ret[ProjectKeys::KEY_GENERATED]) {
-            try {
-                $aAutors = preg_split("/[\s,]+/", $ret['projectMetaData']["autor"]['value']);
-                foreach ($aAutors as $autor) {
-                    //3a. Otorga, a cada Autor, permisos sobre el directorio de proyecto
-                    PagePermissionManager::updatePagePermission($this->id . ":*", $autor, AUTH_UPLOAD);
+        if ($success) {
+            $ret[ProjectKeys::KEY_GENERATED] = $this->projectMetaDataQuery->setProjectGenerated();
 
-                    //4a. Otorga permisos a cada Autor sobre su propio directorio (en el caso de que no los tenga)
-                    $ns = WikiGlobalConfig::getConf('userpage_ns', 'wikiiocmodel') . $autor . ":";
-                    PagePermissionManager::updatePagePermission($ns . "*", $autor, AUTH_DELETE, TRUE);
-                    //4b. Incluye la página del proyecto en el archivo de atajos del Autor
-                    $params = [
-                        'id' => $this->id
-                        , 'autor' => $autor
-                        , 'link_page' => $this->id
-                        , 'user_shortcut' => $ns . WikiGlobalConfig::getConf('shortcut_page_name', 'wikiiocmodel')
-                    ];
-                    $this->includePageProjectToUserShortcut($params);
-                }
+        } else {
+            $ret[ProjectKeys::KEY_GENERATED] = FALSE;
+        }
 
-                //3b. Otorga, a los Responsables, permisos sobre el directorio de proyecto
-                $aResponsables = preg_split("/[\s,]+/", $ret['projectMetaData']["responsable"]['value']);
-                foreach ($aResponsables as $responsable) {
-                    if (!in_array($responsable, $aAutors)) {
-                        PagePermissionManager::updatePagePermission($this->id . ":*", $responsable, AUTH_UPLOAD);
-                    }
-                }
+        $this->projectMetaDataQuery->setProjectSystemStateAttr("generated", $ret[ProjectKeys::KEY_GENERATED]);
+    }
 
-                //5. Otorga, a los Supervisores, permisos de lectura sobre el directorio de proyecto
-                $aSupervisors = preg_split("/[\s,]+/", $ret['projectMetaData']["supervisor"]['value']);
-                foreach ($aSupervisors as $supervisor) {
-                    if (!(in_array($supervisor, $aAutors) || in_array($supervisor, $aResponsables))) {
-                        PagePermissionManager::updatePagePermission($this->id . ":*", $supervisor, AUTH_READ, TRUE);
-                    }
-                }
-            } catch (Exception $e) {
-                $ret[ProjectKeys::KEY_GENERATED] = FALSE;
-                $this->projectMetaDataQuery->setProjectSystemStateAttr("generated", FALSE);
+    protected function validateProjectDates()
+    {
+        $projectData = $this->getData();
+
+        $today = new DateTime();
+        $dataProva1 = DateTime::createFromFormat('Y-m-d', $projectData['projectMetaData']['dataProva1']['value']);
+        $dataProva2 = DateTime::createFromFormat('Y-m-d', $projectData['projectMetaData']['dataProva2']['value']);
+        $dataResultats = DateTime::createFromFormat('Y-m-d', $projectData['projectMetaData']['dataResultats']['value']);
+        $dataDemandaNE = DateTime::createFromFormat('Y-m-d', $projectData['projectMetaData']['dataDemandaNE']['value']);
+
+        $validated = true;
+        $validated &= $dataProva1 > $today && $dataProva2 > $today;
+        $validated &= $dataResultats > $dataProva1 && $dataResultats > $dataProva2;
+        $validated &= $dataDemandaNE > $today && $dataDemandaNE < $dataProva1 && $dataDemandaNE < $dataProva2;
+
+        return $validated;
+    }
+
+    public function validateTemplates() {
+        $templateDates = $this->projectMetaDataQuery->getProjectSystemStateAttr("templateDates");
+
+        $data = $this->getData();
+//        $configTemplates = json_decode($data['projectMetaData']['plantilla']['value']);
+        $configTemplates = $data['projectMetaData']['plantilla']['value'];
+        $projectTemplates = explode(',', $configTemplates);
+
+
+        if (count($templateDates) !== count($projectTemplates)) {
+            // Ha canviat el nombre de plantilles
+            return false;
+        }
+
+        $pdir = $this->getProjectMetaDataQuery()->getProjectTypeDir() . "metadata/plantilles/";
+
+        foreach ($projectTemplates as $key) {
+            //$file = wikiFN($this->id .':' . $key); // ALERTA! Això es la data dels fitxers, però necessitem la dels templates!
+            $file = $pdir . $key . '.txt';
+
+            if (!isset($templateDates[$key])) {
+                // No existeix el nom del fitxer
+                return false;
+            }
+
+            $currentFileTime = filemtime($file);
+
+            if ($currentFileTime != $templateDates[$key]) {
+                // La plantilla del projecte ha estat modificada
+                return false;
             }
         }
 
-        return $ret;
+
+
+        return true;
     }
 
-    public function createTemplateDocument($data)
-    {
+    public function setTemplateDocuments($files){
         $pdir = $this->getProjectMetaDataQuery()->getProjectTypeDir() . "metadata/plantilles/";
-        // TODO: $file ha de ser el nom del fitxer de la plantilla, amb extensió?
 
-        $templates = $data['projectMetaData']["plantilla"]['value'];
+        if (is_array($files)) {
+            $templates = $files;
+        } else {
+            // Considerem que es una llista de fitxers separats per comes
+            $templates = explode(',', $files);
+        }
+
+        $templateDates = [];
+
+
 
         foreach ($templates as $template) {
-            //$file = $this->getTemplateContentDocumentId($data) . ".txt";
 
-
-            $plantilla = file_get_contents($pdir . $template . ".txt");
-            //$name = substr($template, 0, -4);
-            //$name = substr($file, 0, -4);
+            $fullpath = $pdir . $template . ".txt";
+            $plantilla = file_get_contents($fullpath);
             $destino = $this->getContentDocumentId($template);
             $this->dokuPageModel->setData([PageKeys::KEY_ID => $destino,
                 PageKeys::KEY_WIKITEXT => $plantilla,
                 PageKeys::KEY_SUM => "generate project"]);
+
+            $templateDates[$template] = filemtime($fullpath);
         }
 
+        $this->projectMetaDataQuery->setProjectSystemStateAttr("templateDates", $templateDates);
     }
 
-    //
-    //ERROR: El update no es crida perque s'ha de fer al setData o al setDataProject i no es passa per cap que ho  faci, cercar que hi ha als projectes LOE i LOGSE'
+    public function createTemplateDocument($data)
+    {
+        $templates = $data['projectMetaData']["plantilla"]['value'];
 
+        $this->setTemplateDocuments($templates);
+
+    }
 
     public function modifyACLPageToSupervisor($parArr)
     {
@@ -158,27 +188,6 @@ class eoiProjectModel extends AbstractProjectModel
 
         $values = json_decode($data, true);
 
-//        $taulaDadesUnitats = json_decode($values["taulaDadesUD"], true);
-//        $taulaCalendari = json_decode($values["calendari"], true);
-//
-//        if ($taulaCalendari != NULL && $taulaDadesUnitats != NULL) {
-//            $hores = array();
-//            $hores[0] = 0;
-//            for ($i = 0; $i < count($taulaCalendari); $i++) {
-//                $idU = intval($taulaCalendari[$i]["unitat didàctica"]);
-//                if (!isset($hores[$idU])) {
-//                    $hores[$idU] = 0;
-//                }
-//                $hores[$idU] += $taulaCalendari[$i]["hores"];
-//                $hores[0] += $taulaCalendari[$i]["hores"];
-//            }
-//
-//            for ($i = 0; $i < count($taulaDadesUnitats); $i++) {
-//                $idU = intval($taulaDadesUnitats[$i]["unitat didàctica"]);
-//                if (isset($hores[$idU])) {
-//                    $taulaDadesUnitats[$i]["hores"] = $hores[$idU];
-//                }
-//            }
         $values["dataReclamacions"] = $this->sumDate($values["dataResultats"], 3);
         $values["dataProvaNE1"] = $this->sumDate($values["dataProva1"], 5);
         $values["dataProvaNE2"] = $this->sumDate($values["dataProva2"], 5);
@@ -214,4 +223,7 @@ class eoiProjectModel extends AbstractProjectModel
 
         return $newDate;
     }
+
+
+
 }

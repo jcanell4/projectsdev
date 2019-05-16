@@ -49,18 +49,18 @@ class exportDocument extends MainRender {
                 $allPathTemplate = $this->cfgExport->rendererPath . "/$pathTemplate";
                 $this->addFilesToZip($zip, $allPathTemplate, "", "img");
                 $zip->addFile($allPathTemplate."/main.css", "main.css");
-                $this->addFilesToZip($zip, WIKI_IOC_MODEL."exporter/xhtml", "pt_sencer/", "css");
-                $this->addFilesToZip($zip, $allPathTemplate, "", "pt_sencer", TRUE);
-                $ptSencer = $this->replaceInTemplate($data, "$pathTemplate/pt_sencer/pt.tpl");
-                $zip->addFromString('/pt_sencer/pt.html', $ptSencer);
+                $this->addFilesToZip($zip, WIKI_IOC_MODEL."exporter/xhtml", "c_sencer/", "css");
+                $this->addFilesToZip($zip, $allPathTemplate, "", "c_sencer", TRUE);
 
-                $semestre = ($data["semestre"]==1?"Setembre ":"Febrer ").date("Y");
-                $cicle = html_entity_decode(htmlspecialchars_decode($data["cicle"], ENT_COMPAT|ENT_QUOTES));
-                $credit = html_entity_decode(htmlspecialchars_decode($data["credit"], ENT_COMPAT|ENT_QUOTES));
-                $tipusBlocCredit = html_entity_decode(htmlspecialchars_decode($data["tipusBlocCredit"], ENT_COMPAT|ENT_QUOTES));
-                $durada = html_entity_decode(htmlspecialchars_decode($data["durada"], ENT_COMPAT|ENT_QUOTES));
-                $professors = html_entity_decode(htmlspecialchars_decode($data["professors"], ENT_COMPAT|ENT_QUOTES));
-                $coordinador = html_entity_decode(htmlspecialchars_decode($data["coordinador"], ENT_COMPAT|ENT_QUOTES));
+
+                $cSencer = $this->replaceInTemplate($data, "$pathTemplate/c_sencer/ca2.tpl");
+                $zip->addFromString('/c_sencer/ca2.html', $cSencer);
+
+                $cSencer = $this->replaceInTemplate($data, "$pathTemplate/c_sencer/cb1.tpl");
+                $zip->addFromString('/c_sencer/cb1.html', $cSencer);
+
+                $cSencer = $this->replaceInTemplate($data, "$pathTemplate/c_sencer/cb2.tpl");
+                $zip->addFromString('/c_sencer/cb2.html', $cSencer);
 
                 $params = array(
                     "id" => $this->cfgExport->id,
@@ -72,20 +72,41 @@ class exportDocument extends MainRender {
                         "header_page_logo" => $this->cfgExport->rendererPath . "/resources/escutGene.jpg",
                         "header_page_wlogo" => 9.9,
                         "header_page_hlogo" => 11.1,
-                        "header_ltext" => "Generalitat de Catalunya\nDepartament d'Educació\nInstitud Obert de Catalunya",
-                        "header_rtext" => $cicle."\n".$credit."-".$tipusBlocCredit."\n".$semestre,
-                        "titol" => array(
-                            "Formació Professional",
-                            "Pla de Treball",
-                            $cicle,
-                            $credit."-".$tipusBlocCredit,
-                            $semestre,
-                        ),    //títol del document
-                        "contingut" => json_decode($data["pdfDocument"], TRUE)   //contingut latex ja rendaritzat
+                        "header_ltext" => "Generalitat de Catalunya\nDepartament d'Educació\ninstitut Obert de Catalunya",
+                        "header_rtext" => "IOC - Escola Oficial d'Idiomes\n",
+
                     )
                 );
-                StaticPdfRenderer::renderDocument($params, "pt.pdf");
-                $zip->addFile($this->cfgExport->tmp_dir."/pt.pdf", "/pt_sencer/pt.pdf");
+
+                $params["data"]["titol"] = ["IOC", "Escola Oficial d'Idiomes", "A2", ""];
+                $params["data"]["contingut"] = json_decode($data["pdfconvocatoria_a2"], TRUE);   //contingut latex ja rendaritzat
+
+                StaticPdfRenderer::renderDocument($params, "c-a2.pdf");
+                $zip->addFile($this->cfgExport->tmp_dir."/c-a2.pdf", "/c_sencer/c-a2.pdf");
+
+                $params["data"]["titol"] = ["IOC", "Escola Oficial d'Idiomes", "B1", ""];
+                $params["data"]["contingut"] = json_decode($data["pdfconvocatoria_b1"], TRUE);   //contingut latex ja rendaritzat
+
+                StaticPdfRenderer::renderDocument($params, "c-b1.pdf");
+                $zip->addFile($this->cfgExport->tmp_dir."/c-b1.pdf", "/c_sencer/c-b1.pdf");
+
+                $params["data"]["titol"] = ["IOC", "Escola Oficial d'Idiomes", "B2", ""];
+                $params["data"]["contingut"] = json_decode($data["pdfconvocatoria_b2"], TRUE);   //contingut latex ja rendaritzat
+
+                StaticPdfRenderer::renderDocument($params, "c-b2.pdf");
+                $zip->addFile($this->cfgExport->tmp_dir."/c-b2.pdf", "/c_sencer/c-b2.pdf");
+
+
+
+
+//                StaticPdfRenderer::renderDocument($params, "ge.pdf");
+//                $zip->addFile($this->cfgExport->tmp_dir."/ge.pdf", "/ge_sencera/ge.pdf");
+//
+//                $params["data"]["titol"]=array("Estudis de GES","Guia docent",$modul);
+//                $params["data"]["contingut"]=json_decode($data["pdfgd"], TRUE);   //contingut latex ja rendaritzat
+//                StaticPdfRenderer::renderDocument($params, "gd.pdf");
+
+
 
                 $this->attachMediaFiles($zip);
 

@@ -19,7 +19,7 @@ function closeNav() {
 }
 
 
-function printDoc() {
-    window.open("pt.pdf");
+function printDoc($doc) {
+    window.open($doc);
 }
 

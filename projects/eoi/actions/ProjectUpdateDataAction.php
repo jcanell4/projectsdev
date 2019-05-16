@@ -1,7 +1,5 @@
 <?php
 if (!defined('DOKU_INC')) die();
-if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC.'lib/plugins/');
-include_once DOKU_PLUGIN."wikiiocmodel/projects/eoi/actions/ViewProjectMetaDataAction.php";
 
 class ProjectUpdateDataAction extends ViewProjectMetaDataAction {
 
@@ -28,53 +26,16 @@ class ProjectUpdateDataAction extends ViewProjectMetaDataAction {
         $metaDataSubset = ($this->params[ProjectKeys::KEY_METADATA_SUBSET]) ? $this->params[ProjectKeys::KEY_METADATA_SUBSET] : ProjectKeys::VAL_DEFAULTSUBSET;
         $metaDataConfigProject = $configProjectModel->getMetaDataProject($metaDataSubset);
 
-        if ($metaDataConfigProject['arraytaula']) {
-            $arraytaula = json_decode($metaDataConfigProject['arraytaula'], TRUE);
-            $restoreData = !$projectModel->getProjectSubSetAttr("updatedDate");
-            if($restoreData){
-                $calendari = $response["calendari"];
-                $datesAC = $response["datesAC"];
-                $datesEAF = $response["datesEAF"];
-                $datesJT = $response["datesJT"];
-            }
-            $processArray = array();
 
-            foreach ($arraytaula as $elem) {
-                if($elem["type"] !== "noprocess"){
-                    $processor = ucwords($elem['type'])."ProjectUpdateProcessor";
-                    if ( !isset($processArray[$processor]) ) {
-                        $processArray[$processor] = new $processor;
-                    }
-                    $processArray[$processor]->init($elem['value'], $elem['parameters']);
-                    $processArray[$processor]->runProcess($response);
-                }
-            }
-            if($restoreData){
-                $response["calendari"] = $calendari;
-                $response["datesAC"] = $datesAC;
-                $response["datesEAF"] = $datesEAF;
-                $response["datesJT"] = $datesJT;
-            }
 
-            if ($elem) {
-                $metaData = [
-                    ProjectKeys::KEY_ID_RESOURCE => $this->params[ProjectKeys::KEY_ID],
-                    ProjectKeys::KEY_PROJECT_TYPE => $projectType,
-                    ProjectKeys::KEY_PERSISTENCE => $this->persistenceEngine,
-                    ProjectKeys::KEY_METADATA_SUBSET => $metaDataSubSet,
-                    ProjectKeys::KEY_METADATA_VALUE => json_encode($response)
-                ];
-                $projectModel->setData($metaData);    //actualiza el contenido en 'mdprojects/'
-                
-                $projectModel->setProjectSubSetAttr("updatedDate", time());
+        // TODO: Sobreescriure els fitxers del projecte amb les plantilles?
+        // TODO: Actualitzar la configuració del fitxer amb les dades de les plantilles.
+        //$projectModel->createTemplateDocument($response); // Es sobreescriuen?
+        $projectModel->setTemplateDocuments($response['plantilla']);
 
-                $response = parent::runAction();
-                if($this->getModel()->isProjectGenerated()){
-                    $id = $this->getModel()->getContentDocumentId($response);
-                    p_set_metadata($id, array('metadataProjectChanged'=>true));
-                }
-            }
-        }
+        $response[ProjectKeys::KEY_ACTIVA_UPDATE_BTN] = !$this->getModel()->validateTemplates()? 1 : 0;
+
+        $response[ProjectKeys::KEY_ID] = $projectModel->getModelAttributes()['id'];
 
         return $response;
     }

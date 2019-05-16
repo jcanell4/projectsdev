@@ -26,9 +26,6 @@ class command_plugin_projectsdev_projects_eoi_projectExport extends abstract_pro
                   );
         $modelManager = $this->getModelManager();
         $action = $modelManager->getActionInstance("ProjectExportAction", $modelManager->getExporterManager());
-//        $content = $action->get($params);
-//        $projectId = str_replace(":", "_", $action->getProjectID());
-//        return array(ProjectKeys::KEY_ID => $projectId, 'meta' => $content);
         return $action->get($params); //JOSEP: JA RETORNA l'ARRAY
     }
 

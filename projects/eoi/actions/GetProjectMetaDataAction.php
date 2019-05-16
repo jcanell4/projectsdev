@@ -8,6 +8,8 @@ class GetProjectMetaDataAction extends BasicGetProjectMetaDataAction{
         if (!$this->getModel()->isProjectGenerated()) {
             $this->getModel()->setViewConfigName("firstView");
         }           
-        return parent::runAction();
+        $response = parent::runAction();
+
+        return $response;
     }
 }

@@ -25,10 +25,10 @@
       },
       "mainType": {
         "type": "object",
-        "typeDef": "pla"
+        "typeDef": "convocatories"
       },
       "typesDefinition": {
-        "pla": {
+        "convocatories": {
           "type": "object",
           "keys": {
             "dataProva1": {
@@ -83,11 +83,6 @@
                 "convocatoria_b1",
                 "convocatoria_b2"
               ]
-            },
-            "fitxercontinguts": {
-              "type": "string",
-              "mandatory": true,
-              "default": "continguts"
             }
           }
         }

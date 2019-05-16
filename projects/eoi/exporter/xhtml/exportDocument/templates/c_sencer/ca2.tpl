@@ -10,28 +10,27 @@
     <!--link rel="stylesheet" href="css/basic.css"-->
     <link rel="stylesheet" href="css/main.css">
 
-    <title>IOC - Pla de treball</title>
+    <title>IOC - Escola Oficial d'Idiomes</title>
   </head>
   <body>
     
 <!-- Side navigation -->
 
+<!--
 <div id="mySidenav" class="sidenav open">
   <div class="closebtn" onclick="closeNav()">&times;</div>
   <div class="content_index fade_in" id="myContentIndex">
       @@TOC(continguts)@@
   </div>
 </div>
-  
+-->
 
 <span class="hamburger hidden" id="myHamburger" onclick="openNav()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-width="2.4" stroke-linecap="butt" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path></svg></span>
 
 
   <header class="main_header">
     <div class="container">
-      <h1>Pla de treball</h1>
-      <h2>{##cicle##}</h2>
-      <h2>{##credit##}. {##tipusBlocCredit##}</h2>
+      <h1>EOI IOC. Prova per a l'obtenció del certificat de nivell bàsic A2</h1>
     </div>
   </header>
 
@@ -39,18 +38,15 @@
   
   <section id="intro">
     <div class="container">
-      <p><span>Durada del <WIOCCL:IF condition="''mòdul''!={##tipusBlocCredit##}">bloc</WIOCCL:IF><WIOCCL:IF condition="''mòdul''=={##tipusBlocCredit##}">mòdul</WIOCCL:IF></span>: {##durada##} hores</p>
-      <p><span>Professors</span>: {##professors##}</p>
-      <p><span>Coordinador/a</span>: {##coordinador##}</p>
-      <p><span><WIOCCL:IF condition="{##semestre##}==1">Setembre</WIOCCL:IF><WIOCCL:IF condition="{##semestre##}==2">Febrer</WIOCCL:IF> {#_YEAR()_#}</span></p>
+
     </div>
   </section>
 
   <br class="salt_impr">
 
   <div class="container">
-    {##fitxercontinguts##}  
-    <div id="printbtn" onclick="printDoc()"><span>Descarrega't el PDF</span></div>
+    {##convocatoria_a2##}
+    <div id="printbtn" onclick="printDoc('c-a2.pdf')"><span>Descarrega't el PDF</span></div>
   </div>
     
   <script src="js/main.js"></script>

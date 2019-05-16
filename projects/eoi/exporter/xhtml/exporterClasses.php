@@ -5,10 +5,11 @@
  * @culpable Rafael Claver
  */
 if (!defined('DOKU_INC')) die();
-if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', realpath(DOKU_INC."lib/plugins/"));
-require_once DOKU_INC."inc/parserutils.php";
+if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', realpath(DOKU_INC . "lib/plugins/"));
+require_once DOKU_INC . "inc/parserutils.php";
 
-class MainRender extends renderObject {
+class MainRender extends renderObject
+{
     protected $max_menu;
     protected $max_navmenu;
     protected $media_path = 'lib/exe/fetch.php?media=';
@@ -17,11 +18,12 @@ class MainRender extends renderObject {
     protected $web_folder = 'WebContent';
     protected $initialized = FALSE;
 
-    public function initParams(){
-        $langFile = $this->cfgExport->langDir.$this->cfgExport->lang.'.conf';
-        if (!file_exists($langFile)){
+    public function initParams()
+    {
+        $langFile = $this->cfgExport->langDir . $this->cfgExport->lang . '.conf';
+        if (!file_exists($langFile)) {
             $this->cfgExport->lang = 'ca';
-            $langFile = $this->cfgExport->langDir.$this->cfgExport->lang.'.conf';
+            $langFile = $this->cfgExport->langDir . $this->cfgExport->lang . '.conf';
         }
         if (file_exists($langFile)) {
             $this->cfgExport->aLang = confToHash($langFile);
@@ -30,55 +32,68 @@ class MainRender extends renderObject {
     }
 }
 
-class renderDate extends AbstractRenderer {
+class renderDate extends AbstractRenderer
+{
     private $sep;
 
-    public function __construct($factory, $cfgExport=NULL, $sep="-") {
+    public function __construct($factory, $cfgExport = NULL, $sep = "-")
+    {
         parent::__construct($factory, $cfgExport);
         $this->sep = $sep;
     }
 
-    public function process($date) {
+    public function process($date)
+    {
         $dt = strtotime(str_replace('/', '-', $date));
-        return date("d". $this->sep."m".$this->sep."Y", $dt);
+        return date("d" . $this->sep . "m" . $this->sep . "Y", $dt);
     }
 
 }
 
-class renderText extends AbstractRenderer {
+class renderText extends AbstractRenderer
+{
 
-    public function process($data) {
+    public function process($data)
+    {
         return htmlentities($data, ENT_QUOTES);
     }
 }
 
-class renderField extends AbstractRenderer {
+class renderField extends AbstractRenderer
+{
 
-    public function process($data) {
+    public function process($data)
+    {
         return $data;
     }
 }
 
-class renderRenderizableText extends AbstractRenderer {
+class renderRenderizableText extends AbstractRenderer
+{
 
-    public function process($data) {
+    public function process($data)
+    {
         $instructions = p_get_instructions($data);
         $html = p_render('wikiiocmodel_ptxhtml', $instructions, $info);
         return $html;
     }
 }
 
-class renderFileToPsDom extends renderFile {
-    protected function render($instructions, &$renderData){
+class renderFileToPsDom extends renderFile
+{
+    protected function render($instructions, &$renderData)
+    {
         $ret = p_latex_render('wikiiocmodel_psdom', $instructions, $renderData);
         Logger::debug("psDom: $ret", 0, 0, 0, 0);
         return $ret;
     }
 }
 
-class renderFile extends AbstractRenderer {
+class renderFile extends AbstractRenderer
+{
 
-    public function process($data, $alias="") {
+    public function process($data, $alias = "")
+    {
         global $plugin_controller;
 
         if (session_status() == PHP_SESSION_NONE) {
@@ -93,15 +108,15 @@ class renderFile extends AbstractRenderer {
         $_SESSION['gif_images'] = &$this->cfgExport->gif_images;
         $_SESSION['alternateAddress'] = TRUE;
 
-        if(preg_match("/".$this->cfgExport->id."/", $data)!=1){
-            $fns = $this->cfgExport->id.":".$data;
+        if (preg_match("/" . $this->cfgExport->id . "/", $data) != 1) {
+            $fns = $this->cfgExport->id . ":" . $data;
         }
         $file = wikiFN($fns);
         $text = io_readFile($file);
 
         $counter = 0;
         $text = preg_replace("/~~USE:WIOCCL~~\n/", "", $text, 1, $counter);
-        if($counter>0){
+        if ($counter > 0) {
             $dataSource = $plugin_controller->getCurrentProjectDataSource($this->cfgExport->id, $plugin_controller->getCurrentProject());
             $text = WiocclParser::getValue($text, [], $dataSource);
         }
@@ -109,8 +124,8 @@ class renderFile extends AbstractRenderer {
         $instructions = p_get_instructions($text);
         $renderData = array();
         $html = $this->render($instructions, $renderData);
-        if(empty($alias)){
-            $alias=$data;
+        if (empty($alias)) {
+            $alias = $data;
         }
         $this->cfgExport->toc[$alias] = $renderData["tocItems"];
         if ($startedHere) session_destroy();
@@ -118,7 +133,11 @@ class renderFile extends AbstractRenderer {
         return $html;
     }
 
-    protected function render($instructions, &$renderData){
+    protected function render($instructions, &$renderData)
+    {
         return p_render('wikiiocmodel_ptxhtml', $instructions, $renderData);
     }
+
+
 }
+
