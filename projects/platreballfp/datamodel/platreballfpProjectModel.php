@@ -88,6 +88,10 @@ class platreballfpProjectModel extends AbstractProjectModel {
         parent::modifyACLPageToUser($parArr);
     }
 
+    /**
+     * Obtiene la lista de ficheros, y sus propiedades, (del configMain.json) que hay que enviar por FTP
+     * @return array
+     */
     public function filesToExportList() {
         $ret = array();
         $metadata = $this->getProjectMetaDataQuery()->getMetaDataFtpSender();
@@ -106,6 +110,15 @@ class platreballfpProjectModel extends AbstractProjectModel {
             }
         }
         return $ret;
+    }
+
+    /**
+     * Averigua si hay fichero para enviar por FTP
+     * @return boolean
+     */
+    public function haveFilesToExportList() {
+        $ret = $this->filesToExportList();
+        return (!empty($ret));
     }
 
 }
