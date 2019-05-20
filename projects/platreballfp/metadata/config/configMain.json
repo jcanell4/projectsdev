@@ -15,6 +15,14 @@
             }
         }        
     ],
+    "metaDataFtpSender": [
+        {
+            "main": {
+                "file_1": {"local":"mediadir", "type":"zip", "action":1, "remoteBase":"rafatmp/platreballfp/", "remoteDir":"basic/"},
+                "file_2": {"local":"mediadir", "type":"pdf", "action":0, "remoteBase":"rafatmp/platreballfp/", "remoteDir":"basic/"}
+            }
+        }
+    ],
     "metaDataProjectStructure": [
         {
             "main": "meta.mdpr",
