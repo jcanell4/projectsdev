@@ -52,6 +52,8 @@ class exportDocument extends MainRender {
                 $this->addFilesToZip($zip, WIKI_IOC_MODEL."exporter/xhtml", "c_sencer/", "css");
                 $this->addFilesToZip($zip, $allPathTemplate, "", "c_sencer", TRUE);
 
+                $this->addFilesToZip($zip, $this->cfgExport->rendererPath, "c_sencer/", "resources");
+
 
                 $cSencer = $this->replaceInTemplate($data, "$pathTemplate/c_sencer/ca2.tpl");
                 $zip->addFromString('/c_sencer/ca2.html', $cSencer);

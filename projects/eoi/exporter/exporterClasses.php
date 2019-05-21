@@ -152,23 +152,6 @@ class StaticPdfRenderer extends BasicStaticPdfRenderer
             static::renderHeader($params["data"]["contingut"][$i], $iocTcPdf);
         }
 
-        /*
-        // add a new page for TOC
-        $iocTcPdf->addTOCPage();
-
-        // write the TOC title
-        $iocTcPdf->SetFont('Times', 'B', 16);
-        $iocTcPdf->MultiCell(0, 0, 'Índex', 0, 'C', 0, 1, '', '', true, 0);
-        $iocTcPdf->Ln();
-
-        $iocTcPdf->SetFont('Times', '', 12);
-
-        // add a simple Table Of Content at first page
-        $iocTcPdf->addTOC(2, 'courier', '.', 'INDEX', 'B', array(128, 0, 0));
-
-        // end of TOC page
-        $iocTcPdf->endTOCPage();
-*/
         $iocTcPdf->Output("{$params['tmp_dir']}/$output_filename", 'F');
 
         return TRUE;
@@ -185,47 +168,39 @@ class StaticPdfRenderer extends BasicStaticPdfRenderer
 
             case EoiMapTableNodeDoc::MAP_TABLE:
 
-
-                $path = DOKU_INC;
-
-
                 // Cel·la 1 Fila 1 (adreça)
-//                $content['content'][0]['content'][0]['content'][0]['type']="tablecell";
-                $content['content'][0]['content'][0]['content'][0]['align']="left";
-
-
+                $content['content'][0]['content'][0]['content'][0]['align'] = "left";
 
                 // Cel·la 2 Fila 1 (mapa)
-//                $content['content'][0]['content'][0]['content'][1]['type']="tablecell";
-                $content['content'][0]['content'][0]['content'][1]['align']="right";
+                $content['content'][0]['content'][0]['content'][1]['align'] = "right";
 
                 // Cel·la 2 Fila 2 (url)
-                $content['content'][0]['content'][1]['content'][1]['align']="right";
-
-
-
-                $img = $content['content'][0]['content'][0]['content'][1]['content'][1];
-                $file = $img['id'];
-                $content['content'][0]['content'][0]['content'][1]['content'][1]['src'] = $path . $file;
-
-
-                // Aquesta es la cel·la del peu, sota la imatge
-                //$content['content'][0]['content'][1]['content'][1]['content'][1];
-
-                // Eliminem l'espai inicial que s'afegeix a la taula
-
+                $content['content'][0]['content'][1]['content'][1]['align'] = "right";
 
                 $aux = trim(static::getStructuredContent($content), " ");
 
-                // ALERTA[Xavi] s'afegeixen text-align:center automàticament, els eliminem.
-
-                //$aux = str_replace('text-align:center;', '', $aux);
-
-
-//                $ret = "<table cellspacing=\"10\" style=\"border: 1px solid red;\" ><tr><td>" . $aux . "</td></tr></table>";
-//                return $ret;
-
                 return $aux;
+
+            case ImgResourcePrjNodeDoc::IMG_RESOURCE_PRJ:
+
+                $ret = '<img src="' . $content['src'] . '" ';
+                if ($content["title"]) {
+                    $ret .= ' alt="' . $content["title"] . '"';
+                }
+
+                if ($content["width"]) {
+                    $ret .= ' width="' . $content["width"] . '"';
+                }
+
+                if ($content["height"]) {
+                    $ret .= ' height="' . $content["height"] . '"';
+                }
+
+                $ret .= '> ';
+
+                
+                return $ret;
+
             default;
                 return parent::getContent($content);
         }
@@ -251,6 +226,25 @@ class EoiMapTableNodeDoc extends StructuredNodeDoc
     public function __construct($type)
     {
         parent::__construct($type);
+    }
+
+}
+
+class ImgResourcePrjNodeDoc extends ImageNodeDoc
+{
+    const IMG_RESOURCE_PRJ = "img-resource-prj";
+
+    // TODO[Xavi]: En lloc de fer servir una mida fixa extreurela de la etiqueta <img-resource-prj>
+    public function __construct($ns = '', $title = null, $align = null, $width = '250', $height = '250', $cache = null, $linking = null)
+    {
+        parent::__construct($ns, $title, $align, $width, $height, $cache, $linking);
+
+        $this->type = self::IMG_RESOURCE_PRJ;
+    }
+
+    public function setSource($src)
+    {
+        $this->src = $src;
     }
 
 }

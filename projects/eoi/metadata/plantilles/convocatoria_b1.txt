@@ -10,7 +10,7 @@ Per presentar-se a la prova cal estar matriculat en el mòdul 3B de l'EOI IOC.
 La prova tindrà lloc a l'Escola Oficial d'Idiomes Barcelona Drassanes
 
 <map-table>
-|**EOI Barcelona Drassanes** \\ Av. Drassanes 14. \\ 08001 Barcelona \\ **Estacions Metro**: Drassanes; línia 3 (verda) \\ **BUS**: 120 (A prop: 59, 21, D20, H14, V11, V13) | {{/lib/plugins/projectsdev/projects/eoi/exporter/resources/mapa-prova-A2-B1.png}}  |
+|**EOI Barcelona Drassanes** \\ Av. Drassanes 14. \\ 08001 Barcelona \\ **Estacions Metro**: Drassanes; línia 3 (verda) \\ **BUS**: 120 (A prop: 59, 21, D20, H14, V11, V13)|<img-resource-prj>mapa-prova-A2-B1.png</img-resource-prj>  |
 | | [[https://goo.gl/maps/PncUtYcbS252|https://goo.gl/maps/PncUtYcbS252]]  |
 </map-table>
 

@@ -12,7 +12,7 @@ Per presentar-se a la prova cal estar matriculat en el mòdul 5B de l'EOI IOC.
 La prova tindrà lloc a l'Associació de mestres Rosa Sensat.
 
 <map-table>
-|**EOI Barcelona Drassanes** \\ Av. Drassanes 3. \\ 08001 Barcelona \\ **Estacions Metro**: Drassanes; línia 3 (verda) \\ **BUS**: 120 (A prop: 59, 21, D20, H14, V11, V13) | {{/lib/plugins/projectsdev/projects/eoi/exporter/resources/mapa-prova-B2.png}}  |
+|**EOI Barcelona Drassanes** \\ Av. Drassanes 3. \\ 08001 Barcelona \\ **Estacions Metro**: Drassanes; línia 3 (verda) \\ **BUS**: 120 (A prop: 59, 21, D20, H14, V11, V13)|<img-resource-prj>mapa-prova-B2.png</img-resource-prj>  |
 | | [[https://goo.gl/maps/6g7m1mGwdTJ2|https://goo.gl/maps/6g7m1mGwdTJ2]] |
 </map-table>
 
