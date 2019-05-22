@@ -72,11 +72,11 @@ class eoiProjectModel extends AbstractProjectModel
         return $validated;
     }
 
-    public function validateTemplates() {
+    public function validateTemplates()
+    {
         $templateDates = $this->projectMetaDataQuery->getProjectSystemStateAttr("templateDates");
 
         $data = $this->getData();
-//        $configTemplates = json_decode($data['projectMetaData']['plantilla']['value']);
         $configTemplates = $data['projectMetaData']['plantilla']['value'];
         $projectTemplates = explode(',', $configTemplates);
 
@@ -89,7 +89,7 @@ class eoiProjectModel extends AbstractProjectModel
         $pdir = $this->getProjectMetaDataQuery()->getProjectTypeDir() . "metadata/plantilles/";
 
         foreach ($projectTemplates as $key) {
-            //$file = wikiFN($this->id .':' . $key); // ALERTA! Això es la data dels fitxers, però necessitem la dels templates!
+
             $file = $pdir . $key . '.txt';
 
             if (!isset($templateDates[$key])) {
@@ -106,22 +106,16 @@ class eoiProjectModel extends AbstractProjectModel
         }
 
 
-
         return true;
     }
 
-    public function setTemplateDocuments($files){
+    public function setTemplateDocuments($files)
+    {
         $pdir = $this->getProjectMetaDataQuery()->getProjectTypeDir() . "metadata/plantilles/";
 
-        if (is_array($files)) {
-            $templates = $files;
-        } else {
-            // Considerem que es una llista de fitxers separats per comes
-            $templates = explode(',', $files);
-        }
+        $templates = explode(',', $files);
 
         $templateDates = [];
-
 
 
         foreach ($templates as $template) {
@@ -223,7 +217,6 @@ class eoiProjectModel extends AbstractProjectModel
 
         return $newDate;
     }
-
 
 
 }

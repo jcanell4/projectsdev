@@ -78,11 +78,7 @@
             "plantilla": {
               "type": "string",
               "mandatory": true,
-              "default": [
-                "convocatoria_a2",
-                "convocatoria_b1",
-                "convocatoria_b2"
-              ]
+              "default": "convocatoria_a2,convocatoria_b1,convocatoria_b2"
             }
           }
         }
