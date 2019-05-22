@@ -7,7 +7,8 @@ require_once(DOKU_PLUGIN . 'syntax.php');
 class syntax_plugin_projectsdev_projects_eoi_imgresourceprj extends DokuWiki_Syntax_Plugin
 {
 
-    const RESOURCE_PATH = DOKU_PLUGIN . "projectsdev/projects/eoi/exporter/resources/";
+    // Data saved to be use on the lexer unmatched stated
+    protected $pendingData;
 
 
     function getInfo()
@@ -40,7 +41,8 @@ class syntax_plugin_projectsdev_projects_eoi_imgresourceprj extends DokuWiki_Syn
      */
     function connectTo($mode)
     {
-        $this->Lexer->addEntryPattern('<img-resource-prj>(?=.*?</img-resource-prj>)', $mode, 'plugin_projectsdev_projects_eoi_imgresourceprj');
+//        $this->Lexer->addEntryPattern('<img-resource-prj>(?=.*?</img-resource-prj>)', $mode, 'plugin_projectsdev_projects_eoi_imgresourceprj');
+        $this->Lexer->addEntryPattern('<img-resource-prj.*?>(?=.*?</img-resource-prj>)', $mode, 'plugin_projectsdev_projects_eoi_imgresourceprj');
     }
 
     function postConnect()
@@ -53,18 +55,29 @@ class syntax_plugin_projectsdev_projects_eoi_imgresourceprj extends DokuWiki_Syn
      */
     function handle($match, $state, $pos, &$handler)
     {
-        return array($state, $match);
+        preg_match('/height="(.*?)"/', $match, $matches);
+        $height = $matches[1] ? $matches[1] : NULL;
+
+        preg_match('/width="(.*?)"/', $match, $matches);
+        $width = $matches[1] ? $matches[1] : NULL;
+
+        preg_match('/align="(.*?)"/', $match, $matches);
+        $align = $matches[1] ? $matches[1] : NULL;
+
+
+        return [$state, $match, $height, $width, $align];
     }
 
     function render($mode, &$renderer, $data)
     {
+        global $plugin_controller;
 
         list($state, $text) = $data;
 
         if ($mode === 'wikiiocmodel_psdom') {
             switch ($state) {
                 case DOKU_LEXER_ENTER:
-                    $node = new ImgResourcePrjNodeDoc();
+                    $node = new ImgResourcePrjNodeDoc($data[2], $data[3], $data[4]);
                     $renderer->getCurrentNode()->addContent($node);
                     $renderer->setCurrentNode($node);
                     break;
@@ -77,7 +90,8 @@ class syntax_plugin_projectsdev_projects_eoi_imgresourceprj extends DokuWiki_Syn
                     array_shift($instructions);
                     array_pop($instructions);
 
-                    $src = self::RESOURCE_PATH . $instructions[0][1][0];
+
+                    $src = $plugin_controller->getProjectTypeDir($plugin_controller->getProjectType()) . 'exporter/resources/' . $instructions[0][1][0];
 
                     $renderer->getCurrentNode()->setSource($src);
 
@@ -89,9 +103,10 @@ class syntax_plugin_projectsdev_projects_eoi_imgresourceprj extends DokuWiki_Syn
             }
             return TRUE;
 
-        } elseif ($mode === 'iocxhtml' || $mode === 'xhtml' || $mode === 'wikiiocmodel_ptxhtml') {
+        } elseif ($mode === 'iocxhtml' || $mode === 'xhtml' || $mode === 'wikiiocmodel_ptxhtml') { // el ptxhtml és el de la exportació?
             switch ($state) {
                 case DOKU_LEXER_ENTER :
+                    $this->pendingData = $data;
                     break;
                 case DOKU_LEXER_UNMATCHED :
                     $instructions = get_latex_instructions($text);
@@ -103,10 +118,25 @@ class syntax_plugin_projectsdev_projects_eoi_imgresourceprj extends DokuWiki_Syn
                     array_pop($instructions);
 
 
-                    $renderer->doc .= '<img class="media" src="resources/' . $text . '"/>';
+                    $path = '';
+
+                    if ($mode !== 'wikiiocmodel_ptxhtml') {
+                        $path = str_replace(DOKU_INC, '', $plugin_controller->getProjectTypeDir($plugin_controller->getProjectType())) . 'exporter/';
+                    }
+
+                    $path .= 'resources/' . $text;
+
+
+                    $height = $this->pendingData[2] != NULL ? 'height="' . $this->pendingData[2] . '"' : '';
+                    $width = $this->pendingData[3] != NULL ? 'width="' . $this->pendingData[3] . '"' : '';
+                    $align = $this->pendingData[4] != NULL ? 'align="' . $this->pendingData[4] . '"' : '';
+
+                    $renderer->doc .= '<img class="media" src="' . $path . '" ' . $height . ' ' . $width . ' ' . $align . '/>';
 
                     break;
                 case DOKU_LEXER_EXIT :
+
+                    $this->pendingData = NULL;
                     break;
             }
             return TRUE;

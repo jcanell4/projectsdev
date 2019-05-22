@@ -235,9 +235,9 @@ class ImgResourcePrjNodeDoc extends ImageNodeDoc
     const IMG_RESOURCE_PRJ = "img-resource-prj";
 
     // TODO[Xavi]: En lloc de fer servir una mida fixa extreurela de la etiqueta <img-resource-prj>
-    public function __construct($ns = '', $title = null, $align = null, $width = '250', $height = '250', $cache = null, $linking = null)
+    public function __construct($height = NULL, $width=NULL, $align=NULL)
     {
-        parent::__construct($ns, $title, $align, $width, $height, $cache, $linking);
+        parent::__construct('', NULL, $align, $width, $height, NULL, NULL);
 
         $this->type = self::IMG_RESOURCE_PRJ;
     }

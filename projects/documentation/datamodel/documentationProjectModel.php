@@ -14,6 +14,7 @@ class documentationProjectModel extends AbstractProjectModel {
 
     public function __construct($persistenceEngine)  {
         parent::__construct($persistenceEngine);
+
     }
 
     public function generateProject() {
@@ -57,13 +58,5 @@ class documentationProjectModel extends AbstractProjectModel {
         return $ret;
     }
 
-    /**
-     * Modifica los permisos en el fichero de ACL y la página de atajos del autor
-     * cuando se modifica el autor o el responsable del proyecto
-     * @param array $parArr ['id','link_page','old_autor','old_responsable','new_autor','new_responsable','userpage_ns','shortcut_name']
-     */
-    public function modifyACLPageToUser($parArr) {
-        parent::modifyACLPageToUser($parArr);
-    }
 
 }

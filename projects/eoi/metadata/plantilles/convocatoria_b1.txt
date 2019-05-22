@@ -1,6 +1,6 @@
 ~~USE:WIOCCL~~
 ====== EOI IOC. Prova per a l'obtenció del certificat de nivell bàsic B1 ======
-L'institut Obert de Catalunya organitza la prova per a l'obtenció del **certificat de nivell bàsic B1 d'anglès**.
+L'Institut Obert de Catalunya organitza la prova per a l'obtenció del **certificat de nivell bàsic B1 d'anglès**.
 
 La prova consta d'una part escrita i una part oral.
 
@@ -10,8 +10,8 @@ Per presentar-se a la prova cal estar matriculat en el mòdul 3B de l'EOI IOC.
 La prova tindrà lloc a l'Escola Oficial d'Idiomes Barcelona Drassanes
 
 <map-table>
-|**EOI Barcelona Drassanes** \\ Av. Drassanes 14. \\ 08001 Barcelona \\ **Estacions Metro**: Drassanes; línia 3 (verda) \\ **BUS**: 120 (A prop: 59, 21, D20, H14, V11, V13)|<img-resource-prj>mapa-prova-A2-B1.png</img-resource-prj>  |
-| | [[https://goo.gl/maps/PncUtYcbS252|https://goo.gl/maps/PncUtYcbS252]]  |
+|**EOI Barcelona Drassanes** \\ Av. Drassanes 14. \\ 08001 Barcelona \\ **Estacions Metro**: Drassanes; línia 3 (verda) \\ **BUS**: 120 (A prop: 59, 21, D20, H14, V11, V13)|<img-resource-prj height="250" width="250" align="right">mapa-prova-A2-B1.png</img-resource-prj>  |
+| |[[https://goo.gl/maps/PncUtYcbS252|https://goo.gl/maps/PncUtYcbS252]]  |
 </map-table>
 
 <block>
@@ -41,7 +41,7 @@ Les reclamacions respecte a les qualificacions finals es resoldran d’acord amb
 L'[[http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf|imprès]] per presentar una reclamació es troba a la web de l'IOC, a la secció de formularis. Aquest és l'enllaç: [[http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf|http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf]].
 Un cop complimentada la sol·licitud, s'ha d'enviar a la bústia [[ididacademica@ioc.cat|ididacademica@ioc.cat]] indicant com a Assumpte, //“Reclamació prova certificat nivell intermedi B1 anglès”//.
 
-<small>**Nota: si per raons de calendari, la matrícula d'EOI IOC per a alumnes actuals, comencés durant el període de resolució de reclamacions, qualsevol incidència per qüestió de terminis de matrícula es resoldrà en benefici de l'alumne.**</small>
+<sub>**Nota: si per raons de calendari, la matrícula d'EOI IOC per a alumnes actuals, comencés durant el període de resolució de reclamacions, qualsevol incidència per qüestió de terminis de matrícula es resoldrà en benefici de l'alumne.**</sub>
 
 ===== Descripció i pautes de qualificació de les proves =====
 La prova estarà constituïda per tasques de comprensió oral, comprensió escrita, ús de la llengua, expressió i interacció escrita i expressió i interacció oral.

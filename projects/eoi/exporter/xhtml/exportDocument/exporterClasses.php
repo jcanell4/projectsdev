@@ -25,7 +25,7 @@ class exportDocument extends MainRender {
             $this->cfgExport->lang = preg_replace('/\n/', '', $this->cfgExport->lang);
             $this->log = isset($params['log']);
         }
-        $this->cfgExport->export_html = TRUE;
+
         parent::initParams();
     }
 
@@ -74,7 +74,7 @@ class exportDocument extends MainRender {
                         "header_page_logo" => $this->cfgExport->rendererPath . "/resources/escutGene.jpg",
                         "header_page_wlogo" => 9.9,
                         "header_page_hlogo" => 11.1,
-                        "header_ltext" => "Generalitat de Catalunya\nDepartament d'Educació\ninstitut Obert de Catalunya",
+                        "header_ltext" => "Generalitat de Catalunya\nDepartament d'Educació\nInstitut Obert de Catalunya",
                         "header_rtext" => "IOC - Escola Oficial d'Idiomes\n",
 
                     )
@@ -97,18 +97,6 @@ class exportDocument extends MainRender {
 
                 StaticPdfRenderer::renderDocument($params, "c-b2.pdf");
                 $zip->addFile($this->cfgExport->tmp_dir."/c-b2.pdf", "/c_sencer/c-b2.pdf");
-
-
-
-
-//                StaticPdfRenderer::renderDocument($params, "ge.pdf");
-//                $zip->addFile($this->cfgExport->tmp_dir."/ge.pdf", "/ge_sencera/ge.pdf");
-//
-//                $params["data"]["titol"]=array("Estudis de GES","Guia docent",$modul);
-//                $params["data"]["contingut"]=json_decode($data["pdfgd"], TRUE);   //contingut latex ja rendaritzat
-//                StaticPdfRenderer::renderDocument($params, "gd.pdf");
-
-
 
                 $this->attachMediaFiles($zip);
 

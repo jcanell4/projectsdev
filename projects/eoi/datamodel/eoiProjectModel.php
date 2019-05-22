@@ -74,32 +74,35 @@ class eoiProjectModel extends AbstractProjectModel
 
     public function validateTemplates()
     {
-        $templateDates = $this->projectMetaDataQuery->getProjectSystemStateAttr("templateDates");
+        //$templateDates = $this->projectMetaDataQuery->getProjectSystemStateAttr("templateDates");
 
         $data = $this->getData();
         $configTemplates = $data['projectMetaData']['plantilla']['value'];
-        $projectTemplates = explode(',', $configTemplates);
+        $projectTemplatesDates = explode(',', $configTemplates);
 
 
-        if (count($templateDates) !== count($projectTemplates)) {
-            // Ha canviat el nombre de plantilles
-            return false;
+        $projectFileDates = [];
+        foreach ($projectTemplatesDates as $file) {
+            $ID = $this->id . ':' . $file;
+
+            $filepath = WikiFn($ID);
+            $projectFileDates[$file] = filemtime($filepath);
         }
 
         $pdir = $this->getProjectMetaDataQuery()->getProjectTypeDir() . "metadata/plantilles/";
 
-        foreach ($projectTemplates as $key) {
+        foreach ($projectTemplatesDates as $key) {
 
             $file = $pdir . $key . '.txt';
 
-            if (!isset($templateDates[$key])) {
+            if (!isset($projectFileDates[$key])) {
                 // No existeix el nom del fitxer
                 return false;
             }
 
             $currentFileTime = filemtime($file);
 
-            if ($currentFileTime != $templateDates[$key]) {
+            if ($currentFileTime > $projectFileDates[$key]) {
                 // La plantilla del projecte ha estat modificada
                 return false;
             }
@@ -111,26 +114,32 @@ class eoiProjectModel extends AbstractProjectModel
 
     public function setTemplateDocuments($files)
     {
-        $pdir = $this->getProjectMetaDataQuery()->getProjectTypeDir() . "metadata/plantilles/";
+
+        // ALERTA[Xavi] Si no s'obté primer el $metaDataQuery de vegades falla l'actualització
+        $metaDataQuery = $this->getProjectMetaDataQuery();
+
+        $pdir = $metaDataQuery->getProjectTypeDir() . "metadata/plantilles/";
 
         $templates = explode(',', $files);
 
-        $templateDates = [];
 
 
         foreach ($templates as $template) {
 
             $fullpath = $pdir . $template . ".txt";
-            $plantilla = file_get_contents($fullpath);
+            try {
+                $plantilla = file_get_contents($fullpath);
+            } catch (Exception $e) {
+                $stop = true;
+            }
+
             $destino = $this->getContentDocumentId($template);
             $this->dokuPageModel->setData([PageKeys::KEY_ID => $destino,
                 PageKeys::KEY_WIKITEXT => $plantilla,
                 PageKeys::KEY_SUM => "generate project"]);
-
-            $templateDates[$template] = filemtime($fullpath);
         }
 
-        $this->projectMetaDataQuery->setProjectSystemStateAttr("templateDates", $templateDates);
+//        $this->projectMetaDataQuery->setProjectSystemStateAttr("templateDates", $templateDates);
     }
 
     public function createTemplateDocument($data)
@@ -141,37 +150,6 @@ class eoiProjectModel extends AbstractProjectModel
 
     }
 
-    public function modifyACLPageToSupervisor($parArr)
-    {
-        $project_ns = $parArr['id'] . ":*";
-
-        // S'ha modificat el supervisor
-        if ($parArr['old_supervisor'] !== $parArr['new_supervisor']) {
-            if ($parArr['old_supervisor'] !== $parArr['new_autor']
-                && $parArr['old_supervisor'] !== $parArr['new_responsable']) {
-                //Elimina ACL de old_responsable sobre la página del proyecto
-                if ($parArr['old_supervisor'] && $parArr['old_supervisor'] !== "") {
-                    $ret = PagePermissionManager::deletePermissionPageForUser($project_ns, $parArr['old_supervisor']);
-                    if (!$ret) $retError[] = "Error en eliminar permissos a '${parArr['old_supervisor']}' sobre '$project_ns'";
-                }
-            }
-
-            // Si el supervisor es també autor o responsable te permisos superiors, no cal fer res
-            //Crea ACL para new_responsable sobre la pàgina del projecte
-            if ($parArr['new_supervisor'] !== $parArr['new_autor']
-                && $parArr['new_supervisor'] !== $parArr['new_responsable']
-                && $parArr['new_supervisor'] !== '') {
-                $ret = PagePermissionManager::updatePagePermission($project_ns, $parArr['new_supervisor'], AUTH_READ, TRUE);
-                if (!$ret) $retError[] = "Error en assignar permissos a '${parArr['new_supervisor']}' sobre '$project_ns'";
-            }
-        }
-
-        if ($retError) {
-            foreach ($retError as $e) {
-                throw new UnknownProjectException($project_ns, $e);
-            }
-        }
-    }
 
     /**
      * Calcula el valor de los campos calculables
@@ -185,7 +163,6 @@ class eoiProjectModel extends AbstractProjectModel
         $values["dataReclamacions"] = $this->sumDate($values["dataResultats"], 3);
         $values["dataProvaNE1"] = $this->sumDate($values["dataProva1"], 5);
         $values["dataProvaNE2"] = $this->sumDate($values["dataProva2"], 5);
-//        }
 
         $data = json_encode($values);
         return parent::updateCalculatedFields($data);
