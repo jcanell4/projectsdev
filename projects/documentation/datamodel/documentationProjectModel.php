@@ -14,7 +14,6 @@ class documentationProjectModel extends AbstractProjectModel {
 
     public function __construct($persistenceEngine)  {
         parent::__construct($persistenceEngine);
-
     }
 
     public function generateProject() {
