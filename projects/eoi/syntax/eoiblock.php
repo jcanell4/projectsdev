@@ -111,6 +111,7 @@ class syntax_plugin_projectsdev_projects_eoi_eoiblock extends DokuWiki_Syntax_Pl
 //        }
             switch ($state) {
                 case DOKU_LEXER_ENTER :
+                    $renderer->doc .= '<div class="block-border">';
                     break;
                 case DOKU_LEXER_UNMATCHED :
                     $instructions = get_latex_instructions($text);
@@ -120,11 +121,12 @@ class syntax_plugin_projectsdev_projects_eoi_eoiblock extends DokuWiki_Syntax_Pl
                     //delete p_open and p_close instructions
                     array_shift($instructions);
                     array_pop($instructions);
-                    $renderer->doc .= '<div class="block-border">';
+//                    $renderer->doc .= '<div class="block-border">';
                     $renderer->doc .= p_latex_render($mode, $instructions, $info);
-                    $renderer->doc .= '</div>';
+//                    $renderer->doc .= '</div>';
                     break;
                 case DOKU_LEXER_EXIT :
+                    $renderer->doc .= '</div>';
                     break;
             }
             return TRUE;

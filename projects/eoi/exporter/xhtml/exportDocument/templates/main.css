@@ -15,7 +15,7 @@ h1, h2, h3, h4, h5, h6, p, li, ul {
 }
 
 h2 {
-  color: #be176b;
+  color: #f3a22d;
 }
 
 h3 {
@@ -27,7 +27,7 @@ h3 {
 }
 
 a {
-  color: #be176b;
+  color: #f3a22d;
 
   font-weight: bold;
   line-height: 1.4;
@@ -44,7 +44,7 @@ a {
 .main_header {
   width: 100%;
   padding-bottom: 28px;
-  background-color: #be176b;
+  background-color: #f3a22d;
 }
 
 .main_header h1 {
@@ -69,7 +69,7 @@ a {
 .secondary_header h2 {
   font-size: 19px;
   font-weight: bold;
-  color: #be176b;
+  color: #f3a22d;
   text-align: left;
 }
 
@@ -87,7 +87,7 @@ a {
 
 hr {
   width: 56px;
-  border: .5px solid #be176b;
+  border: .5px solid #f3a22d;
   -webkit-transition: width .4s;
   transition: width .4s;
 }
@@ -129,7 +129,7 @@ hr {
 }
 
 .section1_content_row3 .franja_color {
-  background-color: #fdf0f6;
+  background-color: #fcebd4;
   height: 45px;
   margin-left: auto;
   margin-right: auto;
@@ -270,7 +270,7 @@ hr {
 
 
 .section3 h3 span {
-  color: #be176b;
+  color: #f3a22d;
 }
 
 
@@ -316,7 +316,7 @@ hr {
 }
 
 .section3 .requadre_itinerari .rectangle_destacat {
-  background-color: #be176b;
+  background-color: #f3a22d;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -379,7 +379,7 @@ hr {
           justify-content: center;
   width: 148px;
   height: 44px;
-  background-color: #be176b;
+  background-color: #f3a22d;
 
 }
 
@@ -410,23 +410,23 @@ hr {
 .section3 .requadre_distribucio .rectangle_simple:nth-of-type(5) {
   border-bottom-left-radius: 3px;
   font-size: 17px;
-  color: #be176b;
+  color: #f3a22d;
 }
 
 .section3 .requadre_distribucio .rectangle_simple:nth-of-type(6) {
   font-size: 17px;
-  color: #be176b;
+  color: #f3a22d;
 }
 
 .section3 .requadre_distribucio .rectangle_simple:nth-of-type(7) {
   font-size: 17px;
-  color: #be176b;
+  color: #f3a22d;
 }
 
 .section3 .requadre_distribucio .rectangle_simple:nth-of-type(8) {
   border-bottom-right-radius: 3px;
   font-size: 17px;
-  color: #be176b;
+  color: #f3a22d;
 }
 
 .section3 .requadre_distribucio .rectangle_simple:nth-of-type(9) {
@@ -496,7 +496,7 @@ hr {
 }
 
 #rowDistribHoraria2 .cellDistribHoraria {
-  background-color: #BE176B;
+  background-color: #f3a22d;
   color: #ffffff;
   font-size: 19px;
 }
@@ -511,7 +511,7 @@ hr {
 
 #rowDistribHoraria3 .cellDistribHoraria {
   background-color: #F9C9E1;
-  color: #BE176B;
+  color: #f3a22d;
   font-size: 19px;
 }
 
@@ -724,7 +724,7 @@ hr {
 .section5 .own_table th {
   height: 40px;
   width: 145px;
-  background-color: #be176b;
+  background-color: #f3a22d;
   color: #ffffff;
   font-size: 10.5px;
   font-weight: bold;
@@ -737,7 +737,7 @@ hr {
   width: 145px;
   background-color: #f9c9e1;
   font-size: 13px;
-  color: #be176b;
+  color: #f3a22d;
 }
 
 .section5 .own_table th[rowspan] {
@@ -766,7 +766,7 @@ hr {
 .section6 .own_table th {
   height: 40px;
   width: 145px;
-  background-color: #be176b;
+  background-color: #f3a22d;
   color: #ffffff;
   font-size: 10.5px;
   font-weight: bold;
@@ -778,7 +778,7 @@ hr {
   height: 40px;
   background-color: #f9c9e1;
   font-size: 12px;
-  color: #be176b;
+  color: #f3a22d;
 }
 
 .section6 .own_table th:first-of-type {
@@ -789,7 +789,7 @@ hr {
 
 .section6 p span {
   font-weight: 700;
-  color: #be176b;
+  color: #f3a22d;
 }
 
 /* Section 7 */
@@ -845,7 +845,7 @@ hr {
 .section7 h3 {
   font-size: 16px;
   text-align: center;
-  color: #be176b;
+  color: #f3a22d;
   margin-bottom: 27px;
 }
 
@@ -868,7 +868,7 @@ hr {
 
 .section7 p span {
   font-weight: 700;
-  color: #be176b;
+  color: #f3a22d;
 }
 
 /* Section 8 */
@@ -919,7 +919,7 @@ hr {
 #final p {
   font-weight: bold;
   letter-spacing: 0.9px;
-  color: #be176b;
+  color: #f3a22d;
 }
 
 .section8 .percentatges_chart {
@@ -959,7 +959,7 @@ hr {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     background-color: #f9c9e1;
-    color: #be176b;
+    color: #f3a22d;
     margin-right: 2px;
     font-size: 12.5px;
 }
@@ -979,7 +979,7 @@ hr {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     background-color: #f9c9e1;
-    color: #be176b;
+    color: #f3a22d;
     font-size: 15px;
     margin-right: 2px;
     font-size: 12.5px;
@@ -1057,7 +1057,7 @@ hr {
 
 [id*="title_row"] .cellQualificacio {
   background-color: #F9C9E1;
-  color: #BE176B;
+  color: #f3a22d;
   font-size: 15px;
   border: 1px solid #ffffff;
 }
@@ -1084,7 +1084,7 @@ hr {
 }
 
 [id*="title_row"]:last-child .cellQualificacio:first-child {
-  color: #BE176B;
+  color: #f3a22d;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: .8px;
@@ -1157,7 +1157,7 @@ hr {
     top: 109px;
     height: 19px;
     width: 2000px;
-    background-color: #be176b;
+    background-color: #f3a22d;
     margin-left: -2020px;
   }
 
@@ -1550,7 +1550,7 @@ hr {
 
   .section5 .own_table td {
     font-size: 15px;
-    color: #be176b;
+    color: #f3a22d;
   }
 
   .section5 .own_table th[rowspan] {
@@ -1580,7 +1580,7 @@ hr {
 
   .section6 .own_table td {
     font-size: 15px;
-    color: #be176b;
+    color: #f3a22d;
   }
 
   .section6 .own_table th:first-of-type {

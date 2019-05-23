@@ -85,18 +85,22 @@ class exportDocument extends MainRender {
 
                 StaticPdfRenderer::renderDocument($params, "c-a2.pdf");
                 $zip->addFile($this->cfgExport->tmp_dir."/c-a2.pdf", "/c_sencer/c-a2.pdf");
+                StaticPdfRenderer::resetStaticDataRender();
+
 
                 $params["data"]["titol"] = ["IOC", "Escola Oficial d'Idiomes", "B1", ""];
                 $params["data"]["contingut"] = json_decode($data["pdfconvocatoria_b1"], TRUE);   //contingut latex ja rendaritzat
 
                 StaticPdfRenderer::renderDocument($params, "c-b1.pdf");
                 $zip->addFile($this->cfgExport->tmp_dir."/c-b1.pdf", "/c_sencer/c-b1.pdf");
+                StaticPdfRenderer::resetStaticDataRender();
 
                 $params["data"]["titol"] = ["IOC", "Escola Oficial d'Idiomes", "B2", ""];
                 $params["data"]["contingut"] = json_decode($data["pdfconvocatoria_b2"], TRUE);   //contingut latex ja rendaritzat
 
                 StaticPdfRenderer::renderDocument($params, "c-b2.pdf");
                 $zip->addFile($this->cfgExport->tmp_dir."/c-b2.pdf", "/c_sencer/c-b2.pdf");
+                StaticPdfRenderer::resetStaticDataRender();
 
                 $this->attachMediaFiles($zip);
 
