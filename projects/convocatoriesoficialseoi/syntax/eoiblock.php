@@ -10,7 +10,7 @@ if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../')
 if(!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN',DOKU_INC.'lib/plugins/');
 require_once(DOKU_PLUGIN.'syntax.php');
 
-class syntax_plugin_projectsdev_projects_eoi_eoiblock extends DokuWiki_Syntax_Plugin {
+class syntax_plugin_projectsdev_projects_convocatoriesoficialseoi_eoiblock extends DokuWiki_Syntax_Plugin {
 
     /**
      * return some info
@@ -56,11 +56,11 @@ class syntax_plugin_projectsdev_projects_eoi_eoiblock extends DokuWiki_Syntax_Pl
      * Connect pattern to lexer
      */
     function connectTo($mode) {
-        $this->Lexer->addEntryPattern('<block>(?=.*?</block>)', $mode, 'plugin_projectsdev_projects_eoi_eoiblock');
+        $this->Lexer->addEntryPattern('<block>(?=.*?</block>)', $mode, 'plugin_projectsdev_projects_convocatoriesoficialseoi_eoiblock');
     }
 
     function postConnect() {
-        $this->Lexer->addExitPattern('</block>', 'plugin_projectsdev_projects_eoi_eoiblock');
+        $this->Lexer->addExitPattern('</block>', 'plugin_projectsdev_projects_convocatoriesoficialseoi_eoiblock');
     }
 
     /**

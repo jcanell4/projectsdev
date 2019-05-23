@@ -30,7 +30,7 @@
 
   <header class="main_header">
     <div class="container">
-      <h1>EOI IOC. Prova per a l'obtenció del certificat de nivell bàsic B1</h1>
+      <h1>EOI IOC. Prova per a l'obtenció del certificat de nivell intermedi B2</h1>
     </div>
   </header>
 
@@ -45,8 +45,8 @@
   <br class="salt_impr">
 
   <div class="container">
-    {##convocatoria_b1##}
-    <div id="printbtn" onclick="printDoc('c-b1.pdf')"><span>Descarrega't el PDF</span></div>
+    {##convocatoria_b2##}
+    <div id="printbtn" onclick="printDoc('c-b2.pdf')"><span>Descarrega't el PDF</span></div>
   </div>
     
   <script src="js/main.js"></script>

@@ -2,7 +2,9 @@
 /**
  * Component: Project / MetaData
  */
-namespace eoi;
+
+namespace convocatoriesoficialseoi;
+
 require_once(DOKU_PLUGIN . 'wikiiocmodel/metadata/MetaDataRenderAbstract.php');
 
 class MetaDataRender extends \MetaDataRenderAbstract {

@@ -9,7 +9,7 @@ if (!defined('WIKI_IOC_MODEL')) define('WIKI_IOC_MODEL', DOKU_PLUGIN . 'wikiiocm
 require_once(WIKI_IOC_MODEL . "authorization/PagePermissionManager.php");
 require_once(WIKI_IOC_MODEL . "datamodel/AbstractProjectModel.php");
 
-class eoiProjectModel extends AbstractProjectModel
+class convocatoriesoficialseoiProjectModel extends AbstractProjectModel
 {
 
     public function __construct($persistenceEngine)

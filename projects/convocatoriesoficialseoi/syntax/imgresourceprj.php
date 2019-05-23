@@ -4,7 +4,7 @@ if (!defined('DOKU_INC')) define('DOKU_INC', realpath(dirname(__FILE__) . '/../.
 if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC . 'lib/plugins/');
 require_once(DOKU_PLUGIN . 'syntax.php');
 
-class syntax_plugin_projectsdev_projects_eoi_imgresourceprj extends DokuWiki_Syntax_Plugin
+class syntax_plugin_projectsdev_projects_convocatoriesoficialseoi_imgresourceprj extends DokuWiki_Syntax_Plugin
 {
 
     // Data saved to be use on the lexer unmatched stated
@@ -41,13 +41,13 @@ class syntax_plugin_projectsdev_projects_eoi_imgresourceprj extends DokuWiki_Syn
      */
     function connectTo($mode)
     {
-//        $this->Lexer->addEntryPattern('<img-resource-prj>(?=.*?</img-resource-prj>)', $mode, 'plugin_projectsdev_projects_eoi_imgresourceprj');
-        $this->Lexer->addEntryPattern('<img-resource-prj.*?>(?=.*?</img-resource-prj>)', $mode, 'plugin_projectsdev_projects_eoi_imgresourceprj');
+//        $this->Lexer->addEntryPattern('<img-resource-prj>(?=.*?</img-resource-prj>)', $mode, 'plugin_projectsdev_projects_convocatoriesoficialseoi_imgresourceprj');
+        $this->Lexer->addEntryPattern('<img-resource-prj.*?>(?=.*?</img-resource-prj>)', $mode, 'plugin_projectsdev_projects_convocatoriesoficialseoi_imgresourceprj');
     }
 
     function postConnect()
     {
-        $this->Lexer->addExitPattern('</img-resource-prj>', 'plugin_projectsdev_projects_eoi_imgresourceprj');
+        $this->Lexer->addExitPattern('</img-resource-prj>', 'plugin_projectsdev_projects_convocatoriesoficialseoi_imgresourceprj');
     }
 
     /**

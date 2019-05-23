@@ -7,7 +7,7 @@ if (!defined('DOKU_INC')) die();
 if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC . 'lib/plugins/');
 require_once(DOKU_PLUGIN . 'iocexportl/action.php');
 
-class command_plugin_projectsdev_projects_eoi_projectExport extends abstract_project_command_class {
+class command_plugin_projectsdev_projects_convocatoriesoficialseoi_projectExport extends abstract_project_command_class {
 
     public function __construct() {
         parent::__construct();

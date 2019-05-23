@@ -16,7 +16,7 @@ class FactoryAuthorization extends ProjectFactoryAuthorization {
 //        parent::__construct(self::PROJECT_AUTH);
 //    }
 
-    const PROJECT_AUTH = DOKU_PLUGIN . "projectsdev/projects/eoi/authorization/";
+    const PROJECT_AUTH = DOKU_PLUGIN . "projectsdev/projects/convocatoriesoficialseoi/authorization/";
     const DEFAULT_AUTH = WIKI_IOC_MODEL . "projects/defaultProject/authorization/";
 
     public function __construct($projectType=NULL) {
