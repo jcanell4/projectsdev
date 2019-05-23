@@ -1,6 +1,6 @@
 ~~USE:WIOCCL~~
-====== EOI IOC. Prova per a l'obtenció del certificat de nivell bàsic B1 ======
-L'Institut Obert de Catalunya organitza la prova per a l'obtenció del **certificat de nivell bàsic B1 d'anglès**.
+====== EOI IOC. Prova per a l'obtenció del certificat de nivell intermedi B1 ======
+L'Institut Obert de Catalunya organitza la prova per a l'obtenció del **certificat de nivell intermedi B1 d'anglès**.
 
 La prova consta d'una part escrita i una part oral.
 
@@ -71,7 +71,7 @@ Les persones la sol·licitud de les quals hagi estat acceptada podran fer la pro
 ===== Incidències justificades =====
 Les persones aspirants que justifiquin documentalment la seva absència el dia de la prova per raons de força major podran accedir a la convocatòria d’incidències. Aquesta convocatòria d'incidències tindrà lloc el dia, **{#_LONG_DATE("{##dataProvaNE1##}")_#}, de les 09:45 a les 14:00, a la seu central de l'IOC**.
 
-Els alumnes que es trobin en aquesta situació, han de fer arribar adjunt, a la bústia [[eoiinfo@ioc.cat]], no més tard del dia **{#_LONG_DATE("{##dataDemandaNE##}")_#}**, un [[http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf|formulari]] de Sol·licitud general  que trobaràn a l'adreça [[http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf|http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf]] de la pàgina web de l'IOC. A l'assumpte del correu cal escriure //"Sol·licitud d'incidència prova certificat nivell bàsic A2 d’anglès"//.
+Els alumnes que es trobin en aquesta situació, han de fer arribar adjunt, a la bústia [[eoiinfo@ioc.cat]], no més tard del dia **{#_LONG_DATE("{##dataDemandaNE##}")_#}**, un [[http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf|formulari]] de Sol·licitud general  que trobaràn a l'adreça [[http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf|http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf]] de la pàgina web de l'IOC. A l'assumpte del correu cal escriure //"Sol·licitud d'incidència prova certificat nivell intermedi B1 d’anglès"//.
 
 En cas d’incidència sobrevinguda el mateix dia de la prova, s’ha de seguir el mateix procediment, comunicant-ho en un termini màxim de 48 hores a partir de l’hora d’inici de les proves.
 
