@@ -16,14 +16,12 @@
     
 <!-- Side navigation -->
 
-<!--
 <div id="mySidenav" class="sidenav open">
   <div class="closebtn" onclick="closeNav()">&times;</div>
   <div class="content_index fade_in" id="myContentIndex">
-      @@TOC(continguts)@@
+      @@TOC(convocatoria_b1)@@
   </div>
 </div>
--->
 
 <span class="hamburger hidden" id="myHamburger" onclick="openNav()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-width="2.4" stroke-linecap="butt" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path></svg></span>
 

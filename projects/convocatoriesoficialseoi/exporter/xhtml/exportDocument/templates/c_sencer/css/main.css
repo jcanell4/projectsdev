@@ -153,7 +153,7 @@ p.llegenda {
     background-color: #f3a22d;
     padding-bottom: 10px;
 }
- 
+
 .main_header h1 {
     font-size: 22px;
     font-weight: bold;
@@ -223,7 +223,7 @@ p.llegenda {
 .pt_taula {
     width: 100%;
     margin: 18px auto 38px auto;
-    font-size: 13px; 
+    font-size: 13px;
 }
 
 .pt_taula th {
@@ -254,7 +254,7 @@ p.llegenda {
 }
 .pt_taula td ul li,
 .pt_taula td ol li {
-    font-size: 13px; 
+    font-size: 13px;
 }
 
 
@@ -335,7 +335,7 @@ section p{
 /* Layout media queries */
 
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) { 
+@media (min-width: 576px) {
 
     .container {
         max-width: 520px;
@@ -356,12 +356,12 @@ section p{
         margin-top: 32px;
         font-size: 26px;
     }
-    
+
     h3 {
         margin-top: 28px;
         font-size: 21px;
     }
-    
+
     h4 {
         margin-top: 34px;
         margin-bottom: 16px;
@@ -386,12 +386,12 @@ section p{
         font-size: 34px;
         padding-top: 60px;
     }
-    
+
     .main_header h2 {
         font-size: 19px;
         padding-top: 50px;
     }
-    
+
     .main_header h2:last-of-type {
         font-size: 17px;
         padding-top: 8px;
@@ -400,33 +400,33 @@ section p{
     #intro p {
         font-size: 16px;
     }
-    
+
     #intro span {
         font-size: 12px;
     }
-    
+
     #intro .container {
         padding: 32px 0 32px 0;
     }
 
     .pt_taula {
         margin: 26px auto 46px auto;
-        font-size: 15px; 
+        font-size: 15px;
     }
-    
+
     .pt_taula th {
         font-size: 13px !important;
         padding: 16px 6px;
     }
-    
+
     .pt_taula td {
         padding: 12px 6px;
     }
-    
+
 
     .pt_taula td ul li,
     .pt_taula td ol li {
-        font-size: 15px; 
+        font-size: 15px;
     }
 
     .pt_taula td.semititol {
@@ -440,7 +440,7 @@ section p{
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
 
     p, a, li {
         font-size: 18px;
@@ -454,17 +454,22 @@ section p{
 }
 
 /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) { 
+@media (min-width: 992px) {
     .container {
-        max-width: 610px;
-        margin: 0 auto;
+        max-width: 742px;
+        margin: 0;
+        margin-right: 100px;
+        margin-left: auto;
+        /*margin: 0 auto;*/
     }
 
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) { 
-
+@media (min-width: 1200px) {
+        .container {
+            max-width: 950px;
+        }
 }
 
 @page {
@@ -486,13 +491,13 @@ section p{
     body {
         color: #01172f;
         background-color: #ffffff;
-        
+
     }
 
     div.ioctable {
         page-break-inside: avoid !important;
     }
-    
+
     h1, h2, h3, h4 {
         page-break-after: avoid !important;
         color: #01172f !important;
@@ -544,7 +549,7 @@ section p{
         padding-top: 40px;
         color: #ffffff;
     }
-    
+
     .main_header h2 {
         font-size: 17px;
         font-weight: bold;
@@ -553,7 +558,7 @@ section p{
         padding-top: 30px;
         color: #ffffff;
     }
-    
+
     .main_header h2:last-of-type {
         font-size: 15px;
         font-weight: bold;
@@ -562,7 +567,7 @@ section p{
         padding-top: 8px;
         color: #ffffff;
     }
-    
+
     #intro {
         background-color: #ffffff !important;
     }
@@ -576,7 +581,7 @@ section p{
         background: #5D6B7A;
         border: 0;
     }
-    
+
     .salt_impr{
         page-break-after: always
     }
@@ -584,31 +589,31 @@ section p{
     .pt_taula {
         width: 100%;
         margin: 26px auto 46px auto;
-        font-size: 15px;         
+        font-size: 15px;
     }
-    
+
     .pt_taula th {
         color: #ffffff !important;
         background-color: #6D6A7B !important;
     }
-    
+
     .pt_taula td {
         background-color: #F7F7F6 !important;
     }
-    
+
     .pt_taula th.nivell1 {
         background-color: #5F5C6E !important;
     }
-    
+
     .pt_taula th.nivell2 {
         background-color: #9997A2 !important;
     }
-    
+
     .pt_taula th.nivell3 {
         color: #5F5C6E !important;
         background-color: #E1E1E4 !important;
     }
-    
+
     .pt_taula td.semititol {
         color: #5F5C6E;
     }
@@ -617,6 +622,6 @@ section p{
     .pt_taula tr,
     .pt_taula th {
         border: 1px solid #5E5E5E;
-    } 
+    }
 }
 

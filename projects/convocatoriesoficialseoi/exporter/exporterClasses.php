@@ -128,8 +128,8 @@ class StaticPdfRenderer extends BasicStaticPdfRenderer
         $iocTcPdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
         //primera pàgina
-        $iocTcPdf->SetFont(static::$firstPageFont, 'B', 35);
-        $iocTcPdf->AddPage();
+//        $iocTcPdf->SetFont(static::$firstPageFont, 'B', 35);
+//        $iocTcPdf->AddPage();
         $iocTcPdf->SetX(100);
         $iocTcPdf->SetY($y = 100);
         for ($i = 0; $i < 2; $i++) {
@@ -151,6 +151,22 @@ class StaticPdfRenderer extends BasicStaticPdfRenderer
         for ($i = 0; $i < $len; $i++) {
             static::renderHeader($params["data"]["contingut"][$i], $iocTcPdf);
         }
+
+//        // add a new page for TOC
+//        $iocTcPdf->addTOCPage();
+//
+//        // write the TOC title
+//        $iocTcPdf->SetFont('Times', 'B', 16);
+//        $iocTcPdf->MultiCell(0, 0, 'Índex', 0, 'C', 0, 1, '', '', true, 0);
+//        $iocTcPdf->Ln();
+//
+//        $iocTcPdf->SetFont('Times', '', 12);
+//
+//        // add a simple Table Of Content at first page
+//        $iocTcPdf->addTOC(2, 'courier', '.', 'INDEX', 'B', array(128,0,0));
+//
+//        // end of TOC page
+//        $iocTcPdf->endTOCPage();
 
         $iocTcPdf->Output("{$params['tmp_dir']}/$output_filename", 'F');
 

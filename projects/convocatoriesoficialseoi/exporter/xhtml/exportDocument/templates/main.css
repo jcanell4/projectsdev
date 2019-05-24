@@ -1677,3 +1677,31 @@ hr {
   }
 
 }
+
+/*Barra de navegació principal*/
+nav {
+  width: 100%;
+  background-color: #fcebd4;
+  text-align: center;
+}
+
+nav ul{
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+}
+
+nav a {
+  padding: 15px;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+}
+
+nav a:hover {
+  background-color: #f3a22d;
+  color: #ffffff;
+}

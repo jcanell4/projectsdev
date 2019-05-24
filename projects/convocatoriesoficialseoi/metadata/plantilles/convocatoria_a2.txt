@@ -1,12 +1,11 @@
 ~~USE:WIOCCL~~
-====== EOI IOC. Prova per a l'obtenció del certificat de nivell bàsic A2 ======
 L'Institut Obert de Catalunya organitza la prova per a l'obtenció del **certificat de nivell bàsic A2 d'anglès**.
 
 La prova consta d'una part escrita i una part oral.
 
 Per presentar-se a la prova cal estar matriculat en el mòdul 2B de l'EOI IOC.
 
-=====Lloc, data i horari de la prova=====
+======Lloc, data i horari de la prova======
 La prova tindrà lloc a l'Escola Oficial d'Idiomes Barcelona Drassanes
 
 <map-table>
@@ -30,7 +29,7 @@ Convocatòria individual: s'informa en el moment de fer la prova escrita en quin
 Es convocarà a les persones que vinguin de fora de la província de Barcelona de manera que puguin fer la prova durant les primeres franges horàries.
 </block>
 
-===== Publicació de resultats =====
+====== Publicació de resultats ======
 
 Publicació dels resultats de les proves: **{#_LONG_DATE("{##dataResultats##}")_#}, a les 10 hores, a la Secretaria EOI/Qualificacions**.
 
@@ -42,7 +41,7 @@ L'[[http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.p
 
 <sub>**Nota: si per raons de calendari, la matrícula d'EOI IOC per a alumnes actuals, comencés durant el període de resolució de reclamacions, qualsevol incidència per qüestió de terminis de matrícula es resoldrà en benefici de l'alumne.**</sub>
 
-===== Descripció i pautes de qualificació de les proves =====
+====== Descripció i pautes de qualificació de les proves ======
 La prova estarà constituïda per tasques de comprensió oral, comprensió escrita, ús de la llengua, expressió i interacció escrita i expressió i interacció oral.
 
 Cadascuna de les cinc parts que componen la prova, esmentades a l'apartat anterior, tindrà una ponderació del 20% sobre el total de la puntuació de la prova.
@@ -55,10 +54,10 @@ La qualificació final única de l'examen serà global i s'hi posarà Apte/a o N
 
 En cas que no s'hagi dut a terme alguna part de la prova es posarà No presentat/ada. (NP), en la part corresponent, i es posarà No qualificat/ada. (NQ) en els apartats de la puntuació global final i en la qualificació final.
 
-===== Mostres de les prova =====
+====== Mostres de les prova ======
 A les vostres aules, dins el bloc [[https://ioc.xtec.cat/campus/course/view.php?id=6972&section=10|Prova Certificat Nivell Bàsic]] hi ha mostres i exemples de les diferents parts de la prova.
 
-===== Necessitats específiques =====
+====== Necessitats específiques ======
 Les persones aspirants amb necessitats específiques derivades de discapacitats físiques, psíquiques o sensorials o altres trastorns greus, que tinguin el reconeixement oficial de la situació de discapacitat, poden sol·licitar els recursos addicionals necessaris per desenvolupar la prova contactant amb l'IOC. No més tard del **{#_LONG_DATE("{##dataDemandaNE##}")_#}**, aquestes persones han de fer arribar  per correu certificat-missatgeria o personalment  a la seu central de l'IOC (Avinguda Paral.lel, 71 – 08004 Barcelona),una [[http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf|sol·licitud general]] adreçada al director de l'IOC.
 
 A la sol·licitud, signada per la persona aspirant, o pels progenitors o la persona tutora legal, si és menor d'edat, cal adjuntar la documentació següent:
@@ -67,14 +66,14 @@ A la sol·licitud, signada per la persona aspirant, o pels progenitors o la pers
 
 Les persones la sol·licitud de les quals hagi estat acceptada podran fer la prova adaptada el dia **{#_LONG_DATE("{##dataProvaNE1##}")_#}, de les 09:45 a les 14:00, a la seu central de l'IOC**.
 
-===== Incidències justificades =====
+====== Incidències justificades ======
 Les persones aspirants que justifiquin documentalment la seva absència el dia de la prova per raons de força major podran accedir a la convocatòria d’incidències. Aquesta convocatòria d'incidències tindrà lloc el dia, **{#_LONG_DATE("{##dataProvaNE1##}")_#}, de les 09:45 a les 14:00, a la seu central de l'IOC**.
 
 Els alumnes que es trobin en aquesta situació, han de fer arribar adjunt, a la bústia [[eoiinfo@ioc.cat]], no més tard del dia **{#_LONG_DATE("{##dataDemandaNE##}")_#}**, un [[http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf|formulari]] de Sol·licitud general  que trobaràn a l'adreça [[http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf|http://ioc.xtec.cat/materials/qualitat/Secretaria/Secretaria_IOC/Model_I67.pdf]] de la pàgina web de l'IOC. A l'assumpte del correu cal escriure //"Sol·licitud d'incidència prova certificat nivell bàsic A2 d’anglès"//.
 
 En cas d’incidència sobrevinguda el mateix dia de la prova, s’ha de seguir el mateix procediment, comunicant-ho en un termini màxim de 48 hores a partir de l’hora d’inici de les proves.
 
-===== Normativa =====
+====== Normativa ======
 
 [[https://www.gencat.cat/diari/5781/10349020.htm|RESOLUCIÓ EDU/4039/2010]], de 15 de desembre, per la qual s'implanta el nivell bàsic  i el nivell intermedi d'anglès dels ensenyaments d'idiomes a l'Institut Obert de Catalunya  ( DOGC Núm. 5781 de 23/12/2010).
 
