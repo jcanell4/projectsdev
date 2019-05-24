@@ -74,7 +74,6 @@ class convocatoriesoficialseoiProjectModel extends AbstractProjectModel
 
     public function validateTemplates()
     {
-        //$templateDates = $this->projectMetaDataQuery->getProjectSystemStateAttr("templateDates");
 
         $data = $this->getData();
         $configTemplates = $data['projectMetaData']['plantilla']['value'];
@@ -112,7 +111,7 @@ class convocatoriesoficialseoiProjectModel extends AbstractProjectModel
         return true;
     }
 
-    public function setTemplateDocuments($files)
+    public function setTemplateDocuments($files, $reason = "generate project")
     {
 
         // ALERTA[Xavi] Si no s'obté primer el $metaDataQuery de vegades falla l'actualització
@@ -127,19 +126,16 @@ class convocatoriesoficialseoiProjectModel extends AbstractProjectModel
         foreach ($templates as $template) {
 
             $fullpath = $pdir . $template . ".txt";
-            try {
-                $plantilla = file_get_contents($fullpath);
-            } catch (Exception $e) {
-                $stop = true;
-            }
+
+            $plantilla = file_get_contents($fullpath);
 
             $destino = $this->getContentDocumentId($template);
             $this->dokuPageModel->setData([PageKeys::KEY_ID => $destino,
                 PageKeys::KEY_WIKITEXT => $plantilla,
-                PageKeys::KEY_SUM => "generate project"]);
+                PageKeys::KEY_SUM => $reason]);
         }
 
-//        $this->projectMetaDataQuery->setProjectSystemStateAttr("templateDates", $templateDates);
+
     }
 
     public function createTemplateDocument($data)
