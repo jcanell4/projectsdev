@@ -20,9 +20,9 @@ class syntax_plugin_projectsdev_projects_convocatoriesoficialseoi_eoiblock exten
             'author' => 'Xavier Garcia',
             'email'  => 'xaviergaro.dev@gmail.com',
             'date'   => '2019-05-14',
-            'name'   => 'EOI blog',
+            'name'   => 'EOI block',
             'desc'   => 'Plugin to parse eoi blocks',
-//            'url'    => 'http://ioc.gencat.cat/',
+            'url'    => 'http://ioc.gencat.cat/',
         );
     }
 

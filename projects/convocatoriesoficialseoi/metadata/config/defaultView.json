@@ -174,6 +174,15 @@
     },
     "plantilla": {
       "type": "hidden"
+    },
+    "title_a2": {
+      "type": "hidden"
+    },
+    "title_b1": {
+      "type": "hidden"
+    },
+    "title_b2": {
+      "type": "hidden"
     }
   }
 }

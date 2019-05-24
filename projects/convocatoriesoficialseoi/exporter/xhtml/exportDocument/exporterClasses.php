@@ -30,6 +30,7 @@ class exportDocument extends MainRender {
     }
 
     public function cocinandoLaPlantillaConDatos($data) {
+
         $result = array();
         $result["tmp_dir"] = $this->cfgExport->tmp_dir;
         if (!file_exists($this->cfgExport->tmp_dir)) {

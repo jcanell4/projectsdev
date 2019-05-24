@@ -1,5 +1,5 @@
 ~~USE:WIOCCL~~
-====== IOC Idiomes. Prova per a l'obtenció del certificat de nivell intermedi B2 ======
+====== {##title_b2##} ======
 L'Institut Obert de Catalunya organitza la prova per a l'obtenció del **certificat de nivell intemedi B2 d'anglès**.
 
 La prova consta d'una part escrita i una part oral.

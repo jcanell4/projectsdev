@@ -20,9 +20,9 @@ class syntax_plugin_projectsdev_projects_convocatoriesoficialseoi_eoimaptable ex
             'author' => 'Xavier Garcia',
             'email'  => 'xaviergaro.dev@gmail.com',
             'date'   => '2019-05-14',
-            'name'   => 'EOI blog',
-            'desc'   => 'Plugin to parse eoi blocks',
-//            'url'    => 'http://ioc.gencat.cat/',
+            'name'   => 'EOI table with map',
+            'desc'   => 'Plugin to parse table with address and map',
+            'url'    => 'http://ioc.gencat.cat/',
         );
     }
 

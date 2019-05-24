@@ -15,8 +15,8 @@ class syntax_plugin_projectsdev_projects_convocatoriesoficialseoi_imgresourceprj
     {
         return array(
             'name' => 'IOC image resource project Plugin',
-            'desc' => 'Plugin to parse gif, animated gif, png, jpeg and other image files',
-            'sintax' => '<img-resource-prj>image path in the server</img-resource-prj>',
+            'desc' => 'Plugin to parse project images',
+            'syntax' => '<img-resource-prj>image path in the server</img-resource-prj>',
             'url' => 'http://ioc.gencat.cat/',
         );
     }
@@ -42,7 +42,7 @@ class syntax_plugin_projectsdev_projects_convocatoriesoficialseoi_imgresourceprj
     function connectTo($mode)
     {
 //        $this->Lexer->addEntryPattern('<img-resource-prj>(?=.*?</img-resource-prj>)', $mode, 'plugin_projectsdev_projects_convocatoriesoficialseoi_imgresourceprj');
-        $this->Lexer->addEntryPattern('<img-resource-prj.*?>(?=.*?</img-resource-prj>)', $mode, 'plugin_projectsdev_projects_convocatoriesoficialseoi_imgresourceprj');
+        $this->Lexer->addEntryPattern('<img-resource-prj .*?>(?=.*?</img-resource-prj>)', $mode, 'plugin_projectsdev_projects_convocatoriesoficialseoi_imgresourceprj');
     }
 
     function postConnect()

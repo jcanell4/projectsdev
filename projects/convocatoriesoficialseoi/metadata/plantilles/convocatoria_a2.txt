@@ -1,11 +1,12 @@
 ~~USE:WIOCCL~~
+====== {##title_a2##} ======
 L'Institut Obert de Catalunya organitza la prova per a l'obtenció del **certificat de nivell bàsic A2 d'anglès**.
 
 La prova consta d'una part escrita i una part oral.
 
 Per presentar-se a la prova cal estar matriculat en el mòdul 2B de l'EOI IOC.
 
-======Lloc, data i horari de la prova======
+====== Lloc, data i horari de la prova ======
 La prova tindrà lloc a l'Escola Oficial d'Idiomes Barcelona Drassanes
 
 <map-table>

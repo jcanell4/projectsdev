@@ -74,6 +74,21 @@
               "type": "string",
               "mandatory": true,
               "default": "convocatoria_a2,convocatoria_b1,convocatoria_b2"
+            },
+            "title_a2": {
+              "type": "string",
+              "mandatory": true,
+              "default": "EOI IOC. Prova per a l'obtenció del certificat de nivell intermedi A2"
+            },
+            "title_b1": {
+              "type": "string",
+              "mandatory": true,
+              "default": "EOI IOC. Prova per a l'obtenció del certificat de nivell intermedi B1"
+            },
+            "title_b2": {
+              "type": "string",
+              "mandatory": true,
+              "default": "EOI IOC. Prova per a l'obtenció del certificat de nivell intermedi B2"
             }
           }
         }
