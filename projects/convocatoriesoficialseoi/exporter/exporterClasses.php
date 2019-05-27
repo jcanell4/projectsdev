@@ -129,7 +129,7 @@ class StaticPdfRenderer extends BasicStaticPdfRenderer
 
         //primera pàgina
 //        $iocTcPdf->SetFont(static::$firstPageFont, 'B', 35);
-//        $iocTcPdf->AddPage();
+        $iocTcPdf->AddPage();
         $iocTcPdf->SetX(100);
         $iocTcPdf->SetY($y = 100);
         for ($i = 0; $i < 2; $i++) {
@@ -142,7 +142,7 @@ class StaticPdfRenderer extends BasicStaticPdfRenderer
             $iocTcPdf->Cell(0, 0, $params["data"]["titol"][$i], 0, 1);
         }
 
-        $iocTcPdf->AddPage();
+//        $iocTcPdf->AddPage();
 
         $len = count($params["data"]["contingut"]);
         for ($i = 0; $i < $len; $i++) {

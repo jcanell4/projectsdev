@@ -81,7 +81,7 @@ class exportDocument extends MainRender {
                     )
                 );
 
-                $params["data"]["titol"] = ["IOC", "Escola Oficial d'Idiomes", "A2", ""];
+                $params["data"]["titol"] = $data["title_a1"];
                 $params["data"]["contingut"] = json_decode($data["pdfconvocatoria_a2"], TRUE);   //contingut latex ja rendaritzat
 
                 StaticPdfRenderer::renderDocument($params, "c-a2.pdf");
@@ -89,14 +89,14 @@ class exportDocument extends MainRender {
                 StaticPdfRenderer::resetStaticDataRender();
 
 
-                $params["data"]["titol"] = ["IOC", "Escola Oficial d'Idiomes", "B1", ""];
+                $params["data"]["titol"] = $data["title_b1"];
                 $params["data"]["contingut"] = json_decode($data["pdfconvocatoria_b1"], TRUE);   //contingut latex ja rendaritzat
 
                 StaticPdfRenderer::renderDocument($params, "c-b1.pdf");
                 $zip->addFile($this->cfgExport->tmp_dir."/c-b1.pdf", "/c_sencer/c-b1.pdf");
                 StaticPdfRenderer::resetStaticDataRender();
 
-                $params["data"]["titol"] = ["IOC", "Escola Oficial d'Idiomes", "B2", ""];
+                $params["data"]["titol"] = $data["title_b2"];
                 $params["data"]["contingut"] = json_decode($data["pdfconvocatoria_b2"], TRUE);   //contingut latex ja rendaritzat
 
                 StaticPdfRenderer::renderDocument($params, "c-b2.pdf");

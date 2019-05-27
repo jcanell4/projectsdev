@@ -28,7 +28,7 @@
 
   <header class="main_header">
     <div class="container">
-      <h1>EOI IOC. Prova per a l'obtenció del certificat de nivell intermedi B1</h1>
+      <h1>{##title_b1##}</h1>
     </div>
   </header>
 
