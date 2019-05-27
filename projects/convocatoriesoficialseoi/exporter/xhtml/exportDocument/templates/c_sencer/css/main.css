@@ -458,17 +458,23 @@ section p{
     .container {
         max-width: 742px;
         margin: 0;
-        margin-right: 100px;
-        margin-left: auto;
+        margin-right: 10%;
+        margin-left: 25%;
         /*margin: 0 auto;*/
     }
 
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
         .container {
-            max-width: 950px;
+            max-width: 800px;
+        }
+        
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1300px) {
+        .container {
+            max-width: 1050px;
         }
 }
 
