@@ -40,9 +40,6 @@ class IocTcPdf extends TCPDF
     //Page header
     public function Header()
     {
-        if ($this->PageNo() == 1) {
-            return;
-        }
         $margins = $this->getMargins();
 
         // Logo
@@ -62,15 +59,13 @@ class IocTcPdf extends TCPDF
 
         // header string
         $this->MultiCell(65, $cell_height, $this->header_string, 0, 'R', 0, 0, "", "", true);
-        $this->Line(5, 19, 180, 19);
+//        $this->Line(5, 19, 180, 19);
+        $this->Line($margins['left'], 25, $this->getPageWidth()-$margins['right'], 25);
     }
 
     // Page footer
     public function Footer()
     {
-        if ($this->PageNo() == 1) {
-            return;
-        }
         $this->SetY(-15);   //Position at 15 mm from bottom
         $this->SetFont($this->footer_font[0], $this->footer_font[1], $this->footer_font[2]);
         $this->Cell(0, 10, 'Page ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');  //Page number
@@ -111,7 +106,7 @@ class StaticPdfRenderer extends BasicStaticPdfRenderer
         $iocTcPdf->setHeaderFont(Array(static::$headerFont, '', static::$headerFontSize));
         $iocTcPdf->setFooterFont(Array(static::$footerFont, '', static::$footerFontSize));
 
-        $iocTcPdf->setStartingPageNumber(0);
+        $iocTcPdf->setStartingPageNumber(1);
 
         // set default monospaced font
         $iocTcPdf->SetDefaultMonospacedFont("Courier");
@@ -128,21 +123,16 @@ class StaticPdfRenderer extends BasicStaticPdfRenderer
         $iocTcPdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
         //primera pàgina
-//        $iocTcPdf->SetFont(static::$firstPageFont, 'B', 35);
-//        $iocTcPdf->AddPage();
-        $iocTcPdf->SetX(100);
-        $iocTcPdf->SetY($y = 100);
-        for ($i = 0; $i < 2; $i++) {
-            $iocTcPdf->Cell(0, 0, $params["data"]["titol"][$i], 0, 1);
-        }
-        $iocTcPdf->SetY($y += 100);
-
-        $iocTcPdf->SetFont(static::$firstPageFont, 'B', 20);
-        for ($i = 2; $i < count($params["data"]["titol"]); $i++) {
-            $iocTcPdf->Cell(0, 0, $params["data"]["titol"][$i], 0, 1);
-        }
-
         $iocTcPdf->AddPage();
+
+
+        $iocTcPdf->SetX(100);
+        $iocTcPdf->SetY($y = 28);
+
+        $iocTcPdf->SetFont(static::$firstPageFont, 'B', 16);
+        $iocTcPdf->Cell(0, 0, html_entity_decode($params["data"]["titol"], ENT_QUOTES), 0, false, 'C');
+
+        $iocTcPdf->SetY($y = 35);
 
         $len = count($params["data"]["contingut"]);
         for ($i = 0; $i < $len; $i++) {
@@ -151,22 +141,6 @@ class StaticPdfRenderer extends BasicStaticPdfRenderer
         for ($i = 0; $i < $len; $i++) {
             static::renderHeader($params["data"]["contingut"][$i], $iocTcPdf);
         }
-
-//        // add a new page for TOC
-//        $iocTcPdf->addTOCPage();
-//
-//        // write the TOC title
-//        $iocTcPdf->SetFont('Times', 'B', 16);
-//        $iocTcPdf->MultiCell(0, 0, 'Índex', 0, 'C', 0, 1, '', '', true, 0);
-//        $iocTcPdf->Ln();
-//
-//        $iocTcPdf->SetFont('Times', '', 12);
-//
-//        // add a simple Table Of Content at first page
-//        $iocTcPdf->addTOC(2, 'courier', '.', 'INDEX', 'B', array(128,0,0));
-//
-//        // end of TOC page
-//        $iocTcPdf->endTOCPage();
 
         $iocTcPdf->Output("{$params['tmp_dir']}/$output_filename", 'F');
 

@@ -29,7 +29,7 @@
 
   <header class="main_header">
     <div class="container">
-      <h1>EOI IOC. Prova per a l'obtenció del certificat de nivell bàsic A2</h1>
+      <h1>{##title_a2##}</h1>
     </div>
   </header>
 

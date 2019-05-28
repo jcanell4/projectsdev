@@ -1,5 +1,6 @@
 ~~USE:WIOCCL~~
-====== {##title_b2##} ======
+====== Introducció ======
+
 L'Institut Obert de Catalunya organitza la prova per a l'obtenció del **certificat de nivell intemedi B2 d'anglès**.
 
 La prova consta d'una part escrita i una part oral.

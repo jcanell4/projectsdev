@@ -1,5 +1,6 @@
 ~~USE:WIOCCL~~
-====== {##title_a2##} ======
+====== Introducció ======
+
 L'Institut Obert de Catalunya organitza la prova per a l'obtenció del **certificat de nivell bàsic A2 d'anglès**.
 
 La prova consta d'una part escrita i una part oral.
