@@ -44,7 +44,7 @@
 
   <div class="container">
     {##convocatoria_b2##}
-    <div id="printbtn" onclick="printDoc('c-b2.pdf')"><span>Descarrega't el PDF</span></div>
+    <div id="printbtn" onclick="printDoc('../../c-b2.pdf')"><span>Descarrega't el PDF</span></div>
   </div>
     
   <script src="js/main.js"></script>
