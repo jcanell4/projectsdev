@@ -37,19 +37,30 @@ class exportDocument extends MainRender {
             mkdir($this->cfgExport->tmp_dir, 0775, TRUE);
         }
 
+        $result["files"] = array();
+        $result["fileNames"] = array();
+        $result["error"] = false;
+        
         $result = $this->createZipFiles('a2', $data, $result);
-        $result = $this->createZipFiles('b1', $data, $result);
-        $result = $this->createZipFiles('b2', $data, $result);
+        if(!$result['error']){
+            $result = $this->createZipFiles('b1', $data, $result);
+        }
+        if(!$result['error']){
+            $result = $this->createZipFiles('b2', $data, $result);
+        }
+        if(!$result['error']){    
+            $result["info"] = "fitxers {$result['fileNames'][0]}, {$result["fileNames"][1]} i {$result["fileNames"][2]} creats correctement";
+        }
 
         return $result;
     }
 
     private function createZipFiles($block, $data, $result) {
 
-        $output_filename = str_replace(':', '_', $this->cfgExport->id);
+        $output_filename = str_replace(':', '_', $this->cfgExport->id). "_" . $block;
         $pathTemplate = "xhtml/exportDocument/templates";
         $zip = new ZipArchive;
-        $zipFile = $this->cfgExport->tmp_dir . "/" . $output_filename . "_" . $block . ".zip";
+        $zipFile = $this->cfgExport->tmp_dir . "/" . $output_filename . ".zip";
         $res = $zip->open($zipFile, ZipArchive::CREATE);
 
         if ($res === TRUE) {
@@ -88,18 +99,18 @@ class exportDocument extends MainRender {
 
                 $pdfFilename = "c-" . $block . ".pdf";
                 StaticPdfRenderer::renderDocument($params, $pdfFilename);
-                $zip->addFile($this->cfgExport->tmp_dir . $pdfFilename, $pdfFilename);
+                $zip->addFile($this->cfgExport->tmp_dir ."/". $pdfFilename, $pdfFilename);
                 StaticPdfRenderer::resetStaticDataRender();
 
                 $this->attachMediaFiles($zip);
 
-                $result["zipFile"] = $zipFile;
-                $result["zipName"] = "$output_filename.zip";
-                $result["info"] = "fitxer {$result['zipName']} creat correctement";
+                $result["files"] []= $zipFile;
+                $result["fileNames"][] = "$output_filename.zip";
+                //$result["info"] = "fitxers {$result['fileNames'][0]} i {$result["fileNames"][1]} creats correctement";
             }else{
                 $result['error'] = true;
                 $result['info'] = $this->cfgExport->aLang['nozipfile'];
-                throw new Exception ("Error en la creació del fitxer zip");
+                throw new Exception ("Error en la creació del fitxer $output_filename.zip");
             }
             if (!$zip->close()) {
                 $result['error'] = true;
