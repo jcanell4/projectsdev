@@ -1,5 +1,5 @@
 ~~USE:WIOCCL~~
-======  ======
+====== Obtenció del certificat B1 ======
 L'Institut Obert de Catalunya organitza la prova per a l'obtenció del **certificat de nivell intermedi B1 d'anglès**.
 
 La prova consta d'una part escrita i una part oral.

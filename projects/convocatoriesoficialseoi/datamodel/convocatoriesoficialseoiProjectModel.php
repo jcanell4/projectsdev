@@ -132,7 +132,8 @@ class convocatoriesoficialseoiProjectModel extends AbstractProjectModel
             $destino = $this->getContentDocumentId($template);
             $this->dokuPageModel->setData([PageKeys::KEY_ID => $destino,
                 PageKeys::KEY_WIKITEXT => $plantilla,
-                PageKeys::KEY_SUM => $reason]);
+                PageKeys::KEY_SUM => $reason],
+                true);
         }
 
 

@@ -16,17 +16,6 @@
         "collapsed": false
       }
     },
-    "dadesBasiques": {
-      "parent": "",
-      "label": "Dades bàsiques",
-      "n_columns": 12,
-      "n_rows": 1,
-      "frame": true,
-      "config": {
-        "collapsable": true,
-        "collapsed": false
-      }
-    },
     "dates": {
       "parent": "",
       "label": "Dates importants",
@@ -36,6 +25,17 @@
       "config": {
         "collapsable": true,
         "collapsed": false
+      }
+    },
+    "dadesBasiques": {
+      "parent": "",
+      "label": "Dades bàsiques",
+      "n_columns": 12,
+      "n_rows": 1,
+      "frame": true,
+      "config": {
+        "collapsable": true,
+        "collapsed": true
       }
     }
   },
@@ -176,13 +176,31 @@
       "type": "hidden"
     },
     "title_a2": {
-      "type": "hidden"
+      "label": "Títol per la convocatòria del nivell A2 (title_a2)",
+      "n_columns": 12,
+      "group": "dadesBasiques",
+      "props": {
+        "required": true,
+        "title": "Títol principal pel document de la convocatòria del nivell A2"
+      }
     },
     "title_b1": {
-      "type": "hidden"
+      "label": "Títol per la convocatòria del nivell B1 (title_b1)",
+      "n_columns": 12,
+      "group": "dadesBasiques",
+      "props": {
+        "required": true,
+        "title": "Títol principal pel document de la convocatòria del nivell B1"
+      }
     },
     "title_b2": {
-      "type": "hidden"
+      "label": "Títol per la convocatòria del nivell B2 (title_b2)",
+      "n_columns": 12,
+      "group": "dadesBasiques",
+      "props": {
+        "required": true,
+        "title": "Títol principal pel document de la convocatòria del nivell B2"
+      }
     }
   }
 }

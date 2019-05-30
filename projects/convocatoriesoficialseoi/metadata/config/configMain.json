@@ -78,7 +78,7 @@
             "title_a2": {
               "type": "string",
               "mandatory": true,
-              "default": "EOI IOC. Prova per a l'obtenció del certificat de nivell intermedi A2"
+              "default": "EOI IOC. Prova per a l'obtenció del certificat de nivell bàsic A2"
             },
             "title_b1": {
               "type": "string",

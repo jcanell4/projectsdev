@@ -31,14 +31,19 @@ class action_plugin_projectsdev_projects_convocatoriesoficialseoi extends WikiIo
      * Rellena de información una pestaña de la zona de MetaInformación
      */
     function setExtraMeta(&$event, $param) {
+        
         //controlar que se trata del proyecto en curso
         if ($event->data['requestParams']['projectType'] === $this->projectType) {
 
             if (!isset($event->data['responseData'][ProjectKeys::KEY_CODETYPE])) {
                 $result['ns'] = getID();
                 $result['id'] = str_replace(':', '_', $result['ns']);
-                if (class_exists("ProjectExportAction", TRUE)){
-                    $html = ProjectExportAction::get_html_metadata($result) ;
+                $result['fileNames'] = array("{$result['id']}_a2.zip", "{$result['id']}_b1.zip", "{$result['id']}_b2.zip");
+                $dest = preg_replace('/:/', '/', $result['ns']);
+                $path_dest = WikiGlobalConfig::getConf('mediadir').'/'.$dest;
+                $result['dest'] = array($path_dest."/{$result['id']}_a2.zip", $path_dest."/{$result['id']}_b1.zip", $path_dest."/{$result['id']}_b2.zip");
+                if (class_exists("ResultsWithFiles", TRUE)){
+                    $html = ResultsWithFiles::get_html_metadata($result) ;
                 }
 
                 $event->data["ajaxCmdResponseGenerator"]->addExtraMetadata(

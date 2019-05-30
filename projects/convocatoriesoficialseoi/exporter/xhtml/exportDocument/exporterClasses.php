@@ -36,34 +36,48 @@ class exportDocument extends MainRender {
         if (!file_exists($this->cfgExport->tmp_dir)) {
             mkdir($this->cfgExport->tmp_dir, 0775, TRUE);
         }
-        $output_filename = str_replace(':','_',$this->cfgExport->id);
-        $pathTemplate = "xhtml/exportDocument/templates";
 
+        $result["files"] = array();
+        $result["fileNames"] = array();
+        $result["error"] = false;
+        
+        $result = $this->createZipFiles('a2', $data, $result);
+        if(!$result['error']){
+            $result = $this->createZipFiles('b1', $data, $result);
+        }
+        if(!$result['error']){
+            $result = $this->createZipFiles('b2', $data, $result);
+        }
+        if(!$result['error']){    
+            $result["info"] = "fitxers {$result['fileNames'][0]}, {$result["fileNames"][1]} i {$result["fileNames"][2]} creats correctement";
+        }
+
+        return $result;
+    }
+
+    private function createZipFiles($block, $data, $result) {
+
+        $output_filename = str_replace(':', '_', $this->cfgExport->id). "_" . $block;
+        $pathTemplate = "xhtml/exportDocument/templates";
         $zip = new ZipArchive;
-        $zipFile = $this->cfgExport->tmp_dir."/$output_filename.zip";
+        $zipFile = $this->cfgExport->tmp_dir . "/" . $output_filename . ".zip";
         $res = $zip->open($zipFile, ZipArchive::CREATE);
 
         if ($res === TRUE) {
-            $document = $this->replaceInTemplate($data, "$pathTemplate/index.html");
+            $document = $this->replaceInTemplate($data, "$pathTemplate/index_$block.html");
 
             if ($zip->addFromString('index.html', $document)) {
                 $allPathTemplate = $this->cfgExport->rendererPath . "/$pathTemplate";
                 $this->addFilesToZip($zip, $allPathTemplate, "", "img");
-                $zip->addFile($allPathTemplate."/main.css", "main.css");
-                $this->addFilesToZip($zip, WIKI_IOC_MODEL."exporter/xhtml", "c_sencer/", "css");
+                $zip->addFile($allPathTemplate . "/main.css", "main.css");
+                $this->addFilesToZip($zip, WIKI_IOC_MODEL . "exporter/xhtml", "c_sencer/", "css");
                 $this->addFilesToZip($zip, $allPathTemplate, "", "c_sencer", TRUE);
 
                 $this->addFilesToZip($zip, $this->cfgExport->rendererPath, "c_sencer/", "resources");
 
 
-                $cSencer = $this->replaceInTemplate($data, "$pathTemplate/c_sencer/ca2.tpl");
-                $zip->addFromString('/c_sencer/ca2.html', $cSencer);
-
-                $cSencer = $this->replaceInTemplate($data, "$pathTemplate/c_sencer/cb1.tpl");
-                $zip->addFromString('/c_sencer/cb1.html', $cSencer);
-
-                $cSencer = $this->replaceInTemplate($data, "$pathTemplate/c_sencer/cb2.tpl");
-                $zip->addFromString('/c_sencer/cb2.html', $cSencer);
+                $cSencer = $this->replaceInTemplate($data, "$pathTemplate/c_sencer/c" . $block . ".tpl");
+                $zip->addFromString('/c_sencer/c'. $block . '.html', $cSencer);
 
                 $params = array(
                     "id" => $this->cfgExport->id,
@@ -73,45 +87,30 @@ class exportDocument extends MainRender {
                     "mode" => isset($this->mode) ? $this->mode : $this->filetype,
                     "data" => array(
                         "header_page_logo" => $this->cfgExport->rendererPath . "/resources/escutGene.jpg",
-                        "header_page_wlogo" => 9.9,
-                        "header_page_hlogo" => 11.1,
-                        "header_ltext" => "Generalitat de Catalunya\nDepartament d'Educació\nInstitut Obert de Catalunya",
-                        "header_rtext" => "IOC - Escola Oficial d'Idiomes\n",
-
+                        "header_page_wlogo" => 16,
+                        "header_page_hlogo" => 18,
+                        "header_ltext" => "Generalitat de Catalunya\nDepartament d'Educació\nEscola Oficial d'Idiomes\nInstitut Obert de Catalunya",
+//                        "estil" => $estils['style'],
                     )
                 );
 
-                $params["data"]["titol"] = $data["title_a1"];
-                $params["data"]["contingut"] = json_decode($data["pdfconvocatoria_a2"], TRUE);   //contingut latex ja rendaritzat
+                $params["data"]["titol"] = $data['title_' . $block];
+                $params["data"]["contingut"] = json_decode($data["pdfconvocatoria_" . $block], TRUE);   //contingut latex ja rendaritzat
 
-                StaticPdfRenderer::renderDocument($params, "c-a2.pdf");
-                $zip->addFile($this->cfgExport->tmp_dir."/c-a2.pdf", "/c_sencer/c-a2.pdf");
-                StaticPdfRenderer::resetStaticDataRender();
-
-
-                $params["data"]["titol"] = $data["title_b1"];
-                $params["data"]["contingut"] = json_decode($data["pdfconvocatoria_b1"], TRUE);   //contingut latex ja rendaritzat
-
-                StaticPdfRenderer::renderDocument($params, "c-b1.pdf");
-                $zip->addFile($this->cfgExport->tmp_dir."/c-b1.pdf", "/c_sencer/c-b1.pdf");
-                StaticPdfRenderer::resetStaticDataRender();
-
-                $params["data"]["titol"] = $data["title_b2"];
-                $params["data"]["contingut"] = json_decode($data["pdfconvocatoria_b2"], TRUE);   //contingut latex ja rendaritzat
-
-                StaticPdfRenderer::renderDocument($params, "c-b2.pdf");
-                $zip->addFile($this->cfgExport->tmp_dir."/c-b2.pdf", "/c_sencer/c-b2.pdf");
+                $pdfFilename = "c-" . $block . ".pdf";
+                StaticPdfRenderer::renderDocument($params, $pdfFilename);
+                $zip->addFile($this->cfgExport->tmp_dir ."/". $pdfFilename, $pdfFilename);
                 StaticPdfRenderer::resetStaticDataRender();
 
                 $this->attachMediaFiles($zip);
 
-                $result["zipFile"] = $zipFile;
-                $result["zipName"] = "$output_filename.zip";
-                $result["info"] = "fitxer {$result['zipName']} creat correctement";
+                $result["files"] []= $zipFile;
+                $result["fileNames"][] = "$output_filename.zip";
+                //$result["info"] = "fitxers {$result['fileNames'][0]} i {$result["fileNames"][1]} creats correctement";
             }else{
                 $result['error'] = true;
                 $result['info'] = $this->cfgExport->aLang['nozipfile'];
-                throw new Exception ("Error en la creació del fitxer zip");
+                throw new Exception ("Error en la creació del fitxer $output_filename.zip");
             }
             if (!$zip->close()) {
                 $result['error'] = true;
@@ -233,10 +232,3 @@ class exportDocument extends MainRender {
         return $files;
     }
 }
-
-//class render_title extends renderField {
-//    public function process($data) {
-//        $ret = parent::process($data);
-//        return $ret;
-//    }
-//}
