@@ -94,25 +94,44 @@
       }
     },
     "responsable": {
-      "type" : "amd",
+      "type": "amd",
       "label": "Responsable de la creació (responsable)",
       "n_columns": 4,
       "group": "authorship",
       "props": {
         "required": true
       },
-      "config":{
-        "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByInfoPerm", "data":{"perm":4, "deniedResponse":true}}]},
-        "class" : {
+      "config": {
+        "readonly": {
+          "and": [
+            {
+              "class": "ValidationByRoles",
+              "data": {
+                "roles": [
+                  "responsable"
+                ],
+                "deniedResponse": true
+              }
+            },
+            {
+              "class": "ValidationByInfoPerm",
+              "data": {
+                "perm": 4,
+                "deniedResponse": true
+              }
+            }
+          ]
+        },
+        "class": {
           "edit": "IocFilteredList",
           "view": "IocListSelectedItems"
         },
         "data": {
-          "ns":"",
+          "ns": "",
           "buttonLabel": "Cercar",
           "fieldName": "responsable",
-          "dialogTitle" : "Cercar responsable",
-          "dialogButtonLabel" : "Afegir responsable",
+          "dialogTitle": "Cercar responsable",
+          "dialogButtonLabel": "Afegir responsable",
           "data": "",
           "dataQuery": {
             "filter": ""
@@ -200,6 +219,33 @@
       "props": {
         "required": true,
         "title": "Títol principal pel document de la convocatòria del nivell B2"
+      }
+    },
+    "url_a2": {
+      "label": "URL personalitzada pel fixer A2 (url_a2)",
+      "n_columns": 12,
+      "group": "dadesBasiques",
+      "props": {
+        "required": false,
+        "title": "URL personalitzada pel fixer A2"
+      }
+    },
+    "url_b1": {
+      "label": "URL personalitzada pel fixer B1 (url_b1)",
+      "n_columns": 12,
+      "group": "dadesBasiques",
+      "props": {
+        "required": false,
+        "title": "URL personalitzada pel fixer B1"
+      }
+    },
+    "url_b2": {
+      "label": "URL personalitzada pel fixer B2 (url_b2)",
+      "n_columns": 12,
+      "group": "dadesBasiques",
+      "props": {
+        "required": false,
+        "title": "URL personalitzada pel fixer B2"
       }
     }
   }

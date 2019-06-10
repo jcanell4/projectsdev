@@ -5,17 +5,18 @@
  * @culpable Rafael Claver
  */
 if (!defined('DOKU_INC')) die();
-if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC."lib/plugins/");
-if (!defined('WIKI_IOC_MODEL')) define('WIKI_IOC_MODEL', DOKU_PLUGIN."wikiiocmodel/");
-if (!defined('EXPORT_TMP')) define('EXPORT_TMP',DOKU_PLUGIN.'tmp/latex/');
+if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC . "lib/plugins/");
+if (!defined('WIKI_IOC_MODEL')) define('WIKI_IOC_MODEL', DOKU_PLUGIN . "wikiiocmodel/");
+if (!defined('EXPORT_TMP')) define('EXPORT_TMP', DOKU_PLUGIN . 'tmp/latex/');
 //define('WIKI_IOC_PROJECT', WIKI_IOC_MODEL . "projects/convocatoriesoficialseoi/");
-define('WIKI_IOC_PROJECT', DOKU_PLUGIN."projectsdev/projects/convocatoriesoficialseoi/");
+define('WIKI_IOC_PROJECT', DOKU_PLUGIN . "projectsdev/projects/convocatoriesoficialseoi/");
 
 //require_once WIKI_IOC_MODEL."persistence/ProjectMetaDataQuery.php";
 
-class ProjectExportAction  extends ProjectMetadataAction{
-    const PATH_RENDERER = WIKI_IOC_PROJECT."exporter/";
-    const PATH_CONFIG_FILE = WIKI_IOC_PROJECT."metadata/config/";
+class ProjectExportAction extends ProjectMetadataAction
+{
+    const PATH_RENDERER = WIKI_IOC_PROJECT . "exporter/";
+    const PATH_CONFIG_FILE = WIKI_IOC_PROJECT . "metadata/config/";
     const CONFIG_TYPE_FILENAME = "configMain.json";
     const CONFIG_RENDER_FILENAME = "configRender.json";
 
@@ -31,25 +32,28 @@ class ProjectExportAction  extends ProjectMetadataAction{
     protected $factoryRender;
     protected $metaDataSubSet;
 
-    public function __construct($factory=NULL){
+    public function __construct($factory = NULL)
+    {
         $this->factoryRender = $factory;
     }
+
     /**
      * Ejecuta los procesos_render de primer nivel definidos en el primer nivel
      * del archivo de configuración del proyecto
      */
-    protected function setParams($params) {
-        $this->mode        = $params[ProjectKeys::KEY_MODE];
-        $this->filetype    = $params[ProjectKeys::KEY_FILE_TYPE];
+    protected function setParams($params)
+    {
+        $this->mode = $params[ProjectKeys::KEY_MODE];
+        $this->filetype = $params[ProjectKeys::KEY_FILE_TYPE];
         $this->projectType = $params[ProjectKeys::KEY_PROJECT_TYPE];
-        $this->projectID   = $params[ProjectKeys::KEY_ID];
+        $this->projectID = $params[ProjectKeys::KEY_ID];
         $this->metaDataSubSet = $params[ProjectKeys::KEY_METADATA_SUBSET];
-        
-        $this->projectNS   = $params[ProjectKeys::KEY_NS]?$params[ProjectKeys::KEY_NS]:$this->projectID;
-        
+
+        $this->projectNS = $params[ProjectKeys::KEY_NS] ? $params[ProjectKeys::KEY_NS] : $this->projectID;
+
         $this->typesRender = $this->getProjectConfigFile(self::CONFIG_RENDER_FILENAME, "typesDefinition");
         $this->defaultValueForObjectFields = $this->getProjectConfigFile(self::CONFIG_RENDER_FILENAME, "defaultValueForObjectFields");
-            
+
         $cfgArray = $this->getProjectConfigFile(self::CONFIG_TYPE_FILENAME, ProjectKeys::KEY_METADATA_PROJECT_STRUCTURE, $this->metaDataSubSet);
         $this->mainTypeName = $cfgArray['mainType']['typeDef'];
         $this->typesDefinition = $cfgArray['typesDefinition'];
@@ -57,39 +61,53 @@ class ProjectExportAction  extends ProjectMetadataAction{
 //            $idResoucePath = WikiGlobalConfig::getConf('mdprojects')."/".str_replace(":", "/", $this->projectID);
 //            $projectfilepath = "$idResoucePath/".$this->projectType."/$projectfilename";
 //        $this->dataArray = $this->getProjectDataFile($projectfilepath, $this->metaDataSubSet);
-        $toInitModel = array(ProjectKeys::KEY_ID =>$this->projectID, ProjectKeys::KEY_PROJECT_TYPE=>$this->projectType, ProjectKeys::KEY_METADATA_SUBSET =>$this->metadataSubset);
+        $toInitModel = array(ProjectKeys::KEY_ID => $this->projectID, ProjectKeys::KEY_PROJECT_TYPE => $this->projectType, ProjectKeys::KEY_METADATA_SUBSET => $this->metadataSubset);
         $this->projectModel->init($toInitModel);
         $this->dataArray = $this->projectModel->getDataProject(); //JOSEP: AIXÍ ESTÀ BË PERQUÈ DELEGUEM EN EL MODEL
     }
 
-    public function responseProcess() {
-        $ret = array();        
+    public function responseProcess()
+    {
+        $ret = array();
         $fRenderer = $this->factoryRender;
-        $fRenderer->init(['mode'            => $this->mode,
-                          'filetype'        => $this->filetype,
-                          'typesDefinition' => $this->typesDefinition,
-                          'typesRender'     => $this->typesRender,
-                          'defaultValueForObjectFields'     => $this->defaultValueForObjectFields ]);
+        $fRenderer->init(['mode' => $this->mode,
+            'filetype' => $this->filetype,
+            'typesDefinition' => $this->typesDefinition,
+            'typesRender' => $this->typesRender,
+            'defaultValueForObjectFields' => $this->defaultValueForObjectFields]);
         $render = $fRenderer->createRender($this->typesDefinition[$this->mainTypeName],
-                                           $this->typesRender[$this->mainTypeName],
-                                           array(ProjectKeys::KEY_ID => $this->projectID));
+            $this->typesRender[$this->mainTypeName],
+            array(ProjectKeys::KEY_ID => $this->projectID));
         $result = $render->process($this->dataArray);
 //        $result['ns'] = $this->projectID; JOSEP: ID O NS?
 
         $result['ns'] = $this->projectNS;
-        $ret=["id" => str_replace(":", "_", $this->projectID)];
+        $ret = ["id" => str_replace(":", "_", $this->projectID)];
         $ret["ns"] = $this->projectNS;
         switch ($this->mode) {
             case 'xhtml':
+
+                $prefix = str_replace(':', '_', $this->getProjectID());
+
+                $result['custom_url'] = [];
+                $blocks = ['a2', 'b1', 'b2'];
+
+                foreach ($blocks as $blockSuffix) {
+                    if (strlen($this->dataArray['url_' . $blockSuffix]) > 0) {
+
+                        $result['custom_url'][$prefix . '_' . $blockSuffix . '.zip'] = rtrim($this->dataArray['url_' . $blockSuffix], '/');
+                    }
+                }
+
                 $ret["meta"] = ResultsWithFiles::get_html_metadata($result);
                 break;
             default:
                 throw new Exception("ProjectExportAction: mode incorrecte.");
         }
-        if (!WikiGlobalConfig::getConf('plugin')['iocexportl']['saveWorkDir']){
-                $this->removeDir($result["tmp_dir"]);
+        if (!WikiGlobalConfig::getConf('plugin')['iocexportl']['saveWorkDir']) {
+            $this->removeDir($result["tmp_dir"]);
         }
-        
+
         return $ret;
     }
 
@@ -97,20 +115,21 @@ class ProjectExportAction  extends ProjectMetadataAction{
      * @return array : Devuelve el subconjunto $rama del fichero de configuración del proyecto
      *                  Si se indica el metaDataSubSet, es que espera encontrar una estructura
      */
-    private function getProjectConfigFile($filename, $rama, $metaDataSubSet=NULL) {
-        $config = @file_get_contents(self::PATH_CONFIG_FILE.$filename);
+    private function getProjectConfigFile($filename, $rama, $metaDataSubSet = NULL)
+    {
+        $config = @file_get_contents(self::PATH_CONFIG_FILE . $filename);
         if ($config != FALSE) {
             $array = json_decode($config, true);
             if ($metaDataSubSet) {
                 $elem = $array[$rama];
-                for ($i=0; $i<count($elem); $i++) {
+                for ($i = 0; $i < count($elem); $i++) {
                     if (array_key_exists($metaDataSubSet, $elem[$i])) {
                         $ret = $elem[$i];
                         break;
                     }
                 }
-            }else{
-                $ret = $array[$rama]; 
+            } else {
+                $ret = $array[$rama];
             }
             return $ret;
         }
@@ -133,20 +152,28 @@ class ProjectExportAction  extends ProjectMetadataAction{
 //        }
 //    }
 
-    protected function getTypesCollection($key = NULL) {
+    protected function getTypesCollection($key = NULL)
+    {
         return ($key === NULL) ? $this->typesDefinition : $this->typesDefinition[$key];
     }
-    protected function getProjectDataArray($key = NULL) {
+
+    protected function getProjectDataArray($key = NULL)
+    {
         return ($key === NULL) ? $this->dataArray : $this->dataArray[$key];
     }
-    public function processTitle($param = NULL) {
-        return ($param===NULL) ? $param : getProjectDataArray('title');
+
+    public function processTitle($param = NULL)
+    {
+        return ($param === NULL) ? $param : getProjectDataArray('title');
     }
-    public function getProjectID() {
+
+    public function getProjectID()
+    {
         return $this->projectID;
     }
 
-    public static function get_html_metadata($result){
+    public static function get_html_metadata($result)
+    {
         $ret = ResultsWithFiles::get_html_metadata($result);
 //        if ($result['error']) {
 //            throw new Exception ("Error");
@@ -212,13 +239,14 @@ class ProjectExportAction  extends ProjectMetadataAction{
 //        $ok = copy($result["zipFile"], $path_dest.'/'.$result["zipName"]);
 //        return $ok;
 //    }
-    
+
     /**
      * Remove specified dir
      * @param string $directory
      */
-    private function removeDir($directory) {
-       return ResultsWithFiles::removeDir($directory);
+    private function removeDir($directory)
+    {
+        return ResultsWithFiles::removeDir($directory);
 //        if (!file_exists($directory) || !is_dir($directory) || !is_readable($directory)) {
 //            return FALSE;
 //        }else {
@@ -242,5 +270,5 @@ class ProjectExportAction  extends ProjectMetadataAction{
 //            }
 //            return TRUE;
 //        }
-    }    
+    }
 }

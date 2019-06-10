@@ -89,6 +89,21 @@
               "type": "string",
               "mandatory": true,
               "default": "EOI IOC. Prova per a l'obtenció del certificat de nivell intermedi B2"
+            },
+            "url_a2": {
+              "type": "string",
+              "mandatory": false,
+              "default": ""
+            },
+            "url_b1": {
+              "type": "string",
+              "mandatory": false,
+              "default": ""
+            },
+            "url_b2": {
+              "type": "string",
+              "mandatory": false,
+              "default": ""
             }
           }
         }
