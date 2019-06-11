@@ -220,33 +220,6 @@
         "required": true,
         "title": "Títol principal pel document de la convocatòria del nivell B2"
       }
-    },
-    "url_a2": {
-      "label": "URL personalitzada pel fixer A2 (url_a2)",
-      "n_columns": 12,
-      "group": "dadesBasiques",
-      "props": {
-        "required": false,
-        "title": "URL personalitzada pel fixer A2"
-      }
-    },
-    "url_b1": {
-      "label": "URL personalitzada pel fixer B1 (url_b1)",
-      "n_columns": 12,
-      "group": "dadesBasiques",
-      "props": {
-        "required": false,
-        "title": "URL personalitzada pel fixer B1"
-      }
-    },
-    "url_b2": {
-      "label": "URL personalitzada pel fixer B2 (url_b2)",
-      "n_columns": 12,
-      "group": "dadesBasiques",
-      "props": {
-        "required": false,
-        "title": "URL personalitzada pel fixer B2"
-      }
     }
   }
 }

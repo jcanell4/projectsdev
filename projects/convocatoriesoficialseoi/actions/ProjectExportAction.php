@@ -34,7 +34,6 @@ class ProjectExportAction  extends ProjectMetadataAction{
     public function __construct($factory=NULL){
         $this->factoryRender = $factory;
     }
-
     /**
      * Ejecuta los procesos_render de primer nivel definidos en el primer nivel
      * del archivo de configuración del proyecto
@@ -67,10 +66,10 @@ class ProjectExportAction  extends ProjectMetadataAction{
         $ret = array();
         $fRenderer = $this->factoryRender;
         $fRenderer->init(['mode'            => $this->mode,
-                          'filetype'        => $this->filetype,
-                          'typesDefinition' => $this->typesDefinition,
-                          'typesRender'     => $this->typesRender,
-                          'defaultValueForObjectFields'     => $this->defaultValueForObjectFields ]);
+            'filetype'        => $this->filetype,
+            'typesDefinition' => $this->typesDefinition,
+            'typesRender'     => $this->typesRender,
+            'defaultValueForObjectFields'     => $this->defaultValueForObjectFields ]);
         $render = $fRenderer->createRender($this->typesDefinition[$this->mainTypeName],
             $this->typesRender[$this->mainTypeName],
             array(ProjectKeys::KEY_ID => $this->projectID));
@@ -82,19 +81,6 @@ class ProjectExportAction  extends ProjectMetadataAction{
         $ret["ns"] = $this->projectNS;
         switch ($this->mode) {
             case 'xhtml':
-
-                $prefix = str_replace(':', '_', $this->getProjectID());
-
-                $result['custom_url'] = [];
-                $blocks = ['a2', 'b1', 'b2'];
-
-                foreach ($blocks as $blockSuffix) {
-                    if (strlen($this->dataArray['url_' . $blockSuffix]) > 0) {
-
-                        $result['custom_url'][$prefix . '_' . $blockSuffix . '.zip'] = rtrim($this->dataArray['url_' . $blockSuffix], '/');
-                    }
-                }
-
                 $ret["meta"] = ResultsWithFiles::get_html_metadata($result);
                 break;
             default:
