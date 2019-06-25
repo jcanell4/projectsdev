@@ -24,6 +24,8 @@ class action_plugin_projectsdev_projects_platreballfp extends WikiIocPluginActio
         $controller->register_hook('ADD_TPL_CONTROLS', "AFTER", $this, "addWikiIocButtons", array());
         $controller->register_hook('ADD_TPL_CONTROL_SCRIPTS', "AFTER", $this, "addControlScripts", array());
         $controller->register_hook('WIOC_PROCESS_RESPONSE_project', "AFTER", $this, "setExtraMeta", array());
+
+        $controller->register_hook('WIOC_PROCESS_RESPONSE_ftpsend', "AFTER", $this, "setExtraMeta", array());
     }
 
     /**
@@ -48,6 +50,9 @@ class action_plugin_projectsdev_projects_platreballfp extends WikiIocPluginActio
                             );
             }
         }
+
+        // TODO: Afegir la nova meta amb els enllaços dels fitxers enviats
+
         return TRUE;
     }
 
