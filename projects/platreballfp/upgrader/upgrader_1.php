@@ -90,7 +90,7 @@ class upgrader_1 extends CommonUpgrader {
                 $t0 = @file_get_contents("/home/rafael/clone/loe_con.v0");
                 $t1 = @file_get_contents("/home/rafael/clone/loe_con.txt");
                 $doc = @file_get_contents("/home/rafael/clone/loe_doc.txt");
-                $dataChanged = $this->updateDocToNewTemplate($t0, $t1, $doc);
+                $dataChanged = $this->updateDocToNewTemplateFromTemplate($t0, $t1, $doc);
 
                 // Aplica una nueva plantilla, con token numerado, a un documento creado con una plantilla antigua
                 $t0 = @file_get_contents("/home/rafael/clone/continguts_00.txt");
