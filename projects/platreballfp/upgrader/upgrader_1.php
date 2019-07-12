@@ -90,13 +90,13 @@ class upgrader_1 extends CommonUpgrader {
                 $t0 = @file_get_contents("/home/rafael/clone/loe_con.v0");
                 $t1 = @file_get_contents("/home/rafael/clone/loe_con.txt");
                 $doc = @file_get_contents("/home/rafael/clone/loe_doc.txt");
-                $dataChanged = $this->updateDocToNewTemplateFromTemplate($t0, $t1, $doc);
+                $dataChanged = $this->updateFromOriginalTemplateToNewTemplateWithTodoTags($t0, $t1, $doc);
 
                 // Aplica una nueva plantilla, con token numerado, a un documento creado con una plantilla antigua
                 $t0 = @file_get_contents("/home/rafael/clone/continguts_00.txt");
                 $t1 = @file_get_contents("/home/rafael/clone/continguts_01.txt");
                 $doc = @file_get_contents("/home/rafael/clone/document_00.txt");
-                $dataChanged = $this->updateDocToNewTemplateNumbered($t0, $t1, $doc);
+                $dataChanged = $this->updateFromOriginalTemplateToNewTemplateWithNumberedTodoTags($t0, $t1, $doc);
 
                 // Elimina de un documento los trozos de texto que cumplen con cada una de las expresiones regulares
                 $doc = @file_get_contents("/home/rafael/clone/document_00.txt");
