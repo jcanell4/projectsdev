@@ -30,7 +30,8 @@ class RevertProjectMetaDataAction extends ProjectMetadataAction {
         //sólo se ejecuta si existe el proyecto
         if ($model->existProject()) {
 
-            $dataProject = $model->getDataProject();
+            //$dataProject = $model->getDataProject();
+            $oldPersonsDataProject = $model->getOldPersonsDataProject($id, $this->params[ProjectKeys::KEY_PROJECT_TYPE], $this->params[ProjectKeys::KEY_METADATA_SUBSET]);
             $dataRevision = $model->getDataRevisionProject($this->params[ProjectKeys::KEY_REV]);
 
             $metaData = [
@@ -46,17 +47,8 @@ class RevertProjectMetaDataAction extends ProjectMetadataAction {
             $response = $model->getData();
 
             if ($model->isProjectGenerated()) {
-                $include = [
-                     'id' => $id
-                    ,'link_page' => $id.":".end(explode(":", $response['projectMetaData']["plantilla"]['value']))
-                    ,'old_autor' => $dataProject['autor']
-                    ,'old_responsable' => $dataProject['responsable']
-                    ,'new_autor' => $response['projectMetaData']['autor']['value']
-                    ,'new_responsable' => $response['projectMetaData']['responsable']['value']
-                    ,'userpage_ns' => WikiGlobalConfig::getConf('userpage_ns','wikiiocmodel')
-                    ,'shortcut_name' => WikiGlobalConfig::getConf('shortcut_page_name','wikiiocmodel')
-                ];
-                $model->modifyACLPageToUser($include);
+                $params = $model->buildParamsToPersons($response['projectMetaData'], $oldPersonsDataProject);
+                $model->modifyACLPageAndShortcutToPerson($params);
             }
 
             //Elimina todos los borradores dado que estamos haciendo una reversión del proyecto

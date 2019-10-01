@@ -36,7 +36,6 @@ class taulasubsProjectModel extends AbstractProjectModel{
             //3b. Incluye la página del proyecto en el archivo de atajos del Autor
             $params = [
                  'id' => $this->id
-                ,'autor' => $autor
                 ,'link_page' => $ret['projectMetaData']["fitxercontinguts"]['value']
                 ,'user_shortcut' => $ns.WikiGlobalConfig::getConf('shortcut_page_name','wikiiocmodel')
             ];
