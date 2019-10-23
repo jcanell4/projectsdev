@@ -32,6 +32,7 @@
                    "responsable"
                 ],
                 "conditions": {
+                    "page.isRevision": "false",
                     "page.action": "'project_view'"
                 }
             }
@@ -70,6 +71,7 @@
                    "responsable"
                 ],
                 "conditions": {
+                    "page.isRevision": "false",
                     "page.action": "'project_view'"
                 }
             }

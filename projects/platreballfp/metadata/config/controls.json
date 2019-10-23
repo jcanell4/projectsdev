@@ -11,7 +11,8 @@
             "updateHandler": {
                 "conditions": {
                     "page.action": "'project_view'",
-                    "page.generated":"false"
+                    "page.generated":"false",
+                    "page.isRevision": "false"
                 }
             }
         }
@@ -46,6 +47,7 @@
                    "autor"
                 ],
                 "conditions": {
+                    "page.isRevision": "false",
                     "page.updateButton": "'1'"
                 }
             }
@@ -85,6 +87,7 @@
                    "responsable"
                 ],
                 "conditions": {
+                    "page.isRevision": "false",
                     "page.action": "'project_view'"
                 }
             }
