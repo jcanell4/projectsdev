@@ -35,7 +35,8 @@
                     "keys": {
                         "autor": {
                             "type": "string",
-                            "mandatory": true
+                            "mandatory": true,
+                            "isRole":true
                         },
                         "nsproject": {
                             "type": "string",
@@ -44,7 +45,8 @@
                         "responsable": {
                             "type": "string",
                             "struc_chars": "40",
-                            "mandatory": true
+                            "mandatory": true,
+                            "isRole":true
                         },
                         "titol": {
                             "type": "string",

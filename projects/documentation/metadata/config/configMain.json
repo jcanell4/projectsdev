@@ -121,7 +121,8 @@
                     "keys": {
                         "autor": {
                             "type": "string",
-                            "mandatory": true
+                            "mandatory": true,
+                            "isRole":true
                         },
                         "descripcio": {
                             "type": "string",
@@ -147,7 +148,8 @@
                         "responsable": {
                             "type": "string",
                             "struc_chars": "40",
-                            "mandatory": true
+                            "mandatory": true,
+                            "isRole":true
                         },
                         "titol": {
                             "type": "string",
