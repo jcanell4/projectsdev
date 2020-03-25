@@ -19,7 +19,7 @@ class ViewProjectMetaDataAction extends BasicViewProjectMetaDataAction{
                                    ProjectKeys::KEY_METADATA_SUBSET => ProjectKeys::VAL_DEFAULTSUBSET
                                 ]);
 
-        $metaDataConfigProject = $configProjectModel->getDataProject();
+        $metaDataConfigProject = $configProjectModel->getCurrentDataProject();
 
         if ($metaDataConfigProject['arraytaula']) {
             $arraytaula = json_decode($metaDataConfigProject['arraytaula'], TRUE);

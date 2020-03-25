@@ -30,7 +30,7 @@ class RevertProjectMetaDataAction extends ProjectMetadataAction {
         //sólo se ejecuta si existe el proyecto
         if ($model->existProject()) {
 
-            //$dataProject = $model->getDataProject();
+            //$dataProject = $model->getCurrentDataProject();
             $oldPersonsDataProject = $model->getOldPersonsDataProject($id, $this->params[ProjectKeys::KEY_PROJECT_TYPE], $this->params[ProjectKeys::KEY_METADATA_SUBSET]);
             $dataRevision = $model->getDataRevisionProject($this->params[ProjectKeys::KEY_REV]);
 
