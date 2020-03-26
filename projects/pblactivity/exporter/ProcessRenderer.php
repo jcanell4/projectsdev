@@ -6,10 +6,8 @@
  */
 if (!defined('DOKU_INC')) die();
 if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC."lib/plugins/");
-if (!defined('WIKI_IOC_MODEL')) define('WIKI_IOC_MODEL', DOKU_PLUGIN."wikiiocmodel/");
 define('WIKI_IOC_PROJECT', DOKU_PLUGIN . "projectsdev/projects/pblactivity/");
 
-require_once WIKI_IOC_MODEL."persistence/ProjectMetaDataQuery.php";
 require_once WIKI_IOC_PROJECT."exporter/FactoryRenderer.php";
 require_once WIKI_IOC_PROJECT."exporter/exporterClasses.php";
 
