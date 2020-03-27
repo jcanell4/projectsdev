@@ -125,7 +125,7 @@ class exportDocument extends MainRender {
         }
         //Si pdflatex no está instalado localmente, probaremos ejecutarlo en otro servidor con una conexión ssh remota
         else {
-            $destino = mediaFN(str_replace("_", ":", $this->cfgExport->id));
+            $destino = mediaFN(str_replace(":", "/", $this->cfgExport->id));
             $moreparsing = ($_SESSION['onemoreparsing']) ? 1 : 0;
             @exec(DOKU_INC."../sh/remoteSSHexport.sh $path $filename $destino $moreparsing $shell_escape", $sortida, $return);
         }
@@ -150,7 +150,7 @@ class exportDocument extends MainRender {
                 $num_pages = @exec("pdfinfo $path/$filename | awk '/Pages/ {print $2}'");
             }
             $filesize = filesize_h(filesize("$path/$filename"));
-            $ns = str_replace("_", ":", $this->cfgExport->id);
+            $ns = $this->cfgExport->id;
             $mediadir = mediaFN($ns);
             if (!file_exists($mediadir)) mkdir($mediadir, 0755, TRUE);
 

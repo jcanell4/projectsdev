@@ -46,6 +46,13 @@ class render_title extends renderField {
     }
 }
 
+class renderText extends renderField {
+    public function process($data) {
+        $ret = parent::process($data);
+        return $ret;
+    }
+}
+
 class renderFile extends AbstractRenderer {
     public function process($data) {
         if (session_status() == PHP_SESSION_NONE) {
