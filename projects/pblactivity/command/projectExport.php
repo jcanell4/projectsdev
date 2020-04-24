@@ -30,7 +30,7 @@ class command_plugin_projectsdev_projects_pblactivity_projectExport extends abst
         //$action->init($params);
         $content = $action->get($params);
         $projectId = $action->getProjectID();
-        return array('projectId' => $projectId, 'meta' => $content);
+        return array(ProjectKeys::KEY_PROJECT_ID => $projectId, 'meta' => $content);
     }
 
     protected function getDefaultResponse($response, &$ret) {
