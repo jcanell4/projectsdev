@@ -73,7 +73,7 @@ class ProjectExportAction  extends ProjectMetadataAction{
             $this->removeDir($result["tmp_dir"]);
         }
 
-        $ret[ProjectKeys::KEY_ACTIVA_FTPSEND_BTN] = $this->getModel()->haveFilesToExportList();
+        $ret[AjaxKeys::KEY_ACTIVA_FTP_PROJECT_BTN] = $this->getModel()->haveFilesToExportList();
 
         return $ret;
     }
