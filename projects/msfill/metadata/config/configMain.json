@@ -1,0 +1,92 @@
+{
+    "metaDataClassesNameSpaces": [
+        {
+            "main": {
+                "MetaDataDAO": "defaultProject",
+                "MetaDataEntity": "defaultProject",
+                "MetaDataRender": "msfill"
+            }
+        }
+    ],
+    "metaDataComponentTypes": [
+        {
+            "main": {
+                "documents": true,
+                "folders": false
+            }
+        }
+    ],
+    "metaDataProjectConfig": [
+        {
+            "main": {
+                "projectTypeConfigFile": "admconfig:msfill"
+            }
+        }        
+    ],
+    "metaDataProjectStructure": [
+        {
+            "main": "meta.mdpr",
+            "mainType": {
+                "type": "object",
+                "typeDef": "msfill"
+            },
+            "typesDefinition": {
+                "msfill": {
+                    "type": "object",
+                    "keys": {
+                        "titol": {
+                            "type": "string",
+                            "mandatory": true,
+                            "calculateOnRead": {
+                                "class": "CalculateDataProject",
+                                "data": {
+                                    "projectId": "docs:pare_01",
+                                    "metaDataSubSet": "main",
+                                    "field": "subtitol"
+                                }
+                            }
+                        },
+                        "autor": {
+                            "type": "string",
+                            "mandatory": true,
+                            "isRole": true,
+                            "calculateOnRead": {
+                                "class": "CalculateDataProject",
+                                "data": {
+                                    "projectId": "docs:pare_01",
+                                    "metaDataSubSet": "main",
+                                    "field": "autor"
+                                }
+                            }
+                        },
+                        "responsable": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true,
+                            "isRole":true
+                        },
+                        "nom_real": {
+                            "type": "string",
+                            "mandatory": true,
+                            "calculateOnRead": {
+                                "class": "CalculateRealNameFromUsername",
+                                "data": "autor"
+                            }
+                        },                                                
+                        "entitatResponsable": {
+                            "type": "string",
+                            "calculateOnRead": {
+                                "class": "CalculateDataProject",
+                                "data": {
+                                    "projectId": "docs:pare_01",
+                                    "metaDataSubSet": "main",
+                                    "field": "entitatResponsable"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "metaDataClassesNameSpaces": [
+        {
+            "main": {
+                "MetaDataDAO": "defaultProject",
+                "MetaDataEntity": "defaultProject",
+                "MetaDataRender": "mspare"
+            }
+        }
+    ],
+    "metaDataComponentTypes": [
+        {
+            "main": {
+                "documents": true,
+                "folders": false
+            }
+        }
+    ],
+    "metaDataProjectConfig": [
+        {
+            "main": {
+                "projectTypeConfigFile": "admconfig:mspare"
+            }
+        }        
+    ],
+    "metaDataProjectStructure": [
+        {
+            "main": "meta.mdpr",
+            "mainType": {
+                "type": "object",
+                "typeDef": "mspare"
+            },
+            "typesDefinition": {
+                "mspare": {
+                    "type": "object",
+                    "keys": {
+                        "titol": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default":"Poseu-hi el títol"
+                        },
+                        "subtitol": {
+                            "type": "string",
+                            "default": "Indiqueu el subtítol",
+                            "mandatory": true
+                        },
+                        "responsable": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true,
+                            "isRole":true
+                        },                                                
+                        "autor": {
+                            "type": "string",
+                            "mandatory": true,
+                            "isRole":true
+                        },
+                        "entitatResponsable": {
+                            "type": "string",
+                            "default": "Manubrio ediciones"
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
