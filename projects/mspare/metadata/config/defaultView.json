@@ -27,6 +27,17 @@
                 "collapsable":true,
                 "collapsed":false
             }
+        },
+        "lliurament": {
+            "parent": "",
+            "label": "Dades del lliurament",
+            "n_columns": 12,
+            "n_rows": 1,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
         }
     },
     "fields": {
@@ -122,6 +133,38 @@
             "group": "authorship",
             "props": {
                 "title": "Indiqueu si cal quim és el departament o entitat responsable del document final. Podeu deixar el valor en blanc."
+            }
+        },
+        "lliurament#id": {
+            "label" : "id",
+            "n_columns": 2,
+            "group": "lliurament",
+            "props": {
+                "title": "Identificador del lliurament"
+            }
+        },
+        "lliurament#nom": {
+            "label" : "nom",
+            "n_columns": 8,
+            "group": "lliurament",
+            "props": {
+                "title": "nom del lliurament"
+            }
+        },
+        "lliurament#dataInici": {
+            "label" : "data d'inici",
+            "n_columns": 4,
+            "group": "lliurament",
+            "props": {
+                "title": "data d'inici"
+            }
+        },
+        "lliurament#dataFinal": {
+            "label" : "data final",
+            "n_columns": 4,
+            "group": "lliurament",
+            "props": {
+                "title": "data final"
             }
         }
     }

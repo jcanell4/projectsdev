@@ -31,6 +31,29 @@
                 "typeDef": "mspare"
             },
             "typesDefinition": {
+                "objLliurament": {
+                    "type": "object",
+                    "keys":{
+                        "id":{
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "L99"
+                        },
+                        "nom":{
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Escriviu un nom descriptiu del lliurament"
+                        },
+                        "dataInici":{
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "dataFinal":{
+                            "type": "date",
+                            "mandatory": true
+                        }
+                    }
+                },
                 "mspare": {
                     "type": "object",
                     "keys": {
@@ -58,6 +81,10 @@
                         "entitatResponsable": {
                             "type": "string",
                             "default": "Manubrio ediciones"
+                        },
+                        "lliurament":{
+                            "type": "objLliurament",
+                            "mandatory": true
                         }
                     }
                 }

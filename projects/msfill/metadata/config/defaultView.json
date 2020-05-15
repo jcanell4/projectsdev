@@ -104,6 +104,14 @@
             "props": {
                 "title": "Indiqueu si cal quim és el departament o entitat responsable del document final. Podeu deixar el valor en blanc."
             }
+        },
+        "dataInici": {
+            "label" : "Data d'inici del lliurament",
+            "n_columns": 2,
+            "group": "extres",
+            "props": {
+                "title": "Data d'inici del lliurament"
+            }
         }
     }
 }

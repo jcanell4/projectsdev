@@ -83,6 +83,18 @@
                                     "field": "entitatResponsable"
                                 }
                             }
+                        },
+                        "dataInici":{
+                            "type": "date",
+                            "mandatory": true,
+                            "calculateOnRead": {
+                                "class": "CalculateDataProject",
+                                "data": {
+                                    "projectId": "docs:pare_01",
+                                    "metaDataSubSet": "main",
+                                    "field": "lliurament#dataInici"
+                                }
+                            }
                         }
                     }
                 }
