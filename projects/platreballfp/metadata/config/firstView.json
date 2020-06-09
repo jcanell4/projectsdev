@@ -308,7 +308,16 @@
         "config": {
           "actions": {
             "add_default_row": "Afegir RA",
-            "remove_rows": "Eliminar els RA seleccionats"
+            "remove_rows": "Eliminar els RA seleccionats",
+            "add_import" : {
+              "button_label" : "Importar",
+              "data": {
+                "csvColSeparator": ";",
+                "csvRowSeparator": "\n",
+                "regexColSeparator": "^.*? ?:(.*?),.*?: ?(.*?)$",
+                "regexRowSeparator": "\n"
+              }
+            }
           },
           "fields": {
             "id": {
