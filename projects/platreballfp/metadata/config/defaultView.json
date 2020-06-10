@@ -232,7 +232,14 @@
         "config": {
           "actions": {
             "set_multiple_default_rows": "Definir el nombre d'Unitats Formatives del mòdul",
-            "remove_rows": "Eliminar les Unitats Formatives seleccionades"
+            "remove_rows": "Eliminar les Unitats Formatives seleccionades",
+            "add_import" : {
+              "button_label" : "Importar",
+              "data": {
+                "csvColSeparator": ";",
+                "csvRowSeparator": "\n",
+              }
+            }
           },
           "fields": {
             "bloc":{
@@ -364,7 +371,14 @@
         "config": {
           "actions": {
             "add_default_row": "Afegir eina",
-            "remove_rows": "Eliminar eines seleccionades"        
+            "remove_rows": "Eliminar eines seleccionades",
+            "add_import" : {
+              "button_label" : "Importar",
+              "data": {
+                "csvColSeparator": ";",
+                "csvRowSeparator": "\n"
+              }
+            }
           },
           "fields": {
             "tipus": {
@@ -402,8 +416,8 @@
               "data": {
                 "csvColSeparator": ";",
                 "csvRowSeparator": "\n",
-                "regexColSeparator": "testRegexCol",
-                "regexRowSeparator": "\ntestRegexRow"
+                "regexColSeparator": "^.*? ?:(.*?),.*?: ?(.*?)$",
+                "regexRowSeparator": "\n"
               }
             }
           },
