@@ -430,7 +430,17 @@
                 {
                   "name": "hores",
                   "field": "hores",
-                  "editable": true
+                  "editable": true,
+                  "config": {
+                    "datasource": "activitatsAprenentatge",
+                    "filterByKeySource": "unitat",
+                    "filterByKeyOwn": "unitat formativa",
+                    "labelFields": ["unitat", "descripció"],
+                    "labelSeparator": ",",
+                    "outputFields": ["unitat", "periode"],
+                    "outputSeparator": [";"],
+                    "outputMultiSeparator": [","]
+                  }
                 },
 
                 {
