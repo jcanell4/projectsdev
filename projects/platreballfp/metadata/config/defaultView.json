@@ -252,7 +252,7 @@
               "type": "string"
             },
             "hores": {
-              "type": "number"
+              "type": "conditionalselect"
             },
             "ponderació": {
               "type": "number"

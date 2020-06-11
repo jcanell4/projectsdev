@@ -324,7 +324,7 @@
               "type": "string"
             },
             "descripcio": {
-              "type": "string"
+              "type": "textarea"
             }
           }
         }
@@ -402,7 +402,7 @@
               "type": "string"
             },
             "hores": {
-              "type": "number"
+              "type": "conditionalselect"
             },
             "ponderació": {
               "type": "number"
