@@ -237,7 +237,7 @@
               "button_label" : "Importar",
               "data": {
                 "csvColSeparator": ";",
-                "csvRowSeparator": "\n",
+                "csvRowSeparator": "\n"
               }
             }
           },
@@ -280,7 +280,20 @@
                 {
                   "name": "hores",
                   "field": "hores",
-                  "editable": true
+                  "editable": true,
+                  "config": {
+                    "fieldsource": "activitatsAprenentatge",
+                    "filterByKeySource": "període",
+                    "filterByKeyOwn": "unitat formativa",
+                    "labelFields": ["unitat", "descripció"],
+                    "labelSeparator": ", ",
+                    "outputFields": ["unitat"],
+                    "outputSeparator": [";"],
+                    "outputMultiSeparator": [","],
+                    "hierarchySeparator": ".",
+                    "multiple": true,
+                    "validationRegex": "^\\d+$"
+                  }
                 },
 
                 {
