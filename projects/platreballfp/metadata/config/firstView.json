@@ -624,10 +624,10 @@
           },
           "fields": {
             "unitat": {
-                "type": "number"
+                "type": "string"
             },
             "període": {
-                "type": "string"
+                "type": "number"
             },
             "eina": {
               "type": "select",
