@@ -433,14 +433,15 @@
                   "editable": true,
                   "config": {
                     "fieldsource": "activitatsAprenentatge",
-                    "filterByKeySource": "unitat",
+                    "filterByKeySource": "període",
                     "filterByKeyOwn": "unitat formativa",
                     "labelFields": ["unitat", "descripció"],
                     "labelSeparator": ", ",
-                    "outputFields": ["unitat", "període"],
+                    "outputFields": ["unitat"],
                     "outputSeparator": [";"],
                     "outputMultiSeparator": [","],
-                    "hierarchySeparator": "."
+                    "hierarchySeparator": ".",
+                    "multiple": true
                   }
                 },
 
@@ -626,7 +627,7 @@
                 "type": "number"
             },
             "període": {
-                "type": "number"
+                "type": "string"
             },
             "eina": {
               "type": "select",
