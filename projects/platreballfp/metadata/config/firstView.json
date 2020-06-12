@@ -432,14 +432,15 @@
                   "field": "hores",
                   "editable": true,
                   "config": {
-                    "datasource": "activitatsAprenentatge",
+                    "fieldsource": "activitatsAprenentatge",
                     "filterByKeySource": "unitat",
                     "filterByKeyOwn": "unitat formativa",
                     "labelFields": ["unitat", "descripció"],
-                    "labelSeparator": ",",
-                    "outputFields": ["unitat", "periode"],
+                    "labelSeparator": ", ",
+                    "outputFields": ["unitat", "període"],
                     "outputSeparator": [";"],
-                    "outputMultiSeparator": [","]
+                    "outputMultiSeparator": [","],
+                    "hierarchySeparator": "."
                   }
                 },
 
@@ -476,7 +477,7 @@
               "type": "number"
             },
             "nom": {
-              "type": "string"
+              "type": "textarea"
             },
             "hores": {
               "type": "number"
