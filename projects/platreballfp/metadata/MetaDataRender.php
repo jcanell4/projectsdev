@@ -173,42 +173,42 @@ class MetaDataRender extends \MetaDataRenderAbstract {
         return $ret;
     }
 
-    private function _getValue($field, $values, $properties, $types){
-        $ret;
-        switch ($properties["type"]) {
-            case "date":
-            case "boolean":
-            case "number":
-            case "string":
-                $dv = self::$DEFAULT_SINGLE_VALUES[$properties["type"]];
-                $ret = $this->_getSingleValue($values[$field], $properties, $types, $dv);
-                break;
-            case "array":
-            case "table":
-                $ret =$this->_getSingleArray($values[$field], $properties, $types);
-                break;
-            case "object":
-                $ret = $this->_getObjectValue($field, $values, $properties, $types);
-                break;
-            case "objectArray":
-                $ret = $this->_getObjectArrayValue($field, $values, $properties, $types);
-                break;
-            default:
-                if(array_key_exists($properties['type'], $types)){
-                    $properties['type']=$types[$properties['type']]['type'] ;
-                    if(isset($types[$properties['type']]['typeDef'])){
-                        $properties['typeDef']=$types[$properties['type']]['typeDef'];
-                    }else if(isset($types[$properties['type']]['keys'])){
-                        $properties['keys']=$types[$properties['type']]['keys'];
-                    }
-                    $ret = $this->_getValue($field, $values, $properties, $types);
-                }else{
-                    throw new \IncorrectParametersException();
-                }
-                break;
-        }
-        return $ret;
-    }
+//    private function _getValue($field, $values, $properties, $types){
+//        $ret;
+//        switch ($properties["type"]) {
+//            case "date":
+//            case "boolean":
+//            case "number":
+//            case "string":
+//                $dv = self::$DEFAULT_SINGLE_VALUES[$properties["type"]];
+//                $ret = $this->_getSingleValue($values[$field], $properties, $types, $dv);
+//                break;
+//            case "array":
+//            case "table":
+//                $ret =$this->_getSingleArray($values[$field], $properties, $types);
+//                break;
+//            case "object":
+//                $ret = $this->_getObjectValue($field, $values, $properties, $types);
+//                break;
+//            case "objectArray":
+//                $ret = $this->_getObjectArrayValue($field, $values, $properties, $types);
+//                break;
+//            default:
+//                if(array_key_exists($properties['type'], $types)){
+//                    $properties['type']=$types[$properties['type']]['type'] ;
+//                    if(isset($types[$properties['type']]['typeDef'])){
+//                        $properties['typeDef']=$types[$properties['type']]['typeDef'];
+//                    }else if(isset($types[$properties['type']]['keys'])){
+//                        $properties['keys']=$types[$properties['type']]['keys'];
+//                    }
+//                    $ret = $this->_getValue($field, $values, $properties, $types);
+//                }else{
+//                    throw new \IncorrectParametersException();
+//                }
+//                break;
+//        }
+//        return $ret;
+//    }
 
     private function _getDefaultSingleArrayItem($properties, $types){
         $cols = isset($properties['array_columns'])?$properties['array_columns']:1;
