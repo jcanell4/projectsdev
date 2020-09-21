@@ -3,7 +3,7 @@
  * Component: Project / MetaData
  */
 namespace platreballfp;
-require_once(DOKU_PLUGIN . 'wikiiocmodel/metadata/MetaDataRenderAbstract.php');
+if (!defined("DOKU_INC")) die();
 
 class MetaDataRender extends \MetaDataRenderAbstract {
     //const DEFAULT_SINGLE_VALUES = array("string"=>"", "number" => 0, "boolean" => false);
