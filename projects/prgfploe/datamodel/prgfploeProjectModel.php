@@ -30,20 +30,6 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         return $ret;
     }
 
-    /**
-     * Devuelve la lista de archivos que se generan a partir de la configuración
-     * indicada en el archivo 'configRender.json'
-     * Esos archivos se guardan en WikiGlobalConfig::getConf('mediadir')
-     * El nombre de estos archivos se construyó, en el momento de su creación, usando el nombre del proyecto
-     * @param string $base_dir : directori wiki del projecte
-     * @param string $old_name : nom actual del projecte
-     * @return array : lista de ficheros
-     */
-    protected function listGeneratedFilesByRender($base_dir, $old_name) {
-        $basename = str_replace([":","/"], "_", $base_dir) . "_" . $old_name;
-        return [$basename.".zip"];
-    }
-    
     public function validateFields(){
         $details="";
         $nfTable = $data["taulaDadesNuclisFormatius"];
@@ -61,11 +47,11 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
             }
             $totalUfs[$item["unitat formativa"]] += $item["hores"];
         }
-        
+
         foreach ($ufTable as $item) {
             if($item["hores"]!=$totalUfs[$item["unitat formativa"]]){
                 throw new InvalidDataProjectException(
-                    $this->id, 
+                    $this->id,
                     sprintf("Les hores de la unitat formativa %s no coincideixen amb la suma de les hores dels seus nuclis foormatius (hores UF=%d, però suma hoes NF=%d)."
                             ,$item["unitat formativa"]
                             ,$item["hores"]
@@ -74,7 +60,7 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
             }
         }
     }
-    
+
      public function updateCalculatedFieldsOnRead($data) {
          $ufTable = $data["taulaDadesUF"];
          if(!is_array($ufTable)){
@@ -88,7 +74,7 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
          $data["taulaDadesUF"]=$ufTable;
          return $data;
      }
-     
+
      public function updateCalculatedFieldsOnSave($data) {
         $ufTable = $data["taulaDadesUF"];
         if(!is_array($ufTable)){
