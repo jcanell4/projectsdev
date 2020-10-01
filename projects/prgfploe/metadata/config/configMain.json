@@ -227,7 +227,7 @@
                         "initialAssessment":{
                             "type": "string",
                             "mandatory": true,
-                            "default":"sense aavaluació (default) inical, qualificable o no qualificable"
+                            "default":"Sense avaluació inicial"
                         }
                     }
                 },
@@ -241,7 +241,7 @@
                         "unitat formativa": {
                             "type": "number",
                             "mandatory": true,
-                            "default": "{#_INC(1)_#}"
+                            "default": "{#_COPY(1)_#}"
                         },
                         "nucli formatiu": {
                             "type": "number",
@@ -251,7 +251,7 @@
                         "nom": {
                             "type": "string",
                             "mandatory": true,
-                            "default": "Indiqueu el nom de la unitat"
+                            "default": "Indiqueu el nom del nucli formatiu"
                         },
                         "hores": {
                             "type": "number",

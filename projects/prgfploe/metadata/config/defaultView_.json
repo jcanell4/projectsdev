@@ -14,23 +14,12 @@
             "frame": true,
             "config":{
                 "collapsable":true,
-                "collapsed":true
+                "collapsed":false
             }
         },
         "UF": {
             "parent": "",
             "label": "Dades de cada UF",
-            "n_columns": 12,
-            "n_rows": 1,
-            "frame": true,
-            "config":{
-                "collapsable":true,
-                "collapsed":false
-            }
-        },
-        "NF": {
-            "parent": "",
-            "label": "Dades de cada NF",
             "n_columns": 12,
             "n_rows": 1,
             "frame": true,
@@ -107,7 +96,7 @@
         }
       },
       "durada": {
-        "label" : "Durada (durada)",
+        "label" : "Durada del mòdul (durada)",
         "n_columns": 2,
         "group": "main",
         "props": {
@@ -171,6 +160,18 @@
                   "name": "nom",
                   "field": "nom",
                    "width":"40%",
+                  "editable": true
+                },
+
+                {
+                  "name": "hores mínimes",
+                  "field": "horesMinimes",
+                  "editable": true
+                },
+
+                {
+                  "name": "hores lliure disposició",
+                  "field": "horesLLiureDisposicio",
                   "editable": true
                 },
 

@@ -1,0 +1,542 @@
+{
+    "definition": {
+        "n_columns": 12,
+        "n_rows": 10,
+        "chars_column": 10, 
+        "rows_row": 1
+    },
+    "groups": {
+        "res": {
+            "parent": "",
+            "label": "XXXX",
+            "n_columns": 12,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":true
+            }
+        },
+        "main": {
+            "parent": "",
+            "label": "Dades generals del mòdul",
+            "n_columns": 12,
+            "n_rows": 1,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
+        },
+        "UF": {
+            "parent": "",
+            "label": "Dades de cada UF",
+            "n_columns": 12,
+            "n_rows": 1,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
+        },
+        "avaluacio": {
+            "parent": "",
+            "label": "Avaluació i qualificació del mòdul",
+            "n_columns": 12,
+            "n_rows": 1,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
+        },
+        "extres": {
+            "parent": "",
+            "label": "Informació extra per aquest pla de treball",
+            "n_columns": 12,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
+        },
+        "authorship": {
+            "parent": "",
+            "label": "Autoria i control de canvis",
+            "n_columns": 12,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":true
+            }
+        }        
+    },
+    "fields": {
+      "departament":{
+        "n_columns": 6,
+        "label": "Departament (departament)",
+        "group": "main",
+        "props": {
+          "required": true,
+          "title" : "Indiqueu de quin departament és aquesta programació."
+        }
+      },      
+      "cicle": {
+        "label" : "Nom del cicle (cicle)",
+        "n_columns": 6,
+        "group": "main",
+        "props": {
+          "required": true,
+          "title": "indiqueu el nom del cicle"
+        }
+      },
+      "modulId": {
+        "label" : "Codi del mòdul (modulId)",
+        "n_columns": 4,
+        "group": "main",
+        "props": {
+          "required": true,
+          "title": "indiqueu el codi del mòdul en format MXX. Per exemple: M02"
+        }
+      },
+      "modul": {
+        "label" : "Nom del mòdul o bloc (modul)",
+        "n_columns": 8,
+        "group": "main",
+        "props": {
+          "required": true,
+          "title": "indiqueu el nom del mòdul. Per exemple: Seguretat i alta disponibilitat"
+        }
+      },
+      "duradaCicle": {
+        "label" : "Durada del Cicle(duradaCicle)",
+        "n_columns": 4,
+        "group": "main",
+        "props": {
+          "required": true,
+          "title": "Indiqueu la durada del cicle en hores"
+        }
+      },
+      "durada": {
+        "label" : "Durada del mòdul (durada)",
+        "n_columns": 4,
+        "group": "main",
+        "props": {
+          "required": true,
+          "readonly": true,
+          "title": "Aquest és un camp calculat. No l'heu d'introduir"
+        }
+      },
+      "notaMinimaUfAprovada":{
+        "label" : "Nota mínima per aprovar la UF",
+        "n_columns": 4,
+        "group": "main",
+        "props": {
+          "title": "indiqueu la nota mínima amb la que es pot aprovar la UF"
+        }
+      },
+      "estrategiesMetodologiques": {
+        "label" : "Estratègies metodològiques aplicades al mòdul (estrategiesMetodologiques)",
+        "n_columns": 12,
+        "n_rows": 5,
+        "type":"textarea",
+        "group": "main",
+        "props": {
+          "required": true,
+          "data-editable-element": "textarea",
+          "title": "Indiqueu les estratègies metodològiques aplicades al mòdul. Useu el format dokuwiki si us cal"
+        },
+        "config": {
+            "renderable": true,
+            "mode": "xhtml"
+        }
+      },
+      "recursosNecessaris": {
+        "label" : "Recursos necessaris per cursar el mòdul (recursosNecessaris)",
+        "n_columns": 12,
+        "n_rows": 5,
+        "group": "main",
+        "props": {
+          "required": true,
+          "data-editable-element": "table",
+          "title": "Enumereu els recursos que calen per poder cursar el mòdul."
+        },
+        "config": {
+          "actions": {
+            "add_default_row": "Afegir un recurs",
+            "remove_rows": "Eliminar els recursod seleccionats",
+            "add_default_row_before": "Afegir un recus abans de la fila seleccionada"
+          }
+        }
+      },
+      "taulaDadesUF": {
+        "label": "Unitats Formatives (taulaDadesUF)",
+        "n_columns": 12,
+        "type": "editableObject",
+        "group": "UF",
+        "n_rows": 6,
+        "props": {
+          "data-editable-element": "table",
+          "title": "Detalleu les dades de cada UF. No cal que ompliu les hores de les UFs detallades en aquest bloc o mòdul, es calculen automàticament."      
+        },
+        "config": {
+          "actions": {
+            "set_multiple_default_rows": "Definir el nombre d'Unitats Formatives del mòdul",
+            "remove_rows": "Eliminar les Unitats Formatives seleccionades",
+            "add_default_row_before": "Afegir unitat abans de la fila seleccionada"
+          },
+          "fields": {
+            "bloc":{
+              "type": "number"         
+            },        
+            "unitat formativa": {
+              "type": "number"
+            },
+            "nom": {
+              "type": "string"
+            },
+            "horesMinimes": {
+                "type": "number"
+            },
+            "horesLLiureDisposicio": {
+                "type": "number"
+            },
+            "hores": {
+              "type": "number"
+            },
+            "ponderació": {
+              "type": "decimal"
+            }
+          },
+          "layout": [
+            {
+              "defaultCell": {
+                "width" : "10%"
+              },
+              "cells": [
+                {
+                  "name": "unitat formativa",
+                  "field": "unitat formativa",
+                  "editable": true
+                },
+
+                {
+                  "name": "nom",
+                  "field": "nom",
+                   "width":"40%",
+                  "editable": true
+                },
+
+                {
+                  "name": "hores mínimes",
+                  "field": "horesMinimes",
+                  "editable": true
+                },
+
+                {
+                  "name": "hores lliure disposició",
+                  "field": "horesLLiureDisposicio",
+                  "editable": true
+                },
+
+                {
+                  "name": "hores",
+                  "field": "hores",
+                  "editable": true
+                },
+
+                {
+                  "name": "ponderació",
+                  "field": "ponderació",
+                  "constraints": "{\"places\":2}",
+                  "editable": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "taulaMetodologiaUF": {
+        "label": "Metodologies aplicades a cada unitat Formativa (taulaMetodologiaUF)",
+        "n_columns": 12,
+        "type": "editableObject",
+        "group": "UF",
+        "n_rows": 15,
+        "props": {
+          "data-editable-element": "table",
+          "title": "Detalleu les dades de cada UF referents a les metodologies específiques aplicades i a l'avalaució inicial."      
+        },
+        "config": {
+          "actions": {
+            "set_multiple_default_rows": "Definir el nombre d'Unitats Formatives del mòdul",
+            "remove_rows": "Eliminar les Unitats Formatives seleccionades",
+            "add_default_row_before": "Afegir unitat abans de la fila seleccionada"
+          },
+          "fields": {
+            "unitat formativa": {
+              "type": "number"
+            },
+            "metodologiaUnitatFormativa": {
+              "type": "textarea"
+            },
+            "resumMetodologiaUnitatFormativa": {
+                "type": "textarea"
+            },
+            "initialAssessment": {
+              "type": "select",
+              "options": ["Sense avaluació inicial", "Avaluació inicial no qualificable","Avaluació inicial qualificable"] 
+            }
+          },
+          "layout": [
+            {
+              "defaultCell": {
+                "width" : "30%"
+              },
+              "cells": [
+                {
+                  "name": "Unitat Formativa",
+                  "field": "unitat formativa",
+                   "width":"10%",
+                  "editable": true
+                },
+
+                {
+                  "name": "descripció de la metodologia",
+                  "field": "metodologiaUnitatFormativa",
+                  "editable": true
+                },
+
+                {
+                  "name": "Resum de la metodologia",
+                  "field": "resumMetodologiaUnitatFormativa",
+                  "editable": true
+                },
+
+                {
+                  "name": "initialAssessment",
+                  "field": "initialAssessment",
+                  "editable": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "taulaDadesNuclisFormatius": {
+        "label": "Nuclis formatius de cada unitat Formativa (taulaDadesNuclisFormatius)",
+        "n_columns": 12,
+        "type": "editableObject",
+        "group": "UF",
+        "n_rows": 5,
+        "props": {
+          "data-editable-element": "table",
+          "title": "Detalleu les dades de cada UF referents a les metodologies específiques aplicades i a l'avalaució inicial."      
+        },
+        "config": {
+          "actions": {
+            "add_default_row": "Afegir un Nucli Formatiu",
+            "remove_rows": "Eliminar els Nuclis Formatius seleccionats",
+            "add_default_row_before": "Afegir N.F. abans de la fila seleccionada"
+          },
+          "fields": {
+            "unitat formativa": {
+              "type": "number"
+            },
+            "nucli formatiu": {
+              "type": "number"
+            },
+            "nom": {
+                "type": "string"
+            },
+            "hores": {
+              "type": "number"
+            }
+          },
+          "layout": [
+            {
+              "defaultCell": {
+                "width" : "15%"
+              },
+              "cells": [
+                {
+                  "name": "Unitat Formativa",
+                  "field": "unitat formativa",
+                  "editable": true
+                },
+
+                {
+                  "name": "Nucli Formatiu",
+                  "field": "nucli formatiu",
+                  "editable": true
+                },
+
+                {
+                  "name": "Nom del N.F.",
+                  "field": "nom",
+                   "width":"60%",
+                  "editable": true
+                },
+
+                {
+                  "name": "Hores del N.F.",
+                  "field": "hores",
+                   "width":"10%",
+                  "editable": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "dadesExtres": {
+        "n_columns": 12,
+        "group": "extres",
+        "n_rows": 4,
+        "type": "editableObject",
+        "props": {
+          "data-editable-element": "table"
+        },
+        "config": {
+          "actions": {
+            "add_default_row": "Afegir una nova dada",
+            "remove_rows": "Eliminar les dades seleccionades",
+            "add_default_row_before": "Afegir dada abans de la fila seleccionada"
+          },
+          "fields": {
+            "nom": {
+              "type": "string"
+            },
+            "tipus": {
+              "type": "select",
+              "options": ["dada"]                           
+            },
+            "valor": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "responsable": {
+        "type" : "amd",
+        "label": "Responsable de la creació (responsable)",
+        "n_columns": 4,
+        "group": "authorship",
+        "props": {
+            "required": true
+        },
+        "config":{
+          "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin"], "deniedResponse":true}}]},
+          "class" : {
+            "edit": "IocFilteredList",
+            "view": "IocListSelectedItems"
+          },
+          "data": {
+            "ns":"",
+            "buttonLabel": "Cercar",
+            "fieldName": "responsable",
+            "dialogTitle" : "Cercar responsable",
+            "dialogButtonLabel" : "Afegir responsable",
+            "data": "",
+            "dataQuery": {
+              "filter": ""
+            },
+            "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
+            "fields": {
+              "username": "Nom d'usuari",
+              "name": "Nom"
+            },
+            "fieldId": "username",
+            "defaultEntryField": "name"
+          }
+        }        
+      },
+      "autor": {
+        "type": "amd",
+        "label": "Autor (autor)",
+        "n_columns": 4,
+        "group": "authorship",
+        "props": {
+           "required": true
+        },
+        "config":{
+          "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin"], "deniedResponse":true}}]},
+          "class" : {
+            "edit": "IocFilteredList",
+            "view": "IocListSelectedItems"
+          },
+          "data": {
+            "ns":"",
+            "buttonLabel": "Cercar",
+            "fieldName": "autor",
+            "dialogTitle" : "Cercar autor",
+            "dialogButtonLabel" : "Afegir autor",
+            "data": "",
+            "dataQuery": {
+              "filter": ""
+            },
+            "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
+            "fields": {
+              "username": "Nom d'usuari",
+              "name": "Nom"
+            },
+            "fieldId": "username",
+            "defaultEntryField": "name"
+          }
+        }
+      },
+      "supervisor": {
+        "type": "amd",
+        "label": "Supervisor (supervisor)",
+        "n_columns": 4,
+        "group": "authorship",
+        "props": {
+          "required": true
+        },
+        "config":{
+          "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin"], "deniedResponse":true}}]},
+          "class" : {
+            "edit": "IocFilteredList",
+            "view": "IocListSelectedItems"
+          },
+          "data": {
+            "ns":"",
+            "buttonLabel": "Cercar",
+            "fieldName": "supervisor",
+            "dialogTitle" : "Cercar supervisor",
+            "dialogButtonLabel" : "Afegir supervior",
+            "data": "",
+            "dataQuery": {
+              "filter": ""
+            },
+            "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
+            "fields": {
+              "username": "Nom d'usuari",
+              "name": "Nom"
+            },
+            "fieldId": "username",
+            "defaultEntryField": "name"
+          }
+        }
+      },
+      "notaMinimaAC": {
+        "type":"hidden"
+      },
+      "plantilla": {
+        "type" : "hidden"
+      },
+      "fitxercontinguts": {
+        "type" : "hidden"
+      },
+      "hiHaRecuperacioPerJT":{
+        "type" : "hidden"
+      },
+      "hiHaSolucioPerEAF":{
+        "type" : "hidden"
+      },
+      "hiHaSolucioPerAC":{
+        "type" : "hidden"
+      },
+      "hiHaEnunciatRecuperacioPerEAF":{
+        "type" : "hidden"
+      }
+    }
+}
