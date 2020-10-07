@@ -8,34 +8,9 @@ if (!defined('DOKU_INC')) die();
 if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', realpath(DOKU_INC."lib/plugins/"));
 require_once(DOKU_PLUGIN.'iocexportl/lib/renderlib.php');
 
-class MainRender extends renderObject {
-
-    protected $ioclangcontinue;
-    protected $path_templates;
-
-    public function __construct($factory, $typedef, $renderdef) {
-        parent::__construct($factory, $typedef, $renderdef);
-    }
-
-    public function initParams(){
-        $this->ioclangcontinue = array('CA'=>'continuació', 'DE'=>'fortsetzung', 'EN'=>'continued','ES'=>'continuación','FR'=>'suite','IT'=>'continua');
-        $this->path_templates = realpath(__DIR__)."/".$this->factory->getDocumentClass()."/templates";
-    }
-
-    /**
-     * Replace all reserved symbols
-     * @param string $text
-     */
-    public function clean_accent_chars($text){
-        $source_char = array('á', 'é', 'í', 'ó', 'ú', 'à', 'è', 'ò', 'ï', 'ü', 'ñ', 'ç','Á', 'É', 'Í', 'Ó', 'Ú', 'À', 'È', 'Ò', 'Ï', 'Ü', 'Ñ', 'Ç','\\\\');
-        $replace_char = array("\'{a}", "\'{e}", "\'{i}", "\'{o}", "\'{u}", "\`{a}", "\`{e}", "\`{o}", '\"{i}', '\"{u}', '\~{n}', '\c{c}', "\'{A}", "\'{E}", "\'{I}", "\'{O}", "\'{U}", "\`{A}", "\`{E}", "\`{O}", '\"{I}', '\"{U}', '\~{N}', '\c{C}','\break ');
-        return str_replace($source_char, $replace_char, $text);
-    }
-}
-
 class renderField extends AbstractRenderer {
     public function process($data) {
-        return MainRender::clean_accent_chars($data);
+        return renderLatexDocument::st_clean_accent_chars($data);
     }
 }
 

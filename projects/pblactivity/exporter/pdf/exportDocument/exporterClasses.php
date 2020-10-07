@@ -7,7 +7,7 @@ if (!defined('DOKU_INC')) die();
 if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC."lib/plugins/");
 require_once DOKU_PLUGIN."projectsdev/projects/pblactivity/exporter/exporterClasses.php";
 
-class exportDocument extends MainRender {
+class exportDocument extends renderLatexDocument {
 
     public function __construct($factory, $typedef, $renderdef, $params) {
         parent::__construct($factory, $typedef, $renderdef);

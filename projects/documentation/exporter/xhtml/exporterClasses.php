@@ -7,28 +7,6 @@
 if (!defined('DOKU_INC')) die();
 require_once DOKU_INC."inc/parserutils.php";
 
-class MainRender extends renderObject {
-    protected $max_menu;
-    protected $max_navmenu;
-    protected $media_path = 'lib/exe/fetch.php?media=';
-    protected $menu_html = '';
-    protected $tree_names = array();
-    protected $web_folder = 'WebContent';
-    protected $initialized = FALSE;
-
-    public function initParams(){
-        $langFile = $this->cfgExport->langDir.$this->cfgExport->lang.'.conf';
-        if (!file_exists($langFile)){
-            $this->cfgExport->lang = 'ca';
-            $langFile = $this->cfgExport->langDir.$this->cfgExport->lang.'.conf';
-        }
-        if (file_exists($langFile)) {
-            $this->cfgExport->aLang = confToHash($langFile);
-        }
-        $this->initialized = TRUE;
-    }
-}
-
 class renderDate extends AbstractRenderer {
     private $sep;
 
