@@ -35,6 +35,7 @@ class upgrader_1 extends CommonUpgrader {
                 break;
             case "templates":
                 //$key contiene el nombre de la plantilla
+                $ret = TRUE;
                 break;
         }
         return $ret;
