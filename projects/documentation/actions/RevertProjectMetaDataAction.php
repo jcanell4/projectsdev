@@ -55,6 +55,7 @@ class RevertProjectMetaDataAction extends ProjectMetadataAction {
             $model->removeDraft();
             //afegim les revisions del projecte a la resposta
             $response[ProjectKeys::KEY_REV] = $this->projectModel->getProjectRevisionList(0);
+            $fieldRevVersion = $response[ProjectKeys::KEY_REV][$this->params['rev']]['extra'];
 
             $response['info'] = self::generateInfo("info", WikiIocLangManager::getLang('project_reverted'), $id, -1, $this->params[ProjectKeys::KEY_METADATA_SUBSET]);
             $response[ProjectKeys::KEY_ID] = $this->idToRequestId($id . $this->projectModel->getIdSuffix());
