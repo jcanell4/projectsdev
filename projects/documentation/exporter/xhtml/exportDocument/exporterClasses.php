@@ -48,7 +48,8 @@ class exportDocument extends renderHtmlDocument {
             if ($zip->addFromString('html/index.html', $document)) {
                 $pathTemplate = $this->cfgExport->rendererPath . "/$pathTemplate";
                 $this->addFilesToZip($zip, $pathTemplate, "html/", "css");
-                $this->addFilesToZip($zip, WIKI_LIB_IOC_MODEL."exporter/xhtml", "html/", "css");
+//                $this->addFilesToZip($zip, WIKI_LIB_IOC_MODEL."exporter/xhtml", "html/", "css");
+                $this->addDefaultCssFilesToZip($zip, "html/");
                 $this->addFilesToZip($zip, $pathTemplate, "html/", "js");
                 $this->addFilesToZip($zip, $pathTemplate, "html/", "img");
                 $this->attachMediaFiles($zip);
@@ -166,20 +167,20 @@ class exportDocument extends renderHtmlDocument {
         }
     }
 
-    private function addFilesToZip(&$zip, $base, $d, $dir) {
-        $zip->addEmptyDir("$d$dir");
-        $files = $this->getDirFiles("$base/$dir");
-        foreach($files as $f){
-            $zip->addFile($f, "$d$dir/".basename($f));
-        }
-    }
+//    private function addFilesToZip(&$zip, $base, $d, $dir) {
+//        $zip->addEmptyDir("$d$dir");
+//        $files = $this->getDirFiles("$base/$dir");
+//        foreach($files as $f){
+//            $zip->addFile($f, "$d$dir/".basename($f));
+//        }
+//    }
 
     /**
      * Fill files var with all media files stored on directory var
      * @param string $directory
      * @param string $files
      */
-    private function getDirFiles($dir){
+    protected function getDirFiles($dir){
         $files = array();
         if (file_exists($dir) && is_dir($dir) && is_readable($dir)) {
             $dh = opendir($dir);
