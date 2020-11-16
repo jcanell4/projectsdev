@@ -199,6 +199,11 @@
                             "type": "number",
                             "mandatory": true,
                             "default": "{#_COPY(0)_#}"
+                        },
+                        "ordreImparticio": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "{#_INC(1)_#}"
                         }
                     }
                 },
@@ -319,6 +324,25 @@
                 "defTaulaActivitatsAprenentatge": {
                     "type": "objectArray",
                     "typeDef":"entradaActivitatsAprenentatge"
+                },    
+                "entradaInstrumentsAvaluacioFinal": {
+                    "type": "object",
+                    "keys": {
+                        "Sigla": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Indiqueu la sigla o abreviació com es coneix a aquest instrument d'avaluació final"
+                        },
+                        "descripcio": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Indiqueu el nom complet de l'instrument d'avalaució final"
+                        }
+                    }
+                },
+                "defTaulaInstrumentsAvaluacioFinal": {
+                    "type": "objectArray",
+                    "typeDef":"entradaInstrumentsAvaluacioFinal"
                 },
                 "programacio": {
                     "type": "object",
@@ -352,9 +376,26 @@
                             }
                         },
                         "duradaCicle": {
-                            "type": "string",
+                            "type": "number",
                             "default": 2000,
                             "mandatory": true   
+                        },
+                        "horesLliureDisposicioModul":{
+                            "type": "number",
+                            "viewType":"hidden",
+                            "mandatory": true,
+                             "calculateOnRead": {
+                                "class": "CalculateSumOfArrayObjectValues",
+                                "data": {
+                                    "arrayObjectfield":"taulaDadesUF",
+                                    "fromFieldValues":"horesLLiureDisposicio"
+                                }
+                             }
+                        },
+                        "taulaDadesBlocs": {
+                            "type": "defTaulaDadesBlocs",
+                            "viewType":"hidden",
+                            "mandatory": true
                         },
                         "taulaDadesUF": {
                             "type": "defTaulaDadesUF",
@@ -436,6 +477,11 @@
                             },
                             "default": 4
                         },                                                 
+                        "instrumentsAvaluacioFinal": {
+                            "type": "objectArray",
+                            "typeDef":"entradaInstrumentsAvaluacioFinal",
+                            "mandatory": true
+                        },
                         "duradaPAF": {
                             "type": "string",
                             "mandatory": true,

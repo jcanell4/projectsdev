@@ -30,7 +30,7 @@
                 "type": "object",
                 "typeDef": "msfill"
             },
-            "typesDefinition": {
+            "typesDefinition": {    
                 "msfill": {
                     "type": "object",
                     "keys": {
@@ -38,7 +38,7 @@
                             "type": "string",
                             "mandatory": true,
                             "calculateOnRead": {
-                                "class": "CalculateDataProject",
+                                "class": "CalculateSimpleValueFromExternaField",
                                 "data": {
                                     "projectId": "docs:pare_01",
                                     "metaDataSubSet": "main",
@@ -51,7 +51,7 @@
                             "mandatory": true,
                             "isRole": true,
                             "calculateOnRead": {
-                                "class": "CalculateDataProject",
+                                "class": "CalculateSimpleValueFromExternaField",
                                 "data": {
                                     "projectId": "docs:pare_01",
                                     "metaDataSubSet": "main",
@@ -76,7 +76,7 @@
                         "entitatResponsable": {
                             "type": "string",
                             "calculateOnRead": {
-                                "class": "CalculateDataProject",
+                                "class": "CalculateSimpleValueFromExternaField",
                                 "data": {
                                     "projectId": "docs:pare_01",
                                     "metaDataSubSet": "main",
@@ -88,7 +88,7 @@
                             "type": "date",
                             "mandatory": true,
                             "calculateOnRead": {
-                                "class": "CalculateDataProject",
+                                "class": "CalculateSimpleValueFromExternaField",
                                 "data": {
                                     "projectId": "docs:pare_01",
                                     "metaDataSubSet": "main",

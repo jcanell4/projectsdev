@@ -30,7 +30,7 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         return $ret;
     }
 
-    public function validateFields(){
+    public function validateFields($data=NULL){
         $details="";
         $nfTable = $data["taulaDadesNuclisFormatius"];
         if(!is_array($nfTable)){
@@ -48,20 +48,22 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
             $totalUfs[$item["unitat formativa"]] += $item["hores"];
         }
 
-        foreach ($ufTable as $item) {
-            if($item["hores"]!=$totalUfs[$item["unitat formativa"]]){
-                throw new InvalidDataProjectException(
-                    $this->id,
-                    sprintf("Les hores de la unitat formativa %s no coincideixen amb la suma de les hores dels seus nuclis foormatius (hores UF=%d, però suma hoes NF=%d)."
-                            ,$item["unitat formativa"]
-                            ,$item["hores"]
-                            , $totalUfs[$item["unitat formativa"]])
-                );
+        if(!empty($nfTable)){
+            foreach ($ufTable as $item) {
+                if($item["hores"]!=$totalUfs[$item["unitat formativa"]]){
+                    throw new InvalidDataProjectException(
+                        $this->id,
+                        sprintf("Les hores de la unitat formativa %s no coincideixen amb la suma de les hores dels seus nuclis foormatius (hores UF=%d, però suma hoes NF=%d)."
+                                ,$item["unitat formativa"]
+                                ,$item["hores"]
+                                , $totalUfs[$item["unitat formativa"]])
+                    );
+                }
             }
         }
     }
 
-     public function updateCalculatedFieldsOnRead($data) {
+     public function updateCalculatedFieldsOnRead($data, $originalDataKeyValue=FALSE) {
          $ufTable = $data["taulaDadesUF"];
          if(!is_array($ufTable)){
              $ufTable = json_decode($ufTable, TRUE);
@@ -75,25 +77,35 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
          return $data;
      }
 
-     public function updateCalculatedFieldsOnSave($data) {
+     public function updateCalculatedFieldsOnSave($data, $originalDataKeyValue=FALSE) {
         $ufTable = $data["taulaDadesUF"];
         if(!is_array($ufTable)){
              $ufTable = json_decode($ufTable, TRUE);
         }
+        $blocTable = array();
         $blocTotal = 0;
+        $total = 0;
         $i=0;
         $size = count($ufTable);
         while($i<$size) {
              $ufTable[$i]["hores"] = $ufTable[$i]["horesMinimes"]+$ufTable[$i]["horesLLiureDisposicio"];
+             $total += $ufTable[$i]["hores"];
              $blocTotal += $ufTable[$i]["hores"];
              $currentBloc=$ufTable[$i]["bloc"];
+             if($ufTable[$i]["ponderació"]==$ufTable[$i]["hores"]){
+                 $ufTable[$i]["ponderació"]==0;
+             }
              $i++;
              if($i==$size || $ufTable[$i]['bloc']!=$currentBloc){
-                $ufTable[$i-1]["bloc"]=$blocTotal;
+                $blocTable[$currentBloc]["bloc"] =$currentBloc;
+                $blocTable[$currentBloc]["horesBloc"]=$blocTotal;
                 $blocTotal=0;
              }
         }
+        
         $data["taulaDadesUF"]=$ufTable;
+        $data["taulaDadesBlocs"]=$blocTable;
+        $data["durada"]=$total;
         return $data;
     }
 }
