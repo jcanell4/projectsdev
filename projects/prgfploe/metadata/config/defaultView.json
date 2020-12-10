@@ -324,6 +324,238 @@
           ]
         }
       },
+      "resultatsAprenentatge":{
+        "label": "Resultats d'aprenentatge (resultatsAprenentatge)",
+        "n_columns": 12,
+        "type": "editableObject",
+        "group": "UF",
+        "n_rows": 6,
+        "props": {
+          "required": true,
+          "data-editable-element": "table",
+          "title": "Indiqueu els resultats d'aprenentatge per cada UF."                
+        },
+        "config": {
+          "actions": {
+            "add_default_row": "Afegir un RA",
+            "remove_rows": "Eliminar els RA seleccionats",
+            "add_default_row_before": "Afegir un RA abans de la fila seleccionada",
+            "add_import" : {
+              "button_label" : "Importar amb format 'RA9 resultat' o també 'RA 9 resultat'",
+              "data": {
+                "regexColSeparator": "^(.*?)RA *([0-9])\\.(.*?)$",
+                "regexRowSeparator": "\n"
+              }
+            }                    
+          },
+          "fields": {
+            "uf":{
+              "type": "number"         
+            },        
+            "ra": {
+              "type": "string"
+            },
+            "descripcio": {
+              "type": "string"
+            }
+          },
+          "layout": [
+            {
+              "defaultCell": {
+                "width" : "10%"
+              },
+              "cells": [
+                {
+                  "name": "Unitat Formativa",
+                  "field": "uf",
+                  "editable": true
+                },
+
+                {
+                  "name": "Codi RA",
+                  "field": "ra",
+                  "editable": true
+                },
+
+                {
+                  "name": "Descripció del RA",
+                  "field": "descripcio",
+                  "width":"40%",
+                  "editable": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "criterisAvaluacio":{
+        "label": "Criteris d'avaluació (criterisAvaluacio)",
+        "n_columns": 12,
+        "type": "editableObject",
+        "group": "UF",
+        "n_rows": 6,
+        "props": {
+          "required": true,
+          "data-editable-element": "table",
+          "title": "Indiqueu els criteris d'avaluació per cada per cada UF."                
+        },
+        "config": {
+          "actions": {
+            "add_default_row": "Afegir un criteri d'avaluació",
+            "remove_rows": "Eliminar els criteris seleccionats",
+            "add_default_row_before": "Afegir un criteri abans de la fila seleccionada",
+            "add_import" : {
+              "button_label" : "Importar amb format 'CA9.9 criteri'",
+              "data": {
+                "regexColSeparator": "^\\s*([0-9]?)\\s*([0-9]?)\\s*CA *([0-9]\\.?[0-9]?[0-9]?) *(.*?)(f?) *?$",
+                "regexRowSeparator": "\n"
+              }
+            }                    
+          },
+          "fields": {
+            "uf":{
+              "type": "number"         
+            },        
+            "ra":{
+              "type": "conditionalselect"                                 
+            },        
+            "ca": {
+              "type": "string"
+            },
+            "descripcio": {
+              "type": "string"
+            },
+            "contextualitzat":{
+                "type": "bool"
+            }
+          },
+          "layout": [
+            {
+              "defaultCell": {
+                "width" : "10%"
+              },
+              "cells": [
+                {
+                  "name": "Unitat Formativa",
+                  "field": "uf",
+                  "editable": true
+                },
+
+                {
+                  "name": "RA",
+                  "field": "ra",
+                  "editable": true,
+                  "config": {
+                    "fieldsource": "resultatsAprenentatge",
+                    "filterByKeySource": "uf",
+                    "filterByKeyOwn": "uf",
+                    "labelFields": ["ra", "descripcio"],
+                    "labelSeparator": ": ",
+                    "outputFields": ["ra"],
+                    "outputSeparator": [","],
+                    "outputMultiSeparator": [":"],
+                    "hierarchySeparator": ".",
+                    "multiple": false,
+                    "validationRegex": "^\\d+$"
+                  }                                                                                                
+                },
+
+                {
+                  "name": "Codi C.A.",
+                  "field": "ca",
+                  "editable": true
+                },
+
+                {
+                  "name": "Descripció del C.A.",
+                  "field": "descripcio",
+                  "width":"40%",
+                  "editable": true
+                },
+                
+                {
+                  "name": "C.A.contextualitzat",
+                  "field": "contextualitzat",
+                  "editable": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "continguts":{
+        "label": "Continguts de la UF (continguts)",
+        "n_columns": 12,
+        "type": "editableObject",
+        "group": "UF",
+        "n_rows": 6,
+        "props": {
+          "required": true,
+          "data-editable-element": "table",
+          "title": "Indiqueu els continguts de cada UF."                
+        },
+        "config": {
+          "actions": {
+            "add_default_row": "Afegir un continguts",
+            "remove_rows": "Eliminar els continguts seleccionats",
+            "add_default_row_before": "Afegir un contingut abans de la fila seleccionada",
+            "add_import" : {
+              "button_label" : "Importar amb formats: '9 contingut' o també '9.9 contingut' ",
+              "data": {
+                "regexColSeparator": "^ *([0-9]?) *([0-9]\\.?[0-9]?[0-9]?) *(.*?)(f?) *?$",
+                "regexRowSeparator": "\n"
+              }
+            }                    
+          },
+          "fields": {
+            "uf":{
+              "type": "number"         
+            },        
+            "cont": {
+              "type": "string"
+            },
+            "descripcio": {
+              "type": "string"
+            },
+            "contextualitzat":{
+                "type": "bool"
+            }
+          },
+          "layout": [
+            {
+              "defaultCell": {
+                "width" : "10%"
+              },
+              "cells": [
+                {
+                  "name": "Unitat Formativa",
+                  "field": "uf",
+                  "editable": true
+                },
+
+                {
+                  "name": "Codi contingut",
+                  "field": "cont",
+                  "editable": true
+                },
+
+                {
+                  "name": "Descripció del contingut.",
+                  "field": "descripcio",
+                  "width":"40%",
+                  "editable": true
+                },
+                
+                {
+                  "name": "Contingut contextualitzat",
+                  "field": "contextualitzat",
+                  "editable": true
+                }
+              ]
+            }
+          ]
+        }
+      },
       "taulaDadesNuclisFormatius": {
         "label": "Nuclis formatius de cada unitat Formativa (taulaDadesNuclisFormatius)",
         "n_columns": 12,
@@ -383,6 +615,159 @@
                   "name": "Hores del N.F.",
                   "field": "hores",
                    "width":"10%",
+                  "editable": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "activitatsAprenentatge":{
+        "label": "Activitats d'ensenyament i aprennetatge (activitatsAprenentatge)",
+        "n_columns": 12,
+        "type": "editableObject",
+        "group": "UF",
+        "n_rows": 6,
+        "props": {
+          "required": true,
+          "data-editable-element": "table",
+          "title": "Indiqueu les activitats i aprenentatge de cada nuclu formatiu"                
+        },
+        "config": {
+          "actions": {
+            "add_default_row": "Afegir una activitat",
+            "remove_rows": "Eliminar les activiytats seleccionades",
+            "add_default_row_before": "Afegir una activitat abans de la fila seleccionada"
+          },
+          "fields": {
+            "code":{
+              "type": "string"         
+            },        
+            "unitat formativa":{
+              "type": "number"         
+            },        
+            "nucli formatiu": {
+              "type": "number"
+            },
+            "descripcio": {
+              "type": "string"
+            },
+            "hores": {
+                "type": "number"
+            },
+            "ra": {
+                "type": "conditionalselect"
+            },
+            "continguts": {
+                "type": "conditionalselect"
+            },
+            "ca": {
+                "type": "conditionalselect"
+            },
+            "instruments d'avaluació": {
+                "type": "textarea"
+            }
+          },
+          "layout": [
+            {
+              "defaultCell": {
+                "width" : "5%"
+              },
+              "cells": [
+                {
+                  "name": "Codi",
+                  "field": "code",
+                  "editable": true
+                },
+                {
+                  "name": "UF",
+                  "field": "unitat formativa",
+                  "editable": true
+                },
+
+                {
+                  "name": "NF",
+                  "field": "nucli formatiu",
+                  "editable": true
+                },
+
+                {
+                  "name": "Descripció",
+                  "field": "descripcio",
+                  "width":"30%",
+                  "editable": true
+                },
+                
+                {
+                  "name": "Hores",
+                  "field": "hores",
+                  "editable": true
+                },
+                
+                {
+                  "name": "RA",
+                  "field": "ra",
+                  "width":"10%",
+                  "editable": true,
+                  "config": {
+                    "fieldsource": "resultatsAprenentatge",
+                    "filterByKeySource": "uf",
+                    "filterByKeyOwn": "unitat formativa",
+                    "labelFields": ["ra", "descripcio"],
+                    "labelSeparator": ": ",
+                    "outputFields": ["ra"],
+                    "outputSeparator": [","],
+                    "outputMultiSeparator": [":"],
+                    "hierarchySeparator": ".",
+                    "multiple": false,
+                    "validationRegex": "^\\d+$"
+                  }                                                                
+                },
+                
+                {
+                  "name": "Continguts",
+                  "field": "continguts",
+                  "width":"10%",
+                  "editable": true,
+                  "config": {
+                    "fieldsource": "continguts",
+                    "filterByKeySource": "uf",
+                    "filterByKeyOwn": "unitat formativa",
+                    "labelFields": ["cont", "descripcio"],
+                    "labelSeparator": ": ",
+                    "outputFields": ["cont"],
+                    "outputSeparator": [", "],
+                    "outputMultiSeparator": [":"],
+                    "hierarchySeparator": ".",
+                    "multiple": true,
+                    "validationRegex": "^\\d+$"
+                  }                                                                
+                },
+                
+                {
+                  "name": "CA",
+                  "field": "ca",
+                  "width":"10%",
+                  "editable": true,
+                  "config": {
+                    "fieldsource": "criterisAvaluacio",
+                    "filterByKeySource": "uf",
+                    "filterByKeyOwn": "unitat formativa",
+                    "labelFields": ["ca", "descripcio"],
+                    "labelSeparator": ": ",
+                    "outputFields": ["ca"],
+                    "outputSeparator": ["\n"],
+                    "outputMultiSeparator": [":"],
+                    "hierarchySeparator": ".",
+                    "multiple": true,
+                    "validationRegex": "^\\d+$"
+                  }                                                                
+                },
+                
+                {
+                  "name": "Instruments d'avaluació",
+                  "field": "instruments d'avaluació",
+                  "width":"20%",
                   "editable": true
                 }
               ]

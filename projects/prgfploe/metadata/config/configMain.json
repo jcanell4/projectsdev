@@ -24,21 +24,15 @@
                 "entradaResultatsAprenentage": {
                     "type":"object",
                     "keys": {
-                        "order": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default": "{#_INC(1)_#}",
-                            "readonly":true
-                        },
                         "uf": {
-                            "type": "string",
+                            "type": "number",
                             "mandatory": true,
-                            "default": "{#_INC(1)_#}"
+                            "default": "{#_COPY(1)_#}"
                         },
                         "ra": {
-                            "type": "string",
+                            "type": "number",
                             "mandatory": true,
-                            "default": "RA{#_INC(1)_#}"
+                            "default": "{#_INC(1)_#}"
                         },
                         "descripcio": {
                             "type": "string",
@@ -54,16 +48,15 @@
                 "entradaCriterisAvaluacio": {
                     "type":"object",
                     "keys": {
-                        "order": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default": "{#_INC(1)_#}",
-                            "readonly":true
-                        },
                         "uf": {
-                            "type": "string",
+                            "type": "number",
                             "mandatory": true,
-                            "default": "{#_INC(1)_#}"
+                            "default": "{#_COPY(1)_#}"
+                        },
+                        "ra": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "{#_COPY(1)_#}"
                         },
                         "ca": {
                             "type": "string",
@@ -89,16 +82,10 @@
                 "entradaContinguts": {
                     "type":"object",
                     "keys": {
-                        "order": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default": "{#_INC(1)_#}",
-                            "readonly":true
-                        },
                         "uf": {
-                            "type": "string",
+                            "type": "number",
                             "mandatory": true,
-                            "default": "{#_INC(1)_#}"
+                            "default": "{#_COPY(1)_#}"
                         },
                         "cont": {
                             "type": "string",
@@ -274,21 +261,21 @@
                     "type": "object",
                     "keys": {
                         "code": {
-                            "type": "number",
+                            "type": "string",
                             "mandatory": true,
                             "default": "A{#_INC(1)_#}"
                         },
                         "unitat formativa": {
                             "type": "number",
                             "mandatory": true,
-                            "default": "{#_INC(1)_#}"
+                            "default": "{#_COPY(1)_#}"
                         },
                         "nucli formatiu": {
                             "type": "number",
                             "mandatory": true,
-                            "default": "{#_INC(1)_#}"
+                            "default": "{#_COPY(1)_#}"
                         },
-                        "descripció": {
+                        "descripcio": {
                             "type": "string",
                             "mandatory": true,
                             "default": "Indiqueu el nom de la unitat"
@@ -325,24 +312,35 @@
                     "type": "objectArray",
                     "typeDef":"entradaActivitatsAprenentatge"
                 },    
-                "entradaInstrumentsAvaluacioFinal": {
+                "entradaInstrumentsAvaluacio": {
                     "type": "object",
                     "keys": {
-                        "Sigla": {
+                        "tipus": {
                             "type": "string",
                             "mandatory": true,
-                            "default": "Indiqueu la sigla o abreviació com es coneix a aquest instrument d'avaluació final"
+                            "default": "Indiqueu el tipus d'instrument d'avaluació (AC, EAF, JT o PAF)"
                         },
-                        "descripcio": {
-                            "type": "string",
+                        "treballEnEquip": {
+                            "type": "boolean",
                             "mandatory": true,
-                            "default": "Indiqueu el nom complet de l'instrument d'avalaució final"
+                            "default": false
+                        },
+                        "esObligatori": {
+                            "type": "boolean",
+                            "mandatory": true,
+                            "default": true
+                        },
+                        "notaMinima": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "Indiqueu la npta mínima que cal treure en aquest tipus d'avaluaió. Si no n'hi ha deixe-lo a zero."
+                        },
+                        "ponderacio": {
+                            "type": "decimal",
+                            "mandatory": true,
+                            "default": 25
                         }
                     }
-                },
-                "defTaulaInstrumentsAvaluacioFinal": {
-                    "type": "objectArray",
-                    "typeDef":"entradaInstrumentsAvaluacioFinal"
                 },
                 "programacio": {
                     "type": "object",
@@ -384,11 +382,11 @@
                             "type": "number",
                             "viewType":"hidden",
                             "mandatory": true,
-                             "calculateOnRead": {
+                             "calculateOnSave": {
                                 "class": "CalculateSumOfArrayObjectValues",
                                 "data": {
                                     "arrayObjectfield":"taulaDadesUF",
-                                    "fromFieldValues":"horesLLiureDisposicio"
+                                    "fieldToAdd":"horesLLiureDisposicio"
                                 }
                              }
                         },
@@ -411,8 +409,7 @@
                         },
                         "estrategiesMetodologiques":{
                             "type": "string",
-                            "mandatory": false,
-                            "default":"Indicar les estratègies metodològiques aplicades al mòdul en format dokuwiki"
+                            "mandatory": false
                         },
                         "notaMinimaUfAprovada":{
                             "type": "decimal",
@@ -477,9 +474,9 @@
                             },
                             "default": 4
                         },                                                 
-                        "instrumentsAvaluacioFinal": {
+                        "instrumentsAvaluacio": {
                             "type": "objectArray",
-                            "typeDef":"entradaInstrumentsAvaluacioFinal",
+                            "typeDef":"entradaInstrumentsAvaluacio",
                             "mandatory": true
                         },
                         "duradaPAF": {

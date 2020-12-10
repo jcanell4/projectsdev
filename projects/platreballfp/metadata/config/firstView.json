@@ -399,10 +399,10 @@
               "type": "number"
             },
             "nom": {
-              "type": "string"
+              "type": "conditionalselect"
             },
             "hores": {
-              "type": "conditionalselect"
+              "type": "number"
             },
             "ponderació": {
               "type": "number"
@@ -424,12 +424,6 @@
                   "name": "nom",
                   "field": "nom",
                    "width":"40%",
-                  "editable": true
-                },
-
-                {
-                  "name": "hores",
-                  "field": "hores",
                   "editable": true,
                   "config": {
                     "fieldsource": "activitatsAprenentatge",
@@ -443,7 +437,13 @@
                     "hierarchySeparator": ".",
                     "multiple": true,
                     "validationRegex": "^\\d+$"
-                  }
+                  }                                
+                },
+
+                {
+                  "name": "hores",
+                  "field": "hores",
+                  "editable": true
                 },
 
                 {
