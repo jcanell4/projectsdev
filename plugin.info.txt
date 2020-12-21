@@ -1,0 +1,8 @@
+base   projectsdev
+author Josep Cañellas
+email  jcanell4@ioc.cat
+date   2016-03-01
+name   projectsdev plugin
+desc   Trial versions for new projects are developed in this plugin.
+url    ???
+
