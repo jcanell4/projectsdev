@@ -1,0 +1,94 @@
+{
+    "metaDataClassesNameSpaces": [
+        {
+            "main": {
+                "MetaDataDAO": "defaultProject",
+                "MetaDataEntity": "defaultProject",
+                "MetaDataRender": "mspare"
+            }
+        }
+    ],
+    "metaDataComponentTypes": [
+        {
+            "main": {
+                "documents": true,
+                "folders": false
+            }
+        }
+    ],
+    "metaDataProjectConfig": [
+        {
+            "main": {
+                "projectTypeConfigFile": "admconfig:mspare"
+            }
+        }        
+    ],
+    "metaDataProjectStructure": [
+        {
+            "main": "meta.mdpr",
+            "mainType": {
+                "type": "object",
+                "typeDef": "mspare"
+            },
+            "typesDefinition": {
+                "objLliurament": {
+                    "type": "object",
+                    "keys":{
+                        "id":{
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "L99"
+                        },
+                        "nom":{
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Escriviu un nom descriptiu del lliurament"
+                        },
+                        "dataInici":{
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "dataFinal":{
+                            "type": "date",
+                            "mandatory": true
+                        }
+                    }
+                },
+                "mspare": {
+                    "type": "object",
+                    "keys": {
+                        "titol": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default":"Poseu-hi el títol"
+                        },
+                        "subtitol": {
+                            "type": "string",
+                            "default": "Indiqueu el subtítol",
+                            "mandatory": true
+                        },
+                        "responsable": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true,
+                            "isRole":true
+                        },                                                
+                        "autor": {
+                            "type": "string",
+                            "mandatory": true,
+                            "isRole":true
+                        },
+                        "entitatResponsable": {
+                            "type": "string",
+                            "default": "Manubrio ediciones"
+                        },
+                        "lliurament":{
+                            "type": "objLliurament",
+                            "mandatory": true
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

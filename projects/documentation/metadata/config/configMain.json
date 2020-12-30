@@ -1,0 +1,176 @@
+{
+    "metaDataClassesNameSpaces": [
+        {
+            "main": {
+                "MetaDataDAO": "defaultProject",
+                "MetaDataEntity": "defaultProject",
+                "MetaDataRender": "documentation"
+            }
+        },
+        {
+            "s2": {
+                "MetaDataDAO": "defaultProject",
+                "MetaDataEntity": "defaultProject",
+                "MetaDataRender": "documentation"
+            }
+        }
+    ],
+    "metaDataComponentTypes": [
+        {
+            "main": {
+                "subprojects":[
+                    "documentation",
+                    "platreballfp",
+                    "taulasubs"
+                ],
+                "documents": true,
+                "folders": true
+            }
+        },
+        {
+            "s2": {
+                "documents": true,
+                "folders": false
+            }
+        }
+    ],
+    "metaDataProjectConfig": [
+        {
+            "main": {
+                "projectTypeConfigFile": "admconfig:documentation"
+            }
+        },        
+        {
+            "s2": {
+                "projectTypeConfigFile": "admconfig:documentation"
+            }
+        }
+    ],
+    "metaDataProjectStructure": [
+        {
+            "s2": "seta.mdpr",
+            "viewfiles": ["viewS2"],
+            "mainType": {
+                "type": "object",
+                "typeDef": "defs2"
+            },
+            "typesDefinition": {
+                "defs2": {
+                    "type": "object",
+                    "keys": {
+                        "editor": {
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "abstract": {
+                            "type": "string",
+                            "default": "abstract",
+                            "config": {
+                                "renderable": true,
+                                "mode": "xhtml"
+                            }
+                        },
+                        "actiu": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "No"
+                        }                        
+                    }
+                }
+            }
+        },
+        {
+            "main": "meta.mdpr",
+            "viewfiles": ["defaultView"],
+            "versions": {
+                "fields": 1,
+                "templates": {"continguts":1}
+            },
+            "mainType": {
+                "type": "object",
+                "typeDef": "document"
+            },
+            "typesDefinition": {
+                "entry-de-prova": {
+                    "type": "object",
+                    "keys": {
+                        "key": {
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "value1": {
+                            "type": "string"
+                        },
+                        "value2": {
+                            "type": "string"
+                        },
+                        "value3": {
+                            "type": "string"
+                        },
+                        "value4": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "taula-de-prova": {
+                    "type": "objectArray",
+                    "typeDef":"entry-de-prova"
+                },
+                "document": {
+                    "type": "object",
+                    "keys": {
+                        "autor": {
+                            "type": "string",
+                            "mandatory": true,
+                            "isRole":true
+                        },
+                        "descripcio": {
+                            "type": "string",
+                            "default": "write a brief project description here",
+                            "config": {
+                                "renderable": true,
+                                "mode": "xhtml"
+                            }
+                        },
+                        "nsproject": {
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "plantilla": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "plantilles:projects:continguts"
+                        },
+                        "fitxercontinguts": {
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "responsable": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true,
+                            "isRole":true
+                        },
+                        "titol": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Dades generals del projecte",
+                            "config": {
+                                "renderable": true,
+                                "mode": "xhtml"
+                            }
+                        },
+                        "media_address": {
+                            "type": "string",
+                            "default": "../media"
+                        },
+                        "taula_dades": {
+                            "type": "taula-de-prova",
+                            "mandatory": true
+                        }                        
+                    }
+                }
+            }
+        }
+    ]
+}

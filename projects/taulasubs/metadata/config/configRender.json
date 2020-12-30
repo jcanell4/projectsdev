@@ -1,0 +1,21 @@
+{
+    "typesDefinition": {
+        "document": {
+            "render": {
+                "typeDef":"main",
+                "class": "exportDocument",
+                "fields": ["titol","autor","responsable"]
+            },
+            "keys": {
+                "titol": {
+                    "render": {"class": "render_title"}
+                }
+            }
+        },
+        "string": {
+            "render": {
+                "class": "renderField"
+            }
+        }
+    }
+}
