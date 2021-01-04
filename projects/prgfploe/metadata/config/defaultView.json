@@ -270,9 +270,9 @@
         },
         "config": {
           "actions": {
-            "set_multiple_default_rows": "Definir el nombre d'Unitats Formatives del mòdul",
-            "remove_rows": "Eliminar les Unitats Formatives seleccionades",
-            "add_default_row_before": "Afegir unitat abans de la fila seleccionada"
+            "add_default_row": "afegir noves dades per una Unitat Formativa",
+            "remove_rows": "Eliminar les files seleccionades",
+            "add_default_row_before": "Afegir dades per una unitat formativa abans de la fila seleccionada"
           },
           "fields": {
             "unitat formativa": {
