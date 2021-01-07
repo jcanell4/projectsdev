@@ -182,6 +182,11 @@
                             "mandatory": true,
                             "default": "0"
                         },
+                        "nombreEACS":{
+                            "type": "number",
+                            "mandatory": true,
+                            "default":-1
+                        },
                         "bloc": {
                             "type": "number",
                             "mandatory": true,

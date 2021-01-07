@@ -166,10 +166,39 @@ Els recursos necessaris per cursar aquest mòdul són:
 ~~NORMAL WIDTH~~
 ==== Metodologia de la unitat formativa ====
 <WIOCCL:SET var="keyUf" type="literal" value="{#_SEARCH_KEY({##itemUf[unitat formativa]##},{##taulaMetodologiaUF##}, ''unitat formativa'')_#}">
-<WIOCCL:IF condition="{##keyUf##}!=false && !{#_IS_STR_EMPTY({##taulaMetodologiaUF[{##keyUf##}][metodologiaUnitatFormativa]##})_#}">
-{##taulaMetodologiaUF[{##keyUf##}][metodologiaUnitatFormativa]##}
+<WIOCCL:IF condition="{##keyUf##}!==false && {#_IS_STR_EMPTY(''{#_ARRAY_GET_VALUE(''metodologiaUnitatFormativa'',{#_ARRAY_GET_VALUE(''{##keyUf##}'',{##taulaMetodologiaUF##},[])_#},'''')_#}'')_#}!=true">
+{#_ARRAY_GET_VALUE("metodologiaUnitatFormativa",{#_ARRAY_GET_VALUE("{##keyUf##}",{##taulaMetodologiaUF##},[])_#},"")_#}
+</WIOCCL:IF> 
+<WIOCCL:IF condition="{##keyUf##}===false || {#_IS_STR_EMPTY(''{#_ARRAY_GET_VALUE(''metodologiaUnitatFormativa'',{#_ARRAY_GET_VALUE(''{##keyUf##}'',{##taulaMetodologiaUF##},[])_#},'''')_#}'')_#}==true">
+No hi ha cap metodologia específica per aquesta unitat formativa.
+</WIOCCL:IF> 
+###:
+
+:###
+==== Avaluació i qualificació de la unitat formativa ====
+
+<WIOCCL:SET var="initialAss" type="literal" value="{#_ARRAY_GET_VALUE(''initialAssessment'',{#_ARRAY_GET_VALUE(''{##keyUf##}'',{##taulaMetodologiaUF##},[])_#},'''')_#}">
+<WIOCCL:SET var="codeInitialAss" type="map" value="{##initialAss##}" map="{''No en té'':0, ''A l'inici del mòdul'':1, ''A l'inici del bloc'':2, ''A l'inici de la UF'':3}">
+<WIOCCL:IF condition="{##codeInitialAss##}!=0">
+=== Avaluació inicial ===
+Es planteja {#_LCFIRST(''{##initialAss##}'')_#}. El seu objectiu és detectar i fer conscients els alumnes dels seus coneixements previs. Permet al professor adaptar l'ajuda pedagògica al grup i, si escau, de manera personalitzada a l'alumne que ho precisi.
+###:
+[##TODO: Indicar si comporta una qualificació que s'incorpora a la qualificació de l'avaluació contínua ##]
+
+:###
 </WIOCCL:IF> 
 </WIOCCL:SET>
+</WIOCCL:SET>
+</WIOCCL:SET>
+
+=== Avaluació contínua (AC) ===
+El model pedagògic de l'IOC es fonamenta en l’avaluació acadèmica de l’alumne mitjançant l’ avaluació contínua (AC). Està constatat que l’èxit en els estudis a distància està directament relacionat amb el ritme d’estudi continuat al llarg de tot el període acadèmic. Es recomana a tots els alumnes que segueixin l’AC atès que forma part de la qualificació final.
+
+**L'AC:**
+  * Es realitza a distància
+  * Es concreta en {##itemUf[nombreEACS]##}
+  * Té una ponderació  en la qualificació final de la UF.
+
 ###:
 
 :###

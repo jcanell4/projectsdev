@@ -90,22 +90,49 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
 
      public function updateCalculatedFieldsOnRead($data, $originalDataKeyValue=FALSE) {
          $ufTable = $data["taulaDadesUF"];
+         $ufMetTable = $data["taulaMetodologiaUF"];
+         $nfTable = $data["taulaDadesNuclisFormatius"];
          if(!is_array($ufTable)){
              $ufTable = json_decode($ufTable, TRUE);
+         }
+         if(!is_array($ufMetTable)){
+             $ufMetTable = json_decode($ufMetTable, TRUE);
+         }
+         if(!is_array($nfTable)){
+             $nfTable = json_decode($nfTable, TRUE);
          }
          foreach ($ufTable as $key => $value) {
              if($ufTable[$key]["ponderació"]=="0"){
                  $ufTable[$key]["ponderació"]=$ufTable[$key]["hores"];
              }
          }
+//         foreach ($ufMetTable as $key => $value) {
+//             if($ufMetTable[$key]["nombreEACS"]=="-1"){
+//                 $ufMetTable[$key]["nombreEACS"]= array_reduce($nfTable, function($count, $item){
+//                     if($ufMetTable[$key]["unitat formativa"]==$item["unitat formativa"]){
+//                         $count+=1;
+//                     }
+//                     return $count;
+//                 });
+//             }
+//         }
          $data["taulaDadesUF"]=$ufTable;
+//         $data["taulaDadesNuclisFormatius"]=$ufMetTable;
          return $data;
      }
 
      public function updateCalculatedFieldsOnSave($data, $originalDataKeyValue=FALSE) {
         $ufTable = $data["taulaDadesUF"];
+        $ufMetTable = $data["taulaMetodologiaUF"];
+        $nfTable = $data["taulaDadesNuclisFormatius"];
         if(!is_array($ufTable)){
              $ufTable = json_decode($ufTable, TRUE);
+        }
+        if(!is_array($ufMetTable)){
+            $ufMetTable = json_decode($ufMetTable, TRUE);
+        }
+        if(!is_array($nfTable)){
+            $nfTable = json_decode($nfTable, TRUE);
         }
         $blocTable = array();
         $blocTotal = 0;
@@ -130,9 +157,23 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
              }
         }
         
+//        $size = count($ufMetTable);
+//        while($i<$size) {
+//            if($ufMetTable[$i]["nombreEACS"]==array_reduce($nfTable, function($count, $item){
+//                        if($ufMetTable[$key]["unitat formativa"]==$item["unitat formativa"]){
+//                            $count+=1;
+//                        }
+//                        return $count;
+//                    })){
+//                $ufMetTable[$i]["nombreEACS"]==-1;
+//            }
+//            $i++;            
+//        }        
+        
         $data["taulaDadesUF"]=$ufTable;
         $data["taulaDadesBlocs"]=$blocTable;
         $data["durada"]=$total;
+//        $data["taulaDadesNuclisFormatius"]=$ufMetTable;
         return $data;
     }
 }

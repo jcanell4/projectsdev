@@ -208,6 +208,9 @@
             },
             "ponderació": {
               "type": "decimal"
+            },
+            "nombreEACS":{
+                "type": "number"
             }
           },
           "layout": [
@@ -252,6 +255,11 @@
                   "field": "ponderació",
                   "constraints": "{\"places\":2}",
                   "editable": true
+                },
+                {
+                  "name": "Quants EAC té la UF?",
+                  "field": "nombreEACS",
+                  "editable": true
                 }
               ]
             }
@@ -286,7 +294,7 @@
             },
             "initialAssessment": {
               "type": "select",
-              "options": ["Sense avaluació inicial", "Avaluació inicial no qualificable","Avaluació inicial qualificable"] 
+                "options": ["No en té", "A l'inici del mòdul","A l'inici del bloc", "A l'inici de la UF"] 
             }
           },
           "layout": [
@@ -303,7 +311,7 @@
                 },
 
                 {
-                  "name": "descripció de la metodologia",
+                  "name": "Descripció de la metodologia",
                   "field": "metodologiaUnitatFormativa",
                   "editable": true
                 },
@@ -315,7 +323,7 @@
                 },
 
                 {
-                  "name": "initialAssessment",
+                  "name": "Avaluació inicial",
                   "field": "initialAssessment",
                   "editable": true
                 }
