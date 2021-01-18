@@ -46,9 +46,10 @@ class RevertProjectMetaDataAction extends ProjectMetadataAction {
             $model->setData($metaData);
             $response = $model->getData();
 
-            if ($model->isProjectGenerated()) {
+            if (!$model->getNeedGenerateAction() || $model->isProjectGenerated()) {
                 $params = $model->buildParamsToPersons($response['projectMetaData'], $oldPersonsDataProject);
                 $model->modifyACLPageAndShortcutToPerson($params);
+                $model->forceFileComponentRenderization();
             }
 
             //Elimina todos los borradores dado que estamos haciendo una reversión del proyecto

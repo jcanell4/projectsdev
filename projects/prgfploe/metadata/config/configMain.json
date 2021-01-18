@@ -38,6 +38,16 @@
                             "type": "string",
                             "mandatory": true,
                             "default": "dada"
+                        },
+                        "ponderacio": {
+                            "type": "decimal",
+                            "mandatory": true,
+                            "default": "0"
+                        },
+                        "hores": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "0"
                         }
                     }                    
                 },
@@ -182,11 +192,6 @@
                             "mandatory": true,
                             "default": "0"
                         },
-                        "nombreEACS":{
-                            "type": "number",
-                            "mandatory": true,
-                            "default":-1
-                        },
                         "bloc": {
                             "type": "number",
                             "mandatory": true,
@@ -220,18 +225,72 @@
                             "type": "textarea",
                             "mandatory": true,
                             "default":"Indiqueu aquí un resum de la metoodologia específica de la unitat formativa."
-                        },
-                        "initialAssessment":{
-                            "type": "string",
-                            "mandatory": true,
-                            "default":"Sense avaluació inicial"
                         }
                     }
                 },
                 "defTaulaMetodologiaUF": {
                     "type": "objectArray",
                     "typeDef":"entradaMetodologiaUF"
+                },      
+                "entradaAvaluacioInicialUF": {
+                    "type": "object",
+                    "keys": {
+                        "unitat formativa": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "{#_INC(1)_#}"
+                        },
+                        "tipus":{
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "ponderable":{
+                            "type": "boolean",
+                            "mandatory": true,
+                            "default": false
+                        }
+                    }
                 },    
+                "entradaInstrumentsAvaluacio": {
+                    "type": "object",
+                    "keys": {
+                        "unitat formativa": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "{#_COPY(1)_#}"
+                        },
+                        "tipus": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "{#_COPY(\"AC\")_#}"
+                        },
+                        "id": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "{#_COPY(\"EAC1\")_#}"
+                        },
+                        "treballEnEquip": {
+                            "type": "boolean",
+                            "mandatory": true,
+                            "default": false
+                        },
+                        "esObligatori": {
+                            "type": "boolean",
+                            "mandatory": true,
+                            "default": true
+                        },
+                        "notaMinima": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": 4
+                        },
+                        "ponderacio": {
+                            "type": "decimal",
+                            "mandatory": true,
+                            "default": 10
+                        }
+                    }
+                },
                 "entradaDadesNucliFormatiu": {
                     "type": "object",
                     "keys": {
@@ -316,34 +375,64 @@
                 "defTaulaActivitatsAprenentatge": {
                     "type": "objectArray",
                     "typeDef":"entradaActivitatsAprenentatge"
-                },    
-                "entradaInstrumentsAvaluacio": {
-                    "type": "object",
-                    "keys": {
-                        "tipus": {
+                },
+                "entradaCc_historic":{
+                    "type":"object",
+                    "keys":{
+                        "data":{
+                            "type": "date",
+                           "mandatory": true,
+                           "props" : {
+                               "readonly" : true
+                            }
+                        },
+                        "autor": {
                             "type": "string",
                             "mandatory": true,
-                            "default": "Indiqueu el tipus d'instrument d'avaluació (AC, EAF, JT o PAF)"
+                            "props" : {
+                                "readonly" : true
+                            }
                         },
-                        "treballEnEquip": {
-                            "type": "boolean",
+                        "modificacions": {
+                            "type": "string",
                             "mandatory": true,
-                            "default": false
+                            "props" : {
+                                "readonly" : true
+                            }
+                        }
+                    }
+                },
+                "dadesGestioDocument":{
+                    "type":"object",
+                    "keys":{
+                        "nomGestor": {
+                            "type": "string",
+                            "mandatory": true,
+                            "props" : {
+                                "readonly" : true
+                            }
                         },
-                        "esObligatori": {
-                            "type": "boolean",
+                        "carrec": {
+                            "type": "string",
                             "mandatory": true,
-                            "default": true
+                            "props" : {
+                                "readonly" : true
+                            }
                         },
-                        "notaMinima": {
-                            "type": "number",
+                        "dataDeLaGestio": {
+                            "type": "date",
                             "mandatory": true,
-                            "default": "Indiqueu la npta mínima que cal treure en aquest tipus d'avaluaió. Si no n'hi ha deixe-lo a zero."
+                            "props" : {
+                                "readonly" : true
+                            }
                         },
-                        "ponderacio": {
-                            "type": "decimal",
+                        "signatura": {
+                            "type": "string",
                             "mandatory": true,
-                            "default": 25
+                            "default":"pendent",
+                            "props" : {
+                                "readonly" : true
+                            }
                         }
                     }
                 },
@@ -479,7 +568,12 @@
                             },
                             "default": 4
                         },                                                 
-                        "instrumentsAvaluacio": {
+                        "taulaAvaluacioInicialUF": {
+                            "type": "objectArray",
+                            "typeDef":"entradaAvaluacioInicialUF",
+                            "mandatory": true
+                        },
+                        "taulaInstrumentsAvaluacio": {
                             "type": "objectArray",
                             "typeDef":"entradaInstrumentsAvaluacio",
                             "mandatory": true
@@ -488,27 +582,76 @@
                             "type": "string",
                             "mandatory": true,
                             "default":"1 hora i 50 minuts"
-                        },                                                
+                        },   
                         "dadesExtres": {
                             "type": "defExtres",
+                            "mandatory": true
+                        },
+                        "cc_historic": {
+                            "type": "objectArray",
+                            "typeDef":"entradaCc_historic",
+                            "mandatory": true,
+                            "props" : {
+                                "readonly" : true
+                            }
+                        },
+                        "cc_raonsModificacio": {
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "cc_dadesAutor": {
+                            "type": "object",
+                            "typeDef": "dadesGestioDocument",
+                            "mandatory": true
+                        },
+                        "cc_dadesRevisor": {
+                            "type": "object",
+                            "typeDef": "dadesGestioDocument",
+                            "mandatory": true
+                        },
+                        "cc_dadesValidador": {
+                            "type": "object",
+                            "typeDef": "dadesGestioDocument",
                             "mandatory": true
                         },
                         "autor": {
                             "type": "string",
                             "mandatory": true,
-                            "isRole":true
+                            "isRole":true,
+                            "roleProperties":{
+                                "wiki_permission":16,
+                                "shortcut":true
+                            }
                         },
                         "responsable": {
                             "type": "string",
                             "struc_chars": "40",
                             "mandatory": true,
-                            "isRole":true
+                            "isRole":true,
+                            "roleProperties":{
+                                "wiki_permission":16,
+                                "shortcut":true
+                            }
                         },
-                        "supervisor": {
+                        "revisor": {
                             "type": "string",
                             "struc_chars": "40",
                             "mandatory": true,
-                            "isRole":true
+                            "isRole":true,
+                            "roleProperties":{
+                                "wiki_permission":4,
+                                "shortcut":false
+                            }
+                        },
+                        "validador": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true,
+                            "isRole":true,
+                            "roleProperties":{
+                                "wiki_permission":4,
+                                "shortcut":true
+                            }
                         }
                     }
                 }

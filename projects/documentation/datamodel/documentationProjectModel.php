@@ -23,6 +23,8 @@ class documentationProjectModel extends AbstractProjectModel {
         //3. Otorga, a cada 'person', permisos adecuados sobre el directorio de proyecto y añade shortcut
         $params = $this->buildParamsToPersons($ret['projectMetaData'], NULL);
         $this->modifyACLPageAndShortcutToPerson($params);
+        $this->forceFileComponentRenderization();
+
 
         //4. Establece la marca de 'proyecto generado'
         $ret[ProjectKeys::KEY_GENERATED] = $this->projectMetaDataQuery->setProjectGenerated();

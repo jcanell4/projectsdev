@@ -6,16 +6,6 @@
         "rows_row": 1
     },
     "groups": {
-        "res": {
-            "parent": "",
-            "label": "XXXX",
-            "n_columns": 12,
-            "frame": true,
-            "config":{
-                "collapsable":true,
-                "collapsed":true
-            }
-        },
         "main": {
             "parent": "",
             "label": "Dades generals del mòdul",
@@ -38,17 +28,6 @@
                 "collapsed":false
             }
         },
-        "avaluacio": {
-            "parent": "",
-            "label": "Avaluació i qualificació del mòdul",
-            "n_columns": 12,
-            "n_rows": 1,
-            "frame": true,
-            "config":{
-                "collapsable":true,
-                "collapsed":false
-            }
-        },
         "extres": {
             "parent": "",
             "label": "Informació extra per aquest pla de treball",
@@ -59,9 +38,54 @@
                 "collapsed":false
             }
         },
-        "authorship": {
+        "gestioDocument": {
             "parent": "",
-            "label": "Autoria i control de canvis",
+            "label": "Informació sobre la gestió del document i el control dels canvis",
+            "n_columns": 12,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
+        },
+        "gestioDocumentRaonsModif": {
+            "parent": "gestioDocument",
+            "n_columns": 12,
+            "frame": false
+        },
+        "dadesAutor": {
+            "parent": "gestioDocument",
+            "label": "Responsable i autor",
+            "n_columns": 12,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
+        },
+        "dadesRevisor": {
+            "parent": "gestioDocument",
+            "label": "Revisor del document",
+            "n_columns": 12,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
+        },
+        "dadesValidador": {
+            "parent": "gestioDocument",
+            "label": "Revisor del document",
+            "n_columns": 12,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
+        },
+        "gestioDocumentReadOnly": {
+            "parent": "gestioDocument",
+            "label": "Històric del control de canvis",
             "n_columns": 12,
             "frame": true,
             "config":{
@@ -255,11 +279,6 @@
                   "field": "ponderació",
                   "constraints": "{\"places\":2}",
                   "editable": true
-                },
-                {
-                  "name": "Quants EAC té la UF?",
-                  "field": "nombreEACS",
-                  "editable": true
                 }
               ]
             }
@@ -291,16 +310,12 @@
             },
             "resumMetodologiaUnitatFormativa": {
                 "type": "textarea"
-            },
-            "initialAssessment": {
-              "type": "select",
-                "options": ["No en té", "A l'inici del mòdul","A l'inici del bloc", "A l'inici de la UF"] 
             }
           },
           "layout": [
             {
               "defaultCell": {
-                "width" : "30%"
+                "width" : "45%"
               },
               "cells": [
                 {
@@ -320,11 +335,129 @@
                   "name": "Resum de la metodologia",
                   "field": "resumMetodologiaUnitatFormativa",
                   "editable": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "taulaAvaluacioInicialUF": {
+        "label": "Avaluació inicial (tauleAvaluacioInicialUF)",
+        "n_columns": 12,
+        "type": "editableObject",
+        "group": "UF",
+        "n_rows": 15,
+        "props": {
+          "data-editable-element": "table",
+          "title": "Detalleu les dades sobre l'avaluació inicial de cada UF. Les UF que no tionguin avaluació inicial, no cal que els afegiu."
+        },
+        "config": {
+          "actions": {
+            "add_default_row": "afegir avaluacií inicial per una Unitat Formativa",
+            "remove_rows": "Eliminar les files seleccionades",
+            "add_default_row_before": "Afegir dades abans de la fila seleccionada"
+          },
+          "fields": {
+            "unitat formativa": {
+              "type": "number"
+            },
+            "tipus": {
+              "type": "select",
+              "options": ["No en té", "A l'inici del mòdul","A l'inici del bloc", "A l'inici de la UF"] 
+            },
+            "ponderable": {
+                "type": "boolean"
+            }
+          }
+        }
+      },
+      "taulaInstrumentsAvaluacio": {
+        "label": "Instruments d'avaluació (taulaInstrumentsAvaluacio)",
+        "n_columns": 12,
+        "type": "editableObject",
+        "group": "UF",
+        "n_rows": 15,
+        "props": {
+          "data-editable-element": "table",
+          "title": "Detalleu els instruments d'avaluació de cada UF."      
+        },
+        "config": {
+          "actions": {
+            "add_default_row": "afegir nous instruments d'avalaució per una Unitat Formativa",
+            "remove_rows": "Eliminar les files seleccionades",
+            "add_default_row_before": "Afegir nou instrument d'avalaució abans de la fila seleccionada"
+          },
+          "fields": {
+            "unitat formativa": {
+              "type": "number"
+            },
+            "tipus": {
+              "type": "select",
+              "options": ["AC", "PAF","EAF", "JT"] 
+            },
+            "id": {
+                "type": "string"
+            },
+            "treballEnEquip": {
+                "type": "boolean"
+            },
+            "esObligatori": {
+                "type": "boolean"
+            },
+            "notaMinima": {
+                "type": "number"
+            },
+            "ponderacio": {
+                "type": "decimal"
+            }
+          },
+          "layout": [
+            {
+              "defaultCell": {
+                "width" : "15%"
+              },
+              "cells": [
+                {
+                  "name": "Unitat Formativa",
+                  "field": "unitat formativa",
+                   "width":"10%",
+                  "editable": true
                 },
 
                 {
-                  "name": "Avaluació inicial",
-                  "field": "initialAssessment",
+                  "name": "Tipus d'instrument d'avalaució",
+                  "field": "tipus",
+                  "editable": true
+                },
+
+                {
+                  "name": "Identificador de l'instrument d'avaluació",
+                  "field": "id",
+                  "editable": true
+                },
+
+                {
+                  "name": "Es fa en equip?",
+                  "field": "treballEnEquip",
+                  "editable": true
+                },
+
+                {
+                  "name": "Es obligatori?",
+                  "field": "esObligatori",
+                  "editable": true
+                },
+
+                {
+                  "name": "Nota mínima necessaria per comptar l'AC",
+                  "field": "notaMinima",
+                  "editable": true
+                },
+
+                {
+                  "name": "Ponderació aplicada",
+                  "field": "ponderació",
+                  "constraints": "{\"places\":2}",
                   "editable": true
                 }
               ]
@@ -365,6 +498,12 @@
             },
             "descripcio": {
               "type": "string"
+            },
+            "ponderacio":{
+              "type":"decimal"
+            },
+            "hores":{
+              "type":"number"
             }
           },
           "layout": [
@@ -390,6 +529,19 @@
                   "field": "descripcio",
                   "width":"40%",
                   "editable": true
+                },
+
+                {
+                  "name": "ponderació",
+                  "field": "ponderacio",
+                  "constraints": "{\"places\":2}",
+                  "editable": true
+                },
+                 
+                {
+                  "name": "hores",
+                  "field": "hores",
+                  "editable": false
                 }
               ]
             }
@@ -811,11 +963,38 @@
           }
         }
       },
+      "cc_raonsModificacio":{
+        "type":"textarea",
+        "label": "Raons de la modificació",
+        "group": "gestioDocumentRaonsModif",
+        "n_columns":12,
+        "props": {
+          "required": true,
+          "title": "Raons per les que s'està fent aquesta modificació."                
+        }
+      },
+      "cc_historic":{
+        "group": "gestioDocumentReadOnly",
+        "label": "   ",
+        "n_columns":12,
+        "n_rows":6,
+        "fields": {
+            "data": {
+              "type": "date"
+            },
+            "autor": {
+              "type": "string"
+            },
+            "modificacions": {
+              "type": "string"
+            }
+        }
+      },
       "responsable": {
         "type" : "amd",
         "label": "Responsable de la creació (responsable)",
         "n_columns": 4,
-        "group": "authorship",
+        "group": "dadesAutor",
         "props": {
             "required": true
         },
@@ -849,7 +1028,7 @@
         "type": "amd",
         "label": "Autor (autor)",
         "n_columns": 4,
-        "group": "authorship",
+        "group": "dadesAutor",
         "props": {
            "required": true
         },
@@ -879,11 +1058,30 @@
           }
         }
       },
-      "supervisor": {
-        "type": "amd",
-        "label": "Supervisor (supervisor)",
+      "cc_dadesAutor#carrec":{
         "n_columns": 4,
-        "group": "authorship",
+        "label": "Càrrec de l'autor",
+        "group": "dadesAutor",
+        "props": {
+          "required": true,
+          "title" : "Indiqueu de quin departament és aquesta programació."
+        },
+        "type":"select",
+        "config":{
+            "options":[
+                {"value":"Professor/a"},
+                {"value":"Cap de departament"}, 
+                {"value":"Coordinació qualitat FP"},
+                {"value":"Direcció acadèmica FP"}
+            ]
+        },
+        "default":"Professor/a"
+      }, 
+      "revisor": {
+        "type": "amd",
+        "label": "Qui revisa el document (revisor)",
+        "n_columns": 6,
+        "group": "dadesRevisor",
         "props": {
           "required": true
         },
@@ -896,9 +1094,9 @@
           "data": {
             "ns":"",
             "buttonLabel": "Cercar",
-            "fieldName": "supervisor",
-            "dialogTitle" : "Cercar supervisor",
-            "dialogButtonLabel" : "Afegir supervior",
+            "fieldName": "revisor",
+            "dialogTitle" : "Cercar qui revisa",
+            "dialogButtonLabel" : "Afegir revisor",
             "data": "",
             "dataQuery": {
               "filter": ""
@@ -913,7 +1111,88 @@
           }
         }
       },
-      "notaMinimaAC": {
+      "cc_dadesRevisor#carrec":{
+        "n_columns": 4,
+        "label": "Càrrec de qui revisa el document",
+        "group": "dadesRevisor",
+        "props": {
+          "required": true,
+          "title" : "Indiqueu de quin departament és aquesta programació."
+        },
+        "type":"select",
+        "config":{
+            "options":[
+                {"value":"Professor/a"},
+                {"value":"Cap de departament"}, 
+                {"value":"Coordinació qualitat FP"},
+                {"value":"Direcció acadèmica FP"}
+            ]
+        },
+        "default":"Coordinació qualitat FP"
+      }, 
+      "validador": {
+        "type": "amd",
+        "label": "Qui aprova i valida el document (revisor)",
+        "n_columns": 6,
+        "group": "dadesValidador",
+        "props": {
+          "required": true
+        },
+        "config":{
+          "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin"], "deniedResponse":true}}]},
+          "class" : {
+            "edit": "IocFilteredList",
+            "view": "IocListSelectedItems"
+          },
+          "data": {
+            "ns":"",
+            "buttonLabel": "Cercar",
+            "fieldName": "validador",
+            "dialogTitle" : "Cercar qui aprova/valida",
+            "dialogButtonLabel" : "Afegir validador",
+            "data": "",
+            "dataQuery": {
+              "filter": ""
+            },
+            "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
+            "fields": {
+              "username": "Nom d'usuari",
+              "name": "Nom"
+            },
+            "fieldId": "username",
+            "defaultEntryField": "name"
+          }
+        }
+      },
+       "cc_dadesValidador#carrec":{
+        "n_columns": 4,
+        "label": "Càrrec de qui aprova/valida el document",
+        "group": "dadesValidador",
+        "props": {
+          "required": true,
+          "title" : "Indiqueu de quin departament és aquesta programació."
+        },
+        "type":"select",
+        "config":{
+            "options":[
+                {"value":"Professor/a"},
+                {"value":"Cap de departament"}, 
+                {"value":"Coordinació qualitat FP"},
+                {"value":"Direcció acadèmica FP"}
+            ]
+        },
+        "default":"Direcció acadèmica FP"
+      }, 
+     "notaMinimaAC": {
+        "type":"hidden"
+      },
+      "notaMinimaPAF": {
+        "type":"hidden"
+      },
+      "notaMinimaEAF": {
+        "type":"hidden"
+      },
+      "notaMinimaJT": {
         "type":"hidden"
       },
       "plantilla": {
@@ -933,6 +1212,34 @@
       },
       "hiHaEnunciatRecuperacioPerEAF":{
         "type" : "hidden"
-      }
+      },
+      "cc_dadesAutor#nomGestor":{
+        "type" : "hidden"            
+      },
+       "cc_dadesAutor#dataDeLaGestio":{
+        "type" : "hidden"            
+      },
+       "cc_dadesAutor#signatura":{
+        "type" : "hidden"            
+      },
+       "cc_dadesRevisor#nomGestor":{
+        "type" : "hidden"            
+      },
+       "cc_dadesRevisor#dataDeLaGestio":{
+        "type" : "hidden"            
+      },
+       "cc_dadesRevisor#signatura":{
+        "type" : "hidden"            
+      },
+       "cc_dadesValidador#nomGestor":{
+        "type" : "hidden"            
+      },
+       "cc_dadesValidador#dataDeLaGestio":{
+        "type" : "hidden"            
+      },
+       "cc_dadesValidador#signatura":{
+        "type" : "hidden"            
+       }
+       
     }
 }
