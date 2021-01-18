@@ -6,6 +6,13 @@
                 "MetaDataEntity": "defaultProject",
                 "MetaDataRender": "prgfploe"
             }
+        },
+        {
+            "management":{
+                "MetaDataDAO": "defaultProject",
+                "MetaDataEntity": "defaultProject",
+                "MetaDataRender": "algo"
+            }            
         }
     ],
     "metaDataProjectStructure": [
@@ -656,6 +663,67 @@
                     }
                 }
             }
+        },
+        {
+            "management": "management.mdpr",
+            "versions": {
+                "fields" : 0
+            },
+            "mainType": {
+                "type": "object",
+                "typeDef": "management"
+            },
+            "typesDefinition": {
+                "wfStateHistoryEntry":{
+                    "type": "object",
+                    "keys": {
+                        "changeDate":{
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "oldState":{
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "newState":{
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "changeAction":{
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "user":{
+                            "type": "date",
+                            "mandatory": true
+                        }
+                    }                    
+                },
+                "workflowType":{
+                    "type": "object",
+                    "keys": {
+                        "currentState":{
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "undefined"
+                        },
+                        "stateHistory":{
+                            "type": "objectArray",
+                            "typeDef":"wfStateHistoryEntry"                            
+                        }
+                    }                    
+                },
+                "management": {
+                    "type": "object",
+                    "keys": {
+                        "workflow": {
+                            "type": "object",
+                            "typeDef": "workflowType",
+                            "mandatory": true
+                        }                        
+                    }
+                }
+            }            
         }
     ]
 }
