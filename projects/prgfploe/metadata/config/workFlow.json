@@ -26,9 +26,10 @@
                     ]
                 },
                 "button":{
+                    "overwritingId":".i1_main.i2_right.i4_edit_project",
                     "parms": { 
                         "DOM": {
-                           "id": "cfgIdConstants::EDIT_PROJECT_BUTTON",
+                           "id": "editProjectButton",
                             "query" :"'do=workflow&action=edit'"
                         }
                     },
