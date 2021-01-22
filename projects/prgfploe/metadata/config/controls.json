@@ -13,14 +13,6 @@
                 }
             }
         }
-
-    },
-    "editProjectButton": {
-        "id":"editProjectButton",
-        "toSet":{
-            "title":"Bufonades",
-            "query" : "do=edit&extra=SIIIIII"
-        }
     },
     "ptfploeConsolidateData": {
         "class": "WikiIocButton",

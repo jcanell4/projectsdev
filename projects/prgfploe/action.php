@@ -6,7 +6,7 @@
 if (!defined("DOKU_INC")) die();
 require_once (DOKU_INC . "inc/pageutils.php");
 
-class action_plugin_projectsdev_projects_prgfploe extends WikiIocProjectPluginAction {
+class action_plugin_projectsdev_projects_prgfploe extends WikiIocProjectWorkflowPluginAction {
 
     public function __construct($projectType, $dirProjectType) {
         parent::__construct($projectType, $dirProjectType);
