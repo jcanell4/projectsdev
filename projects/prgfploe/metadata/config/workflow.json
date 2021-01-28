@@ -44,8 +44,8 @@
             "import": {
                 "permissions": {
                     "groups": [
-                        "isadmin",
-                        "ismanager"
+                        "admin",
+                        "manager"
                      ],
                      "rols": [
                         "responsable",
@@ -57,13 +57,17 @@
                     "parms": { 
                         "DOM": {
                            "id": "importProjectButton",
-                           "title": "Importació d'un projecte",
+                           "title": "Importar projecte",
                            "class": "iocDisplayBlock"
                         },
                         "DJO": {
                            "autoSize": true,
-                           "visible": false,
+                           "visible": true,
                            "iconClass": "'iocImportProjectIcon'",
+                           "NomProjectelabel": "'Ruta del Projecte'",
+                           "NomProjectelplaceHolder": "'Ruta del Projecte'",
+                           "labelButtonAcceptar": "'Acceptar'",
+                           "labelButtonCancellar": "'Cancel·lar'",
                            "urlBase": "'lib/exe/ioc_ajax.php?call=project'",
                            "projectType": ["ptfct", "ptfploe", "sintesi"],
                            "standbyId": "'bodyContent'",
