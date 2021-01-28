@@ -4,8 +4,8 @@
             "view": {
                 "permissions": {
                     "groups": [
-                        "isadmin",
-                        "ismanager"
+                        "admin",
+                        "manager"
                      ],
                      "rols": [
                         "responsable",
@@ -17,8 +17,8 @@
             "edit": {
                 "permissions": {
                     "groups": [
-                        "isadmin",
-                        "ismanager"
+                        "admin",
+                        "manager"
                      ],
                      "rols": [
                         "responsable",

@@ -17,6 +17,7 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Text
     
     if (importButton) {
         importButton.onClick = function () {
+            var globalState = importButton.dispatcher.getGlobalState();
             var path = [];
             var dialog = registry.byId("newDocumentDlg");
 
@@ -43,9 +44,9 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Text
 
                 dialog.nsActivePage = function (){
                     path.length=0;
-                    if (this.importButton.dispatcher.getGlobalState().currentTabId) {
+                    if (globalState.currentTabId) {
                         var stPath = "";
-                        var aPath = this.importButton.dispatcher.getGlobalState().getContent(this.importButton.dispatcher.getGlobalState().currentTabId)['ns'] || '';
+                        var aPath = globalState.getContent(globalState.currentTabId)['ns'] || '';
                         aPath = aPath.split(':');
                         aPath.pop();
                         aPath.unshift("");
@@ -139,9 +140,12 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Text
 
                     onClick: function(){
                         if (ProjectImport.value !== '') {
+                            var page = globalState.pages[globalState.currentTabId];
                             var query = 'do=workflow' + 
                                         '&action=import' + 
-                                        '&project_import=' + normalitzaCaracters(ProjectImport.value, true);
+                                        '&project_import=' + normalitzaCaracters(ProjectImport.value, true) +
+                                        '&id=' + page.ns + 
+                                        '&projectType=' + page.projectType;
                             importButton.sendRequest(query);
                             dialog.hide();
                         }
