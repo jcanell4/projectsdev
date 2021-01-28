@@ -29,7 +29,7 @@
                     "id": "editProjectButton",
                     "toSet": {
                         "title": "Edit-WorkFlow",
-                        "query": "do=workflow&action=GetProjectMetaData"
+                        "query": "do=workflow&action=edit"
                     },
                     "scripts": {
                         "updateHandler": {

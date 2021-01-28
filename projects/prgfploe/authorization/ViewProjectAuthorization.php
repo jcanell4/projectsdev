@@ -13,13 +13,4 @@ class ViewProjectAuthorization extends EditProjectAuthorization {
         $this->allowedRoles[] = Permission::ROL_VALIDADOR;
     }
 
-//    public function canRun() {
-//        if ($this->isUserGroup(array("platreballfp"))
-//                || $this->permission->getRol() === Permission::ROL_SUPERVISOR) {
-//            return true;
-//        }else {
-//            return parent::canRun();
-//        }
-//    }
-
 }
