@@ -1,29 +1,32 @@
 <?php
 if (!defined('DOKU_INC')) die();
 
-class ImportProjectAction extends AbstractWikiAction {
+class ImportProjectAction extends ProjectMetadataAction {
 
     public function responseProcess() {
-        // Comprobar que el tipo de proyecto a importar es adecuado
-        // Verificar permisos sobre el proyecto a importar
-        /*
-        $modelManager = AbstractModelManager::Instance($projectType_a_importar);
-        $buttonAuthorization = $modelManager->getAuthorizationManager('editProject');
-         */
+        //
+        // 1. Comprobar que el tipo de proyecto a importar es adecuado
+        //
+        $model = $this->getModel();
+        $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($this->params['id'], "management", $this->params['projectType']);
+        $importProjectType = $metaDataQuery->getProjectType($this->params['project_import']);
 
-        /*
-         * getModelManager()
-        $model = $plugin_controller->getCurrentProjectModel("management");
-
-        $dataProject = $model->getCurrentDataProject("management", FALSE);
-        $state = $dataProject['workflow']['currentState'];
-
-        $jsonConfig = $model->getMetaDataJsonFile(FALSE, "workflow.json", $state);
+        $data = $model->getCurrentDataProject("management", FALSE);
+        $jsonConfig = $model->getMetaDataJsonFile(FALSE, "workflow.json", $data['workflow']['currentState']);
         $actionCommand = $model->getModelAttributes(AjaxKeys::KEY_ACTION);
-        $permissions = $jsonConfig['actions'][$actionCommand]['permissions'];
+        $validProjectTypes = $jsonConfig['actions'][$actionCommand]['button']['parms']['DJO']['projectType'];
 
-         */
-        throw new Exception("Action no definida");
+        if ($importProjectType == $validProjectTypes || in_array($importProjectType, $validProjectTypes)) {
+            //
+            // 2. Verificar permisos sobre el proyecto a importar
+            //
+            $permissions = $jsonConfig['actions'][$actionCommand]['permissions'];
+    //        $modelManager = AbstractModelManager::Instance($importProjectType);
+    //        $buttonAuthorization = $modelManager->getAuthorizationManager('editProject');
+        }else {
+            throw new Exception("El tipus de projecte $importProjectType no és un tipus vàlid per a la importació.");
+        }
+        throw new Exception("Action no definida. Petición: $importProjectType");
     }
 
 }
