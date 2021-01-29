@@ -10,7 +10,7 @@ class ViewProjectAuthorization extends EditProjectAuthorization {
     public function __construct() {
         parent::__construct();
         $this->allowedGroups[] = "platreballfp";
-        $this->allowedRoles[] = Permission::ROL_VALIDADOR;
+        $this->allowedRoles[] = ProjectPermission::ROL_VALIDADOR;
     }
 
 }

@@ -11,7 +11,8 @@ class ImportProjectAction extends ProjectMetadataAction {
         $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($this->params['id'], "management", $this->params['projectType']);
         $importProjectType = $metaDataQuery->getProjectType($this->params['project_import']);
 
-        $data = $model->getCurrentDataProject("management", FALSE);
+        $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($this->params['id'], "management", $this->params['projectType']);
+        $data = $metaDataQuery->getDataProject();
         $jsonConfig = $model->getMetaDataJsonFile(FALSE, "workflow.json", $data['workflow']['currentState']);
         $actionCommand = $model->getModelAttributes(AjaxKeys::KEY_ACTION);
         $validProjectTypes = $jsonConfig['actions'][$actionCommand]['button']['parms']['DJO']['projectType'];
@@ -21,8 +22,8 @@ class ImportProjectAction extends ProjectMetadataAction {
             // 2. Verificar permisos sobre el proyecto a importar
             //
             $permissions = $jsonConfig['actions'][$actionCommand]['permissions'];
-    //        $modelManager = AbstractModelManager::Instance($importProjectType);
-    //        $buttonAuthorization = $modelManager->getAuthorizationManager('editProject');
+            $modelManager = AbstractModelManager::Instance($importProjectType);
+            $buttonAuthorization = $modelManager->getAuthorizationManager('editProject');
         }else {
             throw new Exception("El tipus de projecte $importProjectType no és un tipus vàlid per a la importació.");
         }

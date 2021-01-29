@@ -1,12 +1,12 @@
 <?php
 /**
  * DokuModelManager:
- * - proporciona acceso a las Autorizaciones, ModelAdapter y Renderer del proyecto 'taulasubs'
+ * - proporciona acceso a las Autorizaciones, ModelAdapter y Renderer del proyecto 'manual'
  * - define las rutas de las clases y las clases por defecto necesarias para este proyecto
  * @author Rafael Claver
  */
 if (!defined('DOKU_INC')) die();
-if (!defined('DOKU_LIB_IOC')) define('DOKU_LIB_IOC', DOKU_INC.'lib/lib_ioc/');
+if (!defined('DOKU_LIB_IOC')) define('DOKU_LIB_IOC', DOKU_INC . "lib/lib_ioc/");
 if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC . "lib/plugins/");
 if (!defined('WIKI_IOC_MODEL')) define('WIKI_IOC_MODEL', DOKU_PLUGIN . "wikiiocmodel/");
 
@@ -14,7 +14,7 @@ require_once(DOKU_LIB_IOC . "wikiiocmodel/ProjectModelExceptions.php");
 require_once(WIKI_IOC_MODEL . "metadata/MetaDataService.php");
 require_once(WIKI_IOC_MODEL . "BasicModelAdapter.php");
 
-class DokuModelManager extends AbstractModelManager{
+class mspareDokuModelManager extends AbstractModelManager{
 
     const MOD = WIKI_IOC_MODEL;
     const DEF = WIKI_IOC_MODEL . "projects/defaultProject/";
@@ -33,13 +33,14 @@ class DokuModelManager extends AbstractModelManager{
     static $defMainClass = array(
                'DokuModelAdapter'     => self::MOD."BasicModelAdapter.php",
                'FactoryAuthorization' => self::PRJ."authorization/FactoryAuthorization.php",
-               'Permission'           => self::PRJ."authorization/Permission.php"
+               'FactoryExporter'      => self::PRJ."exporter/FactoryExporter.php",
+               'Permission'           => self::DLI."authorization/ProjectPermission.php"
            );
 
     public function getAuthorizationManager($str_command) {
         require_once(self::$defMainClass['Permission']);
         require_once(self::$defMainClass['FactoryAuthorization']);
-        $factory = \FactoryAuthorization::Instance(self::$defDirClass['Authorization']);
+        $factory = \mspare\FactoryAuthorization::Instance(self::$defDirClass['Authorization'], "\mspare");
         return $factory->createAuthorizationManager($str_command);
     }
 
