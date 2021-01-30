@@ -8,11 +8,11 @@ if (!defined('DOKU_INC')) die();
 
 class EditProjectAuthorization extends ProjectCommandAuthorization {
 
-    public function __construct() {
-        parent::__construct();
-        $this->allowedGroups = ["admin"];
-        $this->allowedRoles[] = ProjectPermission::ROL_AUTOR;;
-        $this->allowedRoles[] = ProjectPermission::ROL_REVISOR;
-    }
+//    public function __construct() {
+//        parent::__construct();
+//        $this->allowedGroups = ["admin"];
+//        $this->allowedRoles[] = ProjectPermission::ROL_AUTOR;;
+//        $this->allowedRoles[] = ProjectPermission::ROL_REVISOR;
+//    }
 
 }

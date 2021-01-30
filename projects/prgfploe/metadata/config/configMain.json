@@ -647,7 +647,8 @@
                             "isRole":true,
                             "roleProperties":{
                                 "wiki_permission":4,
-                                "shortcut":false
+                                "shortcut":false,
+                                "order":2
                             }
                         },
                         "validador": {
@@ -657,7 +658,8 @@
                             "isRole":true,
                             "roleProperties":{
                                 "wiki_permission":4,
-                                "shortcut":true
+                                "shortcut":true,
+                                "order":1
                             }
                         }
                     }
