@@ -43,7 +43,10 @@ class ImportProjectAction extends ProjectMetadataAction {
                 $dataProject['notaMinimaPAF']             = $import_data['notaMinimaPAF'];
                 $dataProject['taulaInstrumentsAvaluacio'] = $import_data['dadesQualificacioUFs'];
                 //taulaDadesBlocs
-
+                $B = ["mòdul", "1r. bloc", "2n. bloc", "3r. bloc"];
+                $T = ['bloc' => array_search($import_data['tipusBlocModul'], $B),
+                      'horesBloc' => $import_data['durada']];
+                $dataProject['taulaDadesBlocs'][] = $T;
                 //taulaDadesUF
                 $dataProject['taulaDadesUF']['bloc']             = $import_data['taulaDadesUF']['bloc'];
                 $dataProject['taulaDadesUF']['unitat formativa'] = $import_data['taulaDadesUF']['unitat formativa'];
@@ -53,7 +56,7 @@ class ImportProjectAction extends ProjectMetadataAction {
                 //taulaAvaluacioInicialUF
 
                 //taulaDadesNuclisFormatius
-                
+
                 //resultatsAprenentatge
 
                 throw new Exception("Petición correcta: $importProjectType");
