@@ -48,17 +48,48 @@ class ImportProjectAction extends ProjectMetadataAction {
                       'horesBloc' => $import_data['durada']];
                 $dataProject['taulaDadesBlocs'][] = $T;
                 //taulaDadesUF
-                $dataProject['taulaDadesUF']['bloc']             = $import_data['taulaDadesUF']['bloc'];
-                $dataProject['taulaDadesUF']['unitat formativa'] = $import_data['taulaDadesUF']['unitat formativa'];
-                $dataProject['taulaDadesUF']['nom']              = $import_data['taulaDadesUF']['nom'];
-                $dataProject['taulaDadesUF']['hores']            = $import_data['taulaDadesUF']['hores'];
-                $dataProject['taulaDadesUF']['ponderació']       = $import_data['taulaDadesUF']['ponderació'];
+                foreach ($import_data['taulaDadesUF'] as $key => $value) {
+                    $T = $value;
+                    $T['horesMinimes'] = $value['hores'];
+                    $T['horesLLiureDisposicio'] = 0;
+                    $T['ordreImparticio'] = $key + 1;
+                    $dataProject['taulaDadesUF'][] = $T;
+                }
                 //taulaAvaluacioInicialUF
-
+                $APT = ["NO", "INICI", "PER_UF"];
+                $APR = ["No en té", "A l'inici del semestre", "A l'inici de la UF"];
+                foreach ($import_data['taulaDadesUF'] as $key => $value) {
+                    $T = ['unitat formativa' => $value['unitat formativa']];
+                    if ($import_data['avaluacioInicial'] === $APT[1] && $key = 0)
+                        $T['tipus'] = $APR[1];
+                    elseif ($import_data['avaluacioInicial'] === $APT[2])
+                        $T['tipus'] = $APR[2];
+                    else
+                        $T['tipus'] = $APR[0];
+                    $dataProject['taulaAvaluacioInicialUF'][] = $T;
+                }
                 //taulaDadesNuclisFormatius
-
+                foreach ($import_data['taulaDadesUnitats'] as $value) {
+                    $U['unitat formativa'] = $value['unitat formativa'];
+                    $U['nucli formatiu'] = $value['unitat'];
+                    $U['nom'] = $value['nom'];
+                    $U['hores'] = $value['hores'];
+                    $dataProject['taulaDadesNuclisFormatius'][] = $U;
+                }
                 //resultatsAprenentatge
-
+                $B = json_decode($import_data['resultatsAprenentatge'], TRUE);
+                foreach ($B as $value) {
+                    if (preg_match("Uf(x)[._]RA(y)", $value['id'], $match)) {
+                        $Z['uf'] = $match[1];
+                        $Z['ra'] = $match[2];
+                    }
+                    if (preg_match("RA(y)[.|](UF)?(x)", $value['id'], $match)) {
+                        $Z['uf'] = $match[2];
+                        $Z['ra'] = $match[1];
+                    }
+                    $Z['descripcio'] = $value['descripcio'];
+                    $dataProject['resultatsAprenentatge'][] = $Z;
+                }
                 throw new Exception("Petición correcta: $importProjectType");
             }
         }else {
