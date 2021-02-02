@@ -79,12 +79,12 @@ class ImportProjectAction extends ProjectMetadataAction {
                 //resultatsAprenentatge
                 $B = json_decode($import_data['resultatsAprenentatge'], TRUE);
                 foreach ($B as $value) {
-                    if (preg_match("Uf(x)[._]RA(y)", $value['id'], $match)) {
-                        $Z['uf'] = $match[1];
-                        $Z['ra'] = $match[2];
+                    if (preg_match("((UF(\d)){0,1}.{0,1})RA(\d)", $value['id'], $match)) {
+                        $Z['uf'] = $match[3];
+                        $Z['ra'] = $match[4];
                     }
-                    if (preg_match("RA(y)[.|](UF)?(x)", $value['id'], $match)) {
-                        $Z['uf'] = $match[2];
+                    if (preg_match("RA(\d)(.{0,1}(UF(\d)){0,1})", $value['id'], $match)) {
+                        $Z['uf'] = $match[4];
                         $Z['ra'] = $match[1];
                     }
                     $Z['descripcio'] = $value['descripcio'];
