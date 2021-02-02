@@ -32,65 +32,78 @@ class ImportProjectAction extends ProjectMetadataAction {
                 $import_metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($this->params['project_import'], "main", $importProjectType);
                 $import_data = $import_metaDataQuery->getDataProject($this->params['project_import'], $importProjectType, "main");
 
-                // Taula d'importació
-                $dataProject['cicle']                     = $import_data['cicle'];
-                $dataProject['modulId']                   = $import_data['modulId'];
-                $dataProject['modul']                     = $import_data['modul'];
-                $dataProject['duradaCicle']               = $import_data['duradaCicle'];
-                $dataProject['notaMinimaAC']              = $import_data['notaMinimaAC'];
-                $dataProject['notaMinimaEAF']             = $import_data['notaMinimaEAF'];
-                $dataProject['notaMinimaJT']              = $import_data['notaMinimaJT'];
-                $dataProject['notaMinimaPAF']             = $import_data['notaMinimaPAF'];
-                $dataProject['taulaInstrumentsAvaluacio'] = $import_data['dadesQualificacioUFs'];
-                //taulaDadesBlocs
-                $B = ["mòdul", "1r. bloc", "2n. bloc", "3r. bloc"];
-                $T = ['bloc' => array_search($import_data['tipusBlocModul'], $B),
-                      'horesBloc' => $import_data['durada']];
-                $dataProject['taulaDadesBlocs'][] = $T;
-                //taulaDadesUF
-                foreach ($import_data['taulaDadesUF'] as $key => $value) {
-                    $T = $value;
-                    $T['horesMinimes'] = $value['hores'];
-                    $T['horesLLiureDisposicio'] = 0;
-                    $T['ordreImparticio'] = $key + 1;
-                    $dataProject['taulaDadesUF'][] = $T;
-                }
-                //taulaAvaluacioInicialUF
-                $APT = ["NO", "INICI", "PER_UF"];
-                $APR = ["No en té", "A l'inici del semestre", "A l'inici de la UF"];
-                foreach ($import_data['taulaDadesUF'] as $key => $value) {
-                    $T = ['unitat formativa' => $value['unitat formativa']];
-                    if ($import_data['avaluacioInicial'] === $APT[1] && $key = 0)
-                        $T['tipus'] = $APR[1];
-                    elseif ($import_data['avaluacioInicial'] === $APT[2])
-                        $T['tipus'] = $APR[2];
-                    else
-                        $T['tipus'] = $APR[0];
-                    $dataProject['taulaAvaluacioInicialUF'][] = $T;
-                }
-                //taulaDadesNuclisFormatius
-                foreach ($import_data['taulaDadesUnitats'] as $value) {
-                    $U['unitat formativa'] = $value['unitat formativa'];
-                    $U['nucli formatiu'] = $value['unitat'];
-                    $U['nom'] = $value['nom'];
-                    $U['hores'] = $value['hores'];
-                    $dataProject['taulaDadesNuclisFormatius'][] = $U;
-                }
-                //resultatsAprenentatge
-                $B = json_decode($import_data['resultatsAprenentatge'], TRUE);
-                foreach ($B as $value) {
-                    if (preg_match("((UF(\d)){0,1}.{0,1})RA(\d)", $value['id'], $match)) {
-                        $Z['uf'] = $match[3];
-                        $Z['ra'] = $match[4];
+                if (empty($import_data['nsProgramacio'])) {
+                    // Taula d'importació
+                    $dataProject['cicle']                     = $import_data['cicle'];
+                    $dataProject['modulId']                   = $import_data['modulId'];
+                    $dataProject['modul']                     = $import_data['modul'];
+                    $dataProject['duradaCicle']               = $import_data['duradaCicle'];
+                    $dataProject['notaMinimaAC']              = $import_data['notaMinimaAC'];
+                    $dataProject['notaMinimaEAF']             = $import_data['notaMinimaEAF'];
+                    $dataProject['notaMinimaJT']              = $import_data['notaMinimaJT'];
+                    $dataProject['notaMinimaPAF']             = $import_data['notaMinimaPAF'];
+                    $dataProject['taulaInstrumentsAvaluacio'] = $import_data['dadesQualificacioUFs'];
+                    //taulaDadesBlocs
+                    $B = ["mòdul", "1r. bloc", "2n. bloc", "3r. bloc"];
+                    $T = ['bloc' => array_search($import_data['tipusBlocModul'], $B),
+                          'horesBloc' => $import_data['durada']];
+                    $dataProject['taulaDadesBlocs'][] = $T;
+                    //taulaDadesUF
+                    foreach ($import_data['taulaDadesUF'] as $key => $value) {
+                        $T = $value;
+                        $T['horesMinimes'] = $value['hores'];
+                        $T['horesLLiureDisposicio'] = 0;
+                        $T['ordreImparticio'] = $key + 1;
+                        $dataProject['taulaDadesUF'][] = $T;
                     }
-                    if (preg_match("RA(\d)(.{0,1}(UF(\d)){0,1})", $value['id'], $match)) {
-                        $Z['uf'] = $match[4];
-                        $Z['ra'] = $match[1];
+                    //taulaAvaluacioInicialUF
+                    $APT = ["NO", "INICI", "PER_UF"];
+                    $APR = ["No en té", "A l'inici del semestre", "A l'inici de la UF"];
+                    foreach ($import_data['taulaDadesUF'] as $key => $value) {
+                        $T = ['unitat formativa' => $value['unitat formativa']];
+                        if ($import_data['avaluacioInicial'] === $APT[1] && $key = 0)
+                            $T['tipus'] = $APR[1];
+                        elseif ($import_data['avaluacioInicial'] === $APT[2])
+                            $T['tipus'] = $APR[2];
+                        else
+                            $T['tipus'] = $APR[0];
+                        $dataProject['taulaAvaluacioInicialUF'][] = $T;
                     }
-                    $Z['descripcio'] = $value['descripcio'];
-                    $dataProject['resultatsAprenentatge'][] = $Z;
+                    //taulaDadesNuclisFormatius
+                    foreach ($import_data['taulaDadesUnitats'] as $value) {
+                        $U['unitat formativa'] = $value['unitat formativa'];
+                        $U['nucli formatiu'] = $value['unitat'];
+                        $U['nom'] = $value['nom'];
+                        $U['hores'] = $value['hores'];
+                        $dataProject['taulaDadesNuclisFormatius'][] = $U;
+                    }
+                    //resultatsAprenentatge
+                    $B = json_decode($import_data['resultatsAprenentatge'], TRUE);
+                    foreach ($B as $value) {
+                        if (preg_match("((UF(\d)){0,1}.{0,1})RA(\d)", $value['id'], $match)) {
+                            $Z['uf'] = $match[3];
+                            $Z['ra'] = $match[4];
+                        }
+                        if (preg_match("RA(\d)(.{0,1}(UF(\d)){0,1})", $value['id'], $match)) {
+                            $Z['uf'] = $match[4];
+                            $Z['ra'] = $match[1];
+                        }
+                        $Z['descripcio'] = $value['descripcio'];
+                        $Z['ponderacio'] = "";
+                        $Z['hores'] = "";
+                        $dataProject['resultatsAprenentatge'][] = $Z;
+                    }
+
+                    $summary = "Importació de dades des del projecte \'{$this->params['project_import']}\'";
+                    if (! $model->setDataProject(json_encode($dataProject), $summary)) {
+                        throw new Exception("Error en la $summary");
+                    }
+
+                    $import_data['nsProgramacio'] = $this->params['project_import'];
+                    if (! $import_metaDataQuery->setMeta($import_data, "main", "Dades importades pel projecte \'{$this->params['id']}\'")) {
+                        throw new Exception("Error en l'actualització de les dades a \'{$this->params['project_import']}\' després de la importació.");
+                    }
                 }
-                throw new Exception("Petición correcta: $importProjectType");
             }
         }else {
             throw new Exception("El tipus de projecte $importProjectType no és un tipus vàlid per a la importació.");
