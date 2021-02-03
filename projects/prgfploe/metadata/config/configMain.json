@@ -28,7 +28,7 @@
                 "typeDef": "programacio"
             },
             "typesDefinition": {
-                "entradaResultatsAprenentage": {
+                "entradaResultatsAprenentatge": {
                     "type":"object",
                     "keys": {
                         "uf": {
@@ -58,9 +58,9 @@
                         }
                     }                    
                 },
-                "defResultatsAprenentage": {
+                "defResultatsAprenentatge": {
                     "type": "objectArray",
-                    "typeDef":"entradaResultatsAprenentage"
+                    "typeDef":"entradaResultatsAprenentatge"
                 },
                 "entradaCriterisAvaluacio": {
                     "type":"object",
@@ -523,7 +523,7 @@
                             "mandatory": true
                         },                                                
                         "resultatsAprenentatge": {
-                            "type": "defResultatsAprenentage",
+                            "type": "defResultatsAprenentatge",
                             "mandatory": true
                         },
                         "criterisAvaluacio":{

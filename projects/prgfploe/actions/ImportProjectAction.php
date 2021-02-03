@@ -1,4 +1,8 @@
 <?php
+/**
+ * ImportProjectAction: importa les dades d'un altre projecte
+ * @author rafael <rclaver@xtec.cat>
+ */
 if (!defined('DOKU_INC')) die();
 
 class ImportProjectAction extends ProjectMetadataAction {
@@ -8,16 +12,17 @@ class ImportProjectAction extends ProjectMetadataAction {
         // 1. Comprobar que el tipo de proyecto a importar es adecuado
         //
         $model = $this->getModel();
-        $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($this->params['id'], "management", $this->params['projectType']);
+        $projectID = $this->params[ProjectKeys::KEY_ID];
+        $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($projectID, "management", $this->params['projectType']);
         $importProjectType = $metaDataQuery->getProjectType($this->params['project_import']);
 
-        $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($this->params['id'], "management", $this->params['projectType']);
+        $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($projectID, "management", $this->params['projectType']);
         $data_management = $metaDataQuery->getDataProject();
         $jsonConfig = $model->getMetaDataJsonFile(FALSE, "workflow.json", $data_management['workflow']['currentState']);
         $actionCommand = $model->getModelAttributes(AjaxKeys::KEY_ACTION);
         $validProjectTypes = $jsonConfig['actions'][$actionCommand]['button']['parms']['DJO']['projectType'];
 
-        if ($importProjectType == $validProjectTypes || in_array($importProjectType, $validProjectTypes)) {
+        if ($importProjectType == $validProjectTypes || in_array($importProjectType, $validProjectTypes))   {
             //
             // 2. Verificar permisos sobre el proyecto a importar
             //
@@ -32,6 +37,7 @@ class ImportProjectAction extends ProjectMetadataAction {
                 $import_metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($this->params['project_import'], "main", $importProjectType);
                 $import_data = $import_metaDataQuery->getDataProject($this->params['project_import'], $importProjectType, "main");
 
+                // 3. Verificar una importació anterior
                 if (empty($import_data['nsProgramacio'])) {
                     // Taula d'importació
                     $dataProject['cicle']                     = $import_data['cicle'];
@@ -44,11 +50,13 @@ class ImportProjectAction extends ProjectMetadataAction {
                     $dataProject['notaMinimaPAF']             = $import_data['notaMinimaPAF'];
                     $dataProject['taulaInstrumentsAvaluacio'] = $import_data['dadesQualificacioUFs'];
                     //taulaDadesBlocs
+                    if (!is_array($dataProject['taulaDadesBlocs'])) $dataProject['taulaDadesBlocs'] = json_decode($dataProject['taulaDadesBlocs'], TRUE);
                     $B = ["mòdul", "1r. bloc", "2n. bloc", "3r. bloc"];
                     $T = ['bloc' => array_search($import_data['tipusBlocModul'], $B),
                           'horesBloc' => $import_data['durada']];
                     $dataProject['taulaDadesBlocs'][] = $T;
                     //taulaDadesUF
+                    if (!is_array($dataProject['taulaDadesUF'])) $dataProject['taulaDadesUF'] = json_decode($dataProject['taulaDadesUF'], TRUE);
                     foreach ($import_data['taulaDadesUF'] as $key => $value) {
                         $T = $value;
                         $T['horesMinimes'] = $value['hores'];
@@ -57,6 +65,7 @@ class ImportProjectAction extends ProjectMetadataAction {
                         $dataProject['taulaDadesUF'][] = $T;
                     }
                     //taulaAvaluacioInicialUF
+                    if (!is_array($dataProject['taulaAvaluacioInicialUF'])) $dataProject['taulaAvaluacioInicialUF'] = json_decode($dataProject['taulaAvaluacioInicialUF'], TRUE);
                     $APT = ["NO", "INICI", "PER_UF"];
                     $APR = ["No en té", "A l'inici del semestre", "A l'inici de la UF"];
                     foreach ($import_data['taulaDadesUF'] as $key => $value) {
@@ -70,6 +79,7 @@ class ImportProjectAction extends ProjectMetadataAction {
                         $dataProject['taulaAvaluacioInicialUF'][] = $T;
                     }
                     //taulaDadesNuclisFormatius
+                    if (!is_array($dataProject['taulaDadesNuclisFormatius'])) $dataProject['taulaDadesNuclisFormatius'] = json_decode($dataProject['taulaDadesNuclisFormatius'], TRUE);
                     foreach ($import_data['taulaDadesUnitats'] as $value) {
                         $U['unitat formativa'] = $value['unitat formativa'];
                         $U['nucli formatiu'] = $value['unitat'];
@@ -78,37 +88,49 @@ class ImportProjectAction extends ProjectMetadataAction {
                         $dataProject['taulaDadesNuclisFormatius'][] = $U;
                     }
                     //resultatsAprenentatge
+                    if (!is_array($dataProject['resultatsAprenentatge'])) $dataProject['resultatsAprenentatge'] = json_decode($dataProject['resultatsAprenentatge'], TRUE);
                     $B = json_decode($import_data['resultatsAprenentatge'], TRUE);
                     foreach ($B as $value) {
-                        if (preg_match("((UF(\d)){0,1}.{0,1})RA(\d)", $value['id'], $match)) {
+                        if (preg_match('/((UF(\d)){0,1}.{0,1})RA(\d)/', $value['id'], $match)) {
                             $Z['uf'] = $match[3];
                             $Z['ra'] = $match[4];
-                        }
-                        if (preg_match("RA(\d)(.{0,1}(UF(\d)){0,1})", $value['id'], $match)) {
+                        }elseif (preg_match('/RA(\d)(.{0,1}(UF(\d)){0,1})/', $value['id'], $match)) {
                             $Z['uf'] = $match[4];
                             $Z['ra'] = $match[1];
+                        }else {
+                            $Z['uf'] = "";
+                            $Z['ra'] = "";
                         }
                         $Z['descripcio'] = $value['descripcio'];
                         $Z['ponderacio'] = "";
-                        $Z['hores'] = "";
+                        $Z['hores'] = 0;
                         $dataProject['resultatsAprenentatge'][] = $Z;
                     }
 
-                    $summary = "Importació de dades des del projecte \'{$this->params['project_import']}\'";
-                    if (! $model->setDataProject(json_encode($dataProject), $summary)) {
-                        throw new Exception("Error en la $summary");
+                    $summary = "Importació de dades correcta des del projecte '{$this->params['project_import']}'";
+                    if ($model->setDataProject(json_encode($dataProject), $summary)) {
+                        $response['info'] = self::generateInfo("info", $summary, $projectID);
+                    }else {
+                        $response['info'] = self::generateInfo("error", "Error en la $summary", $projectID);
+                        $response['alert'] = "Error en la $summary";
                     }
 
-                    $import_data['nsProgramacio'] = $this->params['project_import'];
-                    if (! $import_metaDataQuery->setMeta($import_data, "main", "Dades importades pel projecte \'{$this->params['id']}\'")) {
-                        throw new Exception("Error en l'actualització de les dades a \'{$this->params['project_import']}\' després de la importació.");
+                    $import_data['nsProgramacio'] = $projectID;
+                    if (! $import_metaDataQuery->setMeta(json_encode($import_data), "main", "Dades importades pel projecte '$projectID'")) {
+                        $response['info'] = self::generateInfo("error", "Error en l'actualització de les dades a '{$this->params['project_import']}' després de la importació.", $projectID);
                     }
+                }else {
+                    $response['info'] = self::generateInfo("error", "El projecte '{$this->params['project_import']}' ja ha estat importat anteriorment.", $projectID);
+                    $response['alert'] = "El projecte '{$this->params['project_import']}' ja ha estat importat anteriorment.";
                 }
+            }else {
+                $response['alert'] = "No tens permissos per a importar dades del projecte '{$this->params['project_import']}'.";
             }
         }else {
-            throw new Exception("El tipus de projecte $importProjectType no és un tipus vàlid per a la importació.");
+            $response['alert'] = "El tipus de projecte $importProjectType no és un tipus vàlid per a la importació.";
         }
-        throw new Exception("Action no definida. Petición: $importProjectType");
+
+        return $response;
     }
 
     // Busca si algún elemento de $array1 está incluido en $array2
