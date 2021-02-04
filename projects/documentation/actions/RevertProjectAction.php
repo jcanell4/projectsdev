@@ -47,7 +47,7 @@ class RevertProjectAction extends ProjectAction {
             $response = $model->getData();
 
             if (!$model->getNeedGenerateAction() || $model->isProjectGenerated()) {
-                $params = $model->buildParamsToPersons($response['projectMetaData'], $oldPersonsDataProject);
+                $params = $model->buildParamsToPersons($response[ProjectKeys::KEY_PROJECT_METADATA], $oldPersonsDataProject);
                 $model->modifyACLPageAndShortcutToPerson($params);
                 $model->forceFileComponentRenderization();
             }

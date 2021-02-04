@@ -36,7 +36,7 @@ class ViewProjectAction extends BasicViewProjectAction{
                 $dataActual = new DateTime();
 
                 foreach ($arraytaula as $elem) {
-                    if ($response['projectMetaData']['semestre']['value'] == "1") { //$response['projectMetaData']['semestre']['value'] Semestre actual indicado en los datos del proyecto
+                    if ($response[ProjectKeys::KEY_PROJECT_METADATA]['semestre']['value'] == "1") { //$response[ProjectKeys::KEY_PROJECT_METADATA]['semestre']['value'] Semestre actual indicado en los datos del proyecto
                         if ($elem['key']==="inici_semestre_1") {
                             $inici_semestre = $this->_obtenirData($elem['value'], $anyActual);
                         }
@@ -44,7 +44,7 @@ class ViewProjectAction extends BasicViewProjectAction{
                             $fi_semestre = $this->_obtenirData($elem['value'], $anyActual);
                         }
                     }
-                    else if ($response['projectMetaData']['semestre']['value'] == "2") {
+                    else if ($response[ProjectKeys::KEY_PROJECT_METADATA]['semestre']['value'] == "2") {
                         if ($elem['key']==="inici_semestre_2") {
                             $inici_semestre = $this->_obtenirData($elem['value'], $anyActual);
                         }

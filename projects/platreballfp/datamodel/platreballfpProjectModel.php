@@ -17,10 +17,10 @@ class platreballfpProjectModel extends AbstractProjectModel {
     }
 
     public function getTemplateContentDocumentId($responseData){
-        $plantilla = $responseData['projectMetaData']["plantilla"]['value'];
+        $plantilla = $responseData[ProjectKeys::KEY_PROJECT_METADATA]["plantilla"]['value'];
         preg_match("/##.*?##/s", $plantilla, $matches);
         $field = substr($matches[0],2,-2);
-        $plantilla = preg_replace("/##.*?##/s", $responseData['projectMetaData'][$field]['value'], $plantilla);
+        $plantilla = preg_replace("/##.*?##/s", $responseData[ProjectKeys::KEY_PROJECT_METADATA][$field]['value'], $plantilla);
         return $plantilla;
     }
 
@@ -35,7 +35,7 @@ class platreballfpProjectModel extends AbstractProjectModel {
         $this->createPageFromTemplate($destino, $plantilla, NULL, "generate project");
 
          //3. Otorga, a cada 'person', permisos adecuados sobre el directorio de proyecto y añade shortcut si no se ha otorgado antes
-        $params = $this->buildParamsToPersons($ret['projectMetaData'], NULL);
+        $params = $this->buildParamsToPersons($ret[ProjectKeys::KEY_PROJECT_METADATA], NULL);
         $this->modifyACLPageAndShortcutToPerson($params);
         
         //4. Establece la marca de 'proyecto generado'
