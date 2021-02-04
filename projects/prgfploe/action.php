@@ -34,11 +34,11 @@ class action_plugin_projectsdev_projects_prgfploe extends WikiIocProjectWorkflow
                 }
 
                 $event->data["ajaxCmdResponseGenerator"]->addExtraMetadata(
-                            $result['id'],
-                            $result['id']."_iocexport",
-                            WikiIocLangManager::getLang("metadata_export_title"),
-                            $html
-                            );
+                        $result['id'],
+                        $result['id']."_iocexport",
+                        WikiIocLangManager::getLang("metadata_export_title"),
+                        $html
+                );
 
                 $event->data["ajaxCmdResponseGenerator"]->addExtraMetadata(
                         $result['id'],
@@ -46,6 +46,17 @@ class action_plugin_projectsdev_projects_prgfploe extends WikiIocProjectWorkflow
                         WikiIocLangManager::getLang("metadata_ftpsend_title"),
                         $event->data['responseData'][AjaxKeys::KEY_FTPSEND_HTML]
                 );
+
+                if (class_exists("ResultsVerificationError", TRUE)){
+                    $html = ResultsVerificationError::get_html_data_errors($event->data['responseData']['DATA_ERROR_LIST']);
+                }
+                $event->data["ajaxCmdResponseGenerator"]->addExtraMetadata(
+                        $result['id'],
+                        $result['id']."_errors",
+                        WikiIocLangManager::getLang("metadata_errors_title"),
+                        $html
+                );
+
             }
         }
         return TRUE;
