@@ -1,10 +1,10 @@
 <?php
 if (!defined('DOKU_INC')) die();
 
-class CancelProjectMetaDataAction extends ViewProjectMetaDataAction {
+class CancelProjectAction extends ViewProjectAction {
 
     protected function runAction() {
-        $response = BasicCancelProjectMetaDataAction::sharedRunAction($this);
+        $response = BasicCancelProjectAction::sharedRunAction($this);
 
         if ($this->params[ProjectKeys::KEY_NO_RESPONSE] ) {
             $response[ProjectKeys::KEY_CODETYPE] = ProjectKeys::VAL_CODETYPE_OK;

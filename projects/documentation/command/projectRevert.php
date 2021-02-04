@@ -15,7 +15,7 @@ class command_plugin_projectsdev_projects_documentation_projectRevert extends ab
     }
 
     protected function process() {
-        $action = $this->getModelManager()->getActionInstance("RevertProjectMetaDataAction");
+        $action = $this->getModelManager()->getActionInstance("RevertProjectAction");
         $projectMetaData = $action->get($this->params);
         if (!$projectMetaData) throw new UnknownProjectException();
         return $projectMetaData;

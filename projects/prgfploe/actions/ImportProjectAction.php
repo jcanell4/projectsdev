@@ -5,7 +5,7 @@
  */
 if (!defined('DOKU_INC')) die();
 
-class ImportProjectAction extends ProjectMetadataAction {
+class ImportProjectAction extends ProjectAction {
 
     public function responseProcess() {
         //

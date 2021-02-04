@@ -1,7 +1,7 @@
 <?php
 if (!defined('DOKU_INC')) die();
 
-class GetProjectMetaDataAction extends BasicGetProjectMetaDataAction {
+class GetProjectAction extends BasicGetProjectAction {
     
     function runAction() {
         if (!$this->getModel()->isProjectGenerated()) {

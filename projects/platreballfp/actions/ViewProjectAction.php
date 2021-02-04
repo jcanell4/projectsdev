@@ -1,7 +1,7 @@
 <?php
 if (!defined('DOKU_INC')) die();
 
-class ViewProjectMetaDataAction extends BasicViewProjectMetaDataAction{
+class ViewProjectAction extends BasicViewProjectAction{
 
     protected function runAction() {
 

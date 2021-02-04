@@ -1,7 +1,7 @@
 <?php
 if (!defined('DOKU_INC')) die();
 
-class SetProjectMetaDataAction extends BasicSetProjectMetaDataAction {
+class SetProjectAction extends BasicSetProjectAction {
 
      protected function responseProcess(){
          $response = parent::responseProcess();

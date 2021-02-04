@@ -1,7 +1,7 @@
 <?php
 if (!defined('DOKU_INC')) die();
 
-class CreateProjectMetaDataAction extends BasicCreateProjectMetaDataAction {
+class CreateProjectAction extends BasicCreateProjectAction {
 
      protected function getDefaultValues(){
         $id = $this->params[ProjectKeys::KEY_ID];
