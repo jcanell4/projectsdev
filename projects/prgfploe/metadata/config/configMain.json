@@ -684,19 +684,19 @@
                             "mandatory": true
                         },
                         "oldState":{
-                            "type": "date",
+                            "type": "string",
                             "mandatory": true
                         },
                         "newState":{
-                            "type": "date",
+                            "type": "string",
                             "mandatory": true
                         },
                         "changeAction":{
-                            "type": "date",
+                            "type": "string",
                             "mandatory": true
                         },
                         "user":{
-                            "type": "date",
+                            "type": "string",
                             "mandatory": true
                         }
                     }                    
