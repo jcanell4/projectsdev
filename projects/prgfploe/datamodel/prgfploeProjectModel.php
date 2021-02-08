@@ -326,6 +326,22 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         $data["notaMinimaJT"] = $notaMinimaJT;
         $data["notaMinimaPAF"] = $notaMinimaPAF;
 //        $data["taulaDadesNuclisFormatius"]=$ufMetTable;
+
+        // Dades de la gestió de la darrera modificació
+        $this->dadesActualsGestio($data);
+
         return $data;
+    }
+
+    private function dadesActualsGestio(&$data) {
+        if ($data['autor']) $data['cc_dadesAutor']['nomGestor'] = $this->getUserName($data['autor']);
+        if ($data['revisor']) $data['cc_dadesRevisor']['nomGestor'] = $this->getUserName($data['revisor']);
+        if ($data['validador']) $data['cc_dadesValidador']['nomGestor'] = $this->getUserName($data['validador']);
+    }
+
+    private function getUserName($username) {
+        global $auth;
+        $user = $auth->getUserData($username);
+        return $user;
     }
 }
