@@ -316,6 +316,7 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
 //            }
 //            $i++;
 //        }
+//        $data["taulaDadesNuclisFormatius"]=$ufMetTable;
 
         $data["resultatsAprenentatge"]=$resultatsAprenentatge;
         $data["taulaDadesUF"]=$ufTable;
@@ -325,23 +326,35 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         $data["notaMinimaEAF"] = $notaMinimaEAF;
         $data["notaMinimaJT"] = $notaMinimaJT;
         $data["notaMinimaPAF"] = $notaMinimaPAF;
-//        $data["taulaDadesNuclisFormatius"]=$ufMetTable;
 
         // Dades de la gestió de la darrera modificació
         $this->dadesActualsGestio($data);
+        // Històric del control de canvis
+        $data['cc_historic'][] = $this->addHistoricGestioDocument($data);
 
         return $data;
     }
 
     private function dadesActualsGestio(&$data) {
-        if ($data['autor']) $data['cc_dadesAutor']['nomGestor'] = $this->getUserName($data['autor']);
-        if ($data['revisor']) $data['cc_dadesRevisor']['nomGestor'] = $this->getUserName($data['revisor']);
+        if ($data['autor'])     $data['cc_dadesAutor']['nomGestor'] = $this->getUserName($data['autor']);
+        if ($data['revisor'])   $data['cc_dadesRevisor']['nomGestor'] = $this->getUserName($data['revisor']);
         if ($data['validador']) $data['cc_dadesValidador']['nomGestor'] = $this->getUserName($data['validador']);
     }
 
-    private function getUserName($username) {
+    private function addHistoricGestioDocument($data) {
+        $hist['data'] = date("d-m-Y");
+        $hist['autor'] = $this->getUserName($data['autor']);
+        $hist['modificacions'] = $data['cc_raonsModificacio'];
+        return $hist;
+    }
+
+    private function getUserName($users) {
         global $auth;
-        $user = $auth->getUserData($username);
-        return $user;
+        $retUser = "";
+        $u = explode(",", $users);
+        foreach ($u as $user) {
+            $retUser .= $auth->getUserData($user)['name'] . ", ";
+        }
+        return trim($retUser, ", ");
     }
 }
