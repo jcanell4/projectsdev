@@ -336,9 +336,12 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
     }
 
     private function dadesActualsGestio(&$data) {
-        if ($data['autor'])     $data['cc_dadesAutor']['nomGestor'] = $this->getUserName($data['autor']);
-        if ($data['revisor'])   $data['cc_dadesRevisor']['nomGestor'] = $this->getUserName($data['revisor']);
+        if ($data['autor']) $data['cc_dadesAutor']['nomGestor'] = $this->getUserName($data['autor']);
+        $data['cc_dadesAutor']['dataDeLaGestio'] = date("d-m-Y");
+        if ($data['revisor']) $data['cc_dadesRevisor']['nomGestor'] = $this->getUserName($data['revisor']);
+        $data['cc_dadesRevisor']['dataDeLaGestio'] = date("d-m-Y");
         if ($data['validador']) $data['cc_dadesValidador']['nomGestor'] = $this->getUserName($data['validador']);
+        $data['cc_dadesValidador']['dataDeLaGestio'] = date("d-m-Y");
     }
 
     private function addHistoricGestioDocument(&$data) {
