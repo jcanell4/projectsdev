@@ -92,10 +92,10 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
 
     public function getErrorFields($data=NULL) {
         $result = array();
-        $insAvTable = $data["taulaInstrumentsAvaluacio"]; if (!is_array($insAvTable)) $insAvTable = json_decode($insAvTable, TRUE);
-        $aaTable = $data["activitatsAprenentatge"];       if (!is_array($aaTable)) $aaTable = json_decode($aaTable, TRUE);
-        $nfTable = $data["taulaDadesNuclisFormatius"];    if (!is_array($nfTable)) $nfTable = json_decode($nfTable, TRUE);
-        $ufTable = $data["taulaDadesUF"];                 if (!is_array($ufTable)) $ufTable = json_decode($ufTable, TRUE);
+        $iaTable = $data["taulaInstrumentsAvaluacio"]['value']; if (!is_array($iaTable)) $iaTable = json_decode($iaTable, TRUE);
+        $aaTable = $data["activitatsAprenentatge"]['value'];    if (!is_array($aaTable)) $aaTable = json_decode($aaTable, TRUE);
+        $nfTable = $data["taulaDadesNuclisFormatius"]['value']; if (!is_array($nfTable)) $nfTable = json_decode($nfTable, TRUE);
+        $ufTable = $data["taulaDadesUF"]['value'];              if (!is_array($ufTable)) $ufTable = json_decode($ufTable, TRUE);
 
         $totalNFs = array();
         foreach ($aaTable as $item){
@@ -142,15 +142,15 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
             }
         }
 
-        if (!empty($insAvTable)) {
+        if (!empty($iaTable)) {
             $sum = [];
-            foreach ($insAvTable as $item) {
+            foreach ($iaTable as $item) {
                 if (!isset($sum[$item["unitat formativa"]])) {
                     $sum[$item["unitat formativa"]] = 0;
                 }
                 $sum[$item["unitat formativa"]] += $item["ponderacio"];
             }
-            foreach ($insAvTable as $item) {
+            foreach ($iaTable as $item) {
                 if ($item['tipus'] == "PAF" && $item["ponderacio"]/$sum[$item["unitat formativa"]] > 0.6) {
                     $result['taulaInstrumentsAvaluacio'][] = [
                         'id' => $this->id,
