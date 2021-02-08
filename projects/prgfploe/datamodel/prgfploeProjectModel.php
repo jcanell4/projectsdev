@@ -330,7 +330,7 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         // Dades de la gestió de la darrera modificació
         $this->dadesActualsGestio($data);
         // Històric del control de canvis
-        $data['cc_historic'][] = $this->addHistoricGestioDocument($data);
+        $this->addHistoricGestioDocument($data);
 
         return $data;
     }
@@ -341,11 +341,12 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         if ($data['validador']) $data['cc_dadesValidador']['nomGestor'] = $this->getUserName($data['validador']);
     }
 
-    private function addHistoricGestioDocument($data) {
+    private function addHistoricGestioDocument(&$data) {
+        $data['cc_historic'] = $this->getCurrentDataProject(FALSE, FALSE);
         $hist['data'] = date("d-m-Y");
         $hist['autor'] = $this->getUserName($data['autor']);
         $hist['modificacions'] = $data['cc_raonsModificacio'];
-        return $hist;
+        $data['cc_historic'][] = $hist;
     }
 
     private function getUserName($users) {
