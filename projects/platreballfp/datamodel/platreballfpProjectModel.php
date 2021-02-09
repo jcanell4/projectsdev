@@ -16,7 +16,7 @@ class platreballfpProjectModel extends AbstractProjectModel {
         return $ret['fitxercontinguts'];
     }
 
-    public function getTemplateContentDocumentId($responseData){
+    public function getTemplateContentDocumentId($responseData=NULL){
         $plantilla = $responseData[ProjectKeys::KEY_PROJECT_METADATA]["plantilla"]['value'];
         preg_match("/##.*?##/s", $plantilla, $matches);
         $field = substr($matches[0],2,-2);
@@ -37,7 +37,7 @@ class platreballfpProjectModel extends AbstractProjectModel {
          //3. Otorga, a cada 'person', permisos adecuados sobre el directorio de proyecto y añade shortcut si no se ha otorgado antes
         $params = $this->buildParamsToPersons($ret[ProjectKeys::KEY_PROJECT_METADATA], NULL);
         $this->modifyACLPageAndShortcutToPerson($params);
-        
+
         //4. Establece la marca de 'proyecto generado'
         $ret[ProjectKeys::KEY_GENERATED] = $this->projectMetaDataQuery->setProjectGenerated();
 
