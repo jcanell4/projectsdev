@@ -9,32 +9,62 @@ class QualityProjectAction extends ProjectAction {
 
     public function responseProcess() {
         $model = $this->getModel();
-        $id = $this->params[ProjectKeys::KEY_ID];
-        $subSet = "management";
 
-        $actionCommand = $model->getModelAttributes(AjaxKeys::KEY_ACTION);
-        $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($id, $subSet, $this->params['projectType']);
-
-        $metaDataManagement = $metaDataQuery->getDataProject();   //$metaDataManagement = ["workflow" => ["currentState" => "creating"]]
-        $currentState = $metaDataManagement['workflow']['currentState'];
-        $workflowJson = $model->getMetaDataJsonFile(FALSE, "workflow.json", $currentState);  //$workflowJson contiene todo el array de workflow.json
-        $newState = $workflowJson['actions'][$actionCommand]['changeStateTo'];
-
-        if ($currentState !== $newState) {
-            $newMetaData['changeDate'] = date;
-            $newMetaData['oldState'] = $currentState;
-            $newMetaData['newState'] = $newState;
-            $newMetaData['changeAction'] = "acció provocadora";
-            $newMetaData['user'] = "nom usuari que demana acció";
-
-            $metaDataManagement['stateHistory'][] = $newMetaData;
-
-            $model->setMeta(json_encode($metaDataManagement), $subSet, NULL, NULL);
-            $response['info'] = self::generateInfo("info", "El canvi d'estat ha finalitzat correctament.", $id);
-        }else {
-            $response['info'] = self::generateInfo("info", "No hi ha canvi d'estat.", $id);
+        // Històric del control de canvis
+        $data = $model->getCurrentDataProject(FALSE, FALSE);
+        switch ($button) {
+            case "inici modificació":
+                //eliminar signatures i dates de totes persones
+                $data['cc_dadesAutor']['dataDeLaGestio'] = "";
+                $data['cc_dadesAutor']['signatura'] = "pendent";
+                $data['cc_dadesRevisor']['dataDeLaGestio'] = "";
+                $data['cc_dadesRevisor']['signatura'] = "pendent";
+                $data['cc_dadesValidador']['dataDeLaGestio'] = "";
+                $data['cc_dadesValidador']['signatura'] = "pendent";
+                break;
+            case "autor marca apte per revisar":
+                //canvi data i signatura autor
+                $data['cc_dadesAutor']['dataDeLaGestio'] = date("Y-m-d");
+                $data['cc_dadesAutor']['signatura'] = "signat";
+                $hist['data'] = date("Y-m-d");
+                $hist['autor'] = $this->getUserName($data['autor']);
+                $hist['modificacions'] = $data['cc_raonsModificacio'];
+                $data['cc_historic'][] = $hist;
+                break;
+            case "revisor marca apte per validar":
+                //canvi data i signatura revisor
+                $data['cc_dadesRevisor']['dataDeLaGestio'] = date("Y-m-d");
+                $data['cc_dadesRevisor']['signatura'] = "signat";
+                break;
+            case "validador marca validat":
+                //demanar data validació (es fa al client en el onClick del botó)
+                // canviar data validació a l'històric actual (última entrada)
+                //canvi data i signatura validador
+                $data['cc_dadesValidador']['dataDeLaGestio'] = $this->params['dataDeLaGestio'];
+                $data['cc_dadesValidador']['signatura'] = "signat";
+                $data['cc_historic'][count($data['cc_historic'])-1]['data'] = $this->params['dataDeLaGestio'];
+                break;
         }
+
         return $response;
+    }
+
+    private function addHistoricGestioDocument(&$data) {
+        $data['cc_historic'] = $this->getCurrentDataProject(FALSE, FALSE)['cc_historic'];
+        $hist['data'] = date("Y-m-d");
+        $hist['autor'] = $this->getUserName($data['autor']);
+        $hist['modificacions'] = $data['cc_raonsModificacio'];
+        $data['cc_historic'][] = $hist;
+    }
+
+    private function getUserName($users) {
+        global $auth;
+        $retUser = "";
+        $u = explode(",", $users);
+        foreach ($u as $user) {
+            $retUser .= $auth->getUserData($user)['name'] . ", ";
+        }
+        return trim($retUser, ", ");
     }
 
 }

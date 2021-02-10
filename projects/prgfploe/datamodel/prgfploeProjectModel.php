@@ -329,7 +329,9 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
 
         // Dades de la gestió de la darrera modificació
         $this->dadesActualsGestio($data);
+
         // Històric del control de canvis
+        // Ver class QualityProjectAction
         $this->addHistoricGestioDocument($data);
 
         return $data;
@@ -337,16 +339,13 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
 
     private function dadesActualsGestio(&$data) {
         if ($data['autor']) $data['cc_dadesAutor']['nomGestor'] = $this->getUserName($data['autor']);
-        $data['cc_dadesAutor']['dataDeLaGestio'] = date("d-m-Y");
         if ($data['revisor']) $data['cc_dadesRevisor']['nomGestor'] = $this->getUserName($data['revisor']);
-        $data['cc_dadesRevisor']['dataDeLaGestio'] = date("d-m-Y");
         if ($data['validador']) $data['cc_dadesValidador']['nomGestor'] = $this->getUserName($data['validador']);
-        $data['cc_dadesValidador']['dataDeLaGestio'] = date("d-m-Y");
     }
 
     private function addHistoricGestioDocument(&$data) {
-        $data['cc_historic'] = $this->getCurrentDataProject(FALSE, FALSE);
-        $hist['data'] = date("d-m-Y");
+        $data['cc_historic'] = $this->getCurrentDataProject(FALSE, FALSE)['cc_historic'];
+        $hist['data'] = date("Y-m-d");
         $hist['autor'] = $this->getUserName($data['autor']);
         $hist['modificacions'] = $data['cc_raonsModificacio'];
         $data['cc_historic'][] = $hist;
