@@ -10,24 +10,24 @@ require([
 ],
 function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Button) {
 
-    var authorButton = registry.byId('markAuthorProjectButton');
-    
-    if (authorButton) {
-        authorButton.onClick = function () {
-            var globalState = authorButton.dispatcher.getGlobalState();
-            var dialog = registry.byId("newDocumentMarkAuthorDlg");
+    var toReviseButton = registry.byId('toReviseProjectButton');
+
+    if (toReviseButton) {
+        toReviseButton.onClick = function () {
+            var globalState = toReviseButton.dispatcher.getGlobalState();
+            var dialog = registry.byId("newToReviseDlg");
 
             if (!dialog){
                 dialog = new Dialog({
-                    id: "newDocumentMarkAuthorDlg",
-                    title: authorButton.title,
+                    id: "newToReviseDlg",
+                    title: toReviseButton.title,
                     style: "width: 210px; height: 170px;",
-                    authorButton: authorButton
+                    toReviseButton: toReviseButton
                 });
 
                 dialog.on('hide', function () {
                     dialog.destroyRecursive(false);
-                    domConstruct.destroy("newDocumentMarkAuthorDlg");
+                    domConstruct.destroy("newToReviseDlg");
                 });
 
                 var bc = new BorderContainer({
@@ -56,7 +56,7 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Butt
                 },form.containerNode);
 
                 domConstruct.create('label', {
-                    innerHTML: authorButton.labelText + '<br>'
+                    innerHTML: toReviseButton.labelText + '<br>'
                 },divMessageText);
 
 
@@ -71,22 +71,22 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Butt
                 }, divBotons);
 
                 new Button({
-                    label: authorButton.labelButtonAcceptar,
+                    label: toReviseButton.labelButtonAcceptar,
 
                     onClick: function(){
                         var page = globalState.pages[globalState.currentTabId];
-                        var query = 'do=workflow' + 
-                                    '&action=markauthor' + 
-                                    '&id=' + page.ns + 
+                        var query = 'do=workflow' +
+                                    '&action=torevise' +
+                                    '&id=' + page.ns +
                                     '&projectType=' + page.projectType;
-                        authorButton.sendRequest(query);
+                        toReviseButton.sendRequest(query);
                         dialog.hide();
                     }
                 }).placeAt(divBotons);
 
                 // Botó cancel·lar
                 new Button({
-                    label: authorButton.labelButtonCancellar,
+                    label: toReviseButton.labelButtonCancellar,
                     onClick: function(){dialog.hide();}
                 }).placeAt(divBotons);
 

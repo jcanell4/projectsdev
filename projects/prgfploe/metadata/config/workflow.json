@@ -96,8 +96,22 @@
                     }
                 },
                 "changeStateTo":"creating"
-            },
-            "startedit": {
+            }
+        }
+    },
+    "revising": {
+        "actions": {
+
+        }
+    },
+    "validating": {
+        "actions": {
+
+        }
+    },
+    "validated": {
+        "actions": {
+            "tomodify": {
                 "permissions": {
                     "groups": [
                         "admin",
@@ -109,18 +123,18 @@
                     ]
                 },
                 "button": {
-                    "id": "startEditProjectButton",
+                    "id": "toModifyProjectButton",
                     "class": "WikiIocButton",
-                    "parms": { 
+                    "parms": {
                         "DOM": {
-                            "id": "startEditProjectButton",
+                            "id": "toModifyProjectButton",
                             "title": "Edició de les dades del projecte",
                             "class": "iocDisplayBlock"
                         },
                         "DJO": {
                            "autoSize": true,
                            "visible": true,
-                           "iconClass": "'iocStartEditDataProjectIcon'",
+                           "iconClass": "'iocToModifyDataProjectIcon'",
                            "labelText": "'Atenció: Aquest procès de modificació de les dades requerirà una revisió i validació posterior. Vols continuar?'",
                            "labelButtonAcceptar": "'Acceptar'",
                            "labelButtonCancellar": "'Cancel·lar'",
@@ -131,7 +145,7 @@
                     },
                     "scripts": {
                         "getFunctions": {
-                            "path": "StartEditButton.js"
+                            "path": "ToModifyButton.js"
                         },
                         "updateHandler": {
                             "permissions": [
@@ -149,13 +163,13 @@
                         }
                     }
                 },
-                "changeStateTo":"editing"
+                "changeStateTo": "modifiying"
             }
         }
     },
-    "editing": {
+    "modifiying": {
         "actions": {
-            "markauthor": {
+            "torevise": {
                 "permissions": {
                     "groups": [
                         "admin",
@@ -167,19 +181,19 @@
                     ]
                 },
                 "button": {
-                    "id": "markAuthorProjectButton",
+                    "id": "toReviseProjectButton",
                     "class": "WikiIocButton",
-                    "parms": { 
+                    "parms": {
                         "DOM": {
-                            "id": "markAuthorProjectButton",
+                            "id": "toReviseProjectButton",
                             "title": "Marca Edició Completada",
                             "class": "iocDisplayBlock"
                         },
                         "DJO": {
                            "autoSize": true,
                            "visible": true,
-                           "iconClass": "'iocMarkAutorDataProjectIcon'",
-                           "labelText": "'Marca Edició Completada'",
+                           "iconClass": "'iocToReviseDataProjectIcon'",
+                           "labelText": "'Marca Edició completada, disponible per a Revisió'",
                            "labelButtonAcceptar": "'Acceptar'",
                            "labelButtonCancellar": "'Cancel·lar'",
                            "urlBase": "'lib/exe/ioc_ajax.php?call=project'",
@@ -189,7 +203,7 @@
                     },
                     "scripts": {
                         "getFunctions": {
-                            "path": "MarkAuthorButton.js"
+                            "path": "ToReviseButton.js"
                         },
                         "updateHandler": {
                             "permissions": [
@@ -209,7 +223,7 @@
                 },
                 "changeStateTo":"editing"
             },
-            "markrevisor": {
+            "tovalidate": {
                 "permissions": {
                     "groups": [
                         "admin",
@@ -221,18 +235,18 @@
                     ]
                 },
                 "button": {
-                    "id": "markRevisorProjectButton",
+                    "id": "toValidateProjectButton",
                     "class": "WikiIocButton",
-                    "parms": { 
+                    "parms": {
                         "DOM": {
-                            "id": "markRevisorProjectButton",
+                            "id": "toValidateProjectButton",
                             "title": "Marca Revisió Completada",
                             "class": "iocDisplayBlock"
                         },
                         "DJO": {
                            "autoSize": true,
                            "visible": true,
-                           "iconClass": "'iocMarkRevisorDataProjectIcon'",
+                           "iconClass": "'iocToValidateDataProjectIcon'",
                            "labelText": "'Marca Revisió Completada'",
                            "labelButtonAcceptar": "'Acceptar'",
                            "labelButtonCancellar": "'Cancel·lar'",
@@ -243,7 +257,7 @@
                     },
                     "scripts": {
                         "getFunctions": {
-                            "path": "MarkRevisorButton.js"
+                            "path": "ToValidateButton.js"
                         },
                         "updateHandler": {
                             "permissions": [
@@ -263,7 +277,7 @@
                 },
                 "changeStateTo":"editing"
             },
-            "markvalidator": {
+            "validate": {
                 "permissions": {
                     "groups": [
                         "admin",
@@ -275,18 +289,18 @@
                     ]
                 },
                 "button": {
-                    "id": "markValidatorProjectButton",
+                    "id": "validateProjectButton",
                     "class": "WikiIocButton",
-                    "parms": { 
+                    "parms": {
                         "DOM": {
-                            "id": "markValidatorProjectButton",
+                            "id": "validateProjectButton",
                             "title": "Validació de les dades",
                             "class": "iocDisplayBlock"
                         },
                         "DJO": {
                            "autoSize": true,
                            "visible": true,
-                           "iconClass": "'iocMarkValidatorDataProjectIcon'",
+                           "iconClass": "'iocValidateDataProjectIcon'",
                            "DateLabel": "'data de la validació'",
                            "labelButtonAcceptar": "'Acceptar'",
                            "labelButtonCancellar": "'Cancel·lar'",
@@ -297,7 +311,7 @@
                     },
                     "scripts": {
                         "getFunctions": {
-                            "path": "MarkValidatorButton.js"
+                            "path": "ValidateButton.js"
                         },
                         "updateHandler": {
                             "permissions": [

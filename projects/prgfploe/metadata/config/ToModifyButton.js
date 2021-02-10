@@ -10,24 +10,24 @@ require([
 ],
 function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Button) {
 
-    var startEditButton = registry.byId('startEditProjectButton');
+    var toModifyButton = registry.byId('toModifyProjectButton');
 
-    if (startEditButton) {
-        startEditButton.onClick = function () {
-            var globalState = startEditButton.dispatcher.getGlobalState();
-            var dialog = registry.byId("newDocumentStartEditDlg");
+    if (toModifyButton) {
+        toModifyButton.onClick = function () {
+            var globalState = toModifyButton.dispatcher.getGlobalState();
+            var dialog = registry.byId("newToModifyDlg");
 
             if (!dialog){
                 dialog = new Dialog({
-                    id: "newDocumentStartEditDlg",
-                    title: startEditButton.title,
+                    id: "newToModifyDlg",
+                    title: toModifyButton.title,
                     style: "width: 210px; height: 170px;",
-                    startEditButton: startEditButton
+                    toModifyButton: toModifyButton
                 });
 
                 dialog.on('hide', function () {
                     dialog.destroyRecursive(false);
-                    domConstruct.destroy("newDocumentStartEditDlg");
+                    domConstruct.destroy("newToModifyDlg");
                 });
 
                 var bc = new BorderContainer({
@@ -56,7 +56,7 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Butt
                 },form.containerNode);
 
                 domConstruct.create('label', {
-                    innerHTML: startEditButton.labelText + '<br>'
+                    innerHTML: toModifyButton.labelText + '<br>'
                 },divMessageText);
 
 
@@ -71,22 +71,22 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Butt
                 }, divBotons);
 
                 new Button({
-                    label: startEditButton.labelButtonAcceptar,
+                    label: toModifyButton.labelButtonAcceptar,
 
                     onClick: function(){
                         var page = globalState.pages[globalState.currentTabId];
-                        var query = 'do=workflow' + 
-                                    '&action=startedit' + 
-                                    '&id=' + page.ns + 
+                        var query = 'do=workflow' +
+                                    '&action=tomodify' +
+                                    '&id=' + page.ns +
                                     '&projectType=' + page.projectType;
-                        startEditButton.sendRequest(query);
+                        toModifyButton.sendRequest(query);
                         dialog.hide();
                     }
                 }).placeAt(divBotons);
 
                 // Botó cancel·lar
                 new Button({
-                    label: startEditButton.labelButtonCancellar,
+                    label: toModifyButton.labelButtonCancellar,
                     onClick: function(){dialog.hide();}
                 }).placeAt(divBotons);
 

@@ -10,24 +10,24 @@ require([
 ],
 function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Button) {
 
-    var revisorButton = registry.byId('markRevisorProjectButton');
-    
-    if (revisorButton) {
-        revisorButton.onClick = function () {
-            var globalState = revisorButton.dispatcher.getGlobalState();
-            var dialog = registry.byId("newDocumentMarkRevisorDlg");
+    var toValidateButton = registry.byId('toValidateProjectButton');
+
+    if (toValidateButton) {
+        toValidateButton.onClick = function () {
+            var globalState = toValidateButton.dispatcher.getGlobalState();
+            var dialog = registry.byId("newToValidateDlg");
 
             if (!dialog){
                 dialog = new Dialog({
-                    id: "newDocumentMarkRevisorDlg",
-                    title: revisorButton.title,
+                    id: "newToValidateDlg",
+                    title: toValidateButton.title,
                     style: "width: 210px; height: 170px;",
-                    revisorButton: revisorButton
+                    toValidateButton: toValidateButton
                 });
 
                 dialog.on('hide', function () {
                     dialog.destroyRecursive(false);
-                    domConstruct.destroy("newDocumentMarkRevisorDlg");
+                    domConstruct.destroy("newToValidateDlg");
                 });
 
                 var bc = new BorderContainer({
@@ -56,7 +56,7 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Butt
                 },form.containerNode);
 
                 domConstruct.create('label', {
-                    innerHTML: revisorButton.labelText + '<br>'
+                    innerHTML: toValidateButton.labelText + '<br>'
                 },divMessageText);
 
 
@@ -71,22 +71,22 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Butt
                 }, divBotons);
 
                 new Button({
-                    label: revisorButton.labelButtonAcceptar,
+                    label: toValidateButton.labelButtonAcceptar,
 
                     onClick: function(){
                         var page = globalState.pages[globalState.currentTabId];
-                        var query = 'do=workflow' + 
-                                    '&action=markrevisor' + 
-                                    '&id=' + page.ns + 
+                        var query = 'do=workflow' +
+                                    '&action=tovalidate' +
+                                    '&id=' + page.ns +
                                     '&projectType=' + page.projectType;
-                        revisorButton.sendRequest(query);
+                        toValidateButton.sendRequest(query);
                         dialog.hide();
                     }
                 }).placeAt(divBotons);
 
                 // Botó cancel·lar
                 new Button({
-                    label: revisorButton.labelButtonCancellar,
+                    label: toValidateButton.labelButtonCancellar,
                     onClick: function(){dialog.hide();}
                 }).placeAt(divBotons);
 
