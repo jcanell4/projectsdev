@@ -95,6 +95,59 @@
                     }
                 },
                 "changeStateTo":"creating"
+            },
+            "validatedata": {
+                "permissions": {
+                    "groups": [
+                        "admin",
+                        "manager"
+                     ],
+                     "rols": [
+                        "responsable",
+                        "autor"
+                    ]
+                },
+                "button": {
+                    "class": "WikiIocButton",
+                    "parms": { 
+                        "DOM": {
+                            "id": "markValidatorProjectButton",
+                            "title": "Validació de les dades",
+                            "class": "iocDisplayBlock"
+                        },
+                        "DJO": {
+                           "autoSize": true,
+                           "visible": true,
+                           "iconClass": "'iocValidateDataProjectIcon'",
+                           "DateLabel": "'data de la validació'",
+                           "labelButtonAcceptar": "'Acceptar'",
+                           "labelButtonCancellar": "'Cancel·lar'",
+                           "urlBase": "'lib/exe/ioc_ajax.php?call=project'",
+                           "standbyId": "'bodyContent'",
+                           "disableOnSend": true
+                        }
+                    },
+                    "scripts": {
+                        "getFunctions": {
+                            "path": "MarkValidatorButton.js"
+                        },
+                        "updateHandler": {
+                            "permissions": [
+                               "isadmin",
+                               "ismanager"
+                            ],
+                            "rols": [
+                               "responsable",
+                               "autor"
+                            ],
+                            "conditions": {
+                                "page.action": "'project_view'",
+                                "page.isRevision": "false"
+                            }
+                        }
+                    }
+                },
+                "changeStateTo":"creating"
             }
         }
     }
