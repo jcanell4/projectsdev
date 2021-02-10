@@ -13,14 +13,20 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Text
 
     var validatorButton = registry.byId('markValidatorProjectButton');
     
+    function dateNowDMY() {
+        function pad(s) { return (s.length < 2 || s.toString().length < 2) ? '0' + s : s; }
+        var d = new Date(Date.now());
+        return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('-');
+    };
+
     if (validatorButton) {
         validatorButton.onClick = function () {
             var globalState = validatorButton.dispatcher.getGlobalState();
-            var dialog = registry.byId("newDocumentMarkValidatorDlg");
+            var dialog = registry.byId("newMarkValidatorDlg");
 
-            if(!dialog){
+            if (!dialog){
                 dialog = new Dialog({
-                    id: "newDocumentMarkValidatorDlg",
+                    id: "newMarkValidatorDlg",
                     title: validatorButton.title,
                     style: "width: 210px; height: 170px;",
                     validatorButton: validatorButton
@@ -28,11 +34,13 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Text
 
                 dialog.on('hide', function () {
                     dialog.destroyRecursive(false);
-                    domConstruct.destroy("newDocumentMarkValidatorDlg");
+                    domConstruct.destroy("newMarkValidatorDlg");
                 });
 
                 dialog.on('show', function () {
-                    dom.byId('textBoxDateValidation').value = ""; //Date();
+                    //var d = new Date(Date.now());
+                    //dom.byId('textBoxDateValidation').value = d.getDate() + "-" + (d.getMonth()+1) + "-" + d.getFullYear();
+                    dom.byId('textBoxDateValidation').value = dateNowDMY();
                     dom.byId('textBoxDateValidation').focus();
                 });
 
@@ -72,14 +80,14 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Text
 
 
                 // Botons
-                var botons = domConstruct.create('div', {
-                    className: 'botons',
+                var divBotons = domConstruct.create('div', {
+                    className: 'divBotons',
                     style: "text-align:center;"
                 },form.containerNode);
 
                 domConstruct.create('label', {
                     innerHTML: '<br><br>'
-                }, botons);
+                }, divBotons);
 
                 new Button({
                     label: validatorButton.labelButtonAcceptar,
@@ -88,7 +96,7 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Text
                         if (dataValidacio.value !== '') {
                             var page = globalState.pages[globalState.currentTabId];
                             var query = 'do=workflow' + 
-                                        '&action=validation' + 
+                                        '&action=markvalidator' + 
                                         '&data_validacio=' + dataValidacio.value +
                                         '&id=' + page.ns + 
                                         '&projectType=' + page.projectType;
@@ -96,13 +104,13 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Text
                             dialog.hide();
                         }
                     }
-                }).placeAt(botons);
+                }).placeAt(divBotons);
 
                 // Botó cancel·lar
                 new Button({
                     label: validatorButton.labelButtonCancellar,
                     onClick: function(){dialog.hide();}
-                }).placeAt(botons);
+                }).placeAt(divBotons);
 
                 form.startup();
             }
@@ -110,4 +118,5 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Text
             return false;
         };
     }
+    
 });

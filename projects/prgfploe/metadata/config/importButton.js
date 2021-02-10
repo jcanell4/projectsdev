@@ -24,7 +24,7 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Text
             if(!dialog){
                 dialog = new Dialog({
                     id: "newDocumentDlg",
-                    title: importButton.dialogTitle,
+                    title: importButton.title,
                     style: "width: 470px; height: 350px;",
                     importButton: importButton
                 });

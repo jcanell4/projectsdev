@@ -28,7 +28,7 @@
                 "button": {
                     "id": "editProjectButton",
                     "toSet": {
-                        "title": "Edit-WorkFlow",
+                        "title": "Edició general",
                         "query": "do=workflow&action=edit"
                     },
                     "scripts": {
@@ -53,8 +53,9 @@
                     ]
                 },
                 "button": {
+                    "id": "importProjectButton",
                     "class": "WikiIocButton",
-                    "parms": { 
+                    "parms": {
                         "DOM": {
                            "id": "importProjectButton",
                            "title": "Importar projecte",
@@ -96,7 +97,7 @@
                 },
                 "changeStateTo":"creating"
             },
-            "validatedata": {
+            "startedit": {
                 "permissions": {
                     "groups": [
                         "admin",
@@ -108,6 +109,173 @@
                     ]
                 },
                 "button": {
+                    "id": "startEditProjectButton",
+                    "class": "WikiIocButton",
+                    "parms": { 
+                        "DOM": {
+                            "id": "startEditProjectButton",
+                            "title": "Edició de les dades del projecte",
+                            "class": "iocDisplayBlock"
+                        },
+                        "DJO": {
+                           "autoSize": true,
+                           "visible": true,
+                           "iconClass": "'iocStartEditDataProjectIcon'",
+                           "labelText": "'Atenció: Aquest procès de modificació de les dades requerirà una revisió i validació posterior. Vols continuar?'",
+                           "labelButtonAcceptar": "'Acceptar'",
+                           "labelButtonCancellar": "'Cancel·lar'",
+                           "urlBase": "'lib/exe/ioc_ajax.php?call=project'",
+                           "standbyId": "'bodyContent'",
+                           "disableOnSend": true
+                        }
+                    },
+                    "scripts": {
+                        "getFunctions": {
+                            "path": "StartEditButton.js"
+                        },
+                        "updateHandler": {
+                            "permissions": [
+                               "isadmin",
+                               "ismanager"
+                            ],
+                            "rols": [
+                               "responsable",
+                               "autor"
+                            ],
+                            "conditions": {
+                                "page.action": "'project_view'",
+                                "page.isRevision": "false"
+                            }
+                        }
+                    }
+                },
+                "changeStateTo":"editing"
+            }
+        }
+    },
+    "editing": {
+        "actions": {
+            "markauthor": {
+                "permissions": {
+                    "groups": [
+                        "admin",
+                        "manager"
+                     ],
+                     "rols": [
+                        "responsable",
+                        "autor"
+                    ]
+                },
+                "button": {
+                    "id": "markAuthorProjectButton",
+                    "class": "WikiIocButton",
+                    "parms": { 
+                        "DOM": {
+                            "id": "markAuthorProjectButton",
+                            "title": "Marca Edició Completada",
+                            "class": "iocDisplayBlock"
+                        },
+                        "DJO": {
+                           "autoSize": true,
+                           "visible": true,
+                           "iconClass": "'iocMarkAutorDataProjectIcon'",
+                           "labelText": "'Marca Edició Completada'",
+                           "labelButtonAcceptar": "'Acceptar'",
+                           "labelButtonCancellar": "'Cancel·lar'",
+                           "urlBase": "'lib/exe/ioc_ajax.php?call=project'",
+                           "standbyId": "'bodyContent'",
+                           "disableOnSend": true
+                        }
+                    },
+                    "scripts": {
+                        "getFunctions": {
+                            "path": "MarkAuthorButton.js"
+                        },
+                        "updateHandler": {
+                            "permissions": [
+                               "isadmin",
+                               "ismanager"
+                            ],
+                            "rols": [
+                               "responsable",
+                               "autor"
+                            ],
+                            "conditions": {
+                                "page.action": "'project_view'",
+                                "page.isRevision": "false"
+                            }
+                        }
+                    }
+                },
+                "changeStateTo":"editing"
+            },
+            "markrevisor": {
+                "permissions": {
+                    "groups": [
+                        "admin",
+                        "manager"
+                     ],
+                     "rols": [
+                        "responsable",
+                        "autor"
+                    ]
+                },
+                "button": {
+                    "id": "markRevisorProjectButton",
+                    "class": "WikiIocButton",
+                    "parms": { 
+                        "DOM": {
+                            "id": "markRevisorProjectButton",
+                            "title": "Marca Revisió Completada",
+                            "class": "iocDisplayBlock"
+                        },
+                        "DJO": {
+                           "autoSize": true,
+                           "visible": true,
+                           "iconClass": "'iocMarkRevisorDataProjectIcon'",
+                           "labelText": "'Marca Revisió Completada'",
+                           "labelButtonAcceptar": "'Acceptar'",
+                           "labelButtonCancellar": "'Cancel·lar'",
+                           "urlBase": "'lib/exe/ioc_ajax.php?call=project'",
+                           "standbyId": "'bodyContent'",
+                           "disableOnSend": true
+                        }
+                    },
+                    "scripts": {
+                        "getFunctions": {
+                            "path": "MarkRevisorButton.js"
+                        },
+                        "updateHandler": {
+                            "permissions": [
+                               "isadmin",
+                               "ismanager"
+                            ],
+                            "rols": [
+                               "responsable",
+                               "autor"
+                            ],
+                            "conditions": {
+                                "page.action": "'project_view'",
+                                "page.isRevision": "false"
+                            }
+                        }
+                    }
+                },
+                "changeStateTo":"editing"
+            },
+            "markvalidator": {
+                "permissions": {
+                    "groups": [
+                        "admin",
+                        "manager"
+                     ],
+                     "rols": [
+                        "responsable",
+                        "autor"
+                    ]
+                },
+                "button": {
+                    "id": "markValidatorProjectButton",
                     "class": "WikiIocButton",
                     "parms": { 
                         "DOM": {
@@ -118,7 +286,7 @@
                         "DJO": {
                            "autoSize": true,
                            "visible": true,
-                           "iconClass": "'iocValidateDataProjectIcon'",
+                           "iconClass": "'iocMarkValidatorDataProjectIcon'",
                            "DateLabel": "'data de la validació'",
                            "labelButtonAcceptar": "'Acceptar'",
                            "labelButtonCancellar": "'Cancel·lar'",
@@ -147,7 +315,7 @@
                         }
                     }
                 },
-                "changeStateTo":"creating"
+                "changeStateTo":"editing"
             }
         }
     }
