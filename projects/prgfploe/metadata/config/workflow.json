@@ -41,6 +41,60 @@
                 },
                 "changeStateTo":"creating"
             },
+            "save": {
+                "permissions": {
+                    "groups": [
+                        "admin",
+                        "manager"
+                     ],
+                     "rols": [
+                        "responsable",
+                        "autor"
+                    ]
+                },
+                "button": {
+                    "id": "saveProjectButton",
+                    "toSet": {
+                        "title": "Desa les dades",
+                        "query": "do=workflow&action=save"
+                    },
+                    "scripts": {
+                        "updateHandler": {
+                            "conditions": {
+                                "page.action": "'project_edit'"
+                            }
+                        }
+                    }
+                },
+                "changeStateTo":"creating"
+            },
+            "cancel": {
+                "permissions": {
+                    "groups": [
+                        "admin",
+                        "manager"
+                     ],
+                     "rols": [
+                        "responsable",
+                        "autor"
+                    ]
+                },
+                "button": {
+                    "id": "cancelProjectButton",
+                    "toSet": {
+                        "title": "Tancar l'edició",
+                        "query": "do=workflow&action=cancel"
+                    },
+                    "scripts": {
+                        "updateHandler": {
+                            "conditions": {
+                                "page.action": "'project_edit'"
+                            }
+                        }
+                    }
+                },
+                "changeStateTo":"creating"
+            },
             "import": {
                 "permissions": {
                     "groups": [
@@ -80,14 +134,6 @@
                             "path": "importButton.js"
                         },
                         "updateHandler": {
-                            "permissions": [
-                               "isadmin",
-                               "ismanager"
-                            ],
-                            "rols": [
-                               "responsable",
-                               "autor"
-                            ],
                             "conditions": {
                                 "page.action": "'project_view'",
                                 "page.isRevision": "false"
@@ -96,80 +142,8 @@
                     }
                 },
                 "changeStateTo":"creating"
-            }
-        }
-    },
-    "revising": {
-        "actions": {
-
-        }
-    },
-    "validating": {
-        "actions": {
-
-        }
-    },
-    "validated": {
-        "actions": {
-            "tomodify": {
-                "permissions": {
-                    "groups": [
-                        "admin",
-                        "manager"
-                     ],
-                     "rols": [
-                        "responsable",
-                        "autor"
-                    ]
-                },
-                "button": {
-                    "id": "toModifyProjectButton",
-                    "class": "WikiIocButton",
-                    "parms": {
-                        "DOM": {
-                            "id": "toModifyProjectButton",
-                            "title": "Edició de les dades del projecte",
-                            "class": "iocDisplayBlock"
-                        },
-                        "DJO": {
-                           "autoSize": true,
-                           "visible": true,
-                           "iconClass": "'iocToModifyDataProjectIcon'",
-                           "labelText": "'Atenció: Aquest procès de modificació de les dades requerirà una revisió i validació posterior. Vols continuar?'",
-                           "labelButtonAcceptar": "'Acceptar'",
-                           "labelButtonCancellar": "'Cancel·lar'",
-                           "urlBase": "'lib/exe/ioc_ajax.php?call=project'",
-                           "standbyId": "'bodyContent'",
-                           "disableOnSend": true
-                        }
-                    },
-                    "scripts": {
-                        "getFunctions": {
-                            "path": "ToModifyButton.js"
-                        },
-                        "updateHandler": {
-                            "permissions": [
-                               "isadmin",
-                               "ismanager"
-                            ],
-                            "rols": [
-                               "responsable",
-                               "autor"
-                            ],
-                            "conditions": {
-                                "page.action": "'project_view'",
-                                "page.isRevision": "false"
-                            }
-                        }
-                    }
-                },
-                "changeStateTo": "modifiying"
-            }
-        }
-    },
-    "modifiying": {
-        "actions": {
-            "torevise": {
+            },
+            "toRevise": {
                 "permissions": {
                     "groups": [
                         "admin",
@@ -186,14 +160,14 @@
                     "parms": {
                         "DOM": {
                             "id": "toReviseProjectButton",
-                            "title": "Marca Edició Completada",
+                            "title": "Marca Edició completada. Inici del procés de Revisió de les dades del projecte",
                             "class": "iocDisplayBlock"
                         },
                         "DJO": {
                            "autoSize": true,
                            "visible": true,
                            "iconClass": "'iocToReviseDataProjectIcon'",
-                           "labelText": "'Marca Edició completada, disponible per a Revisió'",
+                           "labelText": "'Marca Edició completada, disponible per a Revisió. Vols continuar?'",
                            "labelButtonAcceptar": "'Acceptar'",
                            "labelButtonCancellar": "'Cancel·lar'",
                            "urlBase": "'lib/exe/ioc_ajax.php?call=project'",
@@ -206,14 +180,6 @@
                             "path": "ToReviseButton.js"
                         },
                         "updateHandler": {
-                            "permissions": [
-                               "isadmin",
-                               "ismanager"
-                            ],
-                            "rols": [
-                               "responsable",
-                               "autor"
-                            ],
                             "conditions": {
                                 "page.action": "'project_view'",
                                 "page.isRevision": "false"
@@ -221,9 +187,25 @@
                         }
                     }
                 },
-                "changeStateTo":"editing"
+                "changeStateTo": "revising"
+            }
+        }
+    },
+    "revising": {
+        "actions": {
+            "view": {
+                "shortcut":  "creating"
             },
-            "tovalidate": {
+            "edit": {
+                "shortcut":  "creating"
+            },
+            "save": {
+                "shortcut":  "creating"
+            },
+            "cancel": {
+                "shortcut":  "creating"
+            },
+            "toValidate": {
                 "permissions": {
                     "groups": [
                         "admin",
@@ -260,14 +242,6 @@
                             "path": "ToValidateButton.js"
                         },
                         "updateHandler": {
-                            "permissions": [
-                               "isadmin",
-                               "ismanager"
-                            ],
-                            "rols": [
-                               "responsable",
-                               "autor"
-                            ],
                             "conditions": {
                                 "page.action": "'project_view'",
                                 "page.isRevision": "false"
@@ -275,7 +249,14 @@
                         }
                     }
                 },
-                "changeStateTo":"editing"
+                "changeStateTo":"validating"
+            }
+        }
+    },
+    "validating": {
+        "actions": {
+            "view": {
+                "shortcut":  "creating"
             },
             "validate": {
                 "permissions": {
@@ -301,7 +282,7 @@
                            "autoSize": true,
                            "visible": true,
                            "iconClass": "'iocValidateDataProjectIcon'",
-                           "DateLabel": "'data de la validació'",
+                           "DateLabel": "'Indica la data de la validació'",
                            "labelButtonAcceptar": "'Acceptar'",
                            "labelButtonCancellar": "'Cancel·lar'",
                            "urlBase": "'lib/exe/ioc_ajax.php?call=project'",
@@ -314,14 +295,6 @@
                             "path": "ValidateButton.js"
                         },
                         "updateHandler": {
-                            "permissions": [
-                               "isadmin",
-                               "ismanager"
-                            ],
-                            "rols": [
-                               "responsable",
-                               "autor"
-                            ],
                             "conditions": {
                                 "page.action": "'project_view'",
                                 "page.isRevision": "false"
@@ -329,7 +302,79 @@
                         }
                     }
                 },
-                "changeStateTo":"editing"
+                "changeStateTo":"validated"
+            }
+        }
+    },
+    "validated": {
+        "actions": {
+            "view": {
+                "shortcut":  "creating"
+            },
+            "toModify": {
+                "permissions": {
+                    "groups": [
+                        "admin",
+                        "manager"
+                     ],
+                     "rols": [
+                        "responsable",
+                        "autor"
+                    ]
+                },
+                "button": {
+                    "id": "toModifyProjectButton",
+                    "class": "WikiIocButton",
+                    "parms": {
+                        "DOM": {
+                            "id": "toModifyProjectButton",
+                            "title": "Edició de les dades del projecte",
+                            "class": "iocDisplayBlock"
+                        },
+                        "DJO": {
+                           "autoSize": true,
+                           "visible": true,
+                           "iconClass": "'iocToModifyDataProjectIcon'",
+                           "labelText": "'Atenció: Aquest procès de modificació de les dades requerirà una revisió i validació posterior. Vols continuar?'",
+                           "labelButtonAcceptar": "'Acceptar'",
+                           "labelButtonCancellar": "'Cancel·lar'",
+                           "urlBase": "'lib/exe/ioc_ajax.php?call=project'",
+                           "standbyId": "'bodyContent'",
+                           "disableOnSend": true
+                        }
+                    },
+                    "scripts": {
+                        "getFunctions": {
+                            "path": "ToModifyButton.js"
+                        },
+                        "updateHandler": {
+                            "conditions": {
+                                "page.action": "'project_view'",
+                                "page.isRevision": "false"
+                            }
+                        }
+                    }
+                },
+                "changeStateTo": "modifiying"
+            }
+        }
+    },
+    "modifiying": {
+        "actions": {
+            "view": {
+                "shortcut":  "creating"
+            },
+            "edit": {
+                "shortcut":  "creating"
+            },
+            "save": {
+                "shortcut":  "creating"
+            },
+            "cancel": {
+                "shortcut":  "creating"
+            },
+            "toRevise": {
+                "shortcut":  "creating"
             }
         }
     }

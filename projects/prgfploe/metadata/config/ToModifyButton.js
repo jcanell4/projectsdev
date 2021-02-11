@@ -76,7 +76,7 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Butt
                     onClick: function(){
                         var page = globalState.pages[globalState.currentTabId];
                         var query = 'do=workflow' +
-                                    '&action=tomodify' +
+                                    '&action=toModify' +
                                     '&id=' + page.ns +
                                     '&projectType=' + page.projectType;
                         toModifyButton.sendRequest(query);
