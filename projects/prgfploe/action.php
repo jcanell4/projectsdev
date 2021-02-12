@@ -48,7 +48,7 @@ class action_plugin_projectsdev_projects_prgfploe extends WikiIocProjectWorkflow
                 );
 
                 if (class_exists("ResultsVerificationError", TRUE)){
-                    $html = ResultsVerificationError::get_html_data_errors($event->data['responseData']['DATA_ERROR_LIST']);
+                    $html = ResultsVerificationError::get_html_data_errors($event->data['responseData'][ProjectKeys::KEY_DATA_ERROR_LIST]);
                 }
                 $event->data["ajaxCmdResponseGenerator"]->addExtraMetadata(
                         $result['id'],
