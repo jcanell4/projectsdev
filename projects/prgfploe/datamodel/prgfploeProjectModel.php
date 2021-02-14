@@ -98,33 +98,37 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         $ufTable = $data["taulaDadesUF"]['value'];              if (!is_array($ufTable)) $ufTable = json_decode($ufTable, TRUE);
 
         $totalNFs = array();
-        foreach ($aaTable as $item){
-            if (!isset($totalNFs[$item["unitat formativa"]])) {
-                $totalNFs[$item["unitat formativa"]] = array();
+        if (!empty($aaTable)) {
+            foreach ($aaTable as $item){
+                if (!isset($totalNFs[$item["unitat formativa"]])) {
+                    $totalNFs[$item["unitat formativa"]] = array();
+                }
+                if (!isset($totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]])) {
+                    $totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]] = 0;
+                }
+                $totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]] += $item["hores"];
             }
-            if (!isset($totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]])) {
-                $totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]] = 0;
-            }
-            $totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]] += $item["hores"];
         }
 
         $totalUfs = array();
-        foreach ($nfTable as $item) {
-            if ($item["hores"] != $totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]]) {
-                $result['taulaDadesNuclisFormatius'][] = [
-                    'id' => $this->id,
-                    'field' => 'nucli formatiu',
-                    'message' => sprintf("Les hores del nucli formatiu %s de la UF %d no coincideixen amb la suma de les hores de les seves activitats d'aprenentatge (hores NF=%d, però suma hoes AA=%d)."
-                                        ,$item["nucli formatiu"]
-                                        ,$item["unitat formativa"]
-                                        ,$item["hores"]
-                                        ,$totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]])
-                ];
+        if (!empty($nfTable)) {
+            foreach ($nfTable as $item) {
+                if ($item["hores"] != $totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]]) {
+                    $result['taulaDadesNuclisFormatius'][] = [
+                        'id' => $this->id,
+                        'field' => 'nucli formatiu',
+                        'message' => sprintf("Les hores del nucli formatiu %s de la UF %d no coincideixen amb la suma de les hores de les seves activitats d'aprenentatge (hores NF=%d, però suma hoes AA=%d)."
+                                            ,$item["nucli formatiu"]
+                                            ,$item["unitat formativa"]
+                                            ,$item["hores"]
+                                            ,$totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]])
+                    ];
+                }
+                if (!isset($totalUfs[$item["unitat formativa"]])) {
+                    $totalUfs[$item["unitat formativa"]] = 0;
+                }
+                $totalUfs[$item["unitat formativa"]] += $item["hores"];
             }
-            if (!isset($totalUfs[$item["unitat formativa"]])) {
-                $totalUfs[$item["unitat formativa"]] = 0;
-            }
-            $totalUfs[$item["unitat formativa"]] += $item["hores"];
         }
 
         if (!empty($ufTable)) {
