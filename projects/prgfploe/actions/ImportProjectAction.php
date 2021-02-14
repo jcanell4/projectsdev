@@ -17,16 +17,16 @@ class ImportProjectAction extends ProjectAction {
         $importProjectType = $metaDataQuery->getProjectType($this->params['project_import']);
 
         $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($projectID, "management", $this->params['projectType']);
-        $data_management = $metaDataQuery->getDataProject();
-        $jsonConfig = $model->getMetaDataJsonFile(FALSE, "workflow.json", $data_management['workflow']['currentState']);
         $actionCommand = $model->getModelAttributes(AjaxKeys::KEY_ACTION);
-        $validProjectTypes = $jsonConfig['actions'][$actionCommand]['button']['parms']['DJO']['projectType'];
+        $data_management = $metaDataQuery->getDataProject();
+        $action = $model->getMetaDataActionWorkflowFile($data_management['workflow']['currentState'], $actionCommand);
+        $validProjectTypes = $action['button']['parms']['DJO']['projectType'];
 
         if ($importProjectType == $validProjectTypes || in_array($importProjectType, $validProjectTypes))   {
             //
             // 2. Verificar permisos sobre el proyecto a importar
             //
-            $permissions = $jsonConfig['actions'][$actionCommand]['permissions'];
+            $permissions = $action['permissions'];
             $import_modelManager = AbstractModelManager::Instance($importProjectType);
             $import_authorization = $import_modelManager->getAuthorizationManager('editProject');
             $has_perm_group = $this->array_in_array($permissions['groups'], $import_authorization->getAllowedGroups());
