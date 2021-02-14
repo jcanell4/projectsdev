@@ -9,29 +9,17 @@ class ToModifyProjectAction extends ProjectAction {
 
     public function responseProcess() {
         $model = $this->getModel();
+        // Obtenir les dades del projecte per omplir l'històric del control de canvis
+        $projectMetaData = $model->getCurrentDataProject(FALSE, FALSE);
+        // Inici de la Modificació: eliminar signatures i dates de totes les persones
+        $projectMetaData['cc_dadesAutor']['dataDeLaGestio'] = "";
+        $projectMetaData['cc_dadesAutor']['signatura'] = "pendent";
+        $projectMetaData['cc_dadesRevisor']['dataDeLaGestio'] = "";
+        $projectMetaData['cc_dadesRevisor']['signatura'] = "pendent";
+        $projectMetaData['cc_dadesValidador']['dataDeLaGestio'] = "";
+        $projectMetaData['cc_dadesValidador']['signatura'] = "pendent";
 
-        // Històric del control de canvis
-        $data = $model->getCurrentDataProject(FALSE, FALSE);
-        // inici modificació
-        //eliminar signatures i dates de totes persones
-        $data['cc_dadesAutor']['dataDeLaGestio'] = "";
-        $data['cc_dadesAutor']['signatura'] = "pendent";
-        $data['cc_dadesRevisor']['dataDeLaGestio'] = "";
-        $data['cc_dadesRevisor']['signatura'] = "pendent";
-        $data['cc_dadesValidador']['dataDeLaGestio'] = "";
-        $data['cc_dadesValidador']['signatura'] = "pendent";
-
-        return $response;
-    }
-
-    private function getUserName($users) {
-        global $auth;
-        $retUser = "";
-        $u = explode(",", $users);
-        foreach ($u as $user) {
-            $retUser .= $auth->getUserData($user)['name'] . ", ";
-        }
-        return trim($retUser, ", ");
+        return $projectMetaData;
     }
 
 }

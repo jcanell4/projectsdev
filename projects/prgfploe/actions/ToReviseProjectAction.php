@@ -1,6 +1,6 @@
 <?php
 /**
- * ToReviseProjectAction: L'autor marca el projecte apte per revisar
+ * ToReviseProjectAction: L'Autor marca el projecte apte per revisar
  * @author rafael <rclaver@xtec.cat>
  */
 if (!defined('DOKU_INC')) die();
@@ -9,31 +9,12 @@ class ToReviseProjectAction extends ProjectAction {
 
     public function responseProcess() {
         $model = $this->getModel();
-        $id = $this->params[ProjectKeys::KEY_ID];
-        $subSet = "management";
-
-        $actionCommand = $model->getModelAttributes(AjaxKeys::KEY_ACTION);
-        $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($id, $subSet, $this->params['projectType']);
-        $metaDataManagement = $metaDataQuery->getDataProject();
-        $currentState = $metaDataManagement['workflow']['currentState'];
-        $workflowJson = $model->getMetaDataJsonFile(FALSE, "workflow.json", $currentState);
-        $newState = ($workflowJson['actions'][$actionCommand]['changeStateTo']) ? $workflowJson['actions'][$actionCommand]['changeStateTo'] : $currentState;
-
-        $newMetaData['changeDate'] = date("Y-m-d");
-        $newMetaData['oldState'] = $currentState;
-        $newMetaData['newState'] = $newState;
-        $newMetaData['changeAction'] = $actionCommand;
-        $newMetaData['user'] = WikiIocInfoManager::getInfo("userinfo")['name'];
-
-        $metaDataManagement['stateHistory'][] = $newMetaData;
-        $metaDataManagement['workflow']['currentState'] = $newState;
-        $metaDataQuery->setMeta(json_encode($metaDataManagement), $subSet, "canvi d'estat");
-
-        // Històric del control de canvis
+        // Obtenir les dades del projecte per omplir l'històric del control de canvis
         $projectMetaData = $model->getCurrentDataProject(FALSE, FALSE);
-        // L'autor marca apte per revisar: canvi data i signatura autor
+        // L'Autor marca el projecte apte per revisar: canvi data i signatura Autor i afegeix canvi a l'històric
         $projectMetaData['cc_dadesAutor']['dataDeLaGestio'] = date("Y-m-d");
         $projectMetaData['cc_dadesAutor']['signatura'] = "signat";
+        if (!is_array($projectMetaData['cc_historic'])) $projectMetaData['cc_historic'] = [];
         $hist['data'] = date("Y-m-d");
         $hist['autor'] = $this->getUserName($projectMetaData['autor']);
         $hist['modificacions'] = $projectMetaData['cc_raonsModificacio'];

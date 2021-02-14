@@ -160,7 +160,7 @@
                     "parms": {
                         "DOM": {
                             "id": "toReviseProjectButton",
-                            "title": "Marca Edició completada. Inici del procés de Revisió de les dades del projecte",
+                            "title": "Marca Edició completada",
                             "class": "iocDisplayBlock"
                         },
                         "DJO": {
