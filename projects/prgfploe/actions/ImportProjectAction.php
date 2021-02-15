@@ -39,6 +39,7 @@ class ImportProjectAction extends ProjectAction {
 
                 // 3. Verificar una importació anterior
                 if (empty($import_data['nsProgramacio'])) {
+                    //JOSEP: TODO- Caldrà plantejar una importació diferrnt en funció del tipus de pojecte (ptfploe, sintesi o fct). Aquesta correspon a ptfploe.
                     // Taula d'importació
                     $dataProject['cicle']                     = $import_data['cicle'];
                     $dataProject['modulId']                   = $import_data['modulId'];
