@@ -12,6 +12,16 @@
                         "autor"
                     ]
                 },
+                "views": {
+                    "groups": {
+                        "admin": "vista_1",
+                        "manager": "vista_2"
+                    },
+                    "rols": {
+                        "responsable": "vista_1",
+                        "autor": "vista_1"
+                    }
+                },
                 "changeStateTo": "creating"
             },
             "edit": {
