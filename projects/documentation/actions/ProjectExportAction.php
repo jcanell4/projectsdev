@@ -5,8 +5,12 @@
  * @culpable Rafael Claver
  */
 if (!defined('DOKU_INC')) die();
+if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC."lib/plugins/");
+define('WIKI_IOC_PROJECTDEV', DOKU_PLUGIN . "projectsdev/projects/documentation/");
 
 class ProjectExportAction  extends AbstractWikiAction{
+    const PATH_RENDERER = WIKI_IOC_PROJECTDEV."exporter/";
+    const PATH_CONFIG_FILE = WIKI_IOC_PROJECTDEV."metadata/config/";
     const CONFIG_TYPE_FILENAME = "configMain.json";
     const CONFIG_RENDER_FILENAME = "configRender.json";
 
@@ -22,6 +26,7 @@ class ProjectExportAction  extends AbstractWikiAction{
     protected $metaDataSubSet;
 
     public function __construct($factory=NULL){
+        parent::__construct();
         $this->factoryRender = $factory;
     }
     /**
@@ -44,6 +49,14 @@ class ProjectExportAction  extends AbstractWikiAction{
         $this->dataArray = $this->getProjectDataFile($projectfilepath, $this->metaDataSubSet);
     }
 
+    protected function preResponseProcess() {
+        parent::preResponseProcess();
+        //Guarda una revisió del pdf existent abans no es guardi la nova versió
+        $ext = ($this->mode === "xhtml") ? ".zip" : ".pdf";
+        $output_filename = $this->projectID . ":" . str_replace(':', '_', $this->projectID) . $ext;
+        media_saveOldRevision($output_filename);
+    }
+
     public function responseProcess() {
         $ret = array();
         $fRenderer = $this->factoryRender;
@@ -57,7 +70,10 @@ class ProjectExportAction  extends AbstractWikiAction{
                                            array("id"=> $this->projectID));
 
         $result = $render->process($this->dataArray);
-        $result['ns'] = $this->projectID;
+        $result['ns'] = $this->projectNS;
+        $result['ext'] = ".{$this->mode}";
+        $ret['id'] = $this->idToRequestId($this->projectID);
+        $ret['ns'] = $this->projectNS;
 
         switch ($this->mode) {
             case 'pdf' :
@@ -124,67 +140,6 @@ class ProjectExportAction  extends AbstractWikiAction{
 
     public static function get_html_metadata($result){
         return ResultsWithFiles::get_html_metadata($result);
-//        if ($result['error']) {
-//            throw new Exception ("Error");
-//        }else{
-//            if ($result["zipFile"]) {
-//                if (!self::copyZip($result)) {
-//                    throw new Exception("Error en la còpia de l'arxiu zip des de la ubicació temporal");
-//                }
-//            }
-//            $file = WikiGlobalConfig::getConf('mediadir').'/'. preg_replace('/:/', '/', $result['ns']) .'/'.preg_replace('/:/', '_', $result['ns']);
-//            $ret = self::_getHtmlMetadata($result['ns'], $file, ".zip");
-//            $ret.= self::_getHtmlMetadata($result['ns'], $file, ".pdf");
-//        }
-//        return $ret;
     }
 
-//    private static function _getHtmlMetadata($ns, $file, $ext) {
-//        if ($ext === ".zip") {
-//            $P = ""; $nP = "";
-//            $class = "mf_zip";
-//            $mode = "HTML";
-//        }else {
-//            $P = "<p>"; $nP = "</p>";
-//            $class = "mf_pdf";
-//            $mode = "PDF";
-//        }
-//        if (@file_exists($file.$ext)) {
-//            $ret = '';
-//            $id = preg_replace('/:/', '_', $ns);
-//            $filename = str_replace(':','_',basename($ns)).$ext;
-//            $media_path = "lib/exe/fetch.php?media=$ns:$filename";
-//            $data = date("d/m/Y H:i:s", filemtime($file.$ext));
-//
-//            if ($ext === ".pdf") {
-//                $ret.= '<p></p><div class="iocexport">';
-//                $ret.= '<span style="font-weight: bold;">Exportació PDF</span><br />';
-//                $ret.= '<form action="'.WIKI_IOC_MODEL.'renderer/basiclatex.php" id="export__form_'.$id.'" method="post">';
-//                $ret.= '<input name="filetype" value="zip" type="radio"> ZIP &nbsp;&nbsp;&nbsp;';
-//                $ret.= '<input name="filetype" value="pdf" checked type="radio"> PDF ';
-//                $ret.= '</form>';
-//                $ret.= '</div>';
-//            }
-//            $ret.= $P.'<span id="exportacio" style="word-wrap: break-word;">';
-//            $ret.= '<a class="media mediafile '.$class.'" href="'.$media_path.'" target="_blank">'.$filename.'</a> ';
-//            $ret.= '<span style="white-space: nowrap;">'.$data.'</span>';
-//            $ret.= '</span>'.$nP;
-//        }else{
-//            $mode = ($ext===".zip") ? "HTML" : "PDF";
-//            $ret.= '<span id="exportacio">';
-//            $ret.= '<p class="media mediafile '.$class.'">No hi ha cap exportació '.$mode.' feta</p>';
-//            $ret.= '</span>';
-//        }
-//        return $ret;
-//    }
-//
-//    private static function copyZip($result){
-//        $dest = preg_replace('/:/', '/', $result['ns']);
-//        $path_dest = WikiGlobalConfig::getConf('mediadir').'/'.$dest;
-//        if (!file_exists($path_dest)){
-//            mkdir($path_dest, 0755, TRUE);
-//        }
-//        $ok = copy($result["zipFile"], $path_dest.'/'.$result["zipName"]);
-//        return $ok;
-//    }
 }

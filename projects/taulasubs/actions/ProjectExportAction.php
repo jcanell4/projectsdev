@@ -24,6 +24,7 @@ class ProjectExportAction  extends AbstractWikiAction{
     protected $metaDataSubSet;
 
     public function __construct($factory=NULL){
+        parent::__construct();
         $this->factoryRender = $factory;
     }
     /**
@@ -41,10 +42,18 @@ class ProjectExportAction  extends AbstractWikiAction{
             $cfgArray = $this->getProjectConfigFile(self::CONFIG_TYPE_FILENAME, ProjectKeys::KEY_METADATA_PROJECT_STRUCTURE)[0];
         $this->mainTypeName = $cfgArray['mainType']['typeDef'];
         $this->typesDefinition = $cfgArray['typesDefinition'];
-            $projectfilename = $cfgArray[$this->metaDataSubSet];
-            $idResoucePath = WikiGlobalConfig::getConf('mdprojects')."/".str_replace(":", "/", $this->projectID);
-            $projectfilepath = "$idResoucePath/".$this->projectType."/$projectfilename";
-        $this->dataArray = $this->getProjectDataFile($projectfilepath, $this->metaDataSubSet);
+        $this->projectModel->init([ProjectKeys::KEY_ID              => $this->projectID,
+                                   ProjectKeys::KEY_PROJECT_TYPE    => $this->projectType,
+                                   ProjectKeys::KEY_METADATA_SUBSET => $this->metadataSubset]);
+        $this->dataArray = $this->projectModel->getCurrentDataProject();
+    }
+
+    protected function preResponseProcess() {
+        parent::preResponseProcess();
+        //Guarda una revisió del pdf existent abans no es guardi la nova versió
+        $ext = ($this->mode === "xhtml") ? ".zip" : ".pdf";
+        $output_filename = $this->projectID . ":" . str_replace(':', '_', $this->projectID) . $ext;
+        media_saveOldRevision($output_filename);
     }
 
     public function responseProcess() {
@@ -54,10 +63,14 @@ class ProjectExportAction  extends AbstractWikiAction{
                           'filetype'        => $this->filetype,
                           'typesDefinition' => $this->typesDefinition,
                           'typesRender'     => $this->typesRender]);
-        $render = $fRenderer->createRender($this->typesDefinition[$this->mainTypeName], $this->typesRender[$this->mainTypeName], array("id"=> $this->projectID));
+        $render = $fRenderer->createRender($this->typesDefinition[$this->mainTypeName], 
+                                           $this->typesRender[$this->mainTypeName],
+                                           array("id"=> $this->projectID));
         $result = $render->process($this->dataArray);
-        $result['id'] = $this->projectID;
         $result['ns'] = $this->projectNS;
+        $result['ext'] = ".{$this->mode}";
+        $ret['id'] = $this->idToRequestId($this->projectID);
+        $ret['ns'] = $this->projectNS;
 
         switch ($this->mode) {
             case 'pdf' :
