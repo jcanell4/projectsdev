@@ -7,7 +7,7 @@
 if (!defined('DOKU_INC')) die();
 if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC."lib/plugins/");
 
-class ProjectExportAction  extends AbstractWikiAction{
+class ProjectExportAction  extends ProjectAction{
     const CONFIG_TYPE_FILENAME = "configMain.json";
     const CONFIG_RENDER_FILENAME = "configRender.json";
 

@@ -8,7 +8,7 @@ if (!defined('DOKU_INC')) die();
 if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC."lib/plugins/");
 define('WIKI_IOC_PROJECTDEV', DOKU_PLUGIN . "projectsdev/projects/documentation/");
 
-class ProjectExportAction  extends AbstractWikiAction{
+class ProjectExportAction  extends ProjectAction{
     const PATH_RENDERER = WIKI_IOC_PROJECTDEV."exporter/";
     const PATH_CONFIG_FILE = WIKI_IOC_PROJECTDEV."metadata/config/";
     const CONFIG_TYPE_FILENAME = "configMain.json";
