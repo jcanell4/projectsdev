@@ -364,4 +364,19 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         }
         return trim($retUser, ", ");
     }
+
+    /**
+     * @override Guarda los datos en el momento de la cración
+     * @param array $toSet (s'ha generat a l'Action corresponent)
+     */
+    public function createData($toSet) {
+        parent::createData($toSet);
+
+        //Creació de l'arxiu de metadades corresponent al workflow
+        $subSet = "management";
+        $metaDataQuery = $this->getPersistenceEngine()->createProjectMetaDataQuery($this->id, $subSet, $this->projectType);
+        $metaDataManagement['workflow']['currentState'] = "creating";
+        $metaDataQuery->setMeta(json_encode($metaDataManagement), $subSet, "creació", NULL);
+    }
+
 }
