@@ -13,14 +13,14 @@ class ImportProjectAction extends ProjectAction {
         //
         $model = $this->getModel();
         $projectID = $this->params[ProjectKeys::KEY_ID];
-        $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($projectID, "management", $this->params['projectType']);
+        $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($projectID, "management", $this->params[ProjectKeys::KEY_PROJECT_TYPE]);
         $importProjectType = $metaDataQuery->getProjectType($this->params['project_import']);
 
-        $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($projectID, "management", $this->params['projectType']);
+        $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($projectID, "management", $this->params[ProjectKeys::KEY_PROJECT_TYPE]);
         $actionCommand = $model->getModelAttributes(AjaxKeys::KEY_ACTION);
         $data_management = $metaDataQuery->getDataProject();
         $action = $model->getMetaDataActionWorkflowFile($data_management['workflow']['currentState'], $actionCommand);
-        $validProjectTypes = $action['button']['parms']['DJO']['projectType'];
+        $validProjectTypes = $action['button']['parms']['DJO'][ProjectKeys::KEY_PROJECT_TYPE];
 
         if ($importProjectType == $validProjectTypes || in_array($importProjectType, $validProjectTypes))   {
             //

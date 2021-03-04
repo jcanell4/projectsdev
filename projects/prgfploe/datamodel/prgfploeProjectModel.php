@@ -35,27 +35,29 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
             $totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]] += $item["hores"];
         }
 
-        $totalUfs=array();
-        foreach ($nfTable as $item){
-            if($item["hores"]!=$totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]]){
-                throw new InvalidDataProjectException(
-                    $this->id,
-                    sprintf("Les hores del nucli formatiu %s  de la UF %d no coincideixen amb la suma de les hores de les seves activitats d'aprenentatge (hores NF=%d, però suma hoes AA=%d)."
-                            ,$item["nucli formatiu"]
-                            ,$item["unitat formativa"]
-                            ,$item["hores"]
-                            ,$totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]])
-                );
+        $totalUfs = array();
+        if (!empty($nfTable)){
+            foreach ($nfTable as $item){
+                if ($item["hores"] != $totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]]){
+                    throw new InvalidDataProjectException(
+                        $this->id,
+                        sprintf("Les hores del nucli formatiu %s  de la UF %d no coincideixen amb la suma de les hores de les seves activitats d'aprenentatge (hores NF=%d, però suma hoes AA=%d)."
+                                ,$item["nucli formatiu"]
+                                ,$item["unitat formativa"]
+                                ,$item["hores"]
+                                ,$totalNFs[$item["unitat formativa"]][$item["nucli formatiu"]])
+                    );
+                }
+                if (!isset($totalUfs[$item["unitat formativa"]])){
+                    $totalUfs[$item["unitat formativa"]] = 0;
+                }
+                $totalUfs[$item["unitat formativa"]] += $item["hores"];
             }
-            if(!isset($totalUfs[$item["unitat formativa"]])){
-                $totalUfs[$item["unitat formativa"]]=0;
-            }
-            $totalUfs[$item["unitat formativa"]] += $item["hores"];
         }
 
-        if(!empty($nfTable)){
+        if (!empty($ufTable)){
             foreach ($ufTable as $item) {
-                if($item["hores"]!=$totalUfs[$item["unitat formativa"]]){
+                if ($item["hores"] != $totalUfs[$item["unitat formativa"]]){
                     throw new InvalidDataProjectException(
                         $this->id,
                         sprintf("Les hores de la unitat formativa %s no coincideixen amb la suma de les hores dels seus nuclis foormatius (hores UF=%d, però suma hoes NF=%d)."
@@ -177,155 +179,143 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
 
     public function updateCalculatedFieldsOnRead($data, $originalDataKeyValue=FALSE) {
         $ufTable = $data["taulaDadesUF"];
-        if(!is_array($ufTable)){
+        if ($ufTable && !is_array($ufTable)){
             $ufTable = json_decode($ufTable, TRUE);
         }
-        $ufMetTable = $data["taulaMetodologiaUF"];
-        if(!is_array($ufMetTable)){
-            $ufMetTable = json_decode($ufMetTable, TRUE);
-        }
-        $nfTable = $data["taulaDadesNuclisFormatius"];
-        if(!is_array($nfTable)){
-            $nfTable = json_decode($nfTable, TRUE);
-        }
         $resultatsAprenentatge = $data["resultatsAprenentatge"];
-        if(!is_array($resultatsAprenentatge)){
+        if ($resultatsAprenentatge && !is_array($resultatsAprenentatge)){
            $resultatsAprenentatge = json_decode($resultatsAprenentatge, TRUE);
         }
 
-        foreach ($ufTable as $key => $value) {
-            if($ufTable[$key]["ponderació"]=="0"){
-                $ufTable[$key]["ponderació"]=$ufTable[$key]["hores"];
+        if ($ufTable) {
+            foreach ($ufTable as $key => $value) {
+                if ($ufTable[$key]["ponderació"] == "0"){
+                    $ufTable[$key]["ponderació"] = $ufTable[$key]["hores"];
+                }
             }
         }
-        foreach ($resultatsAprenentatge as $key => $value) {
-            if($resultatsAprenentatge[$key]["ponderacio"]=="0"){
-                 $resultatsAprenentatge[$key]["ponderacio"]=$resultatsAprenentatge[$key]["hores"];
+        if ($resultatsAprenentatge) {
+            foreach ($resultatsAprenentatge as $key => $value) {
+                if ($resultatsAprenentatge[$key]["ponderacio"] == "0"){
+                     $resultatsAprenentatge[$key]["ponderacio"] = $resultatsAprenentatge[$key]["hores"];
+                }
             }
         }
 
-        $data["taulaDadesUF"]=$ufTable;
-        $data["resultatsAprenentatge"]=$resultatsAprenentatge;
+        $data["taulaDadesUF"] = $ufTable;
+        $data["resultatsAprenentatge"] = $resultatsAprenentatge;
         return $data;
     }
 
     public function updateCalculatedFieldsOnSave($data, $originalDataKeyValue=FALSE) {
         $ufTable = $data["taulaDadesUF"];
-        if(!is_array($ufTable)){
+        if ($ufTable && !is_array($ufTable)){
             $ufTable = json_decode($ufTable, TRUE);
         }
         $resultatsAprenentatge = $data["resultatsAprenentatge"];
-        if(!is_array($resultatsAprenentatge)){
+        if ($resultatsAprenentatge && !is_array($resultatsAprenentatge)){
             $resultatsAprenentatge = json_decode($resultatsAprenentatge, TRUE);
         }
         $activitatsAprenentatge = $data["activitatsAprenentatge"];
-        if(!is_array($activitatsAprenentatge)){
+        if ($activitatsAprenentatge && !is_array($activitatsAprenentatge)){
             $activitatsAprenentatge = json_decode($activitatsAprenentatge, TRUE);
         }
         $insAvTable = $data["taulaInstrumentsAvaluacio"];
-        if(!is_array($insAvTable)){
+        if ($insAvTable && !is_array($insAvTable)){
             $insAvTable = json_decode($insAvTable, TRUE);
         }
         //Calcula les hores per bloc i si cal, la pnderació.
         $blocTable = array();
-        $blocTotal = 0;
         $total = 0;
-        $i=0;
-        $size = count($ufTable);
-        while($i<$size) {
-             $ufTable[$i]["hores"] = $ufTable[$i]["horesMinimes"]+$ufTable[$i]["horesLLiureDisposicio"];
-             $total += $ufTable[$i]["hores"];
-             $blocTotal += $ufTable[$i]["hores"];
-             $currentBloc=$ufTable[$i]["bloc"];
-             if($ufTable[$i]["ponderació"]==$ufTable[$i]["hores"]){
-                 $ufTable[$i]["ponderació"]==0;
-             }
-             $i++;
-             if($i==$size || $ufTable[$i]['bloc']!=$currentBloc){
-                $blocRow = array();
-                $blocRow["bloc"] =$currentBloc;
-                $blocRow["horesBloc"]=$blocTotal;
-                $blocTable[] =$blocRow;
-                $blocTotal=0;
-             }
+        if ($ufTable) {
+            $blocTotal = 0;
+            $i = 0;
+            $size = count($ufTable);
+            while($i < $size) {
+                $ufTable[$i]["hores"] = $ufTable[$i]["horesMinimes"] + $ufTable[$i]["horesLLiureDisposicio"];
+                $total += $ufTable[$i]["hores"];
+                $blocTotal += $ufTable[$i]["hores"];
+                $currentBloc = $ufTable[$i]["bloc"];
+                if ($ufTable[$i]["ponderació"] == $ufTable[$i]["hores"]){
+                    $ufTable[$i]["ponderació"] = 0;
+                }
+                $i++;
+                if ($i==$size || $ufTable[$i]['bloc'] != $currentBloc){
+                    $blocRow = array();
+                    $blocRow["bloc"] = $currentBloc;
+                    $blocRow["horesBloc"] = $blocTotal;
+                    $blocTable[] = $blocRow;
+                    $blocTotal = 0;
+                 }
+            }
         }
 
         //calcula les hores pe RA
         $horesRa = array();
         foreach ($activitatsAprenentatge as $value) {
-            if(!isset($horesRa[$value["unitat formativa"]])){
+            if (!isset($horesRa[$value["unitat formativa"]])){
                 $horesRa[$value["unitat formativa"]]=array();
             }
-            if(!isset($horesRa[$value["unitat formativa"]][$value["ra"]])){
+            if (!isset($horesRa[$value["unitat formativa"]][$value["ra"]])){
                 $horesRa[$value["unitat formativa"]][$value["ra"]]=0;
             }
             $horesRa[$value["unitat formativa"]][$value["ra"]]+=$value["hores"];
         }
 
-        foreach ($resultatsAprenentatge as $key => $value) {
-            $resultatsAprenentatge[$key]["hores"] = $horesRa[$value["uf"]][$value["ra"]];
-             if($resultatsAprenentatge[$key]["ponderacio"]==$resultatsAprenentatge[$key]["hores"]){
-                 $resultatsAprenentatge[$key]["ponderacio"]==0;
-             }
+        if ($resultatsAprenentatge) {
+            foreach ($resultatsAprenentatge as $key => $value) {
+                $resultatsAprenentatge[$key]["hores"] = $horesRa[$value["uf"]][$value["ra"]];
+                if ($resultatsAprenentatge[$key]["ponderacio"] == $resultatsAprenentatge[$key]["hores"]){
+                    $resultatsAprenentatge[$key]["ponderacio"] = 0;
+                }
+            }
         }
 
-        $notaMinimaAC=10;
-        $notaMinimaPAF=10;
-        $notaMinimaEAF=10;
-        $notaMinimaJT=10;
-        foreach ($insAvTable as $item) {
-            if($item["tipus"]=="AC"){
-                if($notaMinimaAC>$item["notaMinima"]){
-                    $notaMinimaAC = $item["notaMinima"];
+        $notaMinimaAC = 10;
+        $notaMinimaPAF = 10;
+        $notaMinimaEAF = 10;
+        $notaMinimaJT = 10;
+        if ($insAvTable) {
+            foreach ($insAvTable as $item) {
+                if ($item["tipus"] == "AC"){
+                    if ($notaMinimaAC > $item["notaMinima"]){
+                        $notaMinimaAC = $item["notaMinima"];
+                    }
                 }
-            }
-            if($item["tipus"]=="EAF"){
-                if($notaMinimaEAF>$item["notaMinima"]){
-                    $notaMinimaEAF = $item["notaMinima"];
+                if ($item["tipus"] == "EAF"){
+                    if($notaMinimaEAF > $item["notaMinima"]){
+                        $notaMinimaEAF = $item["notaMinima"];
+                    }
                 }
-            }
-            if($item["tipus"]=="JT"){
-                if($notaMinimaJT>$item["notaMinima"]){
-                    $notaMinimaJT= $item["notaMinima"];
+                if ($item["tipus"] == "JT"){
+                    if ($notaMinimaJT > $item["notaMinima"]){
+                        $notaMinimaJT = $item["notaMinima"];
+                    }
                 }
-            }
-            if($item["tipus"]=="PAF"){
-                if($notaMinimaPAF>$item["notaMinima"]){
-                    $notaMinimaPAF= $item["notaMinima"];
+                if ($item["tipus"] == "PAF"){
+                    if($notaMinimaPAF > $item["notaMinima"]){
+                        $notaMinimaPAF = $item["notaMinima"];
+                    }
                 }
             }
         }
-        if($notaMinimaAC==10){
-            $notaMinimaAC=0;
+        if ($notaMinimaAC == 10){
+            $notaMinimaAC = 0;
         }
-        if($notaMinimaPAF==10){
-            $notaMinimaPAF=4;
+        if ($notaMinimaPAF == 10){
+            $notaMinimaPAF = 4;
         }
-        if($notaMinimaEAF==10){
-            $notaMinimaEAF=4;
+        if ($notaMinimaEAF == 10){
+            $notaMinimaEAF = 4;
         }
-        if($notaMinimaJT==10){
-            $notaMinimaJT=0;
+        if ($notaMinimaJT == 10){
+            $notaMinimaJT = 0;
         }
 
-//        $size = count($ufMetTable);
-//        while($i<$size) {
-//            if($ufMetTable[$i]["nombreEACS"]==array_reduce($nfTable, function($count, $item){
-//                        if($ufMetTable[$key]["unitat formativa"]==$item["unitat formativa"]){
-//                            $count+=1;
-//                        }
-//                        return $count;
-//                    })){
-//                $ufMetTable[$i]["nombreEACS"]==-1;
-//            }
-//            $i++;
-//        }
-//        $data["taulaDadesNuclisFormatius"]=$ufMetTable;
-
-        $data["resultatsAprenentatge"]=$resultatsAprenentatge;
-        $data["taulaDadesUF"]=$ufTable;
-        $data["taulaDadesBlocs"]=$blocTable;
-        $data["durada"]=$total;
+        $data["resultatsAprenentatge"] = $resultatsAprenentatge;
+        $data["taulaDadesUF"] = $ufTable;
+        $data["taulaDadesBlocs"] = $blocTable;
+        $data["durada"] = $total;
         $data["notaMinimaAC"] = $notaMinimaAC;
         $data["notaMinimaEAF"] = $notaMinimaEAF;
         $data["notaMinimaJT"] = $notaMinimaJT;

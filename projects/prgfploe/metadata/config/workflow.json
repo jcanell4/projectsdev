@@ -28,7 +28,8 @@
                 "permissions": {
                     "groups": [
                         "admin",
-                        "manager"
+                        "manager",
+                        "projectmanager"
                      ],
                      "rols": [
                         "responsable",
@@ -45,6 +46,37 @@
                         "updateHandler": {
                             "conditions": {
                                 "page.action": "'project_view'"
+                            }
+                        }
+                    }
+                },
+                "changeStateTo":"creating"
+            },
+            "generate": {
+                "permissions": {
+                    "groups": [
+                        "admin",
+                        "manager",
+                        "projectmanager"
+                     ],
+                     "rols": [
+                        "responsable",
+                        "autor"
+                    ]
+                },
+                "button": {
+                    "id": "prgfploeGnerateProjectButton",
+                    "class": "WikiIocButton",
+                    "parms": {
+                        "DOM": {
+                           "id": "prgfploeGnerateProjectButton"
+                        }
+                    },
+                    "scripts": {
+                        "updateHandler": {
+                            "conditions": {
+                                "page.isRevision": "false",
+                                "page.action": "'never'"
                             }
                         }
                     }
@@ -117,11 +149,11 @@
                     ]
                 },
                 "button": {
-                    "id": "importProjectButton",
+                    "id": "prgfploeImportProjectButton",
                     "class": "WikiIocButton",
                     "parms": {
                         "DOM": {
-                           "id": "importProjectButton",
+                           "id": "prgfploeImportProjectButton",
                            "title": "Importar projecte",
                            "class": "iocDisplayBlock"
                         },
@@ -165,11 +197,11 @@
                     ]
                 },
                 "button": {
-                    "id": "toReviseProjectButton",
+                    "id": "prgfploeToReviseProjectButton",
                     "class": "WikiIocButton",
                     "parms": {
                         "DOM": {
-                            "id": "toReviseProjectButton",
+                            "id": "prgfploeToReviseProjectButton",
                             "title": "Marca Edició completada",
                             "class": "iocDisplayBlock"
                         },
@@ -198,6 +230,51 @@
                     }
                 },
                 "changeStateTo": "revising"
+            },
+            "pdfExport": {
+                "permissions": {
+                    "groups": [
+                        "admin",
+                        "manager".
+                        "projectmanager"
+                    ],
+                    "rols": [
+                        "responsable",
+                        "autor"
+                    ]
+                },
+                "button": {
+                    "id": "prgfploePdfExportButton",
+                    "class": "WikiIocButton",
+                    "parms": {
+                        "DOM": {
+                           "id": "prgfploePdfExportButton",
+                           "title": "prgfploe PDF Export",
+                           "class": "iocDisplayBlock"
+                        },
+                        "DJO": {
+                           "query": "'do=edit'",
+                           "autoSize": true,
+                           "visible": false,
+                           "iconClass": "'iocExportPdfIcon'",
+                           "urlBase": "'lib/exe/ioc_ajax.php?call=projectExport'",
+                           "standbyId": "'bodyContent'",
+                           "disableOnSend": true
+                        }
+                    },
+                    "scripts": {
+                        "getFunctions": {
+                            "path": "PdfExportGetFunction.js"
+                        },
+                        "updateHandler": {
+                            "conditions": {
+                                "page.action": "'project_view'",
+                                "page.isRevision": "false"
+                            }
+                        }
+                    }
+                },
+                "changeStateTo":"creating"
             }
         }
     },
@@ -227,11 +304,11 @@
                     ]
                 },
                 "button": {
-                    "id": "toValidateProjectButton",
+                    "id": "prgfploeToValidateProjectButton",
                     "class": "WikiIocButton",
                     "parms": {
                         "DOM": {
-                            "id": "toValidateProjectButton",
+                            "id": "prgfploeToValidateProjectButton",
                             "title": "Marca Revisió Completada",
                             "class": "iocDisplayBlock"
                         },
@@ -280,11 +357,11 @@
                     ]
                 },
                 "button": {
-                    "id": "validateProjectButton",
+                    "id": "prgfploeValidateProjectButton",
                     "class": "WikiIocButton",
                     "parms": {
                         "DOM": {
-                            "id": "validateProjectButton",
+                            "id": "prgfploeValidateProjectButton",
                             "title": "Validació de les dades",
                             "class": "iocDisplayBlock"
                         },
@@ -321,6 +398,9 @@
             "view": {
                 "shortcut":  "creating"
             },
+            "pdfExport": {
+                "shortcut":  "creating"
+            },
             "toModify": {
                 "permissions": {
                     "groups": [
@@ -333,11 +413,11 @@
                     ]
                 },
                 "button": {
-                    "id": "toModifyProjectButton",
+                    "id": "prgfploeToModifyProjectButton",
                     "class": "WikiIocButton",
                     "parms": {
                         "DOM": {
-                            "id": "toModifyProjectButton",
+                            "id": "prgfploeToModifyProjectButton",
                             "title": "Edició de les dades del projecte",
                             "class": "iocDisplayBlock"
                         },
@@ -381,6 +461,9 @@
                 "shortcut":  "creating"
             },
             "cancel": {
+                "shortcut":  "creating"
+            },
+            "pdfExport": {
                 "shortcut":  "creating"
             },
             "toRevise": {
