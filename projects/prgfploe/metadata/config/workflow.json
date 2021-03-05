@@ -235,7 +235,7 @@
                 "permissions": {
                     "groups": [
                         "admin",
-                        "manager".
+                        "manager",
                         "projectmanager"
                     ],
                     "rols": [
