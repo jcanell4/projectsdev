@@ -90,10 +90,7 @@ class PdfRenderer extends BasicPdfRenderer {
     public function renderDocument($params, $output_filename="") {
         parent::renderDocument($params, $output_filename);
 
-
         $this->iocTcPdf->setFooterDataLocal($params["data"]["peu"]);
-
-
 
         //pàgina de continguts
         $this->iocTcPdf->AddPage();

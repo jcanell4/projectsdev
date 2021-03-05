@@ -5,7 +5,7 @@ require([
     "dojo/domReady!"
 ], function (registry, dom, domForm) {
 
-    var prgfploePdfExportButton = registry.byId('prgfploePdfExport');
+    var prgfploePdfExportButton = registry.byId('prgfploePdfExportButton');
 
     var fOnClick=function(){
         var id = this.dispatcher.getGlobalState().getCurrentId();
