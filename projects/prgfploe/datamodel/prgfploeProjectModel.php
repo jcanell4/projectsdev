@@ -212,13 +212,13 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         if ($ufTable && !is_array($ufTable)){
             $ufTable = json_decode($ufTable, TRUE);
         }
-        $resultatsAprenentatge = $data["resultatsAprenentatge"];
-        if ($resultatsAprenentatge && !is_array($resultatsAprenentatge)){
-            $resultatsAprenentatge = json_decode($resultatsAprenentatge, TRUE);
-        }
         $activitatsAprenentatge = $data["activitatsAprenentatge"];
         if ($activitatsAprenentatge && !is_array($activitatsAprenentatge)){
             $activitatsAprenentatge = json_decode($activitatsAprenentatge, TRUE);
+        }
+        $resultatsAprenentatge = $data["resultatsAprenentatge"];
+        if ($resultatsAprenentatge && !is_array($resultatsAprenentatge)){
+            $resultatsAprenentatge = json_decode($resultatsAprenentatge, TRUE);
         }
         $insAvTable = $data["taulaInstrumentsAvaluacio"];
         if ($insAvTable && !is_array($insAvTable)){
@@ -252,14 +252,16 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
 
         //calcula les hores pe RA
         $horesRa = array();
-        foreach ($activitatsAprenentatge as $value) {
-            if (!isset($horesRa[$value["unitat formativa"]])){
-                $horesRa[$value["unitat formativa"]]=array();
+        if ($activitatsAprenentatge) {
+            foreach ($activitatsAprenentatge as $value) {
+                if (!isset($horesRa[$value["unitat formativa"]])){
+                    $horesRa[$value["unitat formativa"]] = array();
+                }
+                if (!isset($horesRa[$value["unitat formativa"]][$value["ra"]])){
+                    $horesRa[$value["unitat formativa"]][$value["ra"]] = 0;
+                }
+                $horesRa[$value["unitat formativa"]][$value["ra"]] += $value["hores"];
             }
-            if (!isset($horesRa[$value["unitat formativa"]][$value["ra"]])){
-                $horesRa[$value["unitat formativa"]][$value["ra"]]=0;
-            }
-            $horesRa[$value["unitat formativa"]][$value["ra"]]+=$value["hores"];
         }
 
         if ($resultatsAprenentatge) {
