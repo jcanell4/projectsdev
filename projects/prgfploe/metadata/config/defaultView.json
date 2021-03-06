@@ -548,12 +548,84 @@
           ]
         }
       },
+      "taulaPonderacioRA":{
+        "label": "Registre de la ponderació del RA (taulaPonderacioRA)",
+        "n_columns": 12,
+        "type": "editableObject",
+        "group": "UF",
+        "n_rows": 10,
+        "props": {
+          "required": true,
+          "data-editable-element": "table",
+          "title": "Indiqueu la ponderació dels instriments d'avaluació sobre un RA."                
+        },
+        "config": {
+            "actions": {
+                "create_table_from_url": {
+                    "button_label" :"Crear la taula completa a partir dels RA i els insruments d'avalaució",
+                    "data": {
+                        "url": "lib/exe/ioc_ajax.php?call=protected_processor&do=ProjectModelMethodCaller&command=createTableRAPonderation"
+                    }
+                },
+                "add_default_row": "Afegir un instrument d'avaluació per un RA",
+                "remove_rows": "Eliminar les files seleccionades",
+                "add_default_row_before": "Afegir instrument d'avalaució per un RA abans de la fila seleccionada"
+            },                    
+            "fields": {
+                "uf":{
+                  "type": "number"         
+                },        
+                "ra": {
+                  "type": "number"
+                },
+                "instAvaluacio":{
+                    "type": "string"
+                },
+                "ponderacio":{
+                    "type": "decimal"
+                }
+            },
+            "layout": [
+                {
+                    "defaultCell": {
+                        "width" : "25%"
+                    },
+                    "cells": [
+                        {
+                          "name": "Unitat Formativa",
+                          "field": "uf",
+                          "editable": true
+                        },
+
+                        {
+                          "name": "Codi RA",
+                          "field": "ra",
+                          "editable": true
+                        },
+
+                        {
+                          "name": "Instrument d'Avalaució",
+                          "field": "instAvaluacio",
+                          "editable": true
+                        },
+
+                        {
+                          "name": "ponderació",
+                          "field": "ponderacio",
+                          "constraints": "{\"places\":2}",
+                          "editable": true
+                        }
+                    ]
+                }
+            ]
+        }
+      },
       "criterisAvaluacio":{
         "label": "Criteris d'avaluació (criterisAvaluacio)",
         "n_columns": 12,
         "type": "editableObject",
         "group": "UF",
-        "n_rows": 6,
+        "n_rows": 15,
         "props": {
           "required": true,
           "data-editable-element": "table",

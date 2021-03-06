@@ -6,7 +6,32 @@
 if (!defined("DOKU_INC")) die();
 
 class prgfploeProjectModel extends UniqueContentFileProjectModel{
-
+    
+    public function __construct($persistenceEngine)  {
+        parent::__construct($persistenceEngine);
+        $this->externalCallMethods["createTableRAPonderation"]="__createTableRAPonderation";
+    }
+    
+    protected function __createTableRAPonderation($data){
+        $tableRaPonderation =[];
+        $resApren = $data["resultatsAprenentatge"];
+        if(!is_array($resApren)){
+            $resApren = json_decode($resApren, TRUE);
+        }
+        $insAvTable = $data["taulaInstrumentsAvaluacio"];
+        if(!is_array($insAvTable)){
+            $insAvTable = json_decode($insAvTable, TRUE);
+        }
+        foreach ($resApren as $itemResAp) {
+            foreach ($insAvTable as $itemInsAv) {
+                if($itemInsAv["unitat formativa"]==$itemResAp["uf"]){
+                    $tableRaPonderation[]=["uf"=>$itemResAp["uf"], "ra" => $itemResAp["ra"], "instAvaluacio" => $itemInsAv["id"], "ponderacio" => $itemInsAv["ponderacio"]];
+                }            
+            }
+        }
+        return [ResponseHandlerKeys::TYPE => "array", ResponseHandlerKeys::VALUE => $tableRaPonderation];
+    }
+ 
     public function validateFields($data=NULL){
         $insAvTable = $data["taulaInstrumentsAvaluacio"];
         if(!is_array($insAvTable)){

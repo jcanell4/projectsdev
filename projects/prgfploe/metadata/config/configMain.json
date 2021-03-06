@@ -383,6 +383,31 @@
                     "type": "objectArray",
                     "typeDef":"entradaActivitatsAprenentatge"
                 },
+                "entradaPonderacioRA":{
+                    "type":"object",
+                    "keys":{
+                        "uf":{
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "{#_COPY(1)_#}"
+                        },
+                        "ra":{
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "{#_INC(1)_#}"
+                        },
+                        "instAvaluacio":{
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "EAC"
+                        },
+                        "ponderacio":{
+                            "type": "decimal",
+                            "mandatory": true,
+                            "default": 10
+                        }
+                    }
+                },
                 "entradaCc_historic":{
                     "type":"object",
                     "keys":{
@@ -583,6 +608,11 @@
                         "taulaInstrumentsAvaluacio": {
                             "type": "objectArray",
                             "typeDef":"entradaInstrumentsAvaluacio",
+                            "mandatory": true
+                        },
+                        "taulaPonderacioRA": {
+                            "type": "objectArray",
+                            "typeDef":"entradaPonderacioRA",
                             "mandatory": true
                         },
                         "duradaPAF": {
