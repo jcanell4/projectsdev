@@ -29,7 +29,7 @@ class action_plugin_projectsdev_projects_prgfploe extends WikiIocProjectWorkflow
             if (!isset($event->data['responseData'][ProjectKeys::KEY_CODETYPE])) {
                 $result['ns'] = getID();
                 $result['id'] = str_replace(':', '_', $result['ns']);
-                $result['ext'] = ".zip";
+                $result['ext'] = ".pdf";
                 if (class_exists("ResultsWithFiles", TRUE)){
                     $html = ResultsWithFiles::get_html_metadata($result) ;
                 }
