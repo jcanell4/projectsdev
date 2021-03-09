@@ -25,7 +25,7 @@ class IocTcPdf extends BasicIocTcPdf {
         $headerfont = $this->getHeaderFont();
         $cell_height = $this->getCellHeight($headerfont[2] / $this->k);
         $header_x = $margins['left'] + $margins['padding_left'] + ($this->header_logo_width * 1.1);
-        $header_w = 105 - $header_x;
+        $header_w = 95 - $header_x;
 
         $this->SetTextColorArray($this->header_text_color);
         // header title
@@ -40,7 +40,7 @@ class IocTcPdf extends BasicIocTcPdf {
 
     // Page footer
     public function Footer() {
-        $margins = $this->getMargins();
+        //$margins = $this->getMargins();
         $footerfont = $this->getFooterFont();
         $cell_height = $this->getCellHeight($footerfont[2]) / 2;
         $y_position = -($cell_height*2 + 15);
@@ -48,17 +48,17 @@ class IocTcPdf extends BasicIocTcPdf {
         $this->SetFont($footerfont[0], $footerfont[1], $footerfont[2]);
         $this->SetY($y_position);   //Position from bottom
 
-        $codi = " codi: ".$this->peu['codi'];
-        $versio = " versió: ".$this->peu['versio'];
-        $w1 = max(10, strlen($codi), strlen($versio)) * 2;
+        $cicle = " cicle: ".$this->peu['cicle'];
+        $modulId = " modulId: ".$this->peu['modulId'];
+        $w1 = max(10, strlen($cicle), strlen($modulId)) * 2;
         $w1 = min(30, $w1);
         $w2 = 22;
 
-        $this->MultiCell($w1, $cell_height, $codi, 1, 'L', 0, 1, "", "", true, 0, false, true, $cell_height, 'M');
-        $this->MultiCell($w1, $cell_height, $versio, 1, 'L', 0, 0, "", "", true, 0, false, true, $cell_height, 'M');
+        $this->MultiCell($w1, $cell_height, $cicle, 1, 'L', 0, 1, "", "", true, 0, false, true, $cell_height, 'M');
+        $this->MultiCell($w1, $cell_height, $modulId, 1, 'L', 0, 0, "", "", true, 0, false, true, $cell_height, 'M');
         $this->SetY($y_position);
-        $titol_w = $this->getPageWidth()-$margins['right']-($w1+$w2-5);
-        $this->MultiCell($titol_w, $cell_height*2, $this->peu['titol'], 1, 'C', 0, 0, "", "", true, 0, false, true, $cell_height*2, 'M');
+        $titol_w = $this->getPageWidth()-($w1+$w2);
+        $this->MultiCell($titol_w, $cell_height*2, $this->peu['departament'], 1, 'C', 0, 0, "", "", true, 0, false, true, $cell_height*2, 'M');
         $page_number = "pàgina ".$this->getPage()."/".$this->getNumPages()." ";
         $this->MultiCell($w2, $cell_height*2, $page_number, 1, 'R', 0, 1, "", "", true, 0, false, true, $cell_height*2, 'M');
     }

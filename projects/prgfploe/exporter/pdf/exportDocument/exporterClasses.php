@@ -33,14 +33,15 @@ class exportDocument extends renderHtmlDocument {
             mkdir($this->cfgExport->tmp_dir, 0775, TRUE);
         }
 
-        $titol = html_entity_decode(htmlspecialchars_decode($data["titol"], ENT_COMPAT|ENT_QUOTES));
-        $codi = html_entity_decode(htmlspecialchars_decode($data["codi"], ENT_COMPAT|ENT_QUOTES));
-        $versio = html_entity_decode(htmlspecialchars_decode($data["versio"], ENT_COMPAT|ENT_QUOTES));
+        $departament = html_entity_decode(htmlspecialchars_decode($data["departament"], ENT_COMPAT|ENT_QUOTES));
+        $cicle = html_entity_decode(htmlspecialchars_decode($data["cicle"], ENT_COMPAT|ENT_QUOTES));
+        $modul = html_entity_decode(htmlspecialchars_decode($data["modul"], ENT_COMPAT|ENT_QUOTES));
+        $modulId = html_entity_decode(htmlspecialchars_decode($data["modulId"], ENT_COMPAT|ENT_QUOTES));
 
         $params = array(
             "id" => $this->cfgExport->id,
-            "tmp_dir" => $this->cfgExport->tmp_dir,    //directori temporal on crear el pdf
-            "lang" => strtoupper($this->cfgExport->lang),  // idioma usat (CA, EN, ES, ...)
+            "tmp_dir" => $this->cfgExport->tmp_dir,
+            "lang" => strtoupper($this->cfgExport->lang),
             "mode" => isset($this->mode) ? $this->mode : $this->filetype,
     	    "max_img_size" => ($data['max_img_size']) ? $data['max_img_size'] : WikiGlobalConfig::getConf('max_img_size', 'wikiiocmodel'),
             "style" => "main.stypdf",
@@ -48,11 +49,16 @@ class exportDocument extends renderHtmlDocument {
                 "header" => ["logo"  => $this->cfgExport->rendererPath . "/resources/escutGene.jpg",
                              "wlogo" => 9.9,
                              "hlogo" => 11.1,
-                             "ltext" => "Generalitat de Catalunya\nDepartament d'Educació\nInstitut Obert de Catalunya"],
-                "peu" => ["titol" => $titol,
-                          "codi"  => $codi,
-                          "versio"=> $versio],
-                "contingut" => json_decode($data["fitxercontinguts"], TRUE)   //contingut latex ja rendaritzat
+                             "ltext" => "Generalitat de Catalunya\nDepartament d'Educació\nInstitut Obert de Catalunya",
+                             "rtext" => $departament."\n".$cicle."\n".$modulId." ".$modul],
+                "titol" => [$departament,
+                            "programació",
+                            $cicle,
+                            $modulId." ".$modul],
+                "peu" => ["departament" => $departament,
+                          "cicle"  => $cicle,
+                          "modulId"=> $modulId],
+                "contingut" => json_decode($data["pdfDocument"], TRUE)   //contingut latex ja rendaritzat
             )
         );
         $pdfRenderer = new PdfRenderer();
