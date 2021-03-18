@@ -13,7 +13,7 @@ class QualityProjectAction extends ProjectAction {
         // Històric del control de canvis
         $data = $model->getCurrentDataProject(FALSE, FALSE);
         switch ($button) {
-            case "inici modificació":
+            case "inici modificació o inici creació":
                 //eliminar signatures i dates de totes persones
                 $data['cc_dadesAutor']['dataDeLaGestio'] = "";
                 $data['cc_dadesAutor']['signatura'] = "pendent";

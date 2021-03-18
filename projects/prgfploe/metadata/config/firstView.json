@@ -306,6 +306,72 @@
           ]
         }
       },
+      "taulaDadesNuclisFormatius": {
+        "label": "Nuclis formatius de cada unitat Formativa (taulaDadesNuclisFormatius)",
+        "n_columns": 12,
+        "type": "editableObject",
+        "group": "UF",
+        "n_rows": 5,
+        "props": {
+          "data-editable-element": "table",
+          "title": "Detalleu les dades de cada UF referents a les metodologies específiques aplicades i a l'avalaució inicial."      
+        },
+        "config": {
+          "actions": {
+            "add_default_row": "Afegir un Nucli Formatiu",
+            "remove_rows": "Eliminar els Nuclis Formatius seleccionats",
+            "add_default_row_before": "Afegir N.F. abans de la fila seleccionada"
+          },
+          "fields": {
+            "unitat formativa": {
+              "type": "number"
+            },
+            "nucli formatiu": {
+              "type": "number"
+            },
+            "nom": {
+                "type": "string"
+            },
+            "hores": {
+              "type": "number"
+            }
+          },
+          "layout": [
+            {
+              "defaultCell": {
+                "width" : "15%"
+              },
+              "cells": [
+                {
+                  "name": "Unitat Formativa",
+                  "field": "unitat formativa",
+                  "editable": true
+                },
+
+                {
+                  "name": "Nucli Formatiu",
+                  "field": "nucli formatiu",
+                  "editable": true
+                },
+
+                {
+                  "name": "Nom del N.F.",
+                  "field": "nom",
+                   "width":"60%",
+                  "editable": true
+                },
+
+                {
+                  "name": "Hores del N.F.",
+                  "field": "hores",
+                   "width":"10%",
+                  "editable": true
+                }
+              ]
+            }
+          ]
+        }
+      },      
       "taulaInstrumentsAvaluacio": {
         "label": "Instruments d'avaluació (taulaInstrumentsAvaluacio)",
         "n_columns": 12,
@@ -725,72 +791,6 @@
                 {
                   "name": "Contingut contextualitzat",
                   "field": "contextualitzat",
-                  "editable": true
-                }
-              ]
-            }
-          ]
-        }
-      },
-      "taulaDadesNuclisFormatius": {
-        "label": "Nuclis formatius de cada unitat Formativa (taulaDadesNuclisFormatius)",
-        "n_columns": 12,
-        "type": "editableObject",
-        "group": "UF",
-        "n_rows": 5,
-        "props": {
-          "data-editable-element": "table",
-          "title": "Detalleu les dades de cada UF referents a les metodologies específiques aplicades i a l'avalaució inicial."      
-        },
-        "config": {
-          "actions": {
-            "add_default_row": "Afegir un Nucli Formatiu",
-            "remove_rows": "Eliminar els Nuclis Formatius seleccionats",
-            "add_default_row_before": "Afegir N.F. abans de la fila seleccionada"
-          },
-          "fields": {
-            "unitat formativa": {
-              "type": "number"
-            },
-            "nucli formatiu": {
-              "type": "number"
-            },
-            "nom": {
-                "type": "string"
-            },
-            "hores": {
-              "type": "number"
-            }
-          },
-          "layout": [
-            {
-              "defaultCell": {
-                "width" : "15%"
-              },
-              "cells": [
-                {
-                  "name": "Unitat Formativa",
-                  "field": "unitat formativa",
-                  "editable": true
-                },
-
-                {
-                  "name": "Nucli Formatiu",
-                  "field": "nucli formatiu",
-                  "editable": true
-                },
-
-                {
-                  "name": "Nom del N.F.",
-                  "field": "nom",
-                   "width":"60%",
-                  "editable": true
-                },
-
-                {
-                  "name": "Hores del N.F.",
-                  "field": "hores",
-                   "width":"10%",
                   "editable": true
                 }
               ]

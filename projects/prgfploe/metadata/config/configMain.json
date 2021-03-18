@@ -199,6 +199,10 @@
                             "mandatory": true,
                             "default": "0"
                         },
+                        "avaluacioInicial":{
+                            "type": "string",
+                            "mandatory": true
+                        },
                         "bloc": {
                             "type": "number",
                             "mandatory": true,
@@ -214,50 +218,7 @@
                 "defTaulaDadesUF": {
                     "type": "objectArray",
                     "typeDef":"entradaDadesUF"
-                },      
-                "entradaMetodologiaUF": {
-                    "type": "object",
-                    "keys": {
-                        "unitat formativa": {
-                            "type": "number",
-                            "mandatory": true,
-                            "default": "{#_INC(1)_#}"
-                        },
-                        "metodologiaUnitatFormativa": {
-                            "type": "textarea",
-                            "mandatory": true,
-                            "default":"Indiqueu aquí la metoodologia específica de la unitat formativa."
-                        },
-                        "resumMetodologiaUnitatFormativa": {
-                            "type": "textarea",
-                            "mandatory": true,
-                            "default":"Indiqueu aquí un resum de la metoodologia específica de la unitat formativa."
-                        }
-                    }
-                },
-                "defTaulaMetodologiaUF": {
-                    "type": "objectArray",
-                    "typeDef":"entradaMetodologiaUF"
-                },      
-                "entradaAvaluacioInicialUF": {
-                    "type": "object",
-                    "keys": {
-                        "unitat formativa": {
-                            "type": "number",
-                            "mandatory": true,
-                            "default": "{#_INC(1)_#}"
-                        },
-                        "tipus":{
-                            "type": "string",
-                            "mandatory": true
-                        },
-                        "ponderable":{
-                            "type": "boolean",
-                            "mandatory": true,
-                            "default": false
-                        }
-                    }
-                },    
+                },                      
                 "entradaInstrumentsAvaluacio": {
                     "type": "object",
                     "keys": {
@@ -275,6 +236,11 @@
                             "type": "string",
                             "mandatory": true,
                             "default": "{#_COPY(\"EAC1\")_#}"
+                        },
+                        "descripcio":{
+                            "type": "string",
+                            "mandatory": false,
+                            "default": ""
                         },
                         "treballEnEquip": {
                             "type": "boolean",
@@ -525,10 +491,6 @@
                             "type": "defTaulaDadesUF",
                             "mandatory": true
                         },
-                        "taulaMetodologiaUF": {
-                            "type": "defTaulaMetodologiaUF",
-                            "mandatory": true
-                        },                                                
                         "taulaDadesNuclisFormatius": {
                             "type": "defTaulaDadesNuclisFormatius",
                             "mandatory": true
@@ -600,11 +562,6 @@
                             },
                             "default": 4
                         },                                                 
-                        "taulaAvaluacioInicialUF": {
-                            "type": "objectArray",
-                            "typeDef":"entradaAvaluacioInicialUF",
-                            "mandatory": true
-                        },
                         "taulaInstrumentsAvaluacio": {
                             "type": "objectArray",
                             "typeDef":"entradaInstrumentsAvaluacio",
@@ -618,7 +575,7 @@
                         "duradaPAF": {
                             "type": "string",
                             "mandatory": true,
-                            "default":"1 hora i 50 minuts"
+                            "default":"Té una durada màxima d'1 hora i 50 minuts"
                         },   
                         "dadesExtres": {
                             "type": "defExtres",

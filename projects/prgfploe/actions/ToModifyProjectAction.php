@@ -12,13 +12,8 @@ class ToModifyProjectAction extends ProjectAction {
         // Obtenir les dades del projecte per omplir l'històric del control de canvis
         $projectMetaData = $model->getCurrentDataProject(FALSE, FALSE);
         // Inici de la Modificació: eliminar signatures i dates de totes les persones
-        $projectMetaData['cc_dadesAutor']['dataDeLaGestio'] = "";
-        $projectMetaData['cc_dadesAutor']['signatura'] = "pendent";
-        $projectMetaData['cc_dadesRevisor']['dataDeLaGestio'] = "";
-        $projectMetaData['cc_dadesRevisor']['signatura'] = "pendent";
-        $projectMetaData['cc_dadesValidador']['dataDeLaGestio'] = "";
-        $projectMetaData['cc_dadesValidador']['signatura'] = "pendent";
-
+        $model->clearQualityRolesData($projectMetaData);        
+        $model->addHistoricGestioDocument($projectMetaData);
         return $projectMetaData;
     }
 
