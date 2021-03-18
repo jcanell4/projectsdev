@@ -13,7 +13,7 @@ require([
 ],
 function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,TextBox,Button,NsTreeContainer,normalitzaCaracters) {
 
-    var importButton = registry.byId('cfgIdConstants::IMPORT_PROJECT_BUTTON');
+    var importButton = registry.byId('prgfploeImportProjectButton');
     
     if (importButton) {
         importButton.onClick = function () {
@@ -145,7 +145,8 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Text
                                         '&action=import' + 
                                         '&project_import=' + normalitzaCaracters(ProjectImport.value, true) +
                                         '&id=' + page.ns + 
-                                        '&projectType=' + page.projectType;
+                                        '&projectType=' + page.projectType +
+                                        '&fromPageAction=' + page.action;
                             importButton.sendRequest(query);
                             dialog.hide();
                         }

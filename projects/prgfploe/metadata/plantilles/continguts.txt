@@ -47,7 +47,7 @@ La data prevista d'inici i finalització de cada unitat formativa és l'establer
 <WIOCCL:SET var="primer" type="literal" value="1">
 <WIOCCL:FOREACH var="itemUf" array="{##taulaDadesUF##}">
 <WIOCCL:IF condition="{##primer##}==0">
-| \\ |||
+\\
 </WIOCCL:IF>
 <WIOCCL:IF condition="{##primer##}==1">
 <WIOCCL:RESET var="primer" type="literal" value="0"></WIOCCL:RESET>
@@ -67,10 +67,6 @@ La data prevista d'inici i finalització de cada unitat formativa és l'establer
 :###
 Les estratègies metodològiques del mòdul són les establertes en les concrecions curriculars de centre FP LOE (CCC_FP_LOE) i en les concrecions curriculars del departament (CCD). 
 
-<WIOCCL:FOREACH var="item" array="{##taulaMetodologiaUF##}"  filter="{#_IS_STR_EMPTY(''{##item[resumMetodologiaUnitatFormativa]##}'')_#}==false">
-  * {##item[resumMetodologiaUnitatFormativa]##}
-</WIOCCL:FOREACH>
-
 {##estrategiesMetodologiques##}
 
 ###:
@@ -78,11 +74,9 @@ Les estratègies metodològiques del mòdul són les establertes en les concreci
 :###====== AVALUACIÓ I QUALIFICACIÓ DEL MÒDUL ======###:
 
 :###
-Els criteris d'avaluació, instruments d’avaluació i recuperació del mòdul són els establerts en les concrecions curriculars de centre FP LOE (CCC_FP_LOE) i en les concrecions curriculars del departament.
+Els criteris d'avaluació, instruments d’avaluació i recuperació del mòdul són els establerts en les concrecions curriculars de centre FP LOE (CCC_FP_LOE) i en les concrecions curriculars del departament (CCD).
 
-Per superar el mòdul professional cal superar **independentment** totes les unitats formatives.
-
-Les unitats formatives se superen amb una qualificació de {##notaMinimaUfAprovada##},00 punts o superior. 
+Per superar el mòdul professional cal superar **independentment** totes les unitats formatives. Les unitats formatives se superen amb una qualificació de {##notaMinimaUfAprovada##},00 punts o superior. 
 
 <WIOCCL:IF condition="{#_ARRAY_LENGTH({##taulaDadesBlocs##})_#}\>0">
 La superació del bloc s’obté amb la superació de les unitats formatives que el componen. No es poden cursar bloc superiors  si no s'han superat els previs. La qualificació final del bloc s’expressarà com a Superat o Pendent, segons correspongui.
@@ -95,6 +89,7 @@ La qualificació final del mòdul professional serà el resultat de la mitjana d
 </WIOCCL:SET>
 
 La qualificació final del mòdul (QFM) és numèrica de l’1 al 10, sense decimals.
+
 En el cas d'unitats formatives exemptes o convalidades, la nota del mòdul es calcularà d'acord amb la normativa vigent.
 ###:
 
@@ -108,7 +103,7 @@ Material IOC del mòdul //**{##modulId##} {##modul##}**// del cicle formatiu //{
 <WIOCCL:IF condition="{#_ARRAY_LENGTH({##recursosNecessaris##})_#}\>0">
 Els recursos necessaris per cursar aquest mòdul són:
 
-  *Material IOC del mòdul //**{##modulId##} {##modul##}**// del cicle formatiu //{##cicle##}//.
+  * Material IOC del mòdul //**{##modulId##} {##modul##}**// del cicle formatiu //{##cicle##}//.
 <WIOCCL:FOREACH var="item" array="{##recursosNecessaris##}">
   * {##item##}
 </WIOCCL:FOREACH>
@@ -144,18 +139,18 @@ Els recursos necessaris per cursar aquest mòdul són:
 :###
 <WIOCCL:FOREACH var="itemNf" array="{##taulaDadesNuclisFormatius##}" filter="{##itemUf[unitat formativa]##}=={##itemNf[unitat formativa]##}">
 ::table:T04.{##itemNf[nucli formatiu]##}
-  :title:RA, CA i CONTINGUTS
-  :widths:1,2,2
-  :force_widths
+  :title:Activitats d'aprenentatge pel NF{##itemNf[nucli formatiu]##}
   :type:pt_taula
-[^  NF{##itemNf[nucli formatiu]##}: {##itemNf[nom]##}  ^^^^^^
-^       activitats d'ensenyament i aprenentatge       ^^  RA   ^  Continguts  ^  Avaluació  ^^
+[^  NF{##itemNf[nucli formatiu]##}: {##itemNf[nom]##} ({##itemNf[hores]##} h)  ^^^^^^
+^ activitats d'ensenyament i aprenentatge       ^^  RA  ^  Continguts  ^  Avaluació  ^^
 ^                         :::                         ^^  :::  ^     :::      ^     CA      ^  instruments d'avaluació  ^
 <WIOCCL:SET var="sizeActivitatsAprenentatge" type="literal" value="{#_SUBS({#_COUNTINARRAY({##activitatsAprenentatge##}, [''unitat formativa'', ''nucli formatiu''], [{##itemUf[unitat formativa]##},{##itemNf[nucli formatiu]##}])_#},1)_#}">
 <WIOCCL:FOREACH var="itemAa" array="{##activitatsAprenentatge##}" counter="posAa" filter="{##itemAa[unitat formativa]##}=={##itemUf[unitat formativa]##}&&{##itemAa[nucli formatiu]##}=={##itemNf[nucli formatiu]##}" counterFromZero="true">
-| //**{##itemAa[code]##}-{##itemAa[descripcio]##}**// |  {##itemAa[hores]##}  | {##itemAa[ra]##} | {##itemAa[continguts]##} | {##itemAa[ca]##} | {##itemAa[instruments d'avaluació]##}    |
+<WIOCCL:SET var="arrayInstrumentsAvaluacio" type="literal" value="{#_EXPLODE('','', ''{##itemAa[instruments d'avaluació]##}'', ''ALL'', 1)_#}">
+| //**{##itemAa[code]##}-{##itemAa[descripcio]##}**// |  {##itemAa[hores]##} h  | {##itemAa[ra]##} | {##itemAa[continguts]##}<WIOCCL:IF condition="{##sizeActivitatsAprenentatge##}=={##posAa##}">*</WIOCCL:IF> | {##itemAa[ca]##} | <WIOCCL:FOREACH var="itemInstrumentsAvaluacio" array="{##arrayInstrumentsAvaluacio##}">{##itemInstrumentsAvaluacio##}: {#_ARRAY_GET_VALUE(''descripcio'', {#_SEARCH_ROW([{##itemUf[unitat formativa]##}, ''{##itemInstrumentsAvaluacio##}''], {##taulaInstrumentsAvaluacio##}, [''unitat formativa'', ''id''], [])_#},'' '')_#}\\ </WIOCCL:FOREACH>|
 | //descripció://\\ \\ bla bla                                     ||     :::     |   :::   |    :::   |     :::  <WIOCCL:IF condition="{##sizeActivitatsAprenentatge##}=={##posAa##}">|]</WIOCCL:IF><WIOCCL:IF condition="{##sizeActivitatsAprenentatge##}!={##posAa##}">|
 </WIOCCL:IF> 
+</WIOCCL:SET>
 </WIOCCL:FOREACH>
 </WIOCCL:SET>
 :::
@@ -164,24 +159,12 @@ Els recursos necessaris per cursar aquest mòdul són:
 
 :###
 ~~NORMAL WIDTH~~
-==== Metodologia de la unitat formativa ====
-<WIOCCL:SET var="keyUf" type="literal" value="{#_SEARCH_KEY({##itemUf[unitat formativa]##},{##taulaMetodologiaUF##}, ''unitat formativa'')_#}">
-<WIOCCL:IF condition="{##keyUf##}!==false && {#_IS_STR_EMPTY(''{#_ARRAY_GET_VALUE(''metodologiaUnitatFormativa'',{#_ARRAY_GET_VALUE(''{##keyUf##}'',{##taulaMetodologiaUF##},[])_#},'''')_#}'')_#}!=true">
-{#_ARRAY_GET_VALUE("metodologiaUnitatFormativa",{#_ARRAY_GET_VALUE("{##keyUf##}",{##taulaMetodologiaUF##},[])_#},"")_#}
-</WIOCCL:IF> 
-<WIOCCL:IF condition="{##keyUf##}===false || {#_IS_STR_EMPTY(''{#_ARRAY_GET_VALUE(''metodologiaUnitatFormativa'',{#_ARRAY_GET_VALUE(''{##keyUf##}'',{##taulaMetodologiaUF##},[])_#},'''')_#}'')_#}==true">
-No hi ha cap metodologia específica per aquesta unitat formativa.
-</WIOCCL:IF> 
-</WIOCCL:SET>
-###:
-
-:###
 ==== Avaluació i qualificació de la unitat formativa ====
 ###:
 
 :###
-<WIOCCL:SET var="keyUf" type="literal" value="{#_SEARCH_KEY({##itemUf[unitat formativa]##},{##taulaAvaluacioInicialUF##}, ''unitat formativa'')_#}">
-<WIOCCL:SET var="initialAss" type="literal" value="{#_ARRAY_GET_VALUE(''tipus'',{#_ARRAY_GET_VALUE(''{##keyUf##}'',{##taulaAvaluacioInicialUF##},[])_#},'''')_#}">
+<WIOCCL:SET var="keyUf" type="literal" value="{#_SEARCH_KEY({##itemUf[unitat formativa]##},{##taulaDadesUF##}, ''unitat formativa'')_#}">
+<WIOCCL:SET var="initialAss" type="literal" value="{#_ARRAY_GET_VALUE(''avaluacioInicial'',{#_ARRAY_GET_VALUE(''{##keyUf##}'',{##taulaDadesUF##},[])_#},'' '')_#}">
 <WIOCCL:SET var="codeInitialAss" type="map" value="{##initialAss##}" map="{''No en té'':0, ''A l'inici del mòdul'':1, ''A l'inici del bloc'':2, ''A l'inici de la UF'':3}">
 <WIOCCL:IF condition="{##codeInitialAss##}!=0">
 === Avaluació inicial ===
@@ -189,7 +172,6 @@ No hi ha cap metodologia específica per aquesta unitat formativa.
 
 :###
 Es planteja {#_LCFIRST(''{##initialAss##}'')_#}. El seu objectiu és detectar i fer conscients els alumnes dels seus coneixements previs. Permet al professor adaptar l'ajuda pedagògica al grup i, si escau, de manera personalitzada a l'alumne que ho precisi.
-<WIOCCL:IF condition="">Comporta una qualificació que s'incorpora a la qualificació de l'avaluació contínua.</WIOCCL:IF>
 ###:
 
 :###
@@ -201,7 +183,7 @@ Es planteja {#_LCFIRST(''{##initialAss##}'')_#}. El seu objectiu és detectar i 
 ###:
 
 :###
-El model pedagògic de l'IOC es fonamenta en l’avaluació acadèmica de l’alumne mitjançant l’ avaluació contínua (AC). Està constatat que l’èxit en els estudis a distància està directament relacionat amb el ritme d’estudi continuat al llarg de tot el període acadèmic. Es recomana a tots els alumnes que segueixin l’AC atès que forma part de la qualificació final.
+El model pedagògic de l'IOC es fonamenta en l’avaluació acadèmica de l’alumne mitjançant l’AC. Està constatat que l’èxit en els estudis a distància està directament relacionat amb el ritme d’estudi continuat al llarg de tot el període acadèmic. Es recomana a tots els alumnes que segueixin l’AC atès que forma part de la qualificació final.
 
 <WIOCCL:SET var="nombreEACs" type="literal" value="{#_COUNTINARRAY({##taulaInstrumentsAvaluacio##}, [''unitat formativa'',''tipus''], [{##itemUf[unitat formativa]##}, ''AC''])_#}">
 **L'AC:**
@@ -219,8 +201,9 @@ El model pedagògic de l'IOC es fonamenta en l’avaluació acadèmica de l’al
 :###
 ** Exercicis d'avaluació contínua (EAC):**
   * Han de ser lliurats dins dels terminis fixats, el termini és improrrogable. El sistema no permet lliurar cap EAC passades les 23.55 hores de la data de lliurament.
-  * L’alumne ha de fer les activitats proposades de manera individual, original i seguint les indicacions del professor. Els EAC que siguin còpia literal (total o parcial) d'altres treballs, exercicis o fonts es consideraran suspesos amb una qualificació de 0.
-  * En els EAC s'estableixen els criteris d'avaluació corresponents tant de contingut com de forma (per exemple, l'expressió lingüística i ortogràfica).
+  * S'han de resoldre individualment.
+  * L’alumne ha de fer les activitats proposades de manera original i seguint les indicacions del professor. Els EAC que siguin còpia literal (total o parcial) d'altres treballs, exercicis o fonts es consideraran suspesos amb una qualificació de 0.
+  * En els EAC s'estableixen els criteris d'avaluació corresponents.
   * El professor  corregeix els EAC i emet una qualificació numèrica de l'escala entre el 0 i el 10, amb dos decimals.
   * Inclou la publicació de la solució, la valoració general al grup classe i una retroacció individual a cada alumne. 
 ###:
@@ -232,21 +215,23 @@ El model pedagògic de l'IOC es fonamenta en l’avaluació acadèmica de l’al
 :###
 <WIOCCL:SET var="keyUfEAF" type="literal" value="{#_SEARCH_KEY([{##itemUf[unitat formativa]##}, ''EAF''],{##taulaInstrumentsAvaluacio##}, [''unitat formativa'',''tipus''])_#}">
 <WIOCCL:SET var="keyUfJT" type="literal" value="{#_SEARCH_KEY([{##itemUf[unitat formativa]##}, ''JT''],{##taulaInstrumentsAvaluacio##}, [''unitat formativa'',''tipus''])_#}">
+<WIOCCL:SET var="keyUfPAF" type="literal" value="{#_SEARCH_KEY([{##itemUf[unitat formativa]##}, ''PAF''],{##taulaInstrumentsAvaluacio##}, [''unitat formativa'',''tipus''])_#}">
+<WIOCCL:SET var="keyUfPAFV" type="literal" value="{#_SEARCH_KEY([{##itemUf[unitat formativa]##}, ''PAFV''],{##taulaInstrumentsAvaluacio##}, [''unitat formativa'',''tipus''])_#}">
 <WIOCCL:IF condition="{##keyUfEAF##}===false && {##keyUfJT##}===false">
-L'avaluació final (AF) es concreta en la prova d'avaluació final (PAF):
+L'avaluació final (AF) es concreta en la prova d'avaluació final <WIOCCL:IF condition="{##keyUfPAF##}!=false">(PAF)</WIOCCL:IF><WIOCCL:IF condition="{##keyUfPAFV##}!=false">de validació (PAFV)</WIOCCL:IF>:
 </WIOCCL:IF> 
 <WIOCCL:IF condition="{##keyUfEAF##}!==false || {##keyUfJT##}!==false">
 L'avaluació final (AF) es concreta en la prova d'avaluació final (PAF)<WIOCCL:IF condition="{##keyUfEAF##}!==false"><WIOCCL:IF condition="{##keyUfJT##}===false"> i </WIOCCL:IF><WIOCCL:IF condition="{##keyUfJT##}!==false">, </WIOCCL:IF>els exercicis d'avaluació final (EAF)</WIOCCL:IF><WIOCCL:IF condition="{##keyUfJT##}!==false"> i les jornades tècniques (JT)</WIOCCL:IF>:
 </WIOCCL:IF> 
 
+<WIOCCL:IF condition="{##keyUfPAF##}!=false">
 **PAF:**
-  * És obligatòria a per aprovar el mòdul. 
-  * Té una durada de: {##duradaPAF##}, per a totes les UF del mòdul.
-  * Consisteix en diversos exercicis: test, frases V/F, preguntes obertes, resolució d'un cas pràctic, etc. 
+  * És obligatòria per aprovar el mòdul. 
+  * Consisteix en diversos exercicis: {#_ARRAY_GET_VALUE(''descripcio'',{#_ARRAY_GET_VALUE(''{##keyUfPAF##}'',{##taulaInstrumentsAvaluacio##},[])_#}," ")_#}. 
+  * {##duradaPAF##}.
   * S'avalua numèricament del 0 al 10, amb dos decimals.
   * NO inclou retroacció.
   * Té una ponderació a la qualificació final (QF) (vegeu l'apartat  "Qualificació final QF").
-  * S'ha d'obtenir una nota mínima de 4,00 sense arrodoniment previ per poder aplicar la fórmula  de la QF. 
 ###:
 
 :###
@@ -255,18 +240,26 @@ S'ofereixen dues convocatòries  cada semestre: PAF 1 i PAF 2 . L'alumne pot:
   * Presentar-se directament a la PAF 2. 
 
 La convocatòria corresponent a la PAF 1 s'esgota tant si l'alumne s'hi presenta com si no (exceptuant que l'alumne hagi anul·lat la matrícula). La convocatòria corresponent a PAF 2 només s'esgota si l'alumne s'hi presenta. 
+</WIOCCL:IF> 
 ###:
 
 :###
+<WIOCCL:IF condition="{##keyUfPAFV##}!=false">
+**PAFV:**
+###:
+[##TODO: Descriviu les característiques de prova de validació si n'hi ha.##]
+
+:###
+</WIOCCL:IF> 
 <WIOCCL:IF condition="{##keyUfEAF##}!==false">
 **EAF:**
-  * Comprèn una sèrie d'activitats d'avaluació  que tenen com a finalitat evidenciar el grau d'assoliment d'aquells resultats d'aprenentatge relacionats amb procediments difícils d'avaluar de forma presencial.
-  * Es realitza a distància. 
+  * Comprèn una sèrie d'activitats d'avaluació  que tenen com a finalitat evidenciar el grau d'assoliment d'aquells resultats d'aprenentatge relacionats amb procediments difícils d'avaluar amb altres elements d'avaluació.
+  * És NO presencial, es realitza a distància. 
 <WIOCCL:IF condition="true==={#_ARRAY_GET_VALUE(''esObligatori'',{#_ARRAY_GET_VALUE(''{##keyUfEAF##}'',{##taulaInstrumentsAvaluacio##},[])_#},false)_#}">
   * És obligatori.
 </WIOCCL:IF> 
-  * L’alumne ha de fer les activitats proposades <WIOCCL:IF condition="true!=={#_ARRAY_GET_VALUE(''treballEnEquip'',{#_ARRAY_GET_VALUE(''{##keyUfEAF##}'',{##taulaInstrumentsAvaluacio##},[])_#},false)_#}">de manera individual</WIOCCL:IF><WIOCCL:IF condition="true==={#_ARRAY_GET_VALUE(''treballEnEquip'',{#_ARRAY_GET_VALUE(''{##keyUfEAF##}'',{##taulaInstrumentsAvaluacio##},[])_#},false)_#}">en grup</WIOCCL:IF>. 
-  * El resultat ha de ser original i ha de seguir les indicacions del professor. Els EAF que siguin còpia literal (total o parcial) d'altres treballs, exercicis o fonts es consideraran suspesos amb una qualificació de 0.
+  * S'ha de resoldre <WIOCCL:IF condition="true!=={#_ARRAY_GET_VALUE(''treballEnEquip'',{#_ARRAY_GET_VALUE(''{##keyUfEAF##}'',{##taulaInstrumentsAvaluacio##},[])_#},false)_#}">de manera individual</WIOCCL:IF><WIOCCL:IF condition="true==={#_ARRAY_GET_VALUE(''treballEnEquip'',{#_ARRAY_GET_VALUE(''{##keyUfEAF##}'',{##taulaInstrumentsAvaluacio##},[])_#},false)_#}">en grup</WIOCCL:IF>. 
+  * L’alumne ha de fer les activitats proposades de manera original i seguint les indicacions del professor. Els EAF que siguin còpia literal (total o parcial) d'altres treballs, exercicis o fonts es consideraran suspesos amb una qualificació de 0.
   * S'avalua numèricament del 0 al 10, amb l’expressió d’un decimal.
   * Té una ponderació a la qualificació final (QF) (vegeu l'apartat "Qualificació final QF").
 ###:
@@ -319,16 +312,14 @@ La Qualificació Final de la Unitat Formativa (QFU{##itemUf[unitat formativa]##}
 <WIOCCL:SET var="sum_ponderacio" type="literal" value="{#_ARRAY_GET_SUM({##taulaInstrumentsAvaluacio##},''ponderacio'', ''unitat formativa'', {##itemUf[unitat formativa]##})_#}">
 <WIOCCL:SET var="length" type="literal" value="{#_COUNTINARRAY({##taulaInstrumentsAvaluacio##}, [''unitat formativa'',''tipus''], [{##itemUf[unitat formativa]##},[''EAF'',''JT'',''PAF'']])_#}">
 <WIOCCL:SET var="ponderacioAC" type="literal" value="{#_ARRAY_GET_SUM({##taulaInstrumentsAvaluacio##},''ponderacio'', [''unitat formativa'',''tipus''], [{##itemUf[unitat formativa]##}, ''AC''])_#}">
-**QFU{##itemUf[unitat formativa]##}= {#_GET_PERCENT({##sum_ponderacio##},{##ponderacioAC##})_#}% AC + <WIOCCL:FOREACH var="item" array="{##taulaInstrumentsAvaluacio##}" counter="ind" counterFromZero="true" filter="{##item[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##item[tipus]##}!=''AC''">{#_GET_PERCENT({##sum_ponderacio##},{##item[ponderacio]##})_#}% {##item[tipus]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({##length##},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH> **
+**QFU{##itemUf[unitat formativa]##}= {#_GET_PERCENT({##sum_ponderacio##},{##ponderacioAC##})_#}% AC + <WIOCCL:FOREACH var="item" array="{##taulaInstrumentsAvaluacio##}" counter="ind" counterFromZero="true" filter="{##item[ponderacio]##}\>0 && {##item[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##item[tipus]##}!=''AC''">{#_GET_PERCENT({##sum_ponderacio##},{##item[ponderacio]##})_#}% {##item[tipus]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({##length##},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH> **
 </WIOCCL:SET>
 </WIOCCL:SET>
        
-Les qualificacions de <WIOCCL:IF condition="{##keyUfEAF##}!==false">l’EAF<WIOCCL:IF condition="{##keyUfJT##}!==false">, </WIOCCL:IF></WIOCCL:IF><WIOCCL:IF condition="{##keyUfJT##}!==false">JT</WIOCCL:IF><WIOCCL:IF condition="{##keyUfJT##}!==false || {##keyUfEAF##}!==false "> i </WIOCCL:IF>PAF aprovades es tenen en compte tant a la convocatòria PAF 1 com a la PAF 2 del mateix semestre, però no es guarden d'un semestre a l'altre. 
+Les qualificacions de <WIOCCL:IF condition="{##keyUfEAF##}!==false">l’EAF<WIOCCL:IF condition="{##keyUfJT##}!==false">, </WIOCCL:IF></WIOCCL:IF><WIOCCL:IF condition="{##keyUfJT##}!==false">JT</WIOCCL:IF><WIOCCL:IF condition="{##keyUfJT##}!==false || {##keyUfEAF##}!==false "> i </WIOCCL:IF>PAF aprovades s'apliquen tant a la convocatòria PAF 1 com a la PAF 2 del mateix semestre, però no es guarden d'un semestre a l'altre. 
 
 <WIOCCL:IF condition="{##keyUfJT##}===false && {##keyUfEAF##}===false">
-<WIOCCL:SET var="keyUfPAF" type="literal" value="{#_SEARCH_KEY([{##itemUf[unitat formativa]##}, ''PAF''],{##taulaInstrumentsAvaluacio##}, [''unitat formativa'',''tipus''])_#}">
 Quan no s'arribi a la nota mínima de la PAF, el càlcul de la QFU{##itemUf[unitat formativa]##} serà el {#_GET_PERCENT({##sum_ponderacio##},{#_ARRAY_GET_VALUE(''ponderacio'',{#_ARRAY_GET_VALUE(''{##keyUfPAF##}'',{##taulaInstrumentsAvaluacio##},[])_#},0)_#})_#}% de la nota obtinguda a la PAF
-</WIOCCL:SET>
 </WIOCCL:IF>
 <WIOCCL:IF condition="{##keyUfJT##}!==false || {##keyUfEAF##}!==false ">
 Quan no s'arribi a la nota mínima d'algun dels instruments d'avaluació següents, el càlcul de la qualificació final serà el que es determini aplicant:
@@ -357,8 +348,10 @@ La qualificació de la UF s’obté segons la següent ponderació dels RA:
 ^  :::  <WIOCCL:FOREACH var="itemInst" array="{##taulaInstrumentsAvaluacio##}" counter="ind" counterFromZero="true" filter="{##itemInst[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##itemInst[tipus]##}==''AC'' && {##itemInst[ponderacio]##}\>0">^<WIOCCL:IF condition="{##ind##}==0">  AC  </WIOCCL:IF></WIOCCL:FOREACH><WIOCCL:FOREACH var="itemInst" array="{##taulaInstrumentsAvaluacio##}" filter="{##itemInst[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##itemInst[tipus]##}!=''AC'' && {##itemInst[ponderacio]##}\>0">^  {##itemInst[tipus]##}  </WIOCCL:FOREACH>^
 ^  :::  <WIOCCL:FOREACH var="itemInst" array="{##taulaInstrumentsAvaluacio##}" filter="{##itemInst[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##itemInst[tipus]##}==''AC'' && {##itemInst[ponderacio]##}\>0">^  {##itemInst[id]##}  </WIOCCL:FOREACH><WIOCCL:FOREACH var="itemInst" array="{##taulaInstrumentsAvaluacio##}" filter="{##itemInst[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##itemInst[tipus]##}!=''AC'' && {##itemInst[ponderacio]##}\>0">^  :::  </WIOCCL:FOREACH>^
 <WIOCCL:FOREACH var="itemRa" array="{##resultatsAprenentatge##}" filter="{##itemRa[uf]##}=={##itemUf[unitat formativa]##}">
-|  {##itemRa[ra]##}  <WIOCCL:FOREACH var="itemInst" array="{##taulaInstrumentsAvaluacio##}" filter="{##itemInst[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##itemInst[ponderacio]##}\>0">|  {##itemInst[ponderacio]##}  </WIOCCL:FOREACH>|
+|  {##itemRa[ra]##}  <WIOCCL:FOREACH var="itemInst" array="{##taulaInstrumentsAvaluacio##}" filter="{##itemInst[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##itemInst[ponderacio]##}\>0">|  {#_ARRAY_GET_VALUE(''ponderacio'',{#_SEARCH_ROW([{##itemUf[unitat formativa]##}, {##itemRa[ra]##}, "{##itemInst[id]##}"], {##taulaPonderacioRA##}, ["uf", "ra", "instAvaluacio"], [])_#},"--")_#}  </WIOCCL:FOREACH>|
 </WIOCCL:FOREACH>
+</WIOCCL:SET>
+</WIOCCL:SET>
 </WIOCCL:SET>
 </WIOCCL:SET>
 </WIOCCL:SET>
@@ -376,6 +369,7 @@ No es requiereixen espais, equipaments ni recursos específics.
 </WIOCCL:FOREACH>
 ###:
 
+:###
 ====== CONTROL DE CANVIS ======
 
 ::table:T6
@@ -383,7 +377,7 @@ No es requiereixen espais, equipaments ni recursos específics.
   :type:pt_taula
 ^  Data d'aprovació  ^  Modificat per:  ^  Modificacions  ^
 <WIOCCL:FOREACH var="item" array="{##cc_historic##}">
-|  {##item[data]##}  |  {##item[autor]##}  |  {##item[modificacions]##}  |
+|  {#_DATE("{##item[data]##}")_#}  |  {##item[autor]##}  |  {##item[modificacions]##}  |
 </WIOCCL:FOREACH>  
 :::
 
@@ -392,9 +386,10 @@ No es requiereixen espais, equipaments ni recursos específics.
 ::table:T7
   :title:Dades de la gestió de la darrera modificació
   :type:pt_taula
-^              ^                 Elaborat per:                  ^                   Revisat per:                   ^               Aprovat i validat per:               ^
-| Nom i cognom | {##cc_dadesAutor#nomGestor##}                  | {##cc_dadesRevisor#nomGestor##}                  | {##cc_dadesValidador#nomGestor##}                  |
-| Càrrec       | {##cc_dadesAutor#carrec##}                     | {##cc_dadesRevisor#carrec##}                     | {##cc_dadesValidador#carrec##}                     |
-| Data         | {#_DATE({##cc_dadesAutor#dataDeLaGestio##})_#} | {#_DATE({##cc_dadesRevisor#dataDeLaGestio##})_#} | {#_DATE({##cc_dadesValidador#dataDeLaGestio##})_#} |
-| Signatura    | {##cc_dadesAutor#signatura##}                  | {##cc_dadesRevisor#signatura##}                  | {##cc_dadesValidador#signatura##}                  |
+^              ^                 Elaborat per:                    ^                   Revisat per:                     ^               Aprovat i validat per:                 ^
+| Nom i cognom | {##cc_dadesAutor#nomGestor##}                    | {##cc_dadesRevisor#nomGestor##}                    | {##cc_dadesValidador#nomGestor##}                    |
+| Càrrec       | {##cc_dadesAutor#carrec##}                       | {##cc_dadesRevisor#carrec##}                       | {##cc_dadesValidador#carrec##}                       |
+| Data         | {#_DATE("{##cc_dadesAutor#dataDeLaGestio##}")_#} | {#_DATE("{##cc_dadesRevisor#dataDeLaGestio##}")_#} | {#_DATE("{##cc_dadesValidador#dataDeLaGestio##}")_#} |
+| Signatura    | {##cc_dadesAutor#signatura##}                    | {##cc_dadesRevisor#signatura##}                    | {##cc_dadesValidador#signatura##}                    |
 :::
+###:

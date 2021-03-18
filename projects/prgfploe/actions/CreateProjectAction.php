@@ -2,6 +2,15 @@
 if (!defined('DOKU_INC')) die();
 
 class CreateProjectAction extends BasicCreateProjectAction {
+    
+    public function responseProcess() {
+        $ret = parent::responseProcess();
+        $model = $this->getModel();
+        $res = ["cc_historic"=>array()];
+        $model->addHistoricGestioDocument($res);        
+        $ret["projectMetaData"]["cc_historic"]["value"] = json_encode($res["cc_historic"]);
+        return $ret;
+    }
 
     protected function postResponseProcess(&$response) {
         parent::postResponseProcess($response);

@@ -14,14 +14,11 @@
                 },
                 "views": {
                     "groups": {
-                        "admin": "vista_1",
-                        "manager": "vista_2"
                     },
                     "rols": {
-                        "responsable": "vista_1",
-                        "autor": "vista_1"
+                        "responsable":"firstView"
                     }
-                },
+                },                
                 "changeStateTo": "creating"
             },
             "edit": {
@@ -48,6 +45,13 @@
                                 "page.action": "'project_view'"
                             }
                         }
+                    }
+                },
+                "views": {
+                    "groups": {
+                    },
+                    "rols": {
+                        "responsable":"firstView"
                     }
                 },
                 "changeStateTo":"creating"
@@ -178,7 +182,7 @@
                         },
                         "updateHandler": {
                             "conditions": {
-                                "page.action": "'project_view'",
+                                "page.action": "'project_view' | 'project_edit'",
                                 "page.isRevision": "false"
                             }
                         }
