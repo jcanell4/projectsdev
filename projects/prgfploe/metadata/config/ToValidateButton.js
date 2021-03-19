@@ -10,7 +10,7 @@ require([
 ],
 function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Button) {
 
-    var toValidateButton = registry.byId('toValidateProjectButton');
+    var toValidateButton = registry.byId('prgfploeToValidateProjectButton');
 
     if (toValidateButton) {
         toValidateButton.onClick = function () {

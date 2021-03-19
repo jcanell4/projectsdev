@@ -164,7 +164,7 @@
                         },
                         "DJO": {
                            "autoSize": true,
-                           "visible": true,
+                           "visible": false,
                            "iconClass": "'iocImportProjectIcon'",
                            "NomProjectelabel": "'Ruta del Projecte'",
                            "NomProjectelplaceHolder": "'Ruta del Projecte'",
