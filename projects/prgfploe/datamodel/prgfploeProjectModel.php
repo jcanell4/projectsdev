@@ -764,15 +764,15 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         }
     }
     
-    public function addHistoricGestioDocument(&$data, $date) {
+    public function addHistoricGestioDocument(&$data) {
 //        $data['cc_historic'] = $this->getCurrentDataProject(FALSE, FALSE)['cc_historic'];
         $taulaHist = $data['cc_historic'];
-        if(!is_array($taulaHist)){
+        if (!is_array($taulaHist)){
             $taulaHist = json_decode($taulaHist, TRUE);
         }
-        $hist['data'] = $date?$date:date("Y-m-d");
+        $hist['data'] = date("Y-m-d");
         $hist['autor'] = $this->getUserName($data['autor']);
-        $hist['modificacions'] = $data['cc_raonsModificacio']?$data['cc_raonsModificacio']:"";
+        $hist['modificacions'] = $data['cc_raonsModificacio'] ? $data['cc_raonsModificacio'] : "";
         $taulaHist[] = $hist;
         $data['cc_historic'] = $taulaHist;
     }

@@ -21,7 +21,7 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Butt
                 dialog = new Dialog({
                     id: "newToModifyDlg",
                     title: toModifyButton.title,
-                    style: "width: 210px; height: 170px;",
+                    style: "width: 230px; height: 190px;",
                     toModifyButton: toModifyButton
                 });
 
@@ -31,7 +31,7 @@ function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Butt
                 });
 
                 var bc = new BorderContainer({
-                    style: "width: 200px; height: 120px;"
+                    style: "width: 220px; height: 140px;"
                 });
 
                 // create a ContentPane as center pane in the BorderContainer
