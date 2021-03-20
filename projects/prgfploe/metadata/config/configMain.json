@@ -312,10 +312,15 @@
                             "mandatory": true,
                             "default": "{#_COPY(1)_#}"
                         },
+                        "nom": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Indiqueu el nom de l'activitat"
+                        },
                         "descripcio": {
                             "type": "string",
                             "mandatory": true,
-                            "default": "Indiqueu el nom de la unitat"
+                            "default": "Lectura de l'apartat corresponent del material IOC i realització dels exercicis indicats."
                         },
                         "hores": {
                             "type": "number",

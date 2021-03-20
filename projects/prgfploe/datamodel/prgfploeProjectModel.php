@@ -720,7 +720,6 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         $this->dadesActualsGestio($data);
 
         // Històric del control de canvis
-        // Ver class QualityProjectAction
         $this->modifyLastHistoricGestioDocument($data);
 
         return $data;
@@ -748,6 +747,7 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         $data['cc_dadesRevisor']['signatura'] = "pendent";
         $data['cc_dadesValidador']['dataDeLaGestio'] = "";
         $data['cc_dadesValidador']['signatura'] = "pendent";        
+        $data['cc_raonsModificacio'] = "";        
     }
 
     public function modifyLastHistoricGestioDocument(&$data, $date=false) {
@@ -764,7 +764,7 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         }
     }
     
-    public function addHistoricGestioDocument(&$data, $date) {
+    public function addHistoricGestioDocument(&$data) {
 //        $data['cc_historic'] = $this->getCurrentDataProject(FALSE, FALSE)['cc_historic'];
         $taulaHist = $data['cc_historic'];
         if(!is_array($taulaHist)){

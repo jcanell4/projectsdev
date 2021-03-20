@@ -10,7 +10,7 @@ require([
 ],
 function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,Button) {
 
-    var toReviseButton = registry.byId('toReviseProjectButton');
+    var toReviseButton = registry.byId('prgfploeToReviseProjectButton');
 
     if (toReviseButton) {
         toReviseButton.onClick = function () {

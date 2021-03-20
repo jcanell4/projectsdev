@@ -5,7 +5,7 @@
  */
 if (!defined('DOKU_INC')) die();
 
-class ToReviseProjectAction extends ProjectAction {
+class ToReviseProjectAction extends ViewProjectAction {
 
     public function responseProcess() {
         $model = $this->getModel();
@@ -19,8 +19,9 @@ class ToReviseProjectAction extends ProjectAction {
         $hist['autor'] = $this->getUserName($projectMetaData['autor']);
         $hist['modificacions'] = $projectMetaData['cc_raonsModificacio'];
         $projectMetaData['cc_historic'][] = $hist;
-
-        return $projectMetaData;
+        $model->setDataProject($projectMetaData, "Projecte marcat per a ser revisat");
+        $response = parent::responseProcess();
+        return $response;
     }
 
     private function getUserName($users) {

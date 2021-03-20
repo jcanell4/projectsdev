@@ -5,7 +5,7 @@
  */
 if (!defined('DOKU_INC')) die();
 
-class ToValidateProjectAction extends ProjectAction {
+class ToValidateProjectAction extends ViewProjectAction {
 
     public function responseProcess() {
         $model = $this->getModel();
@@ -14,8 +14,9 @@ class ToValidateProjectAction extends ProjectAction {
         // El Revisor marca el projecte com a revisat: canvi data i signatura del Revisor
         $projectMetaData['cc_dadesRevisor']['dataDeLaGestio'] = date("Y-m-d");
         $projectMetaData['cc_dadesRevisor']['signatura'] = "signat";
-
-        return $projectMetaData;
+        $model->setDataProject($projectMetaData, "Projecte marcat per a ser validat");
+        $response = parent::responseProcess();
+        return $response;
     }
 
 }

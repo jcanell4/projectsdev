@@ -11,7 +11,7 @@ require([
 ],
 function (registry,dom,domConstruct,BorderContainer,Dialog,ContentPane,Form,TextBox,Button) {
 
-    var validateButton = registry.byId('validateProjectButton');
+    var validateButton = registry.byId('prgfploeValidateProjectButton');
 
     function dateNowDMY() {
         function pad(s) { return (s.length < 2 || s.toString().length < 2) ? '0' + s : s; }

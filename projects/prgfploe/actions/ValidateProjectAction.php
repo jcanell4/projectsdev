@@ -5,7 +5,7 @@
  */
 if (!defined('DOKU_INC')) die();
 
-class ValidateProjectAction extends ProjectAction {
+class ValidateProjectAction extends ViewProjectAction {
 
     public function responseProcess() {
         $model = $this->getModel();
@@ -15,8 +15,9 @@ class ValidateProjectAction extends ProjectAction {
         $projectMetaData['cc_dadesValidador']['dataDeLaGestio'] = $this->params['data_validacio'];
         $projectMetaData['cc_dadesValidador']['signatura'] = "signat";
         $projectMetaData['cc_historic'][count($projectMetaData['cc_historic'])-1]['data'] = $this->params['data_validacio'];
-
-        return $projectMetaData;
+        $model->setDataProject($projectMetaData, "Projecte marcat per a ser validat");
+        $response = parent::responseProcess();
+        return $response;
     }
 
 }
