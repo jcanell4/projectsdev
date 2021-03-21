@@ -720,7 +720,6 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         $this->dadesActualsGestio($data);
 
         // Històric del control de canvis
-        // Ver class QualityProjectAction
         $this->modifyLastHistoricGestioDocument($data);
 
         return $data;
@@ -731,7 +730,7 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         if ($data['revisor']) $data['cc_dadesRevisor']['nomGestor'] = $this->getUserName($data['revisor']);
         if ($data['validador']) $data['cc_dadesValidador']['nomGestor'] = $this->getUserName($data['validador']);
     }
-    
+
     public function clearQualityRolesData(&$data){
         if(!is_array($data['cc_dadesAutor'])){
             $data['cc_dadesAutor'] = json_decode($data['cc_dadesAutor'], TRUE);
@@ -748,8 +747,16 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
         $data['cc_dadesRevisor']['signatura'] = "pendent";
         $data['cc_dadesValidador']['dataDeLaGestio'] = "";
         $data['cc_dadesValidador']['signatura'] = "pendent";        
+        $data['cc_raonsModificacio'] = "";        
     }
 
+    public function updateSignature(&$data, $role, $date=FALSE) {        
+        $keyConverter = ["cc_dadesAutor" =>"autor", "cc_dadesRevisor" => "revisor", "cc_dadesValidador" => "validador"];
+        $projectMetaData[$role]['nomGestor'] = $this->getUserName($data[$keyConverter[$role]]);;
+        $projectMetaData[$role]['dataDeLaGestio'] = $date?$date:date("Y-m-d");
+        $projectMetaData[$role]['signatura'] = "signat";
+    }
+    
     public function modifyLastHistoricGestioDocument(&$data, $date=false) {
         $taulaHist = $data['cc_historic'];
         if(!is_array($taulaHist)){

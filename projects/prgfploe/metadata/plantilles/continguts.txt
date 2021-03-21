@@ -141,14 +141,16 @@ Els recursos necessaris per cursar aquest mòdul són:
 ::table:T04.{##itemNf[nucli formatiu]##}
   :title:Activitats d'aprenentatge pel NF{##itemNf[nucli formatiu]##}
   :type:pt_taula
+  :widths:6,1,1,2,2,3
+  :force_widths
 [^  NF{##itemNf[nucli formatiu]##}: {##itemNf[nom]##} ({##itemNf[hores]##} h)  ^^^^^^
 ^ activitats d'ensenyament i aprenentatge       ^^  RA  ^  Continguts  ^  Avaluació  ^^
 ^                         :::                         ^^  :::  ^     :::      ^     CA      ^  instruments d'avaluació  ^
 <WIOCCL:SET var="sizeActivitatsAprenentatge" type="literal" value="{#_SUBS({#_COUNTINARRAY({##activitatsAprenentatge##}, [''unitat formativa'', ''nucli formatiu''], [{##itemUf[unitat formativa]##},{##itemNf[nucli formatiu]##}])_#},1)_#}">
 <WIOCCL:FOREACH var="itemAa" array="{##activitatsAprenentatge##}" counter="posAa" filter="{##itemAa[unitat formativa]##}=={##itemUf[unitat formativa]##}&&{##itemAa[nucli formatiu]##}=={##itemNf[nucli formatiu]##}" counterFromZero="true">
 <WIOCCL:SET var="arrayInstrumentsAvaluacio" type="literal" value="{#_EXPLODE('','', ''{##itemAa[instruments d'avaluació]##}'', ''ALL'', 1)_#}">
-| //**{##itemAa[code]##}-{##itemAa[descripcio]##}**// |  {##itemAa[hores]##} h  | {##itemAa[ra]##} | {##itemAa[continguts]##}<WIOCCL:IF condition="{##sizeActivitatsAprenentatge##}=={##posAa##}">*</WIOCCL:IF> | {##itemAa[ca]##} | <WIOCCL:FOREACH var="itemInstrumentsAvaluacio" array="{##arrayInstrumentsAvaluacio##}">{##itemInstrumentsAvaluacio##}: {#_ARRAY_GET_VALUE(''descripcio'', {#_SEARCH_ROW([{##itemUf[unitat formativa]##}, ''{##itemInstrumentsAvaluacio##}''], {##taulaInstrumentsAvaluacio##}, [''unitat formativa'', ''id''], [])_#},'' '')_#}\\ </WIOCCL:FOREACH>|
-| //descripció://\\ \\ bla bla                                     ||     :::     |   :::   |    :::   |     :::  <WIOCCL:IF condition="{##sizeActivitatsAprenentatge##}=={##posAa##}">|]</WIOCCL:IF><WIOCCL:IF condition="{##sizeActivitatsAprenentatge##}!={##posAa##}">|
+| //**{##itemAa[code]##}-{##itemAa[nom]##}**// |  {##itemAa[hores]##}&nbsp;h  | {##itemAa[ra]##} | {##itemAa[continguts]##}<WIOCCL:IF condition="{##sizeActivitatsAprenentatge##}=={##posAa##}">*</WIOCCL:IF> | {##itemAa[ca]##} | <WIOCCL:FOREACH var="itemInstrumentsAvaluacio" array="{##arrayInstrumentsAvaluacio##}">{##itemInstrumentsAvaluacio##}: {#_ARRAY_GET_VALUE(''descripcio'', {#_SEARCH_ROW([{##itemUf[unitat formativa]##}, ''{##itemInstrumentsAvaluacio##}''], {##taulaInstrumentsAvaluacio##}, [''unitat formativa'', ''id''], [])_#},'' '')_#}\\ </WIOCCL:FOREACH>|
+| //descripció://\\ \\ {##itemAa[descripcio]##}                                     ||     :::     |   :::   |    :::   |     :::  <WIOCCL:IF condition="{##sizeActivitatsAprenentatge##}=={##posAa##}">|]</WIOCCL:IF><WIOCCL:IF condition="{##sizeActivitatsAprenentatge##}!={##posAa##}">|
 </WIOCCL:IF> 
 </WIOCCL:SET>
 </WIOCCL:FOREACH>

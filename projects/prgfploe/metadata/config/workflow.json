@@ -18,8 +18,7 @@
                     "rols": {
                         "responsable":"firstView"
                     }
-                },                
-                "changeStateTo": "creating"
+                }                
             },
             "edit": {
                 "permissions": {
@@ -53,8 +52,7 @@
                     "rols": {
                         "responsable":"firstView"
                     }
-                },
-                "changeStateTo":"creating"
+                }
             },
             "generate": {
                 "permissions": {
@@ -85,8 +83,7 @@
                             }
                         }
                     }
-                },
-                "changeStateTo":"creating"
+                }
             },
             "save": {
                 "permissions": {
@@ -112,8 +109,7 @@
                             }
                         }
                     }
-                },
-                "changeStateTo":"creating"
+                }
             },
             "cancel": {
                 "permissions": {
@@ -139,8 +135,7 @@
                             }
                         }
                     }
-                },
-                "changeStateTo":"creating"
+                }
             },
             "import": {
                 "permissions": {
@@ -187,8 +182,7 @@
                             }
                         }
                     }
-                },
-                "changeStateTo":"creating"
+                }
             },
             "toRevise": {
                 "permissions": {
@@ -278,8 +272,7 @@
                             }
                         }
                     }
-                },
-                "changeStateTo":"creating"
+                }
             }
         }
     },

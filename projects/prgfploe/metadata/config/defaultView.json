@@ -177,7 +177,7 @@
       "recursosNecessaris": {
         "label" : "Recursos necessaris per cursar el mòdul (recursosNecessaris)",
         "n_columns": 12,
-        "n_rows": 5,
+        "n_rows": 4,
         "group": "main",
         "props": {
           "required": true,
@@ -197,7 +197,7 @@
         "n_columns": 12,
         "type": "editableObject",
         "group": "UF",
-        "n_rows": 6,
+        "n_rows": 5,
         "props": {
           "data-editable-element": "table",
           "title": "Detalleu les dades de cada UF. No cal que ompliu les hores de les UFs detallades en aquest bloc o mòdul, es calculen automàticament."      
@@ -306,6 +306,72 @@
           ]
         }
       },
+      "taulaDadesNuclisFormatius": {
+        "label": "Nuclis formatius de cada unitat Formativa (taulaDadesNuclisFormatius)",
+        "n_columns": 12,
+        "type": "editableObject",
+        "group": "UF",
+        "n_rows": 6,
+        "props": {
+          "data-editable-element": "table",
+          "title": "Detalleu les dades de cada UF referents a les metodologies específiques aplicades i a l'avalaució inicial."      
+        },
+        "config": {
+          "actions": {
+            "add_default_row": "Afegir un Nucli Formatiu",
+            "remove_rows": "Eliminar els Nuclis Formatius seleccionats",
+            "add_default_row_before": "Afegir N.F. abans de la fila seleccionada"
+          },
+          "fields": {
+            "unitat formativa": {
+              "type": "number"
+            },
+            "nucli formatiu": {
+              "type": "number"
+            },
+            "nom": {
+                "type": "string"
+            },
+            "hores": {
+              "type": "number"
+            }
+          },
+          "layout": [
+            {
+              "defaultCell": {
+                "width" : "15%"
+              },
+              "cells": [
+                {
+                  "name": "Unitat Formativa",
+                  "field": "unitat formativa",
+                  "editable": true
+                },
+
+                {
+                  "name": "Nucli Formatiu",
+                  "field": "nucli formatiu",
+                  "editable": true
+                },
+
+                {
+                  "name": "Nom del N.F.",
+                  "field": "nom",
+                   "width":"60%",
+                  "editable": true
+                },
+
+                {
+                  "name": "Hores del N.F.",
+                  "field": "hores",
+                   "width":"10%",
+                  "editable": true
+                }
+              ]
+            }
+          ]
+        }
+      },      
       "taulaInstrumentsAvaluacio": {
         "label": "Instruments d'avaluació (taulaInstrumentsAvaluacio)",
         "n_columns": 12,
@@ -414,7 +480,7 @@
         "n_columns": 12,
         "type": "editableObject",
         "group": "UF",
-        "n_rows": 6,
+        "n_rows": 8,
         "props": {
           "required": true,
           "data-editable-element": "table",
@@ -428,7 +494,7 @@
             "add_import" : {
               "button_label" : "Importar amb format 'RA9 resultat' o també 'RA 9 resultat'",
               "data": {
-                "regexColSeparator": "^(.*?)RA *([0-9])\\.(.*?)$",
+                "regexColSeparator": "^(.*?)[ ,\\t]*RA *([0-9])\\.(.*?)[ ,\\t]*(\\d*?)[ ,\\t]*(\\d*?)$",
                 "regexRowSeparator": "\n"
               }
             }                    
@@ -664,7 +730,7 @@
         "n_columns": 12,
         "type": "editableObject",
         "group": "UF",
-        "n_rows": 6,
+        "n_rows": 15,
         "props": {
           "required": true,
           "data-editable-element": "table",
@@ -732,78 +798,12 @@
           ]
         }
       },
-      "taulaDadesNuclisFormatius": {
-        "label": "Nuclis formatius de cada unitat Formativa (taulaDadesNuclisFormatius)",
-        "n_columns": 12,
-        "type": "editableObject",
-        "group": "UF",
-        "n_rows": 5,
-        "props": {
-          "data-editable-element": "table",
-          "title": "Detalleu les dades de cada UF referents a les metodologies específiques aplicades i a l'avalaució inicial."      
-        },
-        "config": {
-          "actions": {
-            "add_default_row": "Afegir un Nucli Formatiu",
-            "remove_rows": "Eliminar els Nuclis Formatius seleccionats",
-            "add_default_row_before": "Afegir N.F. abans de la fila seleccionada"
-          },
-          "fields": {
-            "unitat formativa": {
-              "type": "number"
-            },
-            "nucli formatiu": {
-              "type": "number"
-            },
-            "nom": {
-                "type": "string"
-            },
-            "hores": {
-              "type": "number"
-            }
-          },
-          "layout": [
-            {
-              "defaultCell": {
-                "width" : "15%"
-              },
-              "cells": [
-                {
-                  "name": "Unitat Formativa",
-                  "field": "unitat formativa",
-                  "editable": true
-                },
-
-                {
-                  "name": "Nucli Formatiu",
-                  "field": "nucli formatiu",
-                  "editable": true
-                },
-
-                {
-                  "name": "Nom del N.F.",
-                  "field": "nom",
-                   "width":"60%",
-                  "editable": true
-                },
-
-                {
-                  "name": "Hores del N.F.",
-                  "field": "hores",
-                   "width":"10%",
-                  "editable": true
-                }
-              ]
-            }
-          ]
-        }
-      },
       "activitatsAprenentatge":{
         "label": "Activitats d'ensenyament i aprennetatge (activitatsAprenentatge)",
         "n_columns": 12,
         "type": "editableObject",
         "group": "UF",
-        "n_rows": 6,
+        "n_rows": 15,
         "props": {
           "required": true,
           "data-editable-element": "table",
@@ -824,6 +824,9 @@
             },        
             "nucli formatiu": {
               "type": "number"
+            },
+            "nom": {
+              "type": "string"
             },
             "descripcio": {
               "type": "textarea"
@@ -868,9 +871,16 @@
                 },
 
                 {
+                  "name": "Nom",
+                  "field": "nom",
+                  "width":"25%",
+                  "editable": true
+                },
+                
+                {
                   "name": "Descripció",
                   "field": "descripcio",
-                  "width":"30%",
+                  "width":"25%",
                   "editable": true
                 },
                 
@@ -883,7 +893,6 @@
                 {
                   "name": "RA",
                   "field": "ra",
-                  "width":"10%",
                   "editable": true,
                   "config": {
                     "fieldsource": "resultatsAprenentatge",
@@ -903,7 +912,7 @@
                 {
                   "name": "Continguts",
                   "field": "continguts",
-                  "width":"10%",
+                  "width":"8%",
                   "editable": true,
                   "config": {
                     "fieldsource": "continguts",
@@ -923,7 +932,7 @@
                 {
                   "name": "CA",
                   "field": "ca",
-                  "width":"10%",
+                  "width":"7%",
                   "editable": true,
                   "config": {
                     "fieldsource": "criterisAvaluacio",
@@ -943,7 +952,7 @@
                 {
                   "name": "Instruments d'avaluació",
                   "field": "instruments d'avaluació",
-                  "width":"20%",
+                  "width":"15%",
                   "editable": true,
                    "config": {
                     "fieldsource": "taulaInstrumentsAvaluacio",
