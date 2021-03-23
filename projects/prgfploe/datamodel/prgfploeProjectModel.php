@@ -753,9 +753,9 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
 
     public function updateSignature(&$data, $role, $date=FALSE) {        
         $keyConverter = ["cc_dadesAutor" =>"autor", "cc_dadesRevisor" => "revisor", "cc_dadesValidador" => "validador"];
-        $projectMetaData[$role]['nomGestor'] = $this->getUserName($data[$keyConverter[$role]]);;
-        $projectMetaData[$role]['dataDeLaGestio'] = $date?$date:date("Y-m-d");
-        $projectMetaData[$role]['signatura'] = "signat";
+        $data[$role]['nomGestor'] = $this->getUserName($data[$keyConverter[$role]]);;
+        $data[$role]['dataDeLaGestio'] = $date?$date:date("Y-m-d");
+        $data[$role]['signatura'] = "signat";
     }
     
     public function modifyLastHistoricGestioDocument(&$data, $date=false) {
