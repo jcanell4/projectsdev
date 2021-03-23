@@ -465,7 +465,17 @@
                 "shortcut":  "creating"
             },
             "toRevise": {
-                "shortcut":  "creating"
+                "shortcut":  "creating",
+                "permissions": {
+                    "groups": [
+                        "admin",
+                        "manager"
+                     ],
+                     "rols": [
+                        "responsable",
+                        "autor"
+                    ]
+                }
             }
         }
     }

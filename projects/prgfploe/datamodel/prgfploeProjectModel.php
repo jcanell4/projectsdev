@@ -758,30 +758,28 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
     }
     
     public function modifyLastHistoricGestioDocument(&$data, $date=false) {
-        $taulaHist = $data['cc_historic'];
-        if(!is_array($taulaHist)){
-            $taulaHist = json_decode($taulaHist, TRUE);
+        if ($data['cc_historic'] === '"[]"') {
+            $data['cc_historic'] = array();
+        }elseif (!is_array($data['cc_historic'])){
+            $data['cc_historic'] = json_decode($data['cc_historic'], true);
         }
-        if($taulaHist){
-            $hist['data'] = $date?$date:date("Y-m-d");
+        if (is_array($data['cc_historic'])) {
+            $hist['data'] = $date ? $date : date("Y-m-d");
             $hist['autor'] = $this->getUserName($data['autor']);
-            $hist['modificacions'] = $data['cc_raonsModificacio']?$data['cc_raonsModificacio']:"";
-            $taulaHist[count($taulaHist)-1] = $hist;
-            $data['cc_historic'] = $taulaHist;
+            $hist['modificacions'] = $data['cc_raonsModificacio'] ? $data['cc_raonsModificacio'] : "";
+            $c = (count($data['cc_historic']) < 1) ? 0 : count($data['cc_historic'])-1;
+            $data['cc_historic'][$c] = $hist;
         }
     }
     
     public function addHistoricGestioDocument(&$data) {
-//        $data['cc_historic'] = $this->getCurrentDataProject(FALSE, FALSE)['cc_historic'];
-        $taulaHist = $data['cc_historic'];
-        if (!is_array($taulaHist)){
-            $taulaHist = json_decode($taulaHist, TRUE);
+        if (!is_array($data['cc_historic'])){
+            $data['cc_historic'] = json_decode($data['cc_historic'], true);
         }
         $hist['data'] = date("Y-m-d");
         $hist['autor'] = $this->getUserName($data['autor']);
         $hist['modificacions'] = $data['cc_raonsModificacio'] ? $data['cc_raonsModificacio'] : "";
-        $taulaHist[] = $hist;
-        $data['cc_historic'] = $taulaHist;
+        $data['cc_historic'][] = $hist;
     }
 
     private function getUserName($users) {
