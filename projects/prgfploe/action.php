@@ -55,7 +55,9 @@ class action_plugin_projectsdev_projects_prgfploe extends WikiIocProjectWorkflow
                         $result['id'],
                         $result['id']."_errors",
                         WikiIocLangManager::getLang("metadata_errors_title"),
-                        $html
+                        $html,
+//                        JSonGenerator::EXTRA_META_INFO
+                        JSonGenerator::META_ERROR_TYPE
                 );
 
             }
