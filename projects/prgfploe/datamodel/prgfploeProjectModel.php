@@ -154,11 +154,12 @@ class prgfploeProjectModel extends UniqueContentFileProjectModel{
             ,["typeField"=>"SF","field"=>"activitatsAprenentatge", "accioNecessaria"=>"hi afegiu les activitats d'aprenentatge associades a cada nucli formatiu"]
             ,["typeField"=>"SF","field"=>"cc_raonsModificacio", "accioNecessaria"=>"hi assigneu una raó per la modificació actual de la programació"]
             // ALERTA! Aquests camps no es corresponen amb els IDs que s'asignen als camps
-            ,["typeField"=>"OF","field"=>"cc_dadesAutor#nomGestor", "accioNecessaria"=>"hi assigneu un autor", "fieldName" => "autor"]
+            //,["typeField"=>"OF","field"=>"cc_dadesAutor#nomGestor", "accioNecessaria"=>"hi assigneu un autor", "fieldName" => "autor"]
+            ,["typeField"=>"SF","field"=>"autor", "accioNecessaria"=>"hi assigneu un autor"]
             ,["typeField"=>"OF","field"=>"cc_dadesAutor#carrec", "accioNecessaria"=>"hi assigneu el càrrec de l'autor"]
-            ,["typeField"=>"OF","field"=>"cc_dadesRevisor#nomGestor", "accioNecessaria"=>"hi assigneu un revisor", "fieldName" => "revisor"]
+            ,["typeField"=>"SF","field"=>"revisor", "accioNecessaria"=>"hi assigneu un revisor"]
             ,["typeField"=>"OF","field"=>"cc_dadesRevisor#carrec", "accioNecessaria"=>"hi assigneu el càrrec del revisor"]
-            ,["typeField"=>"OF","field"=>"cc_dadesValidador#nomGestor", "accioNecessaria"=>"hi assigneu un validador", "fieldName" => "validador"]
+            ,["typeField"=>"SF","field"=>"validador", "accioNecessaria"=>"hi assigneu un validador"]
             ,["typeField"=>"OF","field"=>"cc_dadesValidador#carrec", "accioNecessaria"=>"hi assigneu el càrrec del validador"]
         ];
         foreach ($campsAComprovar as $item) {
