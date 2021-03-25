@@ -24,8 +24,7 @@
                 "permissions": {
                     "groups": [
                         "admin",
-                        "manager",
-                        "projectmanager"
+                        "manager"
                      ],
                      "rols": [
                         "responsable",
@@ -154,7 +153,7 @@
                     "parms": {
                         "DOM": {
                            "id": "prgfploeImportProjectButton",
-                           "title": "Importar projecte",
+                           "title": "Importar dades d'un pla de treball",
                            "class": "iocDisplayBlock"
                         },
                         "DJO": {
@@ -201,14 +200,14 @@
                     "parms": {
                         "DOM": {
                             "id": "prgfploeToReviseProjectButton",
-                            "title": "Marca Edició completada",
+                            "title": "Marcar per revisar",
                             "class": "iocDisplayBlock"
                         },
                         "DJO": {
                            "autoSize": true,
                            "visible": true,
                            "iconClass": "'iocToReviseDataProjectIcon'",
-                           "labelText": "'Marca Edició completada, disponible per a Revisió. Vols continuar?'",
+                           "labelText": "'Marca Edició completad i disponible per a Revisió. Vols continuar?'",
                            "labelButtonAcceptar": "'Acceptar'",
                            "labelButtonCancellar": "'Cancel·lar'",
                            "urlBase": "'lib/exe/ioc_ajax.php?call=project'",
@@ -279,7 +278,19 @@
     "revising": {
         "actions": {
             "view": {
-                "shortcut":  "creating"
+                "shortcut":  "creating",
+                 "permissions": {
+                    "groups": [
+                        "admin",
+                        "manager"
+                     ],
+                     "rols": [
+                        "responsable",
+                        "autor",
+                        "revisor",
+                        "validador"
+                    ]
+                }
             },
             "edit": {
                 "shortcut":  "creating"
@@ -297,8 +308,7 @@
                         "manager"
                      ],
                      "rols": [
-                        "responsable",
-                        "autor"
+                        "revisor"
                     ]
                 },
                 "button": {
@@ -343,6 +353,22 @@
             "view": {
                 "shortcut":  "creating"
             },
+            "edit": {
+                "permissions": {
+                    "groups": [],
+                     "rols": []
+                },
+                "button": {
+                    "id": "editProjectButton",
+                    "scripts": {
+                        "updateHandler": {
+                            "conditions": {
+                                "page.action": "'never'"
+                            }
+                        }
+                    }
+                }
+            },
             "validate": {
                 "permissions": {
                     "groups": [
@@ -350,8 +376,7 @@
                         "manager"
                      ],
                      "rols": [
-                        "responsable",
-                        "autor"
+                        "validador"
                     ]
                 },
                 "button": {
@@ -396,6 +421,22 @@
             "view": {
                 "shortcut":  "creating"
             },
+            "edit": {
+                "permissions": {
+                    "groups": [],
+                     "rols": []
+                },
+                "button": {
+                    "id": "editProjectButton",
+                    "scripts": {
+                        "updateHandler": {
+                            "conditions": {
+                                "page.action": "'never'"
+                            }
+                        }
+                    }
+                }
+            },
             "pdfExport": {
                 "shortcut":  "creating"
             },
@@ -416,7 +457,7 @@
                     "parms": {
                         "DOM": {
                             "id": "prgfploeToModifyProjectButton",
-                            "title": "Edició de les dades del projecte",
+                            "title": "Iniciar l'edició i el procés de revisió",
                             "class": "iocDisplayBlock"
                         },
                         "DJO": {
@@ -465,17 +506,7 @@
                 "shortcut":  "creating"
             },
             "toRevise": {
-                "shortcut":  "creating",
-                "permissions": {
-                    "groups": [
-                        "admin",
-                        "manager"
-                     ],
-                     "rols": [
-                        "responsable",
-                        "autor"
-                    ]
-                }
+                "shortcut":  "creating"
             }
         }
     }
