@@ -21,7 +21,7 @@ class ToModifyResponseHandler extends ProjectResponseHandler {
     }
 
     protected function response($requestParams, $responseData, &$ajaxCmdResponseGenerator) {
-        $this->remoteViewResponse($requestParams, $responseData, $ajaxCmdResponseGenerator);
+        $this->_responseEditResponse($requestParams, $responseData, $ajaxCmdResponseGenerator, JsonGenerator::PROJECT_EDIT_TYPE);
     }
 
 }

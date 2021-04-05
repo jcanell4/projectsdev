@@ -9,7 +9,9 @@
                      ],
                      "rols": [
                         "responsable",
-                        "autor"
+                        "autor",
+                        "revisor",
+                        "validador"
                     ]
                 },
                 "views": {
@@ -293,14 +295,56 @@
                 }
             },
             "edit": {
-                "shortcut":  "creating"
+                "shortcut":  "creating",
+                "permissions": {
+                    "groups": [],
+                     "rols": []
+                },
+                "button": {
+                    "id": "editProjectButton",
+                    "scripts": {
+                        "updateHandler": {
+                            "conditions": {
+                                "page.action": "'never'"
+                            }
+                        }
+                    }
+                }
             },
             "save": {
-                "shortcut":  "creating"
+                "shortcut":  "creating",
+                "permissions": {
+                    "groups": [],
+                     "rols": []
+                },
+                "button": {
+                    "id": "editProjectButton",
+                    "scripts": {
+                        "updateHandler": {
+                            "conditions": {
+                                "page.action": "'never'"
+                            }
+                        }
+                    }
+                }
             },
             "cancel": {
                 "shortcut":  "creating"
             },
+            "pdfExport": {
+                "shortcut":  "creating",
+                "permissions": {
+                    "groups": [
+                        "admin",
+                        "manager"
+                    ],
+                    "rols": [
+                        "responsable",
+                        "autor",
+                        "revisor"
+                    ]
+                }
+            },            
             "toValidate": {
                 "permissions": {
                     "groups": [
@@ -367,6 +411,41 @@
                             }
                         }
                     }
+                }
+            },
+            "save": {
+                "shortcut":  "creating",
+                "permissions": {
+                    "groups": [],
+                     "rols": []
+                },
+                "button": {
+                    "id": "editProjectButton",
+                    "scripts": {
+                        "updateHandler": {
+                            "conditions": {
+                                "page.action": "'never'"
+                            }
+                        }
+                    }
+                }
+            },
+            "cancel": {
+                "shortcut":  "creating"
+            },
+            "pdfExport": {
+                "shortcut":  "creating",
+                "permissions": {
+                    "groups": [
+                        "admin",
+                        "manager"
+                    ],
+                    "rols": [
+                        "responsable",
+                        "autor",
+                        "revisor",
+                        "validador"
+                    ]
                 }
             },
             "validate": {
@@ -437,8 +516,40 @@
                     }
                 }
             },
-            "pdfExport": {
+            "save": {
+                "shortcut":  "creating",
+                "permissions": {
+                    "groups": [],
+                     "rols": []
+                },
+                "button": {
+                    "id": "editProjectButton",
+                    "scripts": {
+                        "updateHandler": {
+                            "conditions": {
+                                "page.action": "'never'"
+                            }
+                        }
+                    }
+                }
+            },
+            "cancel": {
                 "shortcut":  "creating"
+            },
+            "pdfExport": {
+                "shortcut":  "creating",
+                "permissions": {
+                    "groups": [
+                        "admin",
+                        "manager"
+                    ],
+                    "rols": [
+                        "responsable",
+                        "autor",
+                        "revisor",
+                        "validador"
+                    ]
+                }
             },
             "toModify": {
                 "permissions": {
@@ -457,7 +568,7 @@
                     "parms": {
                         "DOM": {
                             "id": "prgfploeToModifyProjectButton",
-                            "title": "Iniciar l'edició i el procés de revisió",
+                            "title": "Editar i iniciar el cicle de revisió",
                             "class": "iocDisplayBlock"
                         },
                         "DJO": {

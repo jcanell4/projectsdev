@@ -5,7 +5,7 @@
  */
 if (!defined('DOKU_INC')) die();
 
-class ToModifyProjectAction extends ViewProjectAction {
+class ToModifyProjectAction extends GetProjectAction {
     
     public function responseProcess() {
         $model = $this->getModel();

@@ -24,7 +24,12 @@ class action_plugin_projectsdev_projects_prgfploe extends WikiIocProjectWorkflow
      */
     function setExtraMeta(&$event, $param) {
         //controlar que se trata del proyecto en curso
-        if ($event->data['requestParams'][ProjectKeys::KEY_PROJECT_TYPE] === $this->projectType) {
+        if ($event->data['requestParams'][ProjectKeys::KEY_PROJECT_TYPE]==NULL){
+            $projectType = WikiIocPluginController::getProjectTypeFromProjectId($event->data['requestParams'][ProjectKeys::KEY_ID], TRUE);
+        }else{
+            $projectType = $event->data['requestParams'][ProjectKeys::KEY_PROJECT_TYPE];
+        }
+        if ($projectType === $this->projectType) {
 
             if (!isset($event->data['responseData'][ProjectKeys::KEY_CODETYPE])) {
                 $result['ns'] = getID();

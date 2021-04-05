@@ -16,6 +16,19 @@ class ToReviseProjectAction extends ViewProjectAction {
         $model->modifyLastHistoricGestioDocument($projectMetaData);
         $model->setDataProject($projectMetaData, "Projecte marcat per a ser revisat");
         $response = parent::responseProcess();
+        $notifyAction = $this->getActionInstance("NotifyAction", null, FALSE);
+        $notifyParams=[
+            "do" => NotifyAction::DO_ADDMESS,
+            "to" => $projectMetaData["revisor"],
+            "message" => "La programació {$this->params['id']} està a punt per ser revisada.",
+            "id" => $this->params["id"],
+            "type" => NotifyAction::DEFAULT_MESSAGE_TYPE,
+            "data-call" => "project&do=workflow&action=view",
+            "send_mail" => true,
+        ];
+        $responseNotify = $notifyAction->get($notifyParams);
+        $this->addInfoToInfo($response["info"], $responseNotify["info"]);
+        $response["notifications"] = $responseNotify["notifications"];
         return $response;
     }
 
