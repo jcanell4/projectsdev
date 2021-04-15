@@ -1,0 +1,156 @@
+{
+    "metaDataClassesNameSpaces": [
+        {
+            "main": {
+                "MetaDataDAO": "defaultProject",
+                "MetaDataEntity": "defaultProject",
+                "MetaDataRender": "activityutil"
+            }
+        }
+    ],
+    "metaDataComponentTypes": [
+        {
+            "main": {
+                "documents": ["plantilles:activityutil"],
+                "folders": false
+            }
+        }
+    ],
+    "metaDataProjectConfig": [
+        {
+            "main": {
+                "projectTypeConfigFile": "admconfig:activityutil"
+            }
+        }        
+    ],
+    "metaDataProjectStructure": [
+        {
+            "main": "meta.mdpr",
+            "versions": {
+                "fields": 1
+            },
+            "mainType": {
+                "type": "object",
+                "typeDef": "activityutil"
+            },
+            "typesDefinition": {
+                "entradaExtres": {
+                    "type":"object",
+                    "keys": {
+                        "nom": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Indiqueu la dada extra que necessiteu"
+                        },
+                        "tipus": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "dada"
+                        },
+                        "valor": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Escriviu el valor de la dada aquí"
+                        }
+                    }                    
+                },
+                "defExtres": {
+                    "type": "objectArray",
+                    "typeDef":"entradaExtres"
+                },                                                
+                "extraDocuments": {
+                    "type":"object",
+                    "keys": {
+                        "ordre": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "{#_INC(1)_#}" 
+                        },
+                        "nom": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Indiqueu el nom del document"
+                        }
+                    }                    
+                },
+                "extraDoc": {
+                    "type": "objectArray",
+                    "typeDef":"extraDocuments"
+                },                                                
+                "activityutil": {
+                    "type": "object",
+                    "keys": {
+                        "titol": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default":"Poseu-hi el títol"
+                        },
+                        "subtitol": {
+                            "type": "string",
+                            "default": "Indiqueu el subtítol",
+                            "mandatory": true
+                        },
+                        "autor": {
+                            "type": "string",
+                            "mandatory": true,
+                            "isRole":true
+                        },
+                        "responsable": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true,
+                            "isRole":true
+                        },                                                
+                        "dadesExtres": {
+                            "type": "defExtres",
+                            "mandatory": true
+                        },
+                        "estil": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "main"
+                        },                                                
+                        "nivells": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "3"
+                        },                                                
+                        "entitatResponsable": {
+                            "type": "string"
+                        },
+                        "mostrarAutor": {
+                            "type": "boolean",
+                            "mandatory": true,
+                            "default":true
+                        },
+                        "amagarMenuInici": {
+                            "type": "boolean",
+                            "mandatory": true,
+                            "default":false
+                        },
+                        "documents": {
+                            "type": "extraDoc",
+                            "default": [{"ordre":1, "nom":"continguts"}]
+                        },
+                        "nom_real": {
+                            "type": "string",
+                            "mandatory": true,
+                            "calculateOnSave": {
+                                "class": "CalculateRealNameFromUsername",
+                                "data": "autor"
+                            }
+                        },
+                        "data_fitxercontinguts": {
+                            "type": "string",
+                            "mandatory": true,
+                            "calculateOnRead": {
+                                "class": "CalculateMaxPageDateFromNs",
+                                "data": ""
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
