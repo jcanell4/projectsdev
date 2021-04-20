@@ -60,6 +60,9 @@ class ProjectExportAction extends ProjectAction{
 
     public function responseProcess() {
         $ret = array();
+        if ($this->mode !== "xhtml") {
+            throw new Exception("ProjectExportAction: mode incorrecte.");
+        }
         $this->factoryRender->init(['mode'            => $this->mode,
                                     'filetype'        => $this->filetype,
                                     'typesDefinition' => $this->typesDefinition,
@@ -71,24 +74,13 @@ class ProjectExportAction extends ProjectAction{
 
         $result = $render->process($this->dataArray);
         $result['ns'] = $this->projectNS;
-//        $result['ext'] = ".{$this->mode}";
         $ret["id"] = $this->idToRequestId($this->projectID);
         $ret["ns"] = $this->projectNS;
+        $ret["meta"] = ResultsWithFiles::get_html_metadata($result);
 
-        switch ($this->mode) {
-            case 'xhtml':
-            case 'pdf':
-//                $result['pdfFile'] = $result['tmp_dir'];
-//                $result['pdfName'] = $this->idToRequestId($this->projectID) . $result['ext'];
-                $ret["meta"] = ResultsWithFiles::get_html_metadata($result);
-                break;
-            default:
-                throw new Exception("ProjectExportAction: mode incorrecte.");
-        }
         if (!WikiGlobalConfig::getConf('plugin')['iocexportl']['saveWorkDir']){
             $this->removeDir($result["tmp_dir"]);
         }
-
         return $ret;
     }
 

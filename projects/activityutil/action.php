@@ -28,6 +28,8 @@ class action_plugin_projectsdev_projects_activityutil extends WikiIocProjectPlug
             if (!isset($event->data['responseData'][ProjectKeys::KEY_CODETYPE])) {
                 $result['ns'] = getID();
                 $result['id'] = str_replace(':', '_', $result['ns']);
+                $result['multipleFiles'] = true;
+                $result['ext'] = ".zip";
                 if (class_exists("ResultsWithFiles", TRUE)){
                     $html = ResultsWithFiles::get_html_metadata($result) ;
                 }

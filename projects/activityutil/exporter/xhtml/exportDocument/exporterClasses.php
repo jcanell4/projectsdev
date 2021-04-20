@@ -35,7 +35,7 @@ class exportDocument extends renderHtmlDocument {
         if (!file_exists($this->cfgExport->tmp_dir)) {
             mkdir($this->cfgExport->tmp_dir, 0775, TRUE);
         }
-        $output_filename = $this->cfgExport->output_filename; //ABANS: str_replace(':','_',$this->cfgExport->id);
+        $output_filename = $this->cfgExport->output_filename;
         $pathTemplate = "xhtml/exportDocument/templates";
 
         $zip = new ZipArchive;
@@ -80,7 +80,7 @@ class exportDocument extends renderHtmlDocument {
                         "contingut" => json_decode($data["documentPartsPdf"], TRUE)   //contingut latex ja rendaritzat
                     )
                 );
-                $filenamepdf = "activityutil.pdf";    //$filenamepdf = "activityutil_".end(explode($this->cfgExport->id)).".pdf";
+                $filenamepdf = "$output_filename.pdf";
                 $pdfRenderer = new PdfRenderer();                
                 $pdfRenderer->renderDocument($params, $filenamepdf);
                 $zip->addFile($this->cfgExport->tmp_dir."/$filenamepdf", "/$filenamepdf");
