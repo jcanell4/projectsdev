@@ -81,10 +81,9 @@ class exportDocument extends renderHtmlDocument {
                     )
                 );
                 $filenamepdf = "$output_filename.pdf";
-                $pdfRenderer = new PdfRenderer();                
+                $pdfRenderer = new PdfRenderer();
                 $pdfRenderer->renderDocument($params, $filenamepdf);
                 $zip->addFile($this->cfgExport->tmp_dir."/$filenamepdf", "/$filenamepdf");
-
                 $this->attachMediaFiles($zip);
 
                 $result["zipFile"] = $zipFile;
