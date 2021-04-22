@@ -21,7 +21,7 @@ class activityutilProjectModel extends MultiContentFilesProjectModel {
     
     /**
      * Obtiene la lista de ficheros creados, por el autor, en el proyecto
-     * @return type
+     * @return array de ficheros
      */
     public function llistaDeEspaiDeNomsDeDocumentsDelProjecte() {
         //datos del proyecto almacenados
