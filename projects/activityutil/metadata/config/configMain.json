@@ -23,6 +23,15 @@
             }
         }        
     ],
+    "metaDataExport": [
+        {
+            "main": {
+                "fields": [
+                    {"field":"documents", "ext":".zip"}
+                ]
+            }
+        }
+    ],
     "metaDataProjectStructure": [
         {
             "main": "meta.mdpr",
