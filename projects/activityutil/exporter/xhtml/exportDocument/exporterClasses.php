@@ -86,13 +86,13 @@ class exportDocument extends renderHtmlDocument {
                 $zip->addFile($this->cfgExport->tmp_dir."/$filenamepdf", "/$filenamepdf");
                 $this->attachMediaFiles($zip);
 
-                $result["zipFile"] = $zipFile;
-                $result["zipName"] = "$output_filename.zip";
-                $result["info"] = "fitxer {$result['zipName']} creat correctement";
+                $result["file"] = $zipFile;
+                $result["fileName"] = "$output_filename.zip";
+                $result["info"] = "fitxer {$result['fileName']} creat correctement";
             }else{
                 $result['error'] = true;
                 $result['info'] = $this->cfgExport->aLang['nozipfile'];
-                throw new Exception ("Error en la creació del fitxer zip");
+                throw new Exception ("Error en la creació del fitxer $output_filename.zip");
             }
             if (!$zip->close()) {
                 $result['error'] = true;
