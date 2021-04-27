@@ -37,12 +37,14 @@ class exportDocument extends renderHtmlDocument {
         }
         $output_filename = $this->cfgExport->output_filename;
         $pathTemplate = "xhtml/exportDocument/templates";
+        $filenamepdf = "$output_filename.pdf";
 
         $zip = new ZipArchive;
         $zipFile = $this->cfgExport->tmp_dir."/$output_filename.zip";
         $res = $zip->open($zipFile, ZipArchive::CREATE);
 
         if ($res === TRUE) {
+            $data['pdf_filename_toprint'] = $filenamepdf;
             $document = $this->replaceInTemplate($data, "$pathTemplate/activityutil.tpl");
 
             if ($zip->addFromString('index.html', $document)) {
@@ -80,7 +82,6 @@ class exportDocument extends renderHtmlDocument {
                         "contingut" => json_decode($data["documentPartsPdf"], TRUE)   //contingut latex ja rendaritzat
                     )
                 );
-                $filenamepdf = "$output_filename.pdf";
                 $pdfRenderer = new PdfRenderer();
                 $pdfRenderer->renderDocument($params, $filenamepdf);
                 $zip->addFile($this->cfgExport->tmp_dir."/$filenamepdf", "/$filenamepdf");

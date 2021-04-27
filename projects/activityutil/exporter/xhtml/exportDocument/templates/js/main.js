@@ -18,8 +18,8 @@ function closeNav() {
     document.getElementById("myContentIndex").classList.add("fade_out");
 }
 
-function printDoc() {
-    window.open("activityutil.pdf");
+function printDoc(file) {
+    window.open(file);
 }
 
 function switchopcl(bt){
