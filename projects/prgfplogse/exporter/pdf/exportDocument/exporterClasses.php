@@ -35,8 +35,9 @@ class exportDocument extends renderHtmlDocument {
 
         $departament = html_entity_decode(htmlspecialchars_decode($data["departament"], ENT_COMPAT|ENT_QUOTES));
         $cicle = html_entity_decode(htmlspecialchars_decode($data["cicle"], ENT_COMPAT|ENT_QUOTES));
-        $modul = html_entity_decode(htmlspecialchars_decode($data["modul"], ENT_COMPAT|ENT_QUOTES));
-        $modulId = html_entity_decode(htmlspecialchars_decode($data["modulId"], ENT_COMPAT|ENT_QUOTES));
+        $credit = html_entity_decode(htmlspecialchars_decode($data["credit"], ENT_COMPAT|ENT_QUOTES));
+        $creditId = html_entity_decode(htmlspecialchars_decode($data["creditId"], ENT_COMPAT|ENT_QUOTES));
+        $hores_totals = 20;
 
         $params = array(
             "id" => $this->cfgExport->id,
@@ -50,14 +51,17 @@ class exportDocument extends renderHtmlDocument {
                              "wlogo" => 9.9,
                              "hlogo" => 11.1,
                              "ltext" => "Generalitat de Catalunya\nDepartament d'Educació\nInstitut Obert de Catalunya",
-                             "rtext" => $departament."\n".$cicle."\n".$modulId." ".$modul],
-                "titol" => [$departament,
-                            "programació",
-                            $cicle,
-                            $modulId." ".$modul],
-                "peu" => ["departament" => $departament,
-                          "cicle"  => $cicle,
-                          "modulId"=> $modulId],
+                             "rtext" => $cicle."\n".$creditId." ".$credit],
+                "titol" => ["departament" => $departament,
+                            "cicle" => $cicle,
+                            "creditId" => $creditId,
+                            "credit" => $credit,
+                            "hores" => $hores_totals],
+                "peu" => ["logo"  => $this->cfgExport->rendererPath . "/resources/escutIOC.jpg",
+                          "wlogo" => 10,
+                          "hlogo" => 8,
+                          "codi"  => "I61",
+                          "versió" => $data["documentVersion"]],
                 "contingut" => json_decode($data["pdfDocument"], TRUE)   //contingut latex ja rendaritzat
             )
         );
