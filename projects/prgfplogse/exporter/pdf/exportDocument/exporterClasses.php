@@ -37,7 +37,6 @@ class exportDocument extends renderHtmlDocument {
         $cicle = html_entity_decode(htmlspecialchars_decode($data["cicle"], ENT_COMPAT|ENT_QUOTES));
         $credit = html_entity_decode(htmlspecialchars_decode($data["credit"], ENT_COMPAT|ENT_QUOTES));
         $creditId = html_entity_decode(htmlspecialchars_decode($data["creditId"], ENT_COMPAT|ENT_QUOTES));
-        $hores_totals = 20;
 
         $params = array(
             "id" => $this->cfgExport->id,
@@ -56,7 +55,7 @@ class exportDocument extends renderHtmlDocument {
                             "cicle" => $cicle,
                             "creditId" => $creditId,
                             "credit" => $credit,
-                            "hores" => $hores_totals],
+                            "hores" => $data["durada"],
                 "peu" => ["logo"  => $this->cfgExport->rendererPath . "/resources/escutIOC.jpg",
                           "wlogo" => 10,
                           "hlogo" => 8,
