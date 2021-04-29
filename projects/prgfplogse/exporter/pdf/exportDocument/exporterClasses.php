@@ -55,7 +55,7 @@ class exportDocument extends renderHtmlDocument {
                             "cicle" => $cicle,
                             "creditId" => $creditId,
                             "credit" => $credit,
-                            "hores" => $data["durada"],
+                            "hores" => $data["durada"]],
                 "peu" => ["logo"  => $this->cfgExport->rendererPath . "/resources/escutIOC.jpg",
                           "wlogo" => 10,
                           "hlogo" => 8,
