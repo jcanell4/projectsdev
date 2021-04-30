@@ -124,8 +124,6 @@ class PdfRenderer extends BasicPdfRenderer {
               . "Hores totals: {$titol['hores']}";
         $this->iocTcPdf->Write(8, $text, '', false, "L");
 
-//        $this->iocTcPdf->Cell(0, 0, $text, 0, 1);
-
         //peu de pàgina
         $this->iocTcPdf->setFooterDataLocal($params["data"]["peu"], $params['data']['titol']);
 

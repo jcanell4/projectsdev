@@ -19,20 +19,19 @@ class upgrader_ejemplo extends CommonUpgrader {
     }
 
     public function process($type, $ver, $filename=NULL) {
-
-        // Actualiza la versión del proyecto
-        $dataProject = $this->model->getCurrentDataProject($this->metaDataSubSet);
-        if (!is_array($dataProject))
-            $dataProject = json_decode($dataProject, TRUE);
-        $dataProject['documentVersion'] = $dataProject['documentVersion']+1;
-        $ret = $this->model->setDataProject(json_encode($dataProject), "Upgrade fields: version ".($ver-1)." to $ver", '{"fields":'.$ver.'}');
-
         switch ($type) {
             case "fields":
                 //Transforma los datos del proyecto desde la estructura de la versión 0 a la versión 1
                 $ret = true;
                 break;
             case "templates":
+                // Actualiza la versión de calidad del proyecto
+                $dataProject = $this->model->getCurrentDataProject($this->metaDataSubSet);
+                if (!is_array($dataProject))
+                    $dataProject = json_decode($dataProject, TRUE);
+                $dataProject['documentVersion'] = $dataProject['documentVersion']+1;
+                $ret = $this->model->setDataProject(json_encode($dataProject), "Upgrade fields: version ".($ver-1)." to $ver", '{"fields":'.$ver.'}');
+
                 //Transforma el archivo continguts.txt del proyecto desde la versión 0 a la versión 1
                 if ($filename===NULL) 
                     $filename = $this->model->getProjectDocumentName();
