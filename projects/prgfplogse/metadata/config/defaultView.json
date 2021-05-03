@@ -170,7 +170,8 @@
          "config":{
             "options":[
                 {"description":"No es fa","value":"NO"}, 
-                {"description":"Si es fa","value":"SI"}
+                {"description":"A l'inici del crèdit","value":"C"},
+                {"description":"A l'inici de cada bloc","value":"B"}
             ]
          }            
       },
