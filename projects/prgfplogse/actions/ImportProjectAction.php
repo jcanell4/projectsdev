@@ -70,12 +70,11 @@ class ImportProjectAction extends ViewProjectAction {
                     $dataProject['creditId']                  = $import_data['creditId'];
                     $dataProject['credit']                    = $import_data['credit'];
                     $dataProject['duradaCicle']               = $import_data['duradaCicle'];
-                    $dataProject['avaluacioInicial']          = $import_data['avaluacioInicial'];
                     $dataProject['notaMinimaAC']              = $import_data['notaMinimaAC'];
                     $dataProject['notaMinimaEAF']             = $import_data['notaMinimaEAF'];
                     $dataProject['notaMinimaJT']              = $import_data['notaMinimaJT'];
                     $dataProject['notaMinimaPAF']             = $import_data['notaMinimaPAF'];
-                    $dataProject['duradaPAF']                 = $import_data['duradaPAF'];
+                    $dataProject['duradaPAF']                 = $import_data['duradaPAF'];                    
                     
                     //Camps amb importació parcial
                     //taulaInstrumentsAvaluacio
@@ -101,14 +100,24 @@ class ImportProjectAction extends ViewProjectAction {
                     if (!is_array($dataProject['taulaDadesBlocs'])) $dataProject['taulaDadesBlocs'] = json_decode($dataProject['taulaDadesBlocs'], TRUE);
                     $B = ["crèdit", "1r. bloc", "2n. bloc", "3r. bloc"];
                     $T = ['bloc' => array_search($import_data['tipusBlocCredit'], $B),
-                          'horesBloc' => $import_data['durada']];
+                          'horesBloc' => $import_data['durada'],
+                          'avaluacioInicial' => ($import_data['avaluacioInicial']==="SI") ];
                     $dataProject['taulaDadesBlocs'][] = $T;
                     
                     $durada = 0;
+                    $avaluacioInicial = 0;
                     foreach ($dataProject['taulaDadesBlocs'] as $item) {
                         $durada += $item["horesBloc"];
+                        $avaluacioInicial += $item["avaluacioInicial"]?0:1;
                     }
                     $dataProject["durada"] = $durada;
+                    if($avaluacioInicial==0){
+                        $dataProject["avaluacioInicial"] = "NO";
+                    }elseif($avaluacioInicial==1){
+                        $dataProject["avaluacioInicial"] = "C";
+                    }else{
+                        $dataProject["avaluacioInicial"] = "B";
+                    }
                     
                     //taulaDadesUD
                     if(!is_array($import_data["taulaDadesUD"])) $import_data["taulaDadesUD"]= json_decode ($import_data["taulaDadesUD"], TRUE);

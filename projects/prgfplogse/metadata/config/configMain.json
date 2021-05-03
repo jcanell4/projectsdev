@@ -158,6 +158,10 @@
                         "horesBloc": {
                             "type": "number",
                             "mandatory": true
+                        },
+                        "avaluacioIncial": {
+                            "type": "boolean",
+                            "mandatory": false
                         }
                     }
                 },
