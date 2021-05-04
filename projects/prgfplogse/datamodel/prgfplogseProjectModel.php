@@ -24,14 +24,14 @@ class prgfplogseProjectModel extends UniqueContentFileProjectModel{
     }
 
     public function getErrorFields($data=NULL) {
-        $result     = array();
-        $iaTable    = $data["taulaInstrumentsAvaluacio"]['value']; if (!is_array($iaTable)) $iaTable = json_decode($iaTable, TRUE);
-        $naTable    = $data["taulaNuclisActivitat"]['value'];      if (!is_array($naTable)) $naTable = json_decode($naTable, TRUE);
-        $udTable    = $data["taulaDadesUD"]['value'];              if (!is_array($udTable)) $udTable = json_decode($udTable, TRUE);
-        $obTable    = $data["objectius"]['value'];                 if (!is_array($obTable)) $obTable = json_decode($obTable, TRUE);
-        $conTable   = $data["conceptes"]['value'];                 if (!is_array($conTable)) $conTable = json_decode($conTable, TRUE);
-        $proTable   = $data["procediments"]['value'];              if (!is_array($proTable)) $proTable = json_decode($proTable, TRUE);
-        $actTable   = $data["actituds"]['value'];                  if (!is_array($actTable)) $actTable = json_decode($actTable, TRUE);
+        $result   = array();
+        $iaTable  = $data["taulaInstrumentsAvaluacio"]['value']; if (!is_array($iaTable)) $iaTable = json_decode($iaTable, TRUE);
+        $naTable  = $data["taulaNuclisActivitat"]['value'];      if (!is_array($naTable)) $naTable = json_decode($naTable, TRUE);
+        $udTable  = $data["taulaDadesUD"]['value'];              if (!is_array($udTable)) $udTable = json_decode($udTable, TRUE);
+        $obTable  = $data["objectius"]['value'];                 if (!is_array($obTable)) $obTable = json_decode($obTable, TRUE);
+        $conTable = $data["conceptes"]['value'];                 if (!is_array($conTable)) $conTable = json_decode($conTable, TRUE);
+        $proTable = $data["procediments"]['value'];              if (!is_array($proTable)) $proTable = json_decode($proTable, TRUE);
+        $actTable = $data["actituds"]['value'];                  if (!is_array($actTable)) $actTable = json_decode($actTable, TRUE);
         
         //Camps obligatoris
         $responseType = "SINGLE_MESSAGE";
@@ -99,12 +99,14 @@ class prgfplogseProjectModel extends UniqueContentFileProjectModel{
         
         $totalUDs = array();
         $totalCredit = 0;
-        foreach ($naTable as $item){
-            if(!isset($totalUDs[$item["unitat didàctica"]])){
-                $totalUDs[$item["unitat didàctica"]]=0;
+        if (!empty($naTable)) {
+            foreach ($naTable as $item){
+                if(!isset($totalUDs[$item["unitat didàctica"]])){
+                    $totalUDs[$item["unitat didàctica"]]=0;
+                }
+                $totalUDs[$item["unitat didàctica"]] += $item["hores"];
+                $totalCredit += $item["hores"];
             }
-            $totalUDs[$item["unitat didàctica"]] += $item["hores"];
-            $totalCredit += $item["hores"];
         }
 
 
