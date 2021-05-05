@@ -9,26 +9,28 @@ Aquest crèdit <WIOCCL:IF condition="{##horesLliureDisposicioCredit##}==0">no di
 <WIOCCL:IF condition="{#_ARRAY_LENGTH({##taulaDadesBlocs##})_#}==1">
 ::table:T1
   :title:UNITATS DIDÀCTIQUES
+  :widths:1,6,1
   :type:pt_taula
 ^  Núm. UD  ^  TÍTOL UNITAT DIDÀCTICA  ^  Durada  ^
 <WIOCCL:FOREACH var="item" array="{##taulaDadesUD##}">
-|  {##item[unitat didàctica]##}  |  {##item[nom]##}  |  {##item[hores]##}  |
+|  {##item[unitat didàctica]##}  |  {##item[nom]##}  |  {##item[hores]##} h |
 </WIOCCL:FOREACH>
 :::
 </WIOCCL:IF>
 <WIOCCL:IF condition="{#_ARRAY_LENGTH({##taulaDadesBlocs##})_#}\>1">
 ::table:T1
   :title:UNITATS DIDÀCTIQUES
+  :widths:1,1,6,1
   :type:pt_taula
 ^  Bloc  ^  Núm. UD  ^  TÍTOL UNITAT DIDÀCTICA  ^  Durada  ^
 <WIOCCL:SET var="currentBloc" type="literal" value="-1">
 <WIOCCL:FOREACH var="item" array="{##taulaDadesUD##}">
 <WIOCCL:IF condition="{##currentBloc##}=={##item[bloc]##}">
-|  :::  |  {##item[unitat didàctica]##}  |  {##item[nom]##}  |  {##item[hores]##}  |
+|  :::  |  {##item[unitat didàctica]##}  |  {##item[nom]##}  |  {##item[hores]##} h |
 </WIOCCL:IF>
 <WIOCCL:IF condition="{##currentBloc##}!={##item[bloc]##}">
 <WIOCCL:RESET var="currentBloc" type="literal" value="{##item[bloc]##}"></WIOCCL:RESET>
-|  {##item[bloc]##}  |  {##item[unitat didàctica]##}  |  {##item[nom]##}  |  {##item[hores]##}  |
+|  {##item[bloc]##}  |  {##item[unitat didàctica]##}  |  {##item[nom]##}  |  {##item[hores]##} h |
 </WIOCCL:IF>
 </WIOCCL:FOREACH>
 </WIOCCL:SET>
@@ -266,7 +268,9 @@ Els recursos necessaris per cursar aquest crèdit són:
 
 :###
 ==== Objectius de la unitat ====
-::table:T2.{##itemUd[unitat didàctica]##}
+::table:T2-{##itemUd[unitat didàctica]##}
+  :title:Objectius de la unitat didàctica {##itemUd[unitat didàctica]##}
+  :widths:1,8
 ^  Objectius  ^^
 <WIOCCL:FOREACH var="itemObj" array="{##objectius##}" filter="{##itemObj[ud]##}=={##itemUd[unitat didàctica]##}">
 | {##itemObj[id]##}.  | {##itemObj[descripcio]##}  |
@@ -279,8 +283,8 @@ Els recursos necessaris per cursar aquest crèdit són:
 ==== Continguts ====
 
 <WIOCCL:SET var="lengthAct" type="literal" value="{#_COUNTINARRAY({##actituds##}, [''unitat didàctica''], [{##itemUd[unitat didàctica]##}])_#}">
-::table:T3.{##itemUd[unitat didàctica]##}
-  :title:continguts
+::table:T3-{##itemUd[unitat didàctica]##}
+  :title:Continguts de la unitat didàctica {##itemUd[unitat didàctica]##}
   :type:pt_taula
 [^  Conceptes  ^
 <WIOCCL:FOREACH var="itemConc" array="{##conceptes##}" filter="{##itemConc[ud]##}=={##itemUd[unitat didàctica]##}">
@@ -299,34 +303,50 @@ Els recursos necessaris per cursar aquest crèdit són:
 </WIOCCL:SET>
 ###:
 
+:###
+==== Nuclis d’activitat ====
 
+::table:T4-{##itemUd[unitat didàctica]##}
+  :title:Nuclis d'activitat de la unitat didàctica {##itemUd[unitat didàctica]##}
+  :widths:1,6,1
+  :type:pt_taula
+^ NA ^  nom  ^  Durada  ^
+<WIOCCL:FOREACH var="itemNA" array="{##taulaNuclisActivitat##}" filter="{##itemNA[unitat didàctica]##}=={##itemUd[unitat didàctica]##}">
+| {##itemNA[nucli activitat]##} | {##itemNA[nom]##}  |   {##itemNA[hores]##} h |
 </WIOCCL:FOREACH>
 
+:::
+###:
+[##TODO:Si és el cas, aquí podeu escriure comentaris generals referents a les unitats. Aquets comentaris es repetiran a cada unitat.##]
 
----------------------------------
+:###
+</WIOCCL:FOREACH>
+###:
+[##TODO:Si és el cas, aquí podeu escriure comentaris generals referents a totes les unitats. Aquets comentaris no es repetiran.##]
 
 :###
 ====== CONTROL DE CANVIS ======
 
-::table:T6
+::table:T5
   :title:Històric del control de canvis
+  :widths:1,1,3
   :type:pt_taula
 ^  Data d'aprovació  ^  Modificat per:  ^  Modificacions  ^
 <WIOCCL:FOREACH var="item" array="{##cc_historic##}">
-|  {#_DATE("{##item[data]##}")_#}  |  {##item[autor]##}  |  {##item[modificacions]##}  |
+|  {#_DATE("{##item[data]##}")_#}  |  {##item[autor]##}  |  {##item[modificacions]##}    |
 </WIOCCL:FOREACH>  
 :::
 
 ====== GESTIÓ DEL DOCUMENT ======
 
-::table:T7
+::table:T6
   :title:Dades de la gestió de la darrera modificació
   :type:pt_taula
-^              ^                 Elaborat per:                    ^                   Revisat per:                     ^               Aprovat i validat per:                 ^
-| Nom i cognom | {##cc_dadesAutor#nomGestor##}                    | {##cc_dadesRevisor#nomGestor##}                    | {##cc_dadesValidador#nomGestor##}                    |
-| Càrrec       | {##cc_dadesAutor#carrec##}                       | {##cc_dadesRevisor#carrec##}                       | {##cc_dadesValidador#carrec##}                       |
-| Data         | {#_DATE("{##cc_dadesAutor#dataDeLaGestio##}")_#} | {#_DATE("{##cc_dadesRevisor#dataDeLaGestio##}")_#} | {#_DATE("{##cc_dadesValidador#dataDeLaGestio##}")_#} |
-| Signatura    | {##cc_dadesAutor#signatura##}                    | {##cc_dadesRevisor#signatura##}                    | {##cc_dadesValidador#signatura##}                    |
+^               ^                  Elaborat per:                    ^                   Revisat per:                      ^                Aprovat i validat per:                 ^
+| Nom i cognom  | {##cc_dadesAutor#nomGestor##}                     | {##cc_dadesRevisor#nomGestor##}                     | {##cc_dadesValidador#nomGestor##}                     |
+| Càrrec        | {##cc_dadesAutor#carrec##}                        | {##cc_dadesRevisor#carrec##}                        | {##cc_dadesValidador#carrec##}                        |
+| Data          | {#_DATE("{##cc_dadesAutor#dataDeLaGestio##}")_#}  | {#_DATE("{##cc_dadesRevisor#dataDeLaGestio##}")_#}  | {#_DATE("{##cc_dadesValidador#dataDeLaGestio##}")_#}  |
+| Signatura     | {##cc_dadesAutor#signatura##}                     | {##cc_dadesRevisor#signatura##}                     | {##cc_dadesValidador#signatura##}                     |
 :::
 ###:
 
