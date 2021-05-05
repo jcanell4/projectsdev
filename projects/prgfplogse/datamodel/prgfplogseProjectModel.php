@@ -41,7 +41,7 @@ class prgfplogseProjectModel extends UniqueContentFileProjectModel{
             ,["typeField"=>"SF","field"=>"cicle", "accioNecessaria"=>"hi poseu el nom del cicle"]
             ,["typeField"=>"SF","field"=>"creditId", "accioNecessaria"=>"hi poseu el codi del crèdit"]
             ,["typeField"=>"SF","field"=>"credit", "accioNecessaria"=>"hi poseu el nom del crèdit"]
-            ,["typeField"=>"SF","field"=>"estrategiesMetodologiques", "accioNecessaria"=>"hi poseu les estratègies moetodològiques del crèdit"]
+//            ,["typeField"=>"SF","field"=>"estrategiesMetodologiques", "accioNecessaria"=>"hi poseu les estratègies moetodològiques del crèdit"]
             ,["typeField"=>"TF","field"=>"taulaDadesUD", "accioNecessaria"=>"hi afegiu les unitats formatives del crèdit"]
             ,["typeField"=>"TF","field"=>"taulaInstrumentsAvaluacio", "accioNecessaria"=>"hi afegiu els instruments d'avalaució del crèdit"]
             ,["typeField"=>"TF","field"=>"objectius", "accioNecessaria"=>"hi afegiu els objectius de cada UD"]
@@ -164,7 +164,26 @@ class prgfplogseProjectModel extends UniqueContentFileProjectModel{
                                         ,$totalCredit)
                 ];
         }
-
+        
+        foreach ($udTable as $udValue) {
+            $trobat=false;
+            foreach ($obTable as $obValue) {
+                if($obValue["ud"] == $udValue["unitat didàctica"]){
+                    $trobat=TRUE;
+                    break;
+                }
+            }
+            if(!$trobat){
+                $result["ERROR"][] = [
+                    'responseType' => $responseType,
+                    'field' => 'objectius',
+                    'message' => sprintf("No i ha objectius de la unitat diàctica %d. Cal afegir-ne"
+                                        ,$udValue["unitat didàctica"]
+                                        ,$totalCredit)
+                ];
+            }
+        }
+        
         if (empty($result)) {
             $responseType = "NOERROR";
             $result[$responseType] = WikiIocLangManager::getLang("No s'han detectat errors a les dades del projecte");
