@@ -164,26 +164,26 @@ class prgfplogseProjectModel extends UniqueContentFileProjectModel{
                                         ,$totalCredit)
                 ];
         }
-        
-        foreach ($udTable as $udValue) {
-            $trobat=false;
-            foreach ($obTable as $obValue) {
-                if($obValue["ud"] == $udValue["unitat didàctica"]){
-                    $trobat=TRUE;
-                    break;
+        if(!empty($udTable)){
+            foreach ($udTable as $udValue) {
+                $trobat=false;
+                foreach ($obTable as $obValue) {
+                    if($obValue["ud"] == $udValue["unitat didàctica"]){
+                        $trobat=TRUE;
+                        break;
+                    }
+                }
+                if(!$trobat){
+                    $result["ERROR"][] = [
+                        'responseType' => $responseType,
+                        'field' => 'objectius',
+                        'message' => sprintf("No i ha objectius de la unitat diàctica %d. Cal afegir-ne"
+                                            ,$udValue["unitat didàctica"]
+                                            ,$totalCredit)
+                    ];
                 }
             }
-            if(!$trobat){
-                $result["ERROR"][] = [
-                    'responseType' => $responseType,
-                    'field' => 'objectius',
-                    'message' => sprintf("No i ha objectius de la unitat diàctica %d. Cal afegir-ne"
-                                        ,$udValue["unitat didàctica"]
-                                        ,$totalCredit)
-                ];
-            }
-        }
-        
+        }        
         if (empty($result)) {
             $responseType = "NOERROR";
             $result[$responseType] = WikiIocLangManager::getLang("No s'han detectat errors a les dades del projecte");
