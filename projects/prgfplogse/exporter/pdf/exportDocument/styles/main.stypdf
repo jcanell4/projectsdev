@@ -94,27 +94,40 @@
             },
             "frameTable":{
                 "style":{
-                     "padding-left": 5,
-                     "margin": {"left":15, "right":15}
+                    "nobr":"true",
+                    "padding-left":5,
+                    "margin":{"left":15, "right":15},
+                    "border":false
                 },
                 "styleTypes":{
                     "pt_taula":{
                         "style":{
-                             "padding-left": 5,
-                             "margin": {"left":15, "right":15}
+                            "padding-left":5,
+                            "margin":{"left":15, "right":15}
+                        }
+                    },
+                    "typetable":{
+                        "style":{
+                            "padding-left":5,
+                            "margin":{"left":5, "right":5}
+                        }
+                    },
+                    "typeaccounting":{
+                        "style":{
+                            "padding-left":0,
+                            "margin":0
                         }
                     },
                     "title":{
                         "style":{
-                            "align":"center",
-                            "font-weight":"bold"
+                            "align":"C",
+                            "font-attribute":"B"
                         }
                     },
                     "footer":{
                         "style":{
-                            "align":"right",
-                            "font-size":"0.8em",
-                            "color":"#FF0000"
+                            "align":"R",
+                            "font-size":8
                         }
                     }
                 },
@@ -127,23 +140,21 @@
                         "childrenContainers":{
                             "tablerow": {
                                 "style":{
-                                    "background-color": "#fff"
+                                    "background-color":"#fff"
                                 }
                             },
                             "tableheader": {
                                 "style":{
-                                    "align":"center",
-                                    "border":"1px solid red",
-                                    "border-collapse":"collapse",
-                                    "font-weight":"bold",
+                                    "align":"C",
+                                    "border":true,
+                                    "font-attribute":"B",
                                     "background-color":"#f5f5f5"
                                 }
                             },
                             "tablecell": {
                                 "style":{
-                                    "align":"center",
-                                    "border":"1px dotted blue",
-                                    "border-collapse":"collapse"
+                                    "align":"C",
+                                    "border":true
                                 }
                             }
                         }
@@ -152,7 +163,8 @@
             },
             "frameFigure":{
                 "style":{
-                    "align": "C"
+                    "nobr":"true",
+                    "align":"C"
                 },
                 "styleTypes":{}
             }
