@@ -1,0 +1,369 @@
+{
+    "metaDataClassesNameSpaces": [
+        {
+            "main": {
+                "MetaDataDAO": "defaultProject",
+                "MetaDataEntity": "defaultProject",
+                "MetaDataRender": "prgfpfct"
+            }
+        },
+        {
+            "management":{
+                "MetaDataDAO": "defaultProject",
+                "MetaDataEntity": "defaultProject",
+                "MetaDataRender": "prgfpfct"
+            }            
+        }
+    ],
+    "metaDataProjectStructure": [
+        {
+            "main": "meta.mdpr",
+            "versions": {
+                "fields" : 0,
+                "templates": {"continguts":0}
+            },
+            "mainType": {
+                "type": "object",
+                "typeDef": "programacio"
+            },
+            "typesDefinition": {
+                "entradaResultatsAprenentatgeObjectiusTerminals": {
+                    "type":"object",
+                    "keys": {
+                        "nivell": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "Indiqueu el nivell jeràrquic (per a LOGSE el segon nivell correspon als Criteris d'avaluació)"
+                        },
+                        "descripcio": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Escriviu el contingut de l'Objectiu terminal o Resultat d'aprenentatge i, pel nivell 2 el Criteri d'avaluació"
+                        }
+                    }
+                },
+                "defResultatsAprenentatgeObjectiusTerminals": {
+                    "type": "objectArray",
+                    "typeDef":"entradaResultatsAprenentatgeObjectiusTerminals"
+                },
+                "entradaActivitatsFormatives": {
+                    "type":"object",
+                    "keys": {
+                        "nivell": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "Indiqueu el nivell jeràrquic de l'Activitat formativa"
+                        },
+                        "descripcio": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Escriviu el contingut de l'Activitat formativa del nivell corresponent"
+                        }
+                    }
+                },
+                "defActivitatsFormatives": {
+                    "type": "objectArray",
+                    "typeDef":"entradaActivitatsFormatives"
+                },
+                "entradaCc_historic":{
+                    "type":"object",
+                    "keys":{
+                        "data":{
+                            "type": "date",
+                           "mandatory": true,
+                           "props" : {
+                               "readonly" : true
+                            }
+                        },
+                        "autor": {
+                            "type": "string",
+                            "mandatory": true,
+                            "props" : {
+                                "readonly" : true
+                            }
+                        },
+                        "modificacions": {
+                            "type": "string",
+                            "mandatory": true,
+                            "props" : {
+                                "readonly" : true
+                            }
+                        }
+                    }
+                },
+                "dadesGestioDocument":{
+                    "type":"object",
+                    "keys":{
+                        "nomGestor": {
+                            "type": "string",
+                            "mandatory": true,
+                            "props" : {
+                                "readonly" : true
+                            }
+                        },
+                        "carrec": {
+                            "type": "string",
+                            "mandatory": true,
+                            "props" : {
+                                "readonly" : true
+                            }
+                        },
+                        "dataDeLaGestio": {
+                            "type": "date",
+                            "mandatory": true,
+                            "props" : {
+                                "readonly" : true
+                            }
+                        },
+                        "signatura": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default":"pendent",
+                            "props" : {
+                                "readonly" : true
+                            }
+                        }
+                    }
+                },
+                "programacio": {
+                    "type": "object",
+                    "keys": {
+                        "departament": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default":"Indiqueu de quin departament és la programació."
+                        },
+                        "semestre": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": 1
+                        },
+                        "tipusCicle": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "LOE"
+                        },
+                        "cicle": {
+                            "type": "string",
+                            "default": "Indiqueu el nom del cicle",
+                            "mandatory": true
+                        },
+                        "modulId": {
+                            "type": "number",
+                            "mandatory": true
+                        },
+                        "durada": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": 0,
+                            "props": {
+                                "readonly": true
+                            }
+                        },
+                        "any": {
+                            "type": "number",
+                            "mandatory": true,
+                            "calculatedDefault": {
+                                "class": "CalculateByCurrentDate",
+                                "data": "Y"
+                            }
+                        },
+                        "dataIniciFCT": {
+                            "type": "date",
+                            "mandatory": true,
+                            "default": "01/01/2000"
+                        },
+                        "dataMaxIniciFCT": {
+                            "type": "date",
+                            "mandatory": true,
+                            "default": "01/01/2000"
+                        },
+                        "dataApteFCT": {
+                            "type": "date",
+                            "mandatory": true,
+                            "default": "01/01/2000"
+                        },
+                        "dataMaxApteFCT": {
+                            "type": "date",
+                            "mandatory": true,
+                            "default": "01/01/2000"
+                        },
+                        "autor": {
+                            "type": "string",
+                            "mandatory": true,
+                            "isRole":true
+                        },
+                        "responsable": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true,
+                            "isRole":true
+                        },
+                        "supervisor": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true,
+                            "isRole":true
+                        },
+                        "coordinador": {
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "fitxercontinguts": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "continguts"
+                        },
+                        "moodleCourseId": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": 0
+                        },
+                        "resultatsAprenentatgeObjectiusTerminals": {
+                            "type": "defResultatsAprenentatgeObjectiusTerminals",
+                            "mandatory": true
+                        },
+                        "activitatsFormatives":{
+                            "type": "defActivitatsFormatives",
+                            "mandatory": true
+                        },
+                        "cc_historic": {
+                            "type": "objectArray",
+                            "typeDef":"entradaCc_historic",
+                            "mandatory": true,
+                            "props" : {
+                                "readonly" : true
+                            }
+                        },
+                        "cc_raonsModificacio": {
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "cc_dadesAutor": {
+                            "type": "object",
+                            "typeDef": "dadesGestioDocument",
+                            "mandatory": true
+                        },
+                        "cc_dadesRevisor": {
+                            "type": "object",
+                            "typeDef": "dadesGestioDocument",
+                            "mandatory": true
+                        },
+                        "cc_dadesValidador": {
+                            "type": "object",
+                            "typeDef": "dadesGestioDocument",
+                            "mandatory": true
+                        },
+                        "autor": {
+                            "type": "string",
+                            "mandatory": true,
+                            "isRole":true,
+                            "roleProperties":{
+                                "wiki_permission":16,
+                                "shortcut":true
+                            }
+                        },
+                        "responsable": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true,
+                            "isRole":true,
+                            "roleProperties":{
+                                "wiki_permission":16,
+                                "shortcut":true
+                            }
+                        },
+                        "revisor": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true,
+                            "isRole":true,
+                            "roleProperties":{
+                                "wiki_permission":4,
+                                "shortcut":false,
+                                "order":2
+                            }
+                        },
+                        "validador": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true,
+                            "isRole":true,
+                            "roleProperties":{
+                                "wiki_permission":4,
+                                "shortcut":true,
+                                "order":1
+                            }
+                        },
+                        "documentVersion": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": 9
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "management": "management.mdpr",
+            "versions": {
+                "fields" : 0
+            },
+            "mainType": {
+                "type": "object",
+                "typeDef": "management"
+            },
+            "typesDefinition": {
+                "wfStateHistoryEntry":{
+                    "type": "object",
+                    "keys": {
+                        "changeDate":{
+                            "type": "date",
+                            "mandatory": true
+                        },
+                        "oldState":{
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "newState":{
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "changeAction":{
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "user":{
+                            "type": "string",
+                            "mandatory": true
+                        }
+                    }                    
+                },
+                "workflowType":{
+                    "type": "object",
+                    "keys": {
+                        "currentState":{
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "undefined"
+                        },
+                        "stateHistory":{
+                            "type": "objectArray",
+                            "typeDef":"wfStateHistoryEntry"                            
+                        }
+                    }                    
+                },
+                "management": {
+                    "type": "object",
+                    "keys": {
+                        "workflow": {
+                            "type": "object",
+                            "typeDef": "workflowType",
+                            "mandatory": true
+                        }                        
+                    }
+                }
+            }            
+        }
+    ]
+}
