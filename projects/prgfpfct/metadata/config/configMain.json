@@ -19,7 +19,7 @@
         {
             "main": "meta.mdpr",
             "versions": {
-                "fields" : 0,
+                "fields": 0,
                 "templates": {"continguts":0}
             },
             "mainType": {
@@ -30,7 +30,12 @@
                 "entradaResultatsAprenentatgeObjectiusTerminals": {
                     "type":"object",
                     "keys": {
-                        "nivell": {
+                        "nivell1": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "Indiqueu el nivell jeràrquic"
+                        },
+                        "nivell2": {
                             "type": "number",
                             "mandatory": true,
                             "default": "Indiqueu el nivell jeràrquic"
@@ -49,7 +54,12 @@
                 "entradaActivitatsFormatives": {
                     "type":"object",
                     "keys": {
-                        "nivell": {
+                        "nivell1": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "Indiqueu el nivell jeràrquic de l'Activitat formativa"
+                        },
+                        "nivell2": {
                             "type": "number",
                             "mandatory": true,
                             "default": "Indiqueu el nivell jeràrquic de l'Activitat formativa"
@@ -71,22 +81,22 @@
                         "data":{
                             "type": "date",
                            "mandatory": true,
-                           "props" : {
-                               "readonly" : true
+                           "props": {
+                               "readonly": true
                             }
                         },
                         "autor": {
                             "type": "string",
                             "mandatory": true,
-                            "props" : {
-                                "readonly" : true
+                            "props": {
+                                "readonly": true
                             }
                         },
                         "modificacions": {
                             "type": "string",
                             "mandatory": true,
-                            "props" : {
-                                "readonly" : true
+                            "props": {
+                                "readonly": true
                             }
                         }
                     }
@@ -97,30 +107,30 @@
                         "nomGestor": {
                             "type": "string",
                             "mandatory": true,
-                            "props" : {
-                                "readonly" : true
+                            "props": {
+                                "readonly": true
                             }
                         },
                         "carrec": {
                             "type": "string",
                             "mandatory": true,
-                            "props" : {
-                                "readonly" : true
+                            "props": {
+                                "readonly": true
                             }
                         },
                         "dataDeLaGestio": {
                             "type": "date",
                             "mandatory": true,
-                            "props" : {
-                                "readonly" : true
+                            "props": {
+                                "readonly": true
                             }
                         },
                         "signatura": {
                             "type": "string",
                             "mandatory": true,
                             "default":"pendent",
-                            "props" : {
-                                "readonly" : true
+                            "props": {
+                                "readonly": true
                             }
                         }
                     }
@@ -231,8 +241,8 @@
                             "type": "objectArray",
                             "typeDef":"entradaCc_historic",
                             "mandatory": true,
-                            "props" : {
-                                "readonly" : true
+                            "props": {
+                                "readonly": true
                             }
                         },
                         "cc_raonsModificacio": {
@@ -307,7 +317,7 @@
         {
             "management": "management.mdpr",
             "versions": {
-                "fields" : 0
+                "fields": 0
             },
             "mainType": {
                 "type": "object",

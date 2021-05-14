@@ -284,13 +284,16 @@
                     "add_import": {
                         "button_label": "Importar amb format '9. resultat' i '9.9 resultat'",
                         "data": {
-                            "regexColSeparator": "^[[:blank:]]*([1-9]\\.)([[:digit:]])*[[:blank:]](.*?)\n$",
+                            "regexColSeparator": "^ *([1-9]\\.)([1-9])* (.*?)\n$",
                             "regexRowSeparator": "\n"
                         }
                     }
                 },
                 "fields": {
-                    "nivell":{
+                    "nivell1":{
+                        "type": "number"
+                    },
+                    "nivell2":{
                         "type": "number"
                     },
                     "descripcio": {
@@ -344,7 +347,10 @@
                     }
                 },
                 "fields": {
-                    "nivell":{
+                    "nivell1":{
+                        "type": "number"
+                    },
+                    "nivell2":{
                         "type": "number"
                     },
                     "descripcio": {

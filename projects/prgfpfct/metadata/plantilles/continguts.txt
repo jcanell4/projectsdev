@@ -1,399 +1,285 @@
 :###
 ~~USE:WIOCCL~~
+<WIOCCL:SET var="creditmodul" type="literal" value="mòdul">
+<WIOCCL:IF condition="{##tipusCicle##}==''LOGSE''"><WIOCCL:RESET var="creditmodul" type="literal" value="crèdit"></WIOCCL:RESET></WIOCCL:IF>
 ###:
-:###======   RELACIÓ D’UNITATS FORMATIVES I NUCLIS FORMATIUS ======###:
+:###====== Presentació del {##creditmodul##} ======###:
 
-:###
-Aquest mòdul <WIOCCL:IF condition="{##horesLliureDisposicioModul##}==0">no disposa d’hores de lliure disposició</WIOCCL:IF><WIOCCL:IF condition="{##horesLliureDisposicioModul##}\>0">disposa de {##horesLliureDisposicioModul##} hores de lliure disposició</WIOCCL:IF>.<WIOCCL:IF condition="{#_ARRAY_LENGTH({##taulaDadesBlocs##})_#}\>0"> Es divideix en {#_LAST({##taulaDadesBlocs##}, "LAST[bloc]")_#} blocs.</WIOCCL:IF>
+El currículum dels ensenyaments de formació professional específica inclou un {##creditmodul##} de formació en el centre de treball (FCT), de la qual podrà quedar totalment o parcialment exempt l’alumne que acrediti l’experiència professional d’acord amb el que estableix la normativa. Aquest {##creditmodul##} es cursa de forma presencial, es a dir, l’alumne ha d’anar a fer les pràctiques a una empresa.
 
-<WIOCCL:IF condition="{#_ARRAY_LENGTH({##taulaDadesBlocs##})_#}==1">
-::table:T1
-  :title:UNITATS FORMATIVES
-  :widths:1,4,2,2,2
+L’FCT és un {##creditmodul##} que s’ha de cursar al final del cicle, quan l’alumne ha superat la totalitat o gairebé la totalitat dels {##creditmodul##}s del cicle formatiu, garantint així l’assoliment d’una formació inicial mínima per incorporar-se al lloc de formació a l’empresa.
+
+**Els objectius de la formació pràctica en centres de treball, en relació amb l’alumne, són:**
+  - Desenvolupar, en un context laboral, els aprenentatges curriculars adquirits.
+  - Contrastar les capacitats i els interessos amb un entorn real de treball com a suport a l’orientació professional.
+  - Integrar-se en les funcions i els processos de treball i en el marc de relacions socials i laborals que tenen lloc en les empreses i entitats.
+  - Assolir nous coneixements i capacitats relacionats amb els objectius d’aprenentatge establerts en el currículum dels ensenyaments que s’estan cursant.
+  - Adquirir coneixements i habilitats que facilitin la transició a la vida activa i la inserció laboral.
+
+**Què comporten les pràctiques per a l’alumne?**
+  *
+    * El coneixement del món laboral i de l’empresa.
+    * La possibilitat d’estar en contacte amb la tecnologia més avançada.
+    * La compleció de la seva formació professional, per capacitar-se per a la seva incorporació al món laboral.
+    * L’obtenció d’una formació adaptada a llocs de treball específics.
+    * L’acostament a la cultura de l’empresa.
+    * L’experiència en el món laboral com a pas previ per a la primera ocupació.
+    * L’inici del seu historial professional acreditat amb el quadern de pràctiques.
+    * L’avaluació positiva de les pràctiques comporta la superació del {##creditmodul##} o matèria.
+
+**Què ofereixen les pràctiques a l’empresa?**
+  *
+    * Captar futur personal qualificat.
+    * Col·laborar en la formació del jove aprenent o la jove aprenenta.
+    * Oferir l’accés del jove o de la jove estudiant a la seva primera ocupació.
+    * Relacionar-se amb els centres docents.
+    * No implica serveis retribuïts ni vinculació laboral.
+
+**Què és un conveni de col·laboració per a la formació pràctica en centres de treball?**
+
+És un acord subscrit, d’acord amb un model oficial, entre el centre docent i l’empresa, a fi que l’alumne d’ensenyaments postobligatoris pugui realitzar pràctiques formatives, no retribuïdes, que completen la seva formació.
+
+Un conveni de col·laboració (o conveni de pràctiques) no és un contracte de treball, i l’alumne en pràctiques no té la consideració de treballador per compte d’altri; per tant, no pot ser aplicada cap normativa laboral que reguli les relacions laborals.
+
+**Requisits de l'alumne**
+
+L'alumne pot fer la formació pràctica en empreses o entitats, sempre que la seva matrícula en el centre docent sigui vigent i el conveni estigui tramitat. Així en els casos que a l'alumne li restin solament les pràctiques, el centre docent ha de vetllar perquè l'alumne estigui matriculat en el curs vigent.
+
+L'alumne ha d'haver complert 16 anys.
+
+Si l’alumne té **menys de 18 anys**, el centre ha de tenir una **autorització signada pel pare, mare o tutor** per la qual queda assabentat que el seu fill o la seva filla està realitzant pràctiques.
+
+L'alumne en pràctiques no té responsabilitat respecte a les tasques que li siguin encomanades que hagi dut a terme en el marc del conveni amb l'entitat col·laboradora o en les que hagi participat; però sí que en té respecte a les accions realitzades a títol individual.
+
+L'alumne ha de respectar la política de protecció de dades i confidencialitat establerta al centre de treball o entitat col·laboradora.
+
+**ASSEGURANCES**
+
+Els alumnes menors de 28 anys estan coberts per l'assegurança escolar. L'atenció sanitària serà oferta a través dels centres sanitaris públics i concertats.
+
+Els alumnes més grans de 28 anys que no treballin i no disposin de cap cobertura assistencial, han de disposar d’una pòlissa d’assegurança amb la mateixa cobertura assistencial per accidents que tenen a l’assegurança escolar i presentar-ne una còpia al centre.
+
+Els alumnes més grans de 28 anys que disposin de la targeta sanitària tenen coberta l’assistència sanitària, però no tenen dret a les  prestacions singulars que dóna l’assegurança escolar obligatòria.
+
+**Pòlisses complementàries**
+
+El Departament d'Ensenyament té subscrites dues pòlisses complementàries:
+
+    * **Pòlissa d'assegurança d'accidents personals**
+        Mort o invalidesa durant l'activitat ocupacional, així com in itinere. Per a alumnes d'ensenyaments secundaris postobligatoris que facin pràctiques en empreses.
+
+    * **Pòlissa d'assegurança de responsabilitat civil i patrimonial**
+        Danys corporals o materials patits per terceres persones i causats, per acció o per omissió, per a l'alumne en practiques, cobrint les conseqüències econòmiques que se'n deriven. Cobreix tot l'alumne de centres públics de titularitat de la Generalitat de Catalunya.
+
+<WIOCCL:IF condition="{##tipusCicle##}==''LOE''">
+====== Resultats d’Aprenentatge i Criteris d’Avaluació ======
+<WIOCCL:IF condition="{#_ARRAY_LENGTH({##resultatsAprenentatgeObjectiusTerminals##})_#}\>1">
+::table:T01
+  :title:Resultats d'Aprenentatge i Criteris d'avaluació
+  :widths:1,4
   :type:pt_taula
-  :footer:(*) S'indiquen les hores mínimes establertes al currículum més les hores de lliure disposició assignades a la unitat formativa
-^  Núm. UF  ^  TÍTOL UNITAT FORMATIVA  ^  Hores mínimes  ^  Hores lliure disp.  ^  Durada (*)  ^
-<WIOCCL:FOREACH var="item" array="{##taulaDadesUF##}">
-|  {##item[unitat formativa]##}  |  {##item[nom]##}  |  {##item[horesMinimes]##}  |  {##item[horesLLiureDisposicio]##}  |  {##item[hores]##}  |
+^  nivell  ^  Descripció  ^
+<WIOCCL:FOREACH var="item" array="{##resultatsAprenentatgeObjectiusTerminals##}">
+|  {##item[nivell]##}  |{##item[descripcio]##} |
 </WIOCCL:FOREACH>
 :::
 </WIOCCL:IF>
-<WIOCCL:IF condition="{#_ARRAY_LENGTH({##taulaDadesBlocs##})_#}\>1">
-::table:T1
-  :title:UNITATS FORMATIVES
-  :widths:1,1,4,2,2,2
+</WIOCCL:IF>
+
+<WIOCCL:IF condition="{##tipusCicle##}==''LOGSE''">
+====== Objectius Terminals ======
+<WIOCCL:IF condition="{#_ARRAY_LENGTH({##resultatsAprenentatgeObjectiusTerminals##})_#}\>1">
+::table:T101
+  :title:Objectius Terminals
   :type:pt_taula
-  :footer:(*) S'indiquen les hores mínimes establertes al currículum més les hores de lliure disposició assignades a la unitat formativa
-^  Bloc  ^  Núm. UF  ^  TÍTOL UNITAT FORMATIVA  ^  Hores mínimes  ^  Hores lliure disp.  ^  Durada (*)  ^
-<WIOCCL:SET var="currentBloc" type="literal" value="-1">
-<WIOCCL:FOREACH var="item" array="{##taulaDadesUF##}">
-<WIOCCL:IF condition="{##currentBloc##}=={##item[bloc]##}">
-|  :::  |  {##item[unitat formativa]##}  |  {##item[nom]##}  |  {##item[horesMinimes]##}  |  {##item[horesLLiureDisposicio]##}  |  {##item[hores]##}  |
-</WIOCCL:IF>
-<WIOCCL:IF condition="{##currentBloc##}!={##item[bloc]##}">
-<WIOCCL:RESET var="currentBloc" type="literal" value="{##item[bloc]##}"></WIOCCL:RESET>
-|  {##item[bloc]##}  |  {##item[unitat formativa]##}  |  {##item[nom]##}  |  {##item[horesMinimes]##}  |  {##item[horesLLiureDisposicio]##}  |  {##item[hores]##}  |
-</WIOCCL:IF>
+^  Descripció  ^
+<WIOCCL:FOREACH var="item" array="{##resultatsAprenentatgeObjectiusTerminals##}">
+|{##item[descripcio]##} |
 </WIOCCL:FOREACH>
-</WIOCCL:SET>
+:::
+</WIOCCL:IF>
+</WIOCCL:IF>
+
+:###====== Activitats Formatives de Referència ======###:
+<WIOCCL:IF condition="{#_ARRAY_LENGTH({##activitatsFormatives##})_#}\>1">
+::table:T102
+  :title:Activitats Formatives de Referència
+  :widths:1,4
+  :type:pt_taula
+^  nivell  ^  Descripció  ^
+<WIOCCL:FOREACH var="item" array="{##activitatsFormatives##}">
+|  {##item[nivell]##}  |{##item[descripcio]##} |
+</WIOCCL:FOREACH>
 :::
 </WIOCCL:IF>
 
-Les hores de dedicació setmanal estimades per aquest mòdul són les establertes en les concrecions curriculars del departament.
+:###====== Metodologia del {##creditmodul##} ======###:
+Atenent a les singularitats de l'IOC, l'alumne realitza les pràctiques de forma presencial a l'empresa però el seu seguiment es fa a distància.
 
-La data prevista d'inici i finalització de cada unitat formativa és l'establerta en el pla de treball del mòdul per al semestre corresponent.
-###:
+Per fer aquest seguiment, l'alumne compta amb un quadern virtual de pràctiques a la plataforma informàtica qBID (quality Banc Integrat de Dades ) a la que accedeixen el tutor de pràctiques de l'IOC i el tutor de l'empresa on fa pràctiques l'alumne.
 
-:###
-::table:T02
-  :title:NUCLIS FORMATIUS
-  :widths:1,4,1
-  :type:pt_taula
-<WIOCCL:SET var="primer" type="literal" value="1">
-<WIOCCL:FOREACH var="itemUf" array="{##taulaDadesUF##}">
-<WIOCCL:IF condition="{##primer##}==0">
-\\
-</WIOCCL:IF>
-<WIOCCL:IF condition="{##primer##}==1">
-<WIOCCL:RESET var="primer" type="literal" value="0"></WIOCCL:RESET>
-</WIOCCL:IF>
-^  UF{##itemUf[unitat formativa]##}: {##itemUf[nom]##}  ^^^
-^  NF  ^ NOM  ^  Durada  ^
-<WIOCCL:FOREACH var="item" array="{##taulaDadesNuclisFormatius##}" filter="{##item[unitat formativa]##}=={##itemUf[unitat formativa]##}">
-|  {##item[nucli formatiu]##}  | {##item[nom]##}  |  {##item[hores]##} h  |
-</WIOCCL:FOREACH>
-</WIOCCL:FOREACH>
-</WIOCCL:SET>
+El model organitzatiu utilitzat a l'IOC és el model **descentralitzat**, en què el professorat tutor dóna d'alta els convenis i els tutors d'empresa.
+
+Les tasques de les persones que intervenen en el {##creditmodul##} d'FCT són les que figuren a continuació:
+
+  - **Tutor del centre:**
+    * És la persona de referència per a l'alumne en tots els aspectes relacionats amb l'FCT. Per tant l’alumne consultarà amb el seu tutor d’FCT qualsevol dubte o incidència relacionada amb les pràctiques.
+    * És el responsable de fer el seguiment, l'avaluació i el control de la fase de formació pràctica en el centre de treball.
+  - **Tutor de l'empresa:**
+    * És la persona responsable de l'alumne a l'empresa i li encomanarà les tasques relacionades amb l'especialitat segons el seu nivell professional i el pla d'activitats establert.
+    * És qui manté els contactes periòdics amb el tutor del centre en els quals es valorarà l'estada de l'alumne a l'empresa.
+    * És qui fa el seguiment de les activitats formatives en el quadern virtual de pràctiques de l'alumne.
+    * És qui farà una valoració dels resultats d'aprenentatge/objectius terminals de l'alumne i de les activitats realitzades d'acord amb el pla d'activitats acordat. Aquesta valoració quedarà reflectida en el quadern virtual.
+  - **Alumne:**
+L’actuació de l’alumne es concreta en:
+    * Col·laborar en la gestió de les seves pràctiques.
+    * Anar a l’empresa a fer les pràctiques de forma presencial, realitzant les activitats pactades pels dos tutors i que figuren en el seu pla d’activitats, dintre de l’horari establert en el conveni.
+    * Entrar periòdicament a l’aula del crèdit i complimentar el seu quadern de seguiment de les pràctiques d’acord amb les orientacions donades.
+    * Comunicar qualsevol dubte o incidència en relació al crèdit al seu tutor de pràctiques del centre.
+L’alumne durant el període de pràctiques haurà de respectar les següents **normes**:
+    * L'assistència a l'empresa durant el període de pràctiques és obligatòria.
+    * En cas d'absència ineludible, s'haurà de comunicar al tutor d'empresa i, si aquest així ho demana, se li haurà de lliurar el justificant corresponent. Si l’absència és d’una setmana o més, l'alumne també informarà de l'absència al tutor del centre.
+    * No es poden recuperar les absències fora de l'horari establert, l'assegurança no les cobreix.
+    * L’alumne seguirà sempre les indicacions de la persona responsable i tindrà un tracte educat i respectuós amb el personal de l’empresa i, si és el cas, amb els clients, proveïdors, etc. També tindrà cura de les instal·lacions i del material de l’empresa.
+    * En cas d’accident en hores de pràctiques s’ha d’anar al centre sanitari de la xarxa pública o concertada més proper. L’assegurança escolar cobreix els alumnes menors de 28 anys; els majors de 28 anys han de disposar de cobertura sanitària pròpia que cobreixi l’assistència mèdica en cas d’accident.
+    * El mal comportament de l’alumne a l’empresa serà motiu de falta greu amb la corresponent sanció i/o l’anul·lació del conveni i amb la possibilitat d'una qualificació negativa (E) en el crèdit  d’FCT.
+
+:###====== Planificació ======###:
+
+**Fase 1. Preparació de les pràctiques**
+    * El tutor de pràctiques facilita a l'alumne un llistat d'empreses registrades al qBID.
+    * L'alumne contacta amb una de les empreses del llistat, i un cop arribat a un acord per fer-hi les pràctiques avisa al tutor de pràctiques.
+    * El tutor de pràctiques es posa en contacte amb l'empresa, dona d'alta al tutor d'aquesta, l'informa del funcionament de l'FCT i acorden l'establiment del pla d'activitats formatives de l'alumne, d’acord amb la competència que s’estableix al currículum educatiu.
+    * El tutor de pràctiques tramita el conveni i l'envia a l'alumne perquè el porti a l'empresa a que el signi, juntament amb informació dels centres sanitaris públics o concertats.
+    * Requisits per matricular-se d’FCT:
+        * no tenir pendents més de sis blocs o crèdits (exclosa la FCT) i haver superat el crèdit de Formació i orientació laboral.
+
+**Fase 2. Desenvolupament de les pràctiques a l'empresa**
+    * L’alumne ha d’anotar la gestió de l’activitat diària en el seu quadern de pràctiques.
+    * Els informes de les activitats formatives són quinzenals.
+    * El tutor de pràctiques, supervisa les activitats de l’alumne en pràctiques i efectua els contactes de seguiment i gestiona els informes periòdics.
+    * El tutor d’empresa és el responsable de fer el seguiment de l’alumne juntament amb el tutor de pràctiques. Cal que gestioni els informes periòdics i el contacte de seguiment.
+
+**Fase 3. Valoració del {##creditmodul##}**
+    * El tutor d’empresa realitza el contacte de valoració i emplena el qüestionari de valoració de l’FCT.
+    * El tutor de pràctiques efectua el contacte de valoració i fa el tancament del quadern.
+    * L’alumne emplena el qüestionari final d’FCT.
+
+:###====== Criteris i instruments d'avaluació i recuperació del {##creditmodul##} ======###:
+
+L'avaluació de l'FCT aporta una informació molt valuosa per a l'avaluació final de l'alumne, en el sentit, què esdevé un moment privilegiat per a comprovar el grau d'assoliment  de les competències professionals definides en el perfil professional del cicle.
+
+:###===== Avaluació de les pràctiques =====###:
+
+**Abans de fer l’avaluació final**, cal que el quadern de pràctiques estigui **totalment emplenat**.
+
+L’avaluació del {##creditmodul##} de formació en centres de treball (FCT) cal que la porti a terme la junta d’avaluació i, ha de tenir en compte la valoració de l’entitat col·laboradora. La junta d’avaluació prendrà com a referència els resultats d’aprenentatge, les activitats formatives de referència i els criteris generals d’avaluació determinats en el decret pel qual s’estableix el currículum dels ensenyaments respectius.
+L’avaluació del crèdit o {##creditmodul##} de formació en centres de treball és continuada durant les pràctiques de l’alumne a l’empresa. El tutor de pràctiques del centre docent i el tutor d’empresa han de tenir en compte la valoració que l’alumne en fa, a l’hora de determinar la seva idoneïtat i corregir-ne, si cal, les possibles deficiències, la qual cosa ha de quedar recollida en el quadern de pràctiques.
+
+:###===== Valoració del dossier =====###:
+
+::table:T014
+  ::type_pt_taula
+|  **Dossier** = conveni + pròrrogues a la mateixa empresa.  |
 :::
-###:
 
-:###====== ESTRATÈGIES METODOLÒGIQUES APLICADES AL MÒDUL ======###:
+  * S’entén com a dossier el conveni i les pròrrogues, si n’hi ha.
+  * Cada dossier es valora en funció dels resultats d’aprenentatge (RA).
+  * Els resultats d’aprenentatge (RA) es valoren en positiu o negatiu amb les qualificacions molt bona, bona/bé, suficient i insuficient.
+  * El tutor o tutora de pràctiques, és la persona responsable de fer la valoració del dossier; ha de tenir en compte la valoració que hagi fet l’empresa de les pràctiques.
+  * Quan es valora un dossier, ja no es poden fer més pròrrogues del conveni. Cal destacar que no computaran les hores dels convenis que tinguin una valoració negativa.
 
-:###
-Les estratègies metodològiques del mòdul són les establertes en les concrecions curriculars de centre FP LOE (CCC_FP_LOE) i en les concrecions curriculars del departament (CCD). 
+:###===== Avaluació final de les pràctiques =====###:
 
-{##estrategiesMetodologiques##}
+  * El tutor de pràctiques valora el {##creditmodul##} i ho registra al quadern de pràctiques.
+  * El tutor ha d’utilitzar els informes periòdics d’activitat diària com a eina d’avaluació per fer la proposta d’avaluació final.
 
-###:
+El tutor d’FCT ha de qualificar els tres resultats d’aprenentatge (RA) amb els seus criteris d’avaluació (CA):
+  * Es qualifiquen els criteris d’avaluació (CA) que corresponen als resultats d’aprenentatge (RA) de diversos dossiers de cada alumne.
+  * L’aplicació qBID fa la mitjana dels criteris d’avaluació (CA) que corresponen a la qualificació de cada resultat d’aprenentatge (RA).
+Qualificació dels resultats d’aprenentatge (RA):
+  * La qualificació de cada RA pot ser modificada pel tutor de l’FCT.
 
-:###====== AVALUACIÓ I QUALIFICACIÓ DEL MÒDUL ======###:
+:###====== Qualificació ======###:
 
-:###
-Els criteris d'avaluació, instruments d’avaluació i recuperació del mòdul són els establerts en les concrecions curriculars de centre FP LOE (CCC_FP_LOE) i en les concrecions curriculars del departament (CCD).
+**Qualificació del {##creditmodul##} d’FCT**
 
-<WIOCCL:IF condition="{#_ARRAY_LENGTH({##taulaDadesUF##})_#}==1">
-Per superar el mòdul professional cal superar tota la unitat formativa, la qual se supera amb una qualificació de {##notaMinimaUfAprovada##},00 punts o superior. 
-</WIOCCL:IF>
-<WIOCCL:IF condition="{#_ARRAY_LENGTH({##taulaDadesUF##})_#}\>1">
-Per superar el mòdul professional cal superar **independentment** totes les unitats formatives. Les unitats formatives se superen amb una qualificació de {##notaMinimaUfAprovada##},00 punts o superior. 
-</WIOCCL:IF>
+La qualificació final del {##creditmodul##} de formació en centres de treball s’expressa en termes d’//Apte/a// o //No Apte/a//.
 
-<WIOCCL:IF condition="{#_ARRAY_LENGTH({##taulaDadesBlocs##})_#}\>0">
-La superació del bloc s’obté amb la superació de les unitats formatives que el componen. No es poden cursar bloc superiors  si no s'han superat els previs. La qualificació final del bloc s’expressarà com a Superat o Pendent, segons correspongui.
-</WIOCCL:IF>
+Ha d’anar acompanyada d’una valoració orientadora (subqualificació) del nivell d’assoliment de les competències professionals:
 
-<WIOCCL:IF condition="{#_ARRAY_LENGTH({##taulaDadesUF##})_#}\>1">
-La qualificació final del mòdul professional serà el resultat de la mitjana de les qualificacions obtingudes en les diferents unitats formatives, d'acord amb la següent ponderació:
+  * Apte/a: Molt Bona, Bona/Bé o Suficient
+  * No Apte/a: Passiva o Negativa
 
-<WIOCCL:SET var="sum_ponderacio" type="literal" value="{#_ARRAY_GET_SUM({##taulaDadesUF##},''ponderació'')_#}">
-**QFM= <WIOCCL:FOREACH var="item" array="{##taulaDadesUF##}" counter="ind">QUF{##item[unitat formativa]##} * {#_GET_PERCENT({##sum_ponderacio##},{##item[ponderació]##})_#}% <WIOCCL:IF condition="{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##taulaDadesUF##})_#},1)_#}">+</WIOCCL:IF></WIOCCL:FOREACH> **
-</WIOCCL:SET>
-</WIOCCL:IF>
+El tutor de pràctiques podrà afegir les observacions que el centre docent o l’empresa cregui convenients.
 
-La qualificació final del mòdul (QFM) és numèrica de l’1 al 10, sense decimals.
+<WIOCCL:IF condition="{##tipusCicle##}==''LOE''">
+En el cas del mòdul LOE, per obtenir la subqualificació de l’FCT s’aplicarà la següent fórmula:
 
-En el cas d'unitats formatives exemptes o convalidades, la nota del mòdul es calcularà d'acord amb la normativa vigent.
-###:
-
-:###====== RECURSOS ======###:
-
-:###
-<WIOCCL:IF condition="{#_ARRAY_LENGTH({##recursosNecessaris##})_#}==0">
-Material IOC del mòdul //**{##modulId##} {##modul##}**// del cicle formatiu //{##cicle##}//.
+Subqualificació FCT =20%RA1+40%RA2+40%RA3
 </WIOCCL:IF>
 
-<WIOCCL:IF condition="{#_ARRAY_LENGTH({##recursosNecessaris##})_#}\>0">
-Els recursos necessaris per cursar aquest mòdul són:
+En el cas de ser **No apte** l'alumne haurà de repetir totes les hores d’FCT. El següent conveni es podrà formalitzar el semestre següent. Es tracta d'un cas atípic ja que normalment, i abans d’arribar a aquesta situació, el tutor haurà anat informant l’alumne dels aspectes que cal millorar o haurà proposat la baixa del conveni.
 
-  * Material IOC del mòdul //**{##modulId##} {##modul##}**// del cicle formatiu //{##cicle##}//.
-<WIOCCL:FOREACH var="item" array="{##recursosNecessaris##}">
-  * {##item##}
-</WIOCCL:FOREACH>
-</WIOCCL:IF>
-###:
+En el cas d'obtenir una **valoració negativa a un dossier d'FCT**, l'alumne haurà de recuperar les hores realitzades i valorades en aquell dossier. L'alumne podrà ser avaluat negativament d'un dossier d'FCT en un mateix cicle formatiu, un màxim de dues vegades.
 
-:###
-~~EXTRA WIDTH~~
-====== DESPLEGAMENT DE LES UNITATS FORMATIVES ======
-<WIOCCL:FOREACH var="itemUf" array="{##taulaDadesUF##}">###:
+En cas de suspendre dos dossiers l'alumne haurà de matricular en un altre institut per poder finalitzar el {##creditmodul##} d'FCT.
 
-:###
-~~EXTRA WIDTH~~
-===== UNITAT FORMATIVA {##itemUf[unitat formativa]##}: {##itemUf[nom]##} =====###:
+**Enquesta de satisfacció**
 
-:###==== Resultats d’aprenentatge (RA), criteris d’avaluació (CA) i continguts ====###:
+Una vegada finalitzat el procés, l’aplicatiu qBID genera un qüestionari per l’alumne i un altre pel centre de treball:
 
-:###
-::table:T03-{##itemUf[unitat formativa]##}
-  :title:RA, CA i CONTINGUTS
-  :widths:1,2,2
-  :force_widths
-  :type:pt_taula
-^  Resultats d'aprenentatge  ^  Criteris d'avaluació  ^  Continguts  ^
-<WIOCCL:FOREACH var="itemRa" array="{##resultatsAprenentatge##}" filter="{##itemUf[unitat formativa]##}=={##itemRa[uf]##}">
-| RA{##itemRa[ra]##}. {##itemRa[descripcio]##}  | <WIOCCL:FOREACH var="itemCa" array="{##criterisAvaluacio##}" filter="{##itemUf[unitat formativa]##}=={##itemCa[uf]##}&&{##itemRa[ra]##}=={##itemCa[ra]##}">CA{##itemCa[ca]##} {##itemCa[descripcio]##}\\ </WIOCCL:FOREACH>  | <WIOCCL:IF condition="{##itemRa[ra]##}==1"><WIOCCL:FOREACH var="itemCo" array="{##continguts##}" filter="{##itemUf[unitat formativa]##}=={##itemCo[uf]##}"><WIOCCL:IF condition="{#_STR_CONTAINS(''.'',''{##itemCo[cont]##}'')_#}==true">\_\_\_\_</WIOCCL:IF><WIOCCL:IF condition="{#_STR_CONTAINS(''.'',''{##itemCo[cont]##}'')_#}!=true">**</WIOCCL:IF>{##itemCo[cont]##} {##itemCo[descripcio]##}<WIOCCL:IF condition="{#_STR_CONTAINS(''.'',''{##itemCo[cont]##}'')_#}!=true">**</WIOCCL:IF>\\ </WIOCCL:FOREACH></WIOCCL:IF><WIOCCL:IF condition="{##itemRa[ra]##}\>1">:::</WIOCCL:IF>           |
-</WIOCCL:FOREACH>
-:::
-###:
+  - Qüestionari final de l’FPCT de l’alumne.\\
+En finalitzar el dossier, l’alumne ha de respondre un qüestionari totalment anònim per valorar la formació pràctica.
+  - Qüestionari al centre de treball.\\
+En finalitzar les pràctiques, la persona responsable del centre de treball ha de respondre un qüestionari per valorar el procés de les pràctiques.
 
-:###==== Activitats d’ensenyament i aprenentatge ====###:
+:###====== Documentació acadèmica ======###:
 
-:###
-<WIOCCL:FOREACH var="itemNf" array="{##taulaDadesNuclisFormatius##}" filter="{##itemUf[unitat formativa]##}=={##itemNf[unitat formativa]##}">
-::table:T04-{##itemUf[unitat formativa]##}-{##itemNf[nucli formatiu]##}
-  :title:Activitats d'aprenentatge pel NF{##itemNf[nucli formatiu]##}
-  :type:pt_taula
-  :widths:6,1,1,2,2,3
-  :force_widths
-[^  NF{##itemNf[nucli formatiu]##}: {##itemNf[nom]##} ({##itemNf[hores]##} h)  ^^^^^^
-^ activitats d'ensenyament i aprenentatge       ^^  RA  ^  Continguts  ^  Avaluació  ^^
-^                         :::                         ^^  :::  ^     :::      ^     CA      ^  instruments d'avaluació  ^
-<WIOCCL:SET var="sizeActivitatsAprenentatge" type="literal" value="{#_SUBS({#_COUNTINARRAY({##activitatsAprenentatge##}, [''unitat formativa'', ''nucli formatiu''], [{##itemUf[unitat formativa]##},{##itemNf[nucli formatiu]##}])_#},1)_#}">
-<WIOCCL:FOREACH var="itemAa" array="{##activitatsAprenentatge##}" counter="posAa" filter="{##itemAa[unitat formativa]##}=={##itemUf[unitat formativa]##}&&{##itemAa[nucli formatiu]##}=={##itemNf[nucli formatiu]##}" counterFromZero="true">
-<WIOCCL:SET var="arrayInstrumentsAvaluacio" type="literal" value="{#_EXPLODE('','', ''{##itemAa[instruments d'avaluació]##}'', ''ALL'', 1)_#}">
-| //**{##itemAa[code]##}-{##itemAa[nom]##}**//   |  {##itemAa[hores]##}&nbsp;h  | {##itemAa[ra]##} | {##itemAa[continguts]##}<WIOCCL:IF condition="{##sizeActivitatsAprenentatge##}=={##posAa##}">*</WIOCCL:IF>  | {##itemAa[ca]##}  | <WIOCCL:FOREACH var="itemInstrumentsAvaluacio" array="{##arrayInstrumentsAvaluacio##}">{##itemInstrumentsAvaluacio##}: {#_ARRAY_GET_VALUE(''descripcio'', {#_SEARCH_ROW([{##itemUf[unitat formativa]##}, ''{##itemInstrumentsAvaluacio##}''], {##taulaInstrumentsAvaluacio##}, [''unitat formativa'', ''id''], [])_#},'' '')_#}\\ </WIOCCL:FOREACH>  |
-| //descripció://\\ \\ {##itemAa[descripcio]##}                                     ||     :::     |   :::   |    :::   |     :::  <WIOCCL:IF condition="{##sizeActivitatsAprenentatge##}=={##posAa##}">|]</WIOCCL:IF><WIOCCL:IF condition="{##sizeActivitatsAprenentatge##}!={##posAa##}">|
-</WIOCCL:IF> 
-</WIOCCL:SET>
-</WIOCCL:FOREACH>
-</WIOCCL:SET>
-:::
-</WIOCCL:FOREACH>
-###:
+**Documentació que s’ha de lliurar a l’alumne**
+
+El centre docent ha de lliurar a l'alumne el quadern de pràctiques que, com a mínim, ha de contenir:
+  * El conveni de col·laboració per a la formació en centres de treball i les seves pròrrogues (ref. 05).
+  * Valoració del dossier (ref.18).
+  * Avaluació del quadern (resultats d’aprenentatge) (ref. 19).
+  * Qualificació del quadern (avaluació i qualificació del {##creditmodul##} professional) (ref. 20).
+
+**Documents que han de custodiar els centres docents**
+
+El centre docent ha de custodiar la documentació següent:
+  * L’original dels convenis i les pròrrogues (ref. 05).
+  * L’autorització de l’alumne menor d’edat (ref. 16)
+  * L’original del document ref. 02 (durant la seva vigència).
+  * Resolució exempció de l’FCT, si n’hi ha.
+  * Valoració del dossier (ref. 18) que inclou la valoració final dels RA.
+  * Qualificació del quadern (avaluació i qualificació del {##creditmodul##}) (ref. 20).
+
+:###====== Recursos ======###:
+
+Per impartir el {##creditmodul##} disposem dels següents recursos:
+  * Quadern virtual
+  * Material complementari penjat a l'aula del {##creditmodul##} i a la sala de coordinació d’FCT.
+
+:###====== Temporització ======###:
+
+Només es podran computar les hores de pràctiques realitzades dintre dels terminis i de l’horari que figurin en el conveni. En cap cas es poden fer pràctiques fora de les dates o de l’horari establert, l'assegurança no les cobreix i no computen com a fetes.
+
+**Horari:** el màxim d’hores diàries i setmanals que es poden fer durant el període de pràctiques vindrà determinat per la normativa d’FCT de cada curs i estarà especificat al pla de treball del {##creditmodul##}.
+
+Es podran fer pràctiques des del setembre fins a finals de juny. Durant els mesos de juliol i agost no es poden fer pràctiques. En alguns casos, i de forma excepcional prèvia valoració de cada cas particular, es podran fer pràctiques al juliol atenent als requisits que a continuació s'indiquen:
+
+  - **Horari laboral de l'alumne**: Si per motius laborals l'alumne no pot realitzar pràctiques del setembre fins al juny. Haurà de presentar un certificat de l'empresa on es faci constar el seu horari laboral on es faci constar el seu horari laboral en què s'acrediti que no pot fer pràctiques  durant la franja horària de 8:00 a 22:00 hores.
+  - **Hores de pràctiques pendents**: Si queden poques hores per finalitzar la totalitat de les hores de pràctiques del {##creditmodul##}.
+
+L'inici del {##creditmodul##} no suposa l'inici de les pràctiques a l'empresa. Les pràctiques s'iniciaran en el moment en què s'hagi gestionat el conveni, d'acord amb les dates d'inici i final del conveni.
+
+Les pràctiques es podran realitzar al llarg de quatre semestres. Transcorreguts aquests, si no s'han realitzat les hores de pràctiques corresponents, l'alumne es podrà matricular novament del {##creditmodul##} per completar les hores de pràctiques pendents.
+
+Si durant tot un semestre no es realitzen pràctiques, l'alumne s'haurà de matricular novament del {##creditmodul##} en el semestre que les vulgui començar.
 
 :###
 ~~NORMAL WIDTH~~
-==== Avaluació i qualificació de la unitat formativa ====
-###:
-
-:###
-<WIOCCL:SET var="keyUf" type="literal" value="{#_SEARCH_KEY({##itemUf[unitat formativa]##},{##taulaDadesUF##}, ''unitat formativa'')_#}">
-<WIOCCL:SET var="initialAss" type="literal" value="{#_ARRAY_GET_VALUE(''avaluacioInicial'',{#_ARRAY_GET_VALUE(''{##keyUf##}'',{##taulaDadesUF##},[])_#},'' '')_#}">
-<WIOCCL:SET var="codeInitialAss" type="map" value="{##initialAss##}" map="{''No en té'':0, ''A l'inici del mòdul'':1, ''A l'inici del bloc'':2, ''A l'inici de la UF'':3}">
-<WIOCCL:IF condition="{##codeInitialAss##}!=0">
-=== Avaluació inicial ===
-###:
-
-:###
-Es planteja {#_LCFIRST(''{##initialAss##}'')_#}. El seu objectiu és detectar i fer conscients els alumnes dels seus coneixements previs. Permet al professor adaptar l'ajuda pedagògica al grup i, si escau, de manera personalitzada a l'alumne que ho precisi.
-###:
-
-:###
-</WIOCCL:IF> 
-</WIOCCL:SET>
-</WIOCCL:SET>
-</WIOCCL:SET>
-=== Avaluació contínua (AC) ===
-###:
-
-:###
-El model pedagògic de l'IOC es fonamenta en l’avaluació acadèmica de l’alumne mitjançant l’AC. Està constatat que l’èxit en els estudis a distància està directament relacionat amb el ritme d’estudi continuat al llarg de tot el període acadèmic. Es recomana a tots els alumnes que segueixin l’AC atès que forma part de la qualificació final.
-
-<WIOCCL:SET var="nombreEACs" type="literal" value="{#_COUNTINARRAY({##taulaInstrumentsAvaluacio##}, [''unitat formativa'',''tipus''], [{##itemUf[unitat formativa]##}, ''AC''])_#}">
-**L'AC:**
-  * Es realitza a distància
-  * Es concreta en {##nombreEACs##} EAC.
-  * Té una ponderació  en la qualificació final de la UF.
-  * Per poder tenir en compte la qualificació de l’AC, s’ha d’obtenir, per cada instrument d'avaluació, la nota mínima indicada tot seguit:
-<WIOCCL:FOREACH var="itemInsAv" array="{##taulaInstrumentsAvaluacio##}" filter="{##itemInsAv[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##itemInsAv[tipus]##}!=''AC'' && {##itemInsAv[notaMinima]##}\>0">
-    * {##itemInsAv[tipus]##}: qualificació mínima de {##itemInsAv[notaMinima]##},00 sesse cap arrodoniment previ.
-</WIOCCL:FOREACH>
-  * La qualificació de l'AC es té en compte tant a la convocatòria PAF 1 com a la convocatòria  PAF 2 del mateix semestre, però no es guarda d'un semestre a l'altre. 
-</WIOCCL:SET>
-###:
-
-:###
-** Exercicis d'avaluació contínua (EAC):**
-  * Han de ser lliurats dins dels terminis fixats, el termini és improrrogable. El sistema no permet lliurar cap EAC passades les 23.55 hores de la data de lliurament.
-  * S'han de resoldre individualment.
-  * L’alumne ha de fer les activitats proposades de manera original i seguint les indicacions del professor. Els EAC que siguin còpia literal (total o parcial) d'altres treballs, exercicis o fonts es consideraran suspesos amb una qualificació de 0.
-  * En els EAC s'estableixen els criteris d'avaluació corresponents.
-  * El professor  corregeix els EAC i emet una qualificació numèrica de l'escala entre el 0 i el 10, amb dos decimals.
-  * Inclou la publicació de la solució, la valoració general al grup classe i una retroacció individual a cada alumne. 
-###:
-
-:###
-=== Avaluació final i recuperació ===
-###:
-
-:###
-<WIOCCL:SET var="keyUfEAF" type="literal" value="{#_SEARCH_KEY([{##itemUf[unitat formativa]##}, ''EAF''],{##taulaInstrumentsAvaluacio##}, [''unitat formativa'',''tipus''])_#}">
-<WIOCCL:SET var="keyUfJT" type="literal" value="{#_SEARCH_KEY([{##itemUf[unitat formativa]##}, ''JT''],{##taulaInstrumentsAvaluacio##}, [''unitat formativa'',''tipus''])_#}">
-<WIOCCL:SET var="keyUfPAF" type="literal" value="{#_SEARCH_KEY([{##itemUf[unitat formativa]##}, ''PAF''],{##taulaInstrumentsAvaluacio##}, [''unitat formativa'',''tipus''])_#}">
-<WIOCCL:SET var="keyUfPAFV" type="literal" value="{#_SEARCH_KEY([{##itemUf[unitat formativa]##}, ''PAFV''],{##taulaInstrumentsAvaluacio##}, [''unitat formativa'',''tipus''])_#}">
-<WIOCCL:IF condition="{##keyUfEAF##}===false && {##keyUfJT##}===false">
-L'avaluació final (AF) es concreta en la prova d'avaluació final <WIOCCL:IF condition="{##keyUfPAF##}!=false">(PAF)</WIOCCL:IF><WIOCCL:IF condition="{##keyUfPAFV##}!=false">de validació (PAFV)</WIOCCL:IF>:
-</WIOCCL:IF> 
-<WIOCCL:IF condition="{##keyUfEAF##}!==false || {##keyUfJT##}!==false">
-<WIOCCL:IF condition="{##keyUfPAF##}!==false || {##keyUfPAFV##}!==false">
-L'avaluació final (AF) es concreta en la prova d'avaluació final <WIOCCL:IF condition="{##keyUfPAF##}!=false">(PAF)</WIOCCL:IF><WIOCCL:IF condition="{##keyUfPAFV##}!=false">de validació (PAFV)</WIOCCL:IF><WIOCCL:IF condition="{##keyUfEAF##}!==false"><WIOCCL:IF condition="{##keyUfJT##}===false"> i </WIOCCL:IF><WIOCCL:IF condition="{##keyUfJT##}!==false">, </WIOCCL:IF>els exercicis d'avaluació final (EAF)</WIOCCL:IF><WIOCCL:IF condition="{##keyUfJT##}!==false"> i les jornades tècniques (JT)</WIOCCL:IF>:
-</WIOCCL:IF> 
-<WIOCCL:IF condition="{##keyUfPAF##}===false && {##keyUfPAFV##}===false">
-L'avaluació final (AF) es concreta en els exercicis d'avaluació final (EAF)<WIOCCL:IF condition="{##keyUfJT##}!==false"> i les jornades tècniques (JT)</WIOCCL:IF>:
-</WIOCCL:IF> 
-</WIOCCL:IF> 
-
-<WIOCCL:IF condition="{##keyUfPAF##}!=false">
-**PAF:**
-  * És obligatòria per aprovar el mòdul. 
-  * Consisteix en diversos exercicis: {#_ARRAY_GET_VALUE(''descripcio'',{#_ARRAY_GET_VALUE(''{##keyUfPAF##}'',{##taulaInstrumentsAvaluacio##},[])_#}," ")_#}. 
-  * {##duradaPAF##}.
-  * S'avalua numèricament del 0 al 10, amb dos decimals.
-  * NO inclou retroacció.
-  * Té una ponderació a la qualificació final (QF) (vegeu l'apartat  "Qualificació final QF").
-###:
-
-:###
-S'ofereixen dues convocatòries  cada semestre: PAF 1 i PAF 2 . L'alumne pot: 
-  * Presentar-se a la PAF 1 i, en cas de no superar-la, presentar-se a la PAF 2 del mateix semestre (2 setmanes després de la PAF 1). En cap cas es pot presentar a la PAF 2 per pujar nota tenint la PAF 1 superada.
-  * Presentar-se directament a la PAF 2. 
-
-La convocatòria corresponent a la PAF 1 s'esgota tant si l'alumne s'hi presenta com si no (exceptuant que l'alumne hagi anul·lat la matrícula). La convocatòria corresponent a PAF 2 només s'esgota si l'alumne s'hi presenta. 
-</WIOCCL:IF> 
-###:
-
-:###
-<WIOCCL:IF condition="{##keyUfPAFV##}!=false">
-**PAFV:**
-###:
-[##TODO: Descriviu les característiques de prova de validació si n'hi ha.##]
-
-:###
-</WIOCCL:IF> 
-<WIOCCL:IF condition="{##keyUfEAF##}!==false">
-**EAF:**
-  * Comprèn una sèrie d'activitats d'avaluació  que tenen com a finalitat evidenciar el grau d'assoliment d'aquells resultats d'aprenentatge relacionats amb procediments difícils d'avaluar amb altres elements d'avaluació.
-  * És NO presencial, es realitza a distància. 
-<WIOCCL:IF condition="true==={#_ARRAY_GET_VALUE(''esObligatori'',{#_ARRAY_GET_VALUE(''{##keyUfEAF##}'',{##taulaInstrumentsAvaluacio##},[])_#},false)_#}">
-  * És obligatori.
-</WIOCCL:IF> 
-  * S'ha de resoldre <WIOCCL:IF condition="true!=={#_ARRAY_GET_VALUE(''treballEnEquip'',{#_ARRAY_GET_VALUE(''{##keyUfEAF##}'',{##taulaInstrumentsAvaluacio##},[])_#},false)_#}">de manera individual</WIOCCL:IF><WIOCCL:IF condition="true==={#_ARRAY_GET_VALUE(''treballEnEquip'',{#_ARRAY_GET_VALUE(''{##keyUfEAF##}'',{##taulaInstrumentsAvaluacio##},[])_#},false)_#}">en grup</WIOCCL:IF>. 
-  * L’alumne ha de fer les activitats proposades de manera original i seguint les indicacions del professor. Els EAF que siguin còpia literal (total o parcial) d'altres treballs, exercicis o fonts es consideraran suspesos amb una qualificació de 0.
-  * S'avalua numèricament del 0 al 10, amb l’expressió d’un decimal.
-  * Té una ponderació a la qualificació final (QF) (vegeu l'apartat "Qualificació final QF").
-###:
-
-:###
-En ser part de l'avaluació final, l'EAF té dues convocatòries  cada semestre:  EAF i EAF recuperació. L'alumne pot:
-  * Presentar-se a l'EAF i en cas de no superar-lo, presentar-se a l’ EAF recuperació del mateix semestre. En cap cas es pot presentar a l’ EAF recuperació per pujar nota tenint l'EAF superat.
-  * Presentar-se directament a l’ EAF recuperació.
-La convocatòria EAF s'exhaureix tant si l'alumne  s'hi presenta com si no (excepte que l'alumne hagi anul·lat la matrícula). La convocatòria EAF  recuperació només s'exhaureix si l'estudiant s'hi presenta. 
-
-<WIOCCL:IF condition="true==={#_ARRAY_GET_VALUE(''treballEnEquip'',{#_ARRAY_GET_VALUE(''{##keyUfEAF##}'',{##taulaInstrumentsAvaluacio##},[])_#},false)_#}">
-En EAF establerts dins de la metodologia del treball en equip l'alumne té l'obligació de presentar-se a l’EAF i només opta a presentar-se a l’EAF recuperació  quan:
-  * La recuperació implica a tots els components de l'equip que han de lliurar de nou conjuntament una mateixa tasca.
-  * La recuperació individual fa referència al contingut de l'exercici i no a les competències del treball en equip que només es poden superar de nou, treballant novament en grup.
-</WIOCCL:IF>
-###:
-[##TODO: Afegir qualsevol informació relativa als EAF. Per exemple si fos el cas, determinar com es garanteix la identitat de l'alumne, quines són les competències del treball en equip.##]
-
-:###
-</WIOCCL:IF> 
-<WIOCCL:IF condition="{##keyUfJT##}!==false">
-**JT**:
-<WIOCCL:IF condition="true==={#_ARRAY_GET_VALUE(''esObligatori'',{#_ARRAY_GET_VALUE(''{##keyUfJT##}'',{##taulaInstrumentsAvaluacio##},[])_#},false)_#}">
-  * És obligatòria. 
-</WIOCCL:IF>
-<WIOCCL:IF condition="true==={#_ARRAY_GET_VALUE(''treballEnEquip'',{#_ARRAY_GET_VALUE(''{##keyUfJT##}'',{##taulaInstrumentsAvaluacio##},[])_#},false)_#}">
-  * Les activitats realitzades durant les jornades es realitzaran en grup.
-</WIOCCL:IF>
-###:
-[##TODO: Indiqueu totes aquelles informacions que calguin. Per exemple:[[EXEMPLE
-  * Comprèn diferents activitats pràctiques o procediments tècnics que es realitzen de manera presencial en un institut. 
-  * S'avalua numèricament del 0 al 10, amb l’expressió d’un decimal.
-  * Té una ponderació a la qualificació final (QF) (vegeu l'apartat "Qualificació final QF").
-  * S'estableix nota mínima X per tal de poder aplicar el càlcul de la QF.
-
-S'ofereixen dues convocatòries cada semestre:JT i recuperació JT.  Només es té accés a la 
-recuperació  en els casos següents:
-  * Haver suspès la convocatòria JT amb una nota inferior a 4,0.
-  * Haver patit un accident greu, un ingrés hospitalari, la mort d'un familiar fins a 2n grau de parentesc (el mateix dia de la jornada) o l'assistència a un judici. 
-EXEMPLE]].No elimineu l'exemple ni les indicacions.Escriviu a patir del següent paràgraf.##]
-
-:###
-</WIOCCL:IF> 
-=== Qualificació final ===
-###:
-
-:###
-La Qualificació Final de la Unitat Formativa (QFU{##itemUf[unitat formativa]##}) es calcula a partir de l'aplicació de la fórmula següent sempre que en tots els instruments d’avaluació s’obtingui la nota mínima establerta:
-
-<WIOCCL:SET var="sum_ponderacio" type="literal" value="{#_ARRAY_GET_SUM({##taulaInstrumentsAvaluacio##},''ponderacio'', ''unitat formativa'', {##itemUf[unitat formativa]##})_#}">
-<WIOCCL:SET var="length" type="literal" value="{#_COUNTINARRAY({##taulaInstrumentsAvaluacio##}, [''unitat formativa'',''tipus''], [{##itemUf[unitat formativa]##},[''EAF'',''JT'',''PAF'']])_#}">
-<WIOCCL:SET var="ponderacioAC" type="literal" value="{#_ARRAY_GET_SUM({##taulaInstrumentsAvaluacio##},''ponderacio'', [''unitat formativa'',''tipus''], [{##itemUf[unitat formativa]##}, ''AC''])_#}">
-**QFU{##itemUf[unitat formativa]##}= {#_GET_PERCENT({##sum_ponderacio##},{##ponderacioAC##})_#}% AC + <WIOCCL:FOREACH var="item" array="{##taulaInstrumentsAvaluacio##}" counter="ind" counterFromZero="true" filter="{##item[ponderacio]##}\>0 && {##item[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##item[tipus]##}!=''AC''">{#_GET_PERCENT({##sum_ponderacio##},{##item[ponderacio]##})_#}% {##item[tipus]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({##length##},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH> **
-</WIOCCL:SET>
-</WIOCCL:SET>
-###:
-[##TODO: Si cal matisar la formula, podeu fer-ho aquí.##]
-    
-:###   
-Les qualificacions de <WIOCCL:IF condition="{##keyUfEAF##}!==false">l’EAF<WIOCCL:IF condition="{##keyUfJT##}!==false">, </WIOCCL:IF></WIOCCL:IF><WIOCCL:IF condition="{##keyUfJT##}!==false">JT</WIOCCL:IF><WIOCCL:IF condition="{##keyUfJT##}!==false || {##keyUfEAF##}!==false "> i </WIOCCL:IF>PAF aprovades s'apliquen tant a la convocatòria PAF 1 com a la PAF 2 del mateix semestre, però no es guarden d'un semestre a l'altre. 
-
-<WIOCCL:IF condition="{##keyUfJT##}===false && {##keyUfEAF##}===false">
-Quan no s'arribi a la nota mínima de la PAF, el càlcul de la QFU{##itemUf[unitat formativa]##} serà el {#_GET_PERCENT({##sum_ponderacio##},{#_ARRAY_GET_VALUE(''ponderacio'',{#_ARRAY_GET_VALUE(''{##keyUfPAF##}'',{##taulaInstrumentsAvaluacio##},[])_#},0)_#})_#}% de la nota obtinguda a la PAF
-</WIOCCL:IF>
-<WIOCCL:IF condition="{##keyUfJT##}!==false || {##keyUfEAF##}!==false ">
-Quan no s'arribi a la nota mínima d'algun dels instruments d'avaluació següents, el càlcul de la qualificació final serà el que es determini aplicant:
-<WIOCCL:FOREACH var="item" array="{##taulaInstrumentsAvaluacio##}" filter="{##item[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##item[tipus]##}!=''AC'' && {##item[notaMinima]##}\>0 && {##item[ponderacio]##}\>0">
-  * Si la nota de la {##item[tipus]##} és inferior a {##item[notaMinima]##},00,  el càlcul de la QFU{##itemUf[unitat formativa]##} serà el {#_GET_PERCENT({##sum_ponderacio##},{##item[ponderacio]##})_#}% de la nota obtinguda a la {##item[tipus]##}. Aquesta serà la qualificació que constarà a Secretaria FP.
-</WIOCCL:FOREACH>
-  * Si no s’arriba al mínim en més d'un dels instruments d’avaluació anteriors, s'assignarà a QFU{##itemUf[unitat formativa]##} el valor més faborable a l'alumne. Aquesta serà la qualificació que constarà a Secretaria FP.
-</WIOCCL:IF>
-
-En cas de no superar la UF, el següent semestre s'han de tornar a realitzar totes les activitats (PAF<WIOCCL:IF condition="{##keyUfEAF##}!==false">, EAF</WIOCCL:IF><WIOCCL:IF condition="{##keyUfJT##}!==false">, JT</WIOCCL:IF> i AC). 
-###:
-
-:###
-La qualificació de la UF s’obté segons la següent ponderació dels RA:
-
-<WIOCCL:SET var="sum_ponderacio_ra" type="literal" value="{#_ARRAY_GET_SUM({##resultatsAprenentatge##},''ponderacio'', ''uf'', {##itemUf[unitat formativa]##})_#}">
-<WIOCCL:SET var="length" type="literal" value="{#_COUNTINARRAY({##resultatsAprenentatge##}, ''uf'', {##itemUf[unitat formativa]##})_#}">
-**QFU{##itemUf[unitat formativa]##}= <WIOCCL:FOREACH var="item" array="{##resultatsAprenentatge##}" counter="ind" counterFromZero="true" filter="{##item[uf]##}=={##itemUf[unitat formativa]##}">{#_GET_PERCENT({##sum_ponderacio_ra##},{##item[ponderacio]##})_#}% RA{##item[ra]##}<WIOCCL:IF condition="{##ind##}\<{#_SUBS({##length##},1)_#}"> + </WIOCCL:IF></WIOCCL:FOREACH> **
-</WIOCCL:SET>
-</WIOCCL:SET>
-
-::table:T05-{##itemUf[unitat formativa]##}
-  :title:Qualificació dels instruments d'avalaució sobre els RA
-  :type:pt_taula
-^  Qualificació dels RA  <WIOCCL:FOREACH var="itemInst" array="{##taulaInstrumentsAvaluacio##}" counter="ind" counterFromZero="true" filter="{##itemInst[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##itemInst[ponderacio]##}\>0">^<WIOCCL:IF condition="{##ind##}==0">  Instruments d’avaluació (%)  </WIOCCL:IF></WIOCCL:FOREACH>^
-^  :::  <WIOCCL:FOREACH var="itemInst" array="{##taulaInstrumentsAvaluacio##}" counter="ind" counterFromZero="true" filter="{##itemInst[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##itemInst[tipus]##}==''AC'' && {##itemInst[ponderacio]##}\>0">^<WIOCCL:IF condition="{##ind##}==0">  AC  </WIOCCL:IF></WIOCCL:FOREACH><WIOCCL:FOREACH var="itemInst" array="{##taulaInstrumentsAvaluacio##}" filter="{##itemInst[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##itemInst[tipus]##}!=''AC'' && {##itemInst[ponderacio]##}\>0">^  {##itemInst[tipus]##}  </WIOCCL:FOREACH>^
-^  :::  <WIOCCL:FOREACH var="itemInst" array="{##taulaInstrumentsAvaluacio##}" filter="{##itemInst[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##itemInst[tipus]##}==''AC'' && {##itemInst[ponderacio]##}\>0">^  {##itemInst[id]##}  </WIOCCL:FOREACH><WIOCCL:FOREACH var="itemInst" array="{##taulaInstrumentsAvaluacio##}" filter="{##itemInst[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##itemInst[tipus]##}!=''AC'' && {##itemInst[ponderacio]##}\>0">^  :::  </WIOCCL:FOREACH>^
-<WIOCCL:FOREACH var="itemRa" array="{##resultatsAprenentatge##}" filter="{##itemRa[uf]##}=={##itemUf[unitat formativa]##}">
-|  {##itemRa[ra]##}  <WIOCCL:FOREACH var="itemInst" array="{##taulaInstrumentsAvaluacio##}" filter="{##itemInst[unitat formativa]##}=={##itemUf[unitat formativa]##} && {##itemInst[ponderacio]##}\>0">|  {#_ARRAY_GET_VALUE(''ponderacio'',{#_SEARCH_ROW([{##itemUf[unitat formativa]##}, {##itemRa[ra]##}, "{##itemInst[id]##}"], {##taulaPonderacioRA##}, ["uf", "ra", "instAvaluacio"], [])_#},"--")_#}  </WIOCCL:FOREACH>|
-</WIOCCL:FOREACH>
-</WIOCCL:SET>
-</WIOCCL:SET>
-</WIOCCL:SET>
-</WIOCCL:SET>
-</WIOCCL:SET>
-:::
-###:
-
-:###
-=== Espais, equipaments i recursos de la UF ===
-###:
-[##TODO:Esmentar si hi ha recursos específics per a aquesta unitat formativa. Per exemple:##]
-
-No es requiereixen espais, equipaments ni recursos específics.
-
-:###
-</WIOCCL:FOREACH>
-###:
-
-:###
-~~NORMAL WIDTH~~
-====== CONTROL DE CANVIS ======
+====== Control de canvis ======
 
 ::table:T06
   :title:Històric del control de canvis
@@ -401,11 +287,11 @@ No es requiereixen espais, equipaments ni recursos específics.
   :type:pt_taula
 ^  Data d'aprovació  ^  Modificat per:  ^  Modificacions  ^
 <WIOCCL:FOREACH var="item" array="{##cc_historic##}">
-|  {#_DATE("{##item[data]##}")_#}  |  {##item[autor]##}  |  {##item[modificacions]##}    |
-</WIOCCL:FOREACH>  
+| {#_DATE("{##item[data]##}")_#}  | {##item[autor]##}  | {##item[modificacions]##}  |
+</WIOCCL:FOREACH>
 :::
 
-====== GESTIÓ DEL DOCUMENT ======
+====== Gestió del document ======
 
 ::table:T07
   :title:Dades de la gestió de la darrera modificació
@@ -416,4 +302,6 @@ No es requiereixen espais, equipaments ni recursos específics.
 | Data          | {#_DATE("{##cc_dadesAutor#dataDeLaGestio##}")_#}  | {#_DATE("{##cc_dadesRevisor#dataDeLaGestio##}")_#}  | {#_DATE("{##cc_dadesValidador#dataDeLaGestio##}")_#}  |
 | Signatura     | {##cc_dadesAutor#signatura##}                     | {##cc_dadesRevisor#signatura##}                     | {##cc_dadesValidador#signatura##}                     |
 :::
+
+</WIOCCL:SET>
 ###:
