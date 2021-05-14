@@ -33,12 +33,12 @@
                         "nivell": {
                             "type": "number",
                             "mandatory": true,
-                            "default": "Indiqueu el nivell jeràrquic (per a LOGSE el segon nivell correspon als Criteris d'avaluació)"
+                            "default": "Indiqueu el nivell jeràrquic"
                         },
                         "descripcio": {
                             "type": "string",
                             "mandatory": true,
-                            "default": "Escriviu el contingut de l'Objectiu terminal o Resultat d'aprenentatge i, pel nivell 2 el Criteri d'avaluació"
+                            "default": "Escriviu el contingut del Resultat d'Aprenentatge (LOE) o de l'Objectiu Terminal (LOGSE) (per a LOGSE el nivell 2 correspon als Criteris d'avaluació)"
                         }
                     }
                 },

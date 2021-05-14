@@ -13,8 +13,19 @@
             "n_rows": 1,
             "frame": true,
             "config":{
-                "collapsable":true,
-                "collapsed":false
+                "collapsable": true,
+                "collapsed": false
+            }
+        },
+        "dates": {
+            "parent": "",
+            "label": "Dates",
+            "n_columns": 12,
+            "n_rows": 1,
+            "frame": true,
+            "config":{
+                "collapsable": true,
+                "collapsed": false
             }
         },
         "taules": {
@@ -24,8 +35,18 @@
             "n_rows": 1,
             "frame": true,
             "config":{
-                "collapsable":true,
-                "collapsed":false
+                "collapsable": true,
+                "collapsed": false
+            }
+        },
+        "authorship": {
+            "parent": "",
+            "label": "Autoria",
+            "n_columns": 12,
+            "frame": true,
+            "config":{
+                "collapsable": true,
+                "collapsed": true
             }
         },
         "gestioDocument": {
@@ -34,8 +55,8 @@
             "n_columns": 12,
             "frame": true,
             "config":{
-                "collapsable":true,
-                "collapsed":false
+                "collapsable": true,
+                "collapsed": false
             }
         },
         "gestioDocumentRaonsModif": {
@@ -49,8 +70,8 @@
             "n_columns": 12,
             "frame": true,
             "config":{
-                "collapsable":true,
-                "collapsed":false
+                "collapsable": true,
+                "collapsed": false
             }
         },
         "dadesRevisor": {
@@ -59,8 +80,8 @@
             "n_columns": 12,
             "frame": true,
             "config":{
-                "collapsable":true,
-                "collapsed":false
+                "collapsable": true,
+                "collapsed": false
             }
         },
         "dadesValidador": {
@@ -69,8 +90,8 @@
             "n_columns": 12,
             "frame": true,
             "config":{
-                "collapsable":true,
-                "collapsed":false
+                "collapsable": true,
+                "collapsed": false
             }
         },
         "gestioDocumentReadOnly": {
@@ -79,8 +100,8 @@
             "n_columns": 12,
             "frame": true,
             "config":{
-                "collapsable":true,
-                "collapsed":true
+                "collapsable": true,
+                "collapsed": true
             }
         }        
     },
@@ -91,7 +112,7 @@
             "group": "dadesBasiques",
             "props": {
                 "required": true,
-                "title" : "Indiqueu de quin departament és aquesta programació."
+                "title": "Indiqueu de quin departament és aquesta programació."
             }
         },
         "cicle": {
@@ -104,17 +125,17 @@
             }
         },
         "modulId": {
-            "label": "Codi del mòdul (modulId)",
-            "n_columns": 4,
+            "label": "Número del mòdul (modulId)",
+            "n_columns": 2,
             "group": "dadesBasiques",
             "props": {
                 "required": true,
-                "title": "indiqueu el codi del mòdul en format MXX. Per exemple: M02"
+                "title": "indiqueu el número del mòdul"
             }
         },
         "durada": {
             "label": "Durada del mòdul (durada)",
-            "n_columns": 4,
+            "n_columns": 2,
             "group": "dadesBasiques",
             "props": {
                 "required": true,
@@ -122,8 +143,130 @@
                 "title": "Aquest és un camp calculat. No l'heu d'introduir"
             }
         },
+        "tipusCicle":{
+            "type":"select",
+            "n_columns": 2,
+            "label": "LOE o LOGSE (tipusCicle)",
+            "group": "dadesBasiques",
+            "props": {
+                "required": true,
+                "title" : "indiqueu si es tracta d'un cicle LOE o LOGSE."
+            },
+            "config":{
+                "options":[
+                    {"value":"LOE"},
+                    {"value":"LOGSE"}
+                ]
+            }
+        },
+        "moodleCourseId": {
+            "label" : "Identificador del curs a moodle (moodleCourseId)",
+            "n_columns": 2,
+            "group": "dadesBasiques",
+            "props": {
+                "required": true,
+                "title": "Indiqueu el valor de l'identificador del curs de moodle al que pertany aquest pla de treball. Si no hi poseu un valor correcte no es pujaran les dades al calendari."
+            }
+        },
+        "semestre": {
+            "label": "Semestre actual (semestre)",
+            "n_columns": 2,
+            "group": "dadesBasiques",
+            "props": {
+                "required": true,
+                "title": "Aquesta dada canviarà en actualitzar el projecte"
+            }
+        },
+        "any": {
+            "label": "Any del semestre actual (any)",
+            "n_columns": 2,
+            "group": "dadesBasiques",
+            "props": {
+                "required": true,
+                "title": "Aquesta dada canviarà en actualitzar el projecte"
+            }
+        },
+        "dataIniciFCT": {
+            "label": "Data d'inici de la FCT (dataIniciFCT)",
+            "n_columns": 2,
+            "group": "dates",
+            "props": {
+                "required": true,
+                "title": "Aquesta dada canviarà en actualitzar el projecte"
+            }
+        },
+        "dataMaxIniciFCT": {
+            "label": "Data màxima d'inici de la FCT (dataMaxIniciFCT)",
+            "n_columns": 2,
+            "group": "dates",
+            "props": {
+                "required": true,
+                "title": "Aquesta dada canviarà en actualitzar el projecte"
+            }
+        },
+        "dataApteFCT": {
+            "label": "1a convocatòria per obtenir l'apte de la FCT (dataApteFCT)",
+            "n_columns": 2,
+            "group": "dates",
+            "props": {
+                "required": true,
+                "title": "Aquesta dada canviarà en actualitzar el projecte"
+            }
+        },
+        "dataMaxApteFCT": {
+            "label": "2a convocatòria per obtenir l'apte de la FCT (dataMaxApteFCT)",
+            "n_columns": 2,
+            "group": "dates",
+            "props": {
+                "required": true,
+                "title": "Aquesta dada canviarà en actualitzar el projecte"
+            }
+        },
+        "coordinador": {
+            "label" : "Coordinador (coordinador)",
+            "n_columns": 6,
+            "group": "authorship",
+            "props": {
+                "required": true,
+                "title": "Indiqueu el nom del coordinador"
+            }
+        },
+        "supervisor": {
+            "type": "amd",
+            "label": "Coordinador de cicle (supervisor)",
+            "n_columns": 4,
+            "group": "authorship",
+            "props": {
+                "required": true
+            },
+            "config":{
+                "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin","fctmanager"], "deniedResponse":true}}]},
+                "class" : {
+                    "edit": "IocFilteredList",
+                    "view": "IocListSelectedItems"
+                },
+                "data": {
+                    "ns":"",
+                    "buttonLabel": "Cercar",
+                    "fieldName": "supervisor",
+                    "dialogTitle" : "Cercar Cap de Departament",
+                    "dialogButtonLabel" : "Afegir Cap de Departament",
+                    "data": "",
+                    "dataQuery": {
+                        "filter": ""
+                    },
+                    "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
+                    "fields": {
+                        "username": "Nom d'usuari",
+                        "name": "Nom"
+                    },
+                    "fieldId": "username",
+                    "defaultEntryField": "name"
+                }
+            }
+        },
         "resultatsAprenentatgeObjectiusTerminals":{
-            "label": "Resultats d'aprenentatge (LOE) / Objectius Terminals (LOGSE) (resultatsAprenentatgeObjectiusTerminals)",
+            "label": "Resultats d'Aprenentatge (LOE) / Objectius Terminals (LOGSE) (resultatsAprenentatgeObjectiusTerminals)",
             "n_columns": 12,
             "type": "editableObject",
             "group": "taules",
@@ -131,17 +274,17 @@
             "props": {
                 "required": true,
                 "data-editable-element": "table",
-                "title": "Indiqueu els resultats d'aprenentatge per cada UF."
+                "title": "Indiqueu els Resultats d'Aprenentatge (LOE) / Objectius Terminals (LOGSE)."
             },
             "config": {
                 "actions": {
                     "add_default_row": "Afegir un RA",
                     "remove_rows": "Eliminar els RA seleccionats",
                     "add_default_row_before": "Afegir un RA abans de la fila seleccionada",
-                    "add_import" : {
-                        "button_label" : "Importar amb format 'RA9 resultat' o també 'RA 9 resultat'",
+                    "add_import": {
+                        "button_label": "Importar amb format '9. resultat' i '9.9 resultat'",
                         "data": {
-                            "regexColSeparator": "^(.*?)[ ,\\t]*RA *([0-9])\\.(.*?)[ ,\\t]*(\\d*?)[ ,\\t]*(\\d*?)$",
+                            "regexColSeparator": "^[[:blank:]]*([1-9]\\.)([[:digit:]])*[[:blank:]](.*?)\n$",
                             "regexRowSeparator": "\n"
                         }
                     }
@@ -157,7 +300,7 @@
                 "layout": [
                     {
                         "defaultCell": {
-                            "width" : "10%"
+                            "width": "10%"
                         },
                         "cells": [
                             {
@@ -176,701 +319,315 @@
                 ]
             }
         },
-        "taulaPonderacioRA":{
-          "label": "Registre de la ponderació del RA (taulaPonderacioRA)",
-          "n_columns": 12,
-          "type": "editableObject",
-          "group": "taules",
-          "n_rows": 10,
-          "props": {
-            "required": true,
-            "data-editable-element": "table",
-            "title": "Indiqueu la ponderació dels instriments d'avaluació sobre un RA."
-          },
-          "config": {
-              "actions": {
-                  "create_table_from_url": {
-                      "button_label" :"Crear la taula completa a partir dels RA i els insruments d'avalaució",
-                      "data": {
-                          "url": "lib/exe/ioc_ajax.php?call=protected_processor&do=ProjectModelMethodCaller&command=createTableRAPonderation"
-                      }
-                  },
-                  "add_default_row": "Afegir un instrument d'avaluació per un RA",
-                  "remove_rows": "Eliminar les files seleccionades",
-                  "add_default_row_before": "Afegir instrument d'avalaució per un RA abans de la fila seleccionada"
-              },
-              "fields": {
-                  "uf":{
-                    "type": "number"
-                  },
-                  "ra": {
-                    "type": "number"
-                  },
-                  "instAvaluacio":{
-                      "type": "string"
-                  },
-                  "ponderacio":{
-                      "type": "decimal"
-                  }
-              },
-              "layout": [
-                  {
-                      "defaultCell": {
-                          "width" : "25%"
-                      },
-                      "cells": [
-                          {
-                            "name": "Unitat Formativa",
-                            "field": "uf",
-                            "editable": true
-                          },
-
-                          {
-                            "name": "Codi RA",
-                            "field": "ra",
-                            "editable": true
-                          },
-
-                          {
-                            "name": "Instrument d'Avalaució",
-                            "field": "instAvaluacio",
-                            "editable": true
-                          },
-
-                          {
-                            "name": "ponderació",
-                            "field": "ponderacio",
-                            "constraints": "{\"places\":2}",
-                            "editable": true
-                          }
-                      ]
-                  }
-              ]
-          }
-        },
-        "criterisAvaluacio":{
-          "label": "Criteris d'avaluació (criterisAvaluacio)",
-          "n_columns": 12,
-          "type": "editableObject",
-          "group": "taules",
-          "n_rows": 15,
-          "props": {
-            "required": true,
-            "data-editable-element": "table",
-            "title": "Indiqueu els criteris d'avaluació per cada per cada UF."
-          },
-          "config": {
-            "actions": {
-              "add_default_row": "Afegir un criteri d'avaluació",
-              "remove_rows": "Eliminar els criteris seleccionats",
-              "add_default_row_before": "Afegir un criteri abans de la fila seleccionada",
-              "add_import" : {
-                "button_label" : "Importar amb format 'CA9.9 criteri'",
-                "data": {
-                  "regexColSeparator": "^\\s*([0-9]?)\\s*([0-9]?)\\s*CA *([0-9]\\.?[0-9]?[0-9]?) *(.*?)(f?) *?$",
-                  "regexRowSeparator": "\n"
-                }
-              }
+        "activitatsFormatives":{
+            "label": "Activitats Formatives (activitatsFormatives)",
+            "n_columns": 12,
+            "type": "editableObject",
+            "group": "taules",
+            "n_rows": 8,
+            "props": {
+                "required": true,
+                "data-editable-element": "table",
+                "title": "Indiqueu les Activitats Formatives."
             },
-            "fields": {
-              "uf":{
-                "type": "number"
-              },
-              "ra":{
-                "type": "conditionalselect"
-              },
-              "ca": {
-                "type": "string"
-              },
-              "descripcio": {
-                "type": "textarea"
-              },
-              "contextualitzat":{
-                  "type": "bool"
-              }
-            },
-            "layout": [
-              {
-                "defaultCell": {
-                  "width" : "10%"
+            "config": {
+                "actions": {
+                    "add_default_row": "Afegir una AF",
+                    "remove_rows": "Eliminar les AF seleccionades",
+                    "add_default_row_before": "Afegir una AF abans de la fila seleccionada",
+                    "add_import": {
+                        "button_label": "Importar amb format '9. activitat' i '9.9. activitat'",
+                        "data": {
+                            "regexColSeparator": "^[[:blank:]]*([1-9]\\.)([[:digit:]]\\.*)*[[:blank:]](.*?)\n$",
+                            "regexRowSeparator": "\n"
+                        }
+                    }
                 },
-                "cells": [
-                  {
-                    "name": "Unitat Formativa",
-                    "field": "uf",
-                    "editable": true
-                  },
-
-                  {
-                    "name": "RA",
-                    "field": "ra",
-                    "editable": true,
-                    "config": {
-                      "fieldsource": "resultatsAprenentatge",
-                      "filterByKeySource": "uf",
-                      "filterByKeyOwn": "uf",
-                      "labelFields": ["ra", "descripcio"],
-                      "labelSeparator": ": ",
-                      "outputFields": ["ra"],
-                      "outputSeparator": [","],
-                      "outputMultiSeparator": [":"],
-                      "hierarchySeparator": ".",
-                      "multiple": false,
-                      "validationRegex": "^\\d+$"
+                "fields": {
+                    "nivell":{
+                        "type": "number"
+                    },
+                    "descripcio": {
+                        "type": "textarea"
                     }
-                  },
-
-                  {
-                    "name": "Codi C.A.",
-                    "field": "ca",
-                    "editable": true
-                  },
-
-                  {
-                    "name": "Descripció del C.A.",
-                    "field": "descripcio",
-                    "width":"40%",
-                    "editable": true
-                  },
-
-                  {
-                    "name": "C.A.contextualitzat",
-                    "field": "contextualitzat",
-                    "editable": true
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        "continguts":{
-          "label": "Continguts de la UF (continguts)",
-          "n_columns": 12,
-          "type": "editableObject",
-          "group": "taules",
-          "n_rows": 15,
-          "props": {
-            "required": true,
-            "data-editable-element": "table",
-            "title": "Indiqueu els continguts de cada UF."
-          },
-          "config": {
-            "actions": {
-              "add_default_row": "Afegir un continguts",
-              "remove_rows": "Eliminar els continguts seleccionats",
-              "add_default_row_before": "Afegir un contingut abans de la fila seleccionada",
-              "add_import" : {
-                "button_label" : "Importar amb formats: '9 contingut' o també '9.9 contingut' ",
-                "data": {
-                  "regexColSeparator": "^ *([0-9]?) *([0-9]\\.?[0-9]?[0-9]?) *(.*?)(f?) *?$",
-                  "regexRowSeparator": "\n"
-                }
-              }
-            },
-            "fields": {
-              "uf":{
-                "type": "number"
-              },
-              "cont": {
-                "type": "string"
-              },
-              "descripcio": {
-                "type": "textarea"
-              },
-              "contextualitzat":{
-                  "type": "bool"
-              }
-            },
-            "layout": [
-              {
-                "defaultCell": {
-                  "width" : "10%"
                 },
-                "cells": [
-                  {
-                    "name": "Unitat Formativa",
-                    "field": "uf",
-                    "editable": true
-                  },
-
-                  {
-                    "name": "Codi contingut",
-                    "field": "cont",
-                    "editable": true
-                  },
-
-                  {
-                    "name": "Descripció del contingut.",
-                    "field": "descripcio",
-                    "width":"40%",
-                    "editable": true
-                  },
-
-                  {
-                    "name": "Contingut contextualitzat",
-                    "field": "contextualitzat",
-                    "editable": true
-                  }
+                "layout": [
+                    {
+                        "defaultCell": {
+                            "width": "10%"
+                        },
+                        "cells": [
+                            {
+                                "name": "Nivell",
+                                "field": "nivell",
+                                "editable": true
+                            },
+                            {
+                                "name": "Descripció de l'AF",
+                                "field": "descripcio",
+                                "width":"90%",
+                                "editable": true
+                            }
+                        ]
+                    }
                 ]
-              }
-            ]
-          }
-        },
-        "activitatsAprenentatge":{
-          "label": "Activitats d'ensenyament i aprennetatge (activitatsAprenentatge)",
-          "n_columns": 12,
-          "type": "editableObject",
-          "group": "taules",
-          "n_rows": 15,
-          "props": {
-            "required": true,
-            "data-editable-element": "table",
-            "title": "Indiqueu les activitats i aprenentatge de cada nuclu formatiu"
-          },
-          "config": {
-            "actions": {
-              "add_default_row": "Afegir una activitat",
-              "remove_rows": "Eliminar les activiytats seleccionades",
-              "add_default_row_before": "Afegir una activitat abans de la fila seleccionada"
-            },
-            "fields": {
-              "code":{
-                "type": "string"
-              },
-              "unitat formativa":{
-                "type": "number"
-              },
-              "nucli formatiu": {
-                "type": "number"
-              },
-              "nom": {
-                "type": "string"
-              },
-              "descripcio": {
-                "type": "textarea"
-              },
-              "hores": {
-                  "type": "number"
-              },
-              "ra": {
-                  "type": "conditionalselect"
-              },
-              "continguts": {
-                  "type": "conditionalselect"
-              },
-              "ca": {
-                  "type": "conditionalselect"
-              },
-              "instruments d'avaluació": {
-                  "type": "conditionalselect"
-              }
-            },
-            "layout": [
-              {
-                "defaultCell": {
-                  "width" : "5%"
-                },
-                "cells": [
-                  {
-                    "name": "Codi",
-                    "field": "code",
-                    "editable": true
-                  },
-                  {
-                    "name": "taules",
-                    "field": "unitat formativa",
-                    "editable": true
-                  },
-
-                  {
-                    "name": "NF",
-                    "field": "nucli formatiu",
-                    "editable": true
-                  },
-
-                  {
-                    "name": "Nom",
-                    "field": "nom",
-                    "width":"25%",
-                    "editable": true
-                  },
-
-                  {
-                    "name": "Descripció",
-                    "field": "descripcio",
-                    "width":"25%",
-                    "editable": true
-                  },
-
-                  {
-                    "name": "Hores",
-                    "field": "hores",
-                    "editable": true
-                  },
-
-                  {
-                    "name": "RA",
-                    "field": "ra",
-                    "editable": true,
-                    "config": {
-                      "fieldsource": "resultatsAprenentatge",
-                      "filterByKeySource": "uf",
-                      "filterByKeyOwn": "unitat formativa",
-                      "labelFields": ["ra", "descripcio"],
-                      "labelSeparator": ": ",
-                      "outputFields": ["ra"],
-                      "outputSeparator": [","],
-                      "outputMultiSeparator": [":"],
-                      "hierarchySeparator": ".",
-                      "multiple": false,
-                      "validationRegex": "^\\d+$"
-                    }
-                  },
-
-                  {
-                    "name": "Continguts",
-                    "field": "continguts",
-                    "width":"8%",
-                    "editable": true,
-                    "config": {
-                      "fieldsource": "continguts",
-                      "filterByKeySource": "uf",
-                      "filterByKeyOwn": "unitat formativa",
-                      "labelFields": ["cont", "descripcio"],
-                      "labelSeparator": ": ",
-                      "outputFields": ["cont"],
-                      "outputSeparator": [", "],
-                      "outputMultiSeparator": [":"],
-                      "hierarchySeparator": ".",
-                      "multiple": true,
-                      "validationRegex": "^\\d+$"
-                    }
-                  },
-
-                  {
-                    "name": "CA",
-                    "field": "ca",
-                    "width":"7%",
-                    "editable": true,
-                    "config": {
-                      "fieldsource": "criterisAvaluacio",
-                      "filterByKeySource": "uf",
-                      "filterByKeyOwn": "unitat formativa",
-                      "labelFields": ["ca", "descripcio"],
-                      "labelSeparator": ": ",
-                      "outputFields": ["ca"],
-                      "outputSeparator": ["\n"],
-                      "outputMultiSeparator": [":"],
-                      "hierarchySeparator": ".",
-                      "multiple": true,
-                      "validationRegex": "^\\d+$"
-                    }
-                  },
-
-                  {
-                    "name": "Instruments d'avaluació",
-                    "field": "instruments d'avaluació",
-                    "width":"15%",
-                    "editable": true,
-                     "config": {
-                      "fieldsource": "taulaInstrumentsAvaluacio",
-                      "filterByKeySource": "unitat formativa",
-                      "filterByKeyOwn": "unitat formativa",
-                      "labelFields": ["id"],
-                      "labelSeparator": ": ",
-                      "outputFields": ["id"],
-                      "outputSeparator": [", "],
-                      "outputMultiSeparator": [":"],
-                      "multiple": true,
-                      "validationRegex": "^(EAC|EAF|JT|PAF)\\d$"
-                    }
-                  }
-                ]
-              }
-            ]
-          }
+            }
         },
         "cc_raonsModificacio":{
-          "type":"textarea",
-          "label": "Raons de la modificació",
-          "group": "gestioDocumentRaonsModif",
-          "n_columns":12,
-          "props": {
-            "required": true,
-            "title": "Raons per les que s'està fent aquesta modificació."
-          }
+            "type":"textarea",
+            "label": "Raons de la modificació",
+            "group": "gestioDocumentRaonsModif",
+            "n_columns":12,
+            "props": {
+                "required": true,
+                "title": "Raons per les que s'està fent aquesta modificació."
+            }
         },
         "cc_historic":{
-          "group": "gestioDocumentReadOnly",
-          "label": "   ",
-          "n_columns":12,
-          "n_rows":6,
-          "fields": {
-              "data": {
-                "type": "date"
-              },
-              "autor": {
-                "type": "string"
-              },
-              "modificacions": {
-                "type": "string"
-              }
-          }
+            "group": "gestioDocumentReadOnly",
+            "label": "   ",
+            "n_columns":12,
+            "n_rows":6,
+            "fields": {
+                "data": {
+                    "type": "date"
+                },
+                "autor": {
+                    "type": "string"
+                },
+                "modificacions": {
+                    "type": "string"
+                }
+            }
         },
         "responsable": {
-          "type" : "amd",
-          "label": "Responsable de la creació (responsable)",
-          "n_columns": 4,
-          "group": "dadesAutor",
-          "props": {
-              "required": true
-          },
-          "config":{
-            "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin"], "deniedResponse":true}}]},
-            "class" : {
-              "edit": "IocFilteredList",
-              "view": "IocListSelectedItems"
+            "type": "amd",
+            "label": "Responsable de la creació (responsable)",
+            "n_columns": 4,
+            "group": "dadesAutor",
+            "props": {
+                "required": true
             },
-            "data": {
-              "ns":"",
-              "buttonLabel": "Cercar",
-              "fieldName": "responsable",
-              "dialogTitle" : "Cercar responsable",
-              "dialogButtonLabel" : "Afegir responsable",
-              "data": "",
-              "dataQuery": {
-                "filter": ""
-              },
-              "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
-              "fields": {
-                "username": "Nom d'usuari",
-                "name": "Nom"
-              },
-              "fieldId": "username",
-              "defaultEntryField": "name"
+            "config":{
+                "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin"], "deniedResponse":true}}]},
+                "class": {
+                    "edit": "IocFilteredList",
+                    "view": "IocListSelectedItems"
+                },
+                "data": {
+                    "ns":"",
+                    "buttonLabel": "Cercar",
+                    "fieldName": "responsable",
+                    "dialogTitle": "Cercar responsable",
+                    "dialogButtonLabel": "Afegir responsable",
+                    "data": "",
+                    "dataQuery": {
+                        "filter": ""
+                    },
+                    "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
+                    "fields": {
+                        "username": "Nom d'usuari",
+                        "name": "Nom"
+                    },
+                    "fieldId": "username",
+                    "defaultEntryField": "name"
+                }
             }
-          }
         },
         "autor": {
-          "type": "amd",
-          "label": "Autor (autor)",
-          "n_columns": 4,
-          "group": "dadesAutor",
-          "props": {
-             "required": true
-          },
-          "config":{
-            "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin"], "deniedResponse":true}}]},
-            "class" : {
-              "edit": "IocFilteredList",
-              "view": "IocListSelectedItems"
+            "type": "amd",
+            "label": "Autor (autor)",
+            "n_columns": 4,
+            "group": "dadesAutor",
+            "props": {
+               "required": true
             },
-            "data": {
-              "ns":"",
-              "buttonLabel": "Cercar",
-              "fieldName": "autor",
-              "dialogTitle" : "Cercar autor",
-              "dialogButtonLabel" : "Afegir autor",
-              "data": "",
-              "dataQuery": {
-                "filter": ""
-              },
-              "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
-              "fields": {
-                "username": "Nom d'usuari",
-                "name": "Nom"
-              },
-              "fieldId": "username",
-              "defaultEntryField": "name"
+            "config":{
+                "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin"], "deniedResponse":true}}]},
+                "class": {
+                    "edit": "IocFilteredList",
+                    "view": "IocListSelectedItems"
+                },
+                "data": {
+                    "ns":"",
+                    "buttonLabel": "Cercar",
+                    "fieldName": "autor",
+                    "dialogTitle": "Cercar autor",
+                    "dialogButtonLabel": "Afegir autor",
+                    "data": "",
+                    "dataQuery": {
+                        "filter": ""
+                    },
+                    "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
+                    "fields": {
+                          "username": "Nom d'usuari",
+                          "name": "Nom"
+                    },
+                    "fieldId": "username",
+                    "defaultEntryField": "name"
+                }
             }
-          }
         },
         "cc_dadesAutor#carrec":{
-          "n_columns": 4,
-          "label": "Càrrec de l'autor",
-          "group": "dadesAutor",
-          "props": {
-            "required": true,
-            "title" : "Indiqueu de quin departament és aquesta programació."
-          },
-          "type":"select",
-          "config":{
-              "options":[
-                  {"value":"Professor/a"},
-                  {"value":"Cap de departament"},
-                  {"value":"Coordinació qualitat FP"},
-                  {"value":"Direcció acadèmica FP"}
-              ]
-          },
-          "default":"Professor/a"
+            "n_columns": 4,
+            "label": "Càrrec de l'autor",
+            "group": "dadesAutor",
+            "props": {
+                "required": true,
+                "title": "Indiqueu de quin departament és aquesta programació."
+            },
+            "type":"select",
+            "config":{
+                "options":[
+                    {"value":"Professor/a"},
+                    {"value":"Cap de departament"},
+                    {"value":"Coordinació qualitat FP"},
+                    {"value":"Direcció acadèmica FP"}
+                ]
+            },
+            "default":"Professor/a"
         },
         "revisor": {
-          "type": "amd",
-          "label": "Qui revisa el document (revisor)",
-          "n_columns": 6,
-          "group": "dadesRevisor",
-          "props": {
-            "required": true
-          },
-          "config":{
-            "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin"], "deniedResponse":true}}]},
-            "class" : {
-              "edit": "IocFilteredList",
-              "view": "IocListSelectedItems"
+            "type": "amd",
+            "label": "Qui revisa el document (revisor)",
+            "n_columns": 6,
+            "group": "dadesRevisor",
+            "props": {
+                "required": true
             },
-            "data": {
-              "ns":"",
-              "buttonLabel": "Cercar",
-              "fieldName": "revisor",
-              "dialogTitle" : "Cercar qui revisa",
-              "dialogButtonLabel" : "Afegir revisor",
-              "data": "",
-              "dataQuery": {
-                "filter": ""
-              },
-              "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
-              "fields": {
-                "username": "Nom d'usuari",
-                "name": "Nom"
-              },
-              "fieldId": "username",
-              "defaultEntryField": "name"
+            "config":{
+                "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin"], "deniedResponse":true}}]},
+                "class": {
+                    "edit": "IocFilteredList",
+                    "view": "IocListSelectedItems"
+                },
+                "data": {
+                    "ns":"",
+                    "buttonLabel": "Cercar",
+                    "fieldName": "revisor",
+                    "dialogTitle": "Cercar qui revisa",
+                    "dialogButtonLabel": "Afegir revisor",
+                    "data": "",
+                    "dataQuery": {
+                        "filter": ""
+                    },
+                    "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
+                    "fields": {
+                        "username": "Nom d'usuari",
+                        "name": "Nom"
+                    },
+                    "fieldId": "username",
+                    "defaultEntryField": "name"
+                }
             }
-          }
         },
         "cc_dadesRevisor#carrec":{
-          "n_columns": 4,
-          "label": "Càrrec de qui revisa el document",
-          "group": "dadesRevisor",
-          "props": {
-            "required": true,
-            "title" : "Indiqueu de quin departament és aquesta programació."
-          },
-          "type":"select",
-          "config":{
-              "options":[
-                  {"value":"Professor/a"},
-                  {"value":"Cap de departament"},
-                  {"value":"Coordinació qualitat FP"},
-                  {"value":"Direcció acadèmica FP"}
-              ]
-          },
-          "default":"Coordinació qualitat FP"
+            "n_columns": 4,
+            "label": "Càrrec de qui revisa el document",
+            "group": "dadesRevisor",
+            "props": {
+                "required": true,
+                "title": "Indiqueu de quin departament és aquesta programació."
+            },
+            "type":"select",
+            "config":{
+                "options":[
+                    {"value":"Professor/a"},
+                    {"value":"Cap de departament"},
+                    {"value":"Coordinació qualitat FP"},
+                    {"value":"Direcció acadèmica FP"}
+                ]
+            },
+            "default":"Coordinació qualitat FP"
         },
         "validador": {
-          "type": "amd",
-          "label": "Qui aprova i valida el document (validador)",
-          "n_columns": 6,
-          "group": "dadesValidador",
-          "props": {
-            "required": true
-          },
-          "config":{
-            "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin"], "deniedResponse":true}}]},
-            "class" : {
-              "edit": "IocFilteredList",
-              "view": "IocListSelectedItems"
+            "type": "amd",
+            "label": "Qui aprova i valida el document (validador)",
+            "n_columns": 6,
+            "group": "dadesValidador",
+            "props": {
+                "required": true
             },
-            "data": {
-              "ns":"",
-              "buttonLabel": "Cercar",
-              "fieldName": "validador",
-              "dialogTitle" : "Cercar qui aprova/valida",
-              "dialogButtonLabel" : "Afegir validador",
-              "data": "",
-              "dataQuery": {
-                "filter": ""
-              },
-              "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
-              "fields": {
-                "username": "Nom d'usuari",
-                "name": "Nom"
-              },
-              "fieldId": "username",
-              "defaultEntryField": "name"
+            "config":{
+                "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin"], "deniedResponse":true}}]},
+                "class": {
+                    "edit": "IocFilteredList",
+                    "view": "IocListSelectedItems"
+                },
+                "data": {
+                    "ns":"",
+                    "buttonLabel": "Cercar",
+                    "fieldName": "validador",
+                    "dialogTitle": "Cercar qui aprova/valida",
+                    "dialogButtonLabel": "Afegir validador",
+                    "data": "",
+                    "dataQuery": {
+                        "filter": ""
+                    },
+                    "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
+                    "fields": {
+                        "username": "Nom d'usuari",
+                        "name": "Nom"
+                    },
+                    "fieldId": "username",
+                    "defaultEntryField": "name"
+                }
             }
-          }
         },
-         "cc_dadesValidador#carrec":{
-          "n_columns": 4,
-          "label": "Càrrec de qui aprova/valida el document",
-          "group": "dadesValidador",
-          "props": {
-            "required": true,
-            "title" : "Indiqueu de quin departament és aquesta programació."
-          },
-          "type":"select",
-          "config":{
-              "options":[
-                  {"value":"Professor/a"},
-                  {"value":"Cap de departament"},
-                  {"value":"Coordinació qualitat FP"},
-                  {"value":"Direcció acadèmica FP"}
-              ]
-          },
-          "default":"Direcció acadèmica FP"
-        },
-       "notaMinimaAC": {
-          "type":"hidden"
-        },
-        "notaMinimaPAF": {
-          "type":"hidden"
-        },
-        "notaMinimaEAF": {
-          "type":"hidden"
-        },
-        "notaMinimaJT": {
-          "type":"hidden"
+        "cc_dadesValidador#carrec":{
+            "n_columns": 4,
+            "label": "Càrrec de qui aprova/valida el document",
+            "group": "dadesValidador",
+            "props": {
+                "required": true,
+                "title": "Indiqueu de quin departament és aquesta programació."
+            },
+            "type":"select",
+            "config":{
+                "options":[
+                    {"value":"Professor/a"},
+                    {"value":"Cap de departament"},
+                    {"value":"Coordinació qualitat FP"},
+                    {"value":"Direcció acadèmica FP"}
+                ]
+            },
+            "default":"Direcció acadèmica FP"
         },
         "plantilla": {
-          "type" : "hidden"
+            "type": "hidden"
         },
         "fitxercontinguts": {
-          "type" : "hidden"
-        },
-        "hiHaRecuperacioPerJT":{
-          "type" : "hidden"
-        },
-        "hiHaSolucioPerEAF":{
-          "type" : "hidden"
-        },
-        "hiHaSolucioPerAC":{
-          "type" : "hidden"
-        },
-        "hiHaEnunciatRecuperacioPerEAF":{
-          "type" : "hidden"
+            "type": "hidden"
         },
         "cc_dadesAutor#nomGestor":{
-          "type" : "hidden"
+            "type": "hidden"
         },
-         "cc_dadesAutor#dataDeLaGestio":{
-          "type" : "hidden"
+        "cc_dadesAutor#dataDeLaGestio":{
+            "type": "hidden"
         },
-         "cc_dadesAutor#signatura":{
-          "type" : "hidden"
+        "cc_dadesAutor#signatura":{
+            "type": "hidden"
         },
-         "cc_dadesRevisor#nomGestor":{
-          "type" : "hidden"
+        "cc_dadesRevisor#nomGestor":{
+            "type": "hidden"
         },
-         "cc_dadesRevisor#dataDeLaGestio":{
-          "type" : "hidden"
+        "cc_dadesRevisor#dataDeLaGestio":{
+            "type": "hidden"
         },
-         "cc_dadesRevisor#signatura":{
-          "type" : "hidden"
+        "cc_dadesRevisor#signatura":{
+            "type": "hidden"
         },
-         "cc_dadesValidador#nomGestor":{
-          "type" : "hidden"
+        "cc_dadesValidador#nomGestor":{
+            "type": "hidden"
         },
-         "cc_dadesValidador#dataDeLaGestio":{
-          "type" : "hidden"
+        "cc_dadesValidador#dataDeLaGestio":{
+            "type": "hidden"
         },
-         "cc_dadesValidador#signatura":{
-          "type" : "hidden"
+        "cc_dadesValidador#signatura":{
+            "type": "hidden"
         },
-         "documentVersion":{
-          "type" : "hidden"
+        "documentVersion":{
+            "type": "hidden"
         }
-
-      }
-    
+    }
 }
