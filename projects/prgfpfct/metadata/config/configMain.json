@@ -52,24 +52,9 @@
                     "typeDef":"entradaResultatsAprenentatgeObjectiusTerminals"
                 },
                 "entradaActivitatsFormatives": {
-                    "type":"object",
-                    "keys": {
-                        "nivell1": {
-                            "type": "number",
-                            "mandatory": true,
-                            "default": "Indiqueu el nivell jeràrquic de l'Activitat formativa"
-                        },
-                        "nivell2": {
-                            "type": "number",
-                            "mandatory": true,
-                            "default": "Indiqueu el nivell jeràrquic de l'Activitat formativa"
-                        },
-                        "descripcio": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default": "Escriviu el contingut de l'Activitat formativa del nivell corresponent"
-                        }
-                    }
+                    "type":"string",
+                    "mandatory": false,
+                    "parseOnView": true
                 },
                 "defActivitatsFormatives": {
                     "type": "objectArray",
@@ -143,11 +128,6 @@
                             "mandatory": true,
                             "default":"Indiqueu de quin departament és la programació."
                         },
-                        "semestre": {
-                            "type": "number",
-                            "mandatory": true,
-                            "default": 1
-                        },
                         "tipusCicle": {
                             "type": "string",
                             "mandatory": true,
@@ -170,64 +150,15 @@
                                 "readonly": true
                             }
                         },
-                        "any": {
-                            "type": "number",
-                            "mandatory": true,
-                            "calculatedDefault": {
-                                "class": "CalculateByCurrentDate",
-                                "data": "Y"
-                            }
-                        },
-                        "dataIniciFCT": {
-                            "type": "date",
-                            "mandatory": true,
-                            "default": "01/01/2000"
-                        },
-                        "dataMaxIniciFCT": {
-                            "type": "date",
-                            "mandatory": true,
-                            "default": "01/01/2000"
-                        },
-                        "dataApteFCT": {
-                            "type": "date",
-                            "mandatory": true,
-                            "default": "01/01/2000"
-                        },
-                        "dataMaxApteFCT": {
-                            "type": "date",
-                            "mandatory": true,
-                            "default": "01/01/2000"
-                        },
-                        "autor": {
+                        "plantilla": {
                             "type": "string",
                             "mandatory": true,
-                            "isRole":true
-                        },
-                        "responsable": {
-                            "type": "string",
-                            "struc_chars": "40",
-                            "mandatory": true,
-                            "isRole":true
-                        },
-                        "supervisor": {
-                            "type": "string",
-                            "struc_chars": "40",
-                            "mandatory": true,
-                            "isRole":true
-                        },
-                        "coordinador": {
-                            "type": "string",
-                            "mandatory": true
+                            "default": "plantilles:docum_ioc:pla_treball_fp:prgfct:continguts"
                         },
                         "fitxercontinguts": {
                             "type": "string",
                             "mandatory": true,
                             "default": "continguts"
-                        },
-                        "moodleCourseId": {
-                            "type": "number",
-                            "mandatory": true,
-                            "default": 0
                         },
                         "resultatsAprenentatgeObjectiusTerminals": {
                             "type": "defResultatsAprenentatgeObjectiusTerminals",

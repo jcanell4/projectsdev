@@ -9,8 +9,7 @@ class prgfpfctProjectModel extends UniqueContentFileProjectModel{
     
     public function __construct($persistenceEngine)  {
         parent::__construct($persistenceEngine);
-        $this->needGenerateAction=false;
-        $this->externalCallMethods["createTableRAPonderation"]="__createTableRAPonderation";
+        $this->needGenerateAction = false;
     }
     
     public function directGenerateProject() {
@@ -18,26 +17,6 @@ class prgfpfctProjectModel extends UniqueContentFileProjectModel{
         return $this->projectMetaDataQuery->setProjectGenerated();
     }
 
-    protected function __createTableRAPonderation($data){
-        $tableRaPonderation =[];
-        $resApren = $data["resultatsAprenentatge"];
-        if(!is_array($resApren)){
-            $resApren = json_decode($resApren, TRUE);
-        }
-        $insAvTable = $data["taulaInstrumentsAvaluacio"];
-        if(!is_array($insAvTable)){
-            $insAvTable = json_decode($insAvTable, TRUE);
-        }
-        foreach ($resApren as $itemResAp) {
-            foreach ($insAvTable as $itemInsAv) {
-                if($itemInsAv["unitat formativa"]==$itemResAp["uf"]){
-                    $tableRaPonderation[]=["uf"=>$itemResAp["uf"], "ra" => $itemResAp["ra"], "instAvaluacio" => $itemInsAv["id"], "ponderacio" => $itemInsAv["ponderacio"]];
-                }            
-            }
-        }
-        return [ResponseHandlerKeys::TYPE => "array", ResponseHandlerKeys::VALUE => $tableRaPonderation];
-    }
- 
     public function validateFields($data=NULL){
         //EL responsable no pot ser buit
         if (!isset($data["responsable"]) || empty($data["responsable"])){
@@ -46,42 +25,32 @@ class prgfpfctProjectModel extends UniqueContentFileProjectModel{
     }
 
     public function getErrorFields($data=NULL) {
-        $result     = array();
-        $iaTable    = $data["taulaInstrumentsAvaluacio"]['value']; if (!is_array($iaTable)) $iaTable = json_decode($iaTable, TRUE);
-        $aaTable    = $data["activitatsAprenentatge"]['value'];    if (!is_array($aaTable)) $aaTable = json_decode($aaTable, TRUE);
-        $nfTable    = $data["taulaDadesNuclisFormatius"]['value']; if (!is_array($nfTable)) $nfTable = json_decode($nfTable, TRUE);
-        $ufTable    = $data["taulaDadesUF"]['value'];              if (!is_array($ufTable)) $ufTable = json_decode($ufTable, TRUE);
-        $raTable    = $data["resultatsAprenentatge"]['value'];     if (!is_array($raTable)) $raTable = json_decode($raTable, TRUE);
-        $ponRaTable = $data["taulaPonderacioRA"]['value'];         if (!is_array($ponRaTable)) $ponRaTable = json_decode($ponRaTable, TRUE);
-        $conTable   = $data["continguts"]['value'];                if (!is_array($conTable)) $conTable = json_decode($conTable, TRUE);
-        $caTable    = $data["criterisAvaluacio"]['value'];         if (!is_array($caTable)) $caTable = json_decode($caTable, TRUE);
+        $result   = array();
+        $aaTable  = $data["activitatsAprenentatge"]['value']; if (!is_array($aaTable)) $aaTable = json_decode($aaTable, TRUE);
+        $raTable  = $data["resultatsAprenentatge"]['value'];  if (!is_array($raTable)) $raTable = json_decode($raTable, TRUE);
+        $conTable = $data["continguts"]['value'];             if (!is_array($conTable)) $conTable = json_decode($conTable, TRUE);
+        $caTable  = $data["criterisAvaluacio"]['value'];      if (!is_array($caTable)) $caTable = json_decode($caTable, TRUE);
         
         //Camps obligatoris
         $responseType = "SINGLE_MESSAGE";
         $message = WikiIocLangManager::getLang("El camp %s és obligatori. Cal que %s.");
-        $campsAComprovar=[
-             ["typeField"=>"SF","field"=>"departament", "accioNecessaria"=>"hi poseu el nom del departament"] 
-            ,["typeField"=>"SF","field"=>"cicle", "accioNecessaria"=>"hi poseu el nom del cicle"]
-            ,["typeField"=>"SF","field"=>"modulId", "accioNecessaria"=>"hi poseu el codi del mòdul"]
-            ,["typeField"=>"SF","field"=>"modul", "accioNecessaria"=>"hi poseu el nom del mòdul"]
-//            ,["typeField"=>"SF","field"=>"estrategiesMetodologiques", "accioNecessaria"=>"hi poseu les estratègies moetodològiques del mòdul"]
-            ,["typeField"=>"TF","field"=>"taulaDadesUF", "accioNecessaria"=>"hi afegiu les unitats formatives del mòdul"]
-            ,["typeField"=>"TF","field"=>"taulaInstrumentsAvaluacio", "accioNecessaria"=>"hi afegiu els instruments d'avalaució de cada UF"]
-            ,["typeField"=>"TF","field"=>"resultatsAprenentatge", "accioNecessaria"=>"hi afegiu els resultats d'avalaució de cada UF"]
-            ,["typeField"=>"TF","field"=>"taulaPonderacioRA", "accioNecessaria"=>"hi afegiu la ponderació que cada instrument d'avaluació representa sobre cada RA."]
-            ,["typeField"=>"TF","field"=>"criterisAvaluacio", "accioNecessaria"=>"hi afegiu els criteris d'avaluaciḉo associats a cada RA"]
-            ,["typeField"=>"TF","field"=>"continguts", "accioNecessaria"=>"hi afegiu els continguts associats a cada UF"]
-            ,["typeField"=>"TF","field"=>"taulaDadesNuclisFormatius", "accioNecessaria"=>"hi afegiu els nuclis formatius associats a cada UF"]
-            ,["typeField"=>"TF","field"=>"activitatsAprenentatge", "accioNecessaria"=>"hi afegiu les activitats d'aprenentatge associades a cada nucli formatiu"]
-            ,["typeField"=>"SF","field"=>"cc_raonsModificacio", "accioNecessaria"=>"hi assigneu una raó per la modificació actual de la programació"]
+        $campsAComprovar = [
+             ["typeField"=>"SF", "field"=>"departament", "accioNecessaria"=>"hi poseu el nom del departament"]
+            ,["typeField"=>"SF", "field"=>"cicle", "accioNecessaria"=>"hi poseu el nom del cicle"]
+            ,["typeField"=>"SF", "field"=>"modulId", "accioNecessaria"=>"hi poseu el codi del mòdul"]
+            ,["typeField"=>"SF", "field"=>"modul", "accioNecessaria"=>"hi poseu el nom del mòdul"]
+            ,["typeField"=>"TF", "field"=>"resultatsAprenentatge", "accioNecessaria"=>"hi afegiu els resultats d'avalaució de cada UF"]
+            ,["typeField"=>"TF", "field"=>"criterisAvaluacio", "accioNecessaria"=>"hi afegiu els criteris d'avaluaciḉo associats a cada RA"]
+            ,["typeField"=>"TF", "field"=>"continguts", "accioNecessaria"=>"hi afegiu els continguts associats a cada UF"]
+            ,["typeField"=>"TF", "field"=>"activitatsAprenentatge", "accioNecessaria"=>"hi afegiu les activitats d'aprenentatge associades a cada nucli formatiu"]
+            ,["typeField"=>"SF", "field"=>"cc_raonsModificacio", "accioNecessaria"=>"hi assigneu una raó per la modificació actual de la programació"]
             // ALERTA! Aquests camps no es corresponen amb els IDs que s'asignen als camps
-            //,["typeField"=>"OF","field"=>"cc_dadesAutor#nomGestor", "accioNecessaria"=>"hi assigneu un autor", "fieldName" => "autor"]
-            ,["typeField"=>"SF","field"=>"autor", "accioNecessaria"=>"hi assigneu un autor"]
-            ,["typeField"=>"OF","field"=>"cc_dadesAutor#carrec", "accioNecessaria"=>"hi assigneu el càrrec de l'autor"]
-            ,["typeField"=>"SF","field"=>"revisor", "accioNecessaria"=>"hi assigneu un revisor"]
-            ,["typeField"=>"OF","field"=>"cc_dadesRevisor#carrec", "accioNecessaria"=>"hi assigneu el càrrec del revisor"]
-            ,["typeField"=>"SF","field"=>"validador", "accioNecessaria"=>"hi assigneu un validador"]
-            ,["typeField"=>"OF","field"=>"cc_dadesValidador#carrec", "accioNecessaria"=>"hi assigneu el càrrec del validador"]
+            ,["typeField"=>"SF", "field"=>"autor", "accioNecessaria"=>"hi assigneu un autor"]
+            ,["typeField"=>"OF", "field"=>"cc_dadesAutor#carrec", "accioNecessaria"=>"hi assigneu el càrrec de l'autor"]
+            ,["typeField"=>"SF", "field"=>"revisor", "accioNecessaria"=>"hi assigneu un revisor"]
+            ,["typeField"=>"OF", "field"=>"cc_dadesRevisor#carrec", "accioNecessaria"=>"hi assigneu el càrrec del revisor"]
+            ,["typeField"=>"SF", "field"=>"validador", "accioNecessaria"=>"hi assigneu un validador"]
+            ,["typeField"=>"OF", "field"=>"cc_dadesValidador#carrec", "accioNecessaria"=>"hi assigneu el càrrec del validador"]
         ];
         foreach ($campsAComprovar as $item) {
             if($item["typeField"]=="SF" && (!isset($data[$item["field"]]) || $data[$item["field"]]["value"]==$data[$item["field"]]["default"])){
@@ -119,18 +88,6 @@ class prgfpfctProjectModel extends UniqueContentFileProjectModel{
                                             ,$item["field"]
                                             ,$item["accioNecessaria"])
                     ];                     
-                }
-            }
-        }
-        
-        $verificadorEAC = [];
-        if(!empty($iaTable)){
-            foreach ($iaTable as $item) {
-                if(!isset($verificadorEAC[$item["unitat formativa"]])){
-                    $verificadorCA[$item["unitat formativa"]] =[];
-                }
-                if(!isset($verificadorEAC[$item["unitat formativa"]][$item["id"]])){
-                    $verificadorEAC[$item["unitat formativa"]][$item["id"]]=false;
                 }
             }
         }
@@ -249,21 +206,6 @@ class prgfpfctProjectModel extends UniqueContentFileProjectModel{
                     }
                 }
                 $iaKeys = explode(",", $item["instruments d'avaluació"]);
-                foreach ($iaKeys as $iaKey) {      
-                    if(!isset($verificadorEAC[$item["unitat formativa"]][trim($iaKey)])){
-                        //Error No existeix l'instrument d'avaluació
-                        $result["ERROR"][] = [
-                            'responseType' => $responseType,
-                            'field' => 'activitatsAprenentatge',
-                            'message' => sprintf("A la taula de les activitats d'aprenentatge (activitatsAprenentatge), hi ha l'instrument d'avalaució %s corresponent a la UF %d i el NF %d, però aquest instrument no es troba definit a la taula d'instruments d'avalaució (taulaInstrumentsAvaluacio)."
-                                                ,$iaKey
-                                                ,$item["unitat formativa"]
-                                                ,$item["nucli formatiu"])
-                        ];                    
-                    }else{
-                        $verificadorEAC[$item["unitat formativa"]][trim($iaKey)]=true;
-                    }
-                }
             }
         }
         
@@ -281,21 +223,6 @@ class prgfpfctProjectModel extends UniqueContentFileProjectModel{
                                                 ,$ra)
                         ];                    
                     }
-                }
-            }
-        }
-
-        foreach ($verificadorEAC as $uf => $v) {
-            foreach ($verificadorEAC[$uf] as $eac => $assigned) {
-                if(!$assigned){
-                    //Error CA NO assignat
-                    $result["ERROR"][] = [
-                        'responseType' => $responseType,
-                        'field' => 'activitatsAprenentatge',
-                        'message' => sprintf("L'instrument d'avaluació %s de la UF %d no es troba assignat a cap registre de la taula d'activitats d'aprenentatge (activitatsAprenentatge)."
-                                            ,$eac
-                                            ,$uf)
-                    ];                    
                 }
             }
         }
@@ -401,41 +328,6 @@ class prgfpfctProjectModel extends UniqueContentFileProjectModel{
         }
 
         //Comporvació ponderacions
-        if (!empty($iaTable)) {
-            $sum = [];
-            foreach ($iaTable as $item) {
-                if (!isset($sum[$item["unitat formativa"]])) {
-                    $sum[$item["unitat formativa"]] = 0;
-                }
-                $sum[$item["unitat formativa"]] += $item["ponderacio"];
-            }
-            
-            foreach ($iaTable as $item) {
-                if ($item['tipus'] == "PAF" && $item["ponderacio"]/$sum[$item["unitat formativa"]] > 0.6) {
-                    $result["ERROR"][] = [
-                        'responseType' => $responseType,
-                        'field' => 'taulaInstrumentsAvaluacio',
-                        'message' => sprintf("A la taula dels intsruments d'avalaució (taulaInstrumentsAvaluacio), la ponderació de la PAF de la unitat formativa %d pren el valor de %d sobre %d i per tant, supera el llindar del 60%s"
-                                            ,$item["unitat formativa"]
-                                            ,$item["ponderacio"]
-                                            ,$sum[$item["unitat formativa"]]
-                                            ,"%")
-                    ];
-                }
-            }
-            
-            foreach ($sum as $key => $value) {
-                if($value!=100){
-                    $result["WARNING"][] = [
-                        'responseType' => $responseType,
-                        'field' => 'taulaInstrumentsAvaluacio',
-                        'message' => sprintf("A la taula dels intsruments d'avalaució (taulaInstrumentsAvaluacio), la suma de les ponderacions de la unitat formativa %d no és 100. Reviseu si es tracta d'un error."
-                                            ,$key)
-                    ];
-                }
-            }
-        }
-
         if(!$horesIgualPonderacioUF && $ponderacioUF!=100){
             $result["WARNING"][] = [
                 'responseType' => $responseType,
@@ -456,42 +348,6 @@ class prgfpfctProjectModel extends UniqueContentFileProjectModel{
                 }
             }
             
-        }
-        
-        if(!empty($ponRaTable)){
-            $ponderacioRA=[];
-            foreach ($ponRaTable as $item) {
-                if(!isset($ponderacioRA[$item["uf"]])){
-                    $ponderacioRA[$item["uf"]] =[];
-                }
-                if(!isset($ponderacioRA[$item["uf"]][$item["ra"]])){
-                    $ponderacioRA[$item["uf"]][$item["ra"]] =0;
-                }
-                $ponderacioRA[$item["uf"]][$item["ra"]] += $item["ponderacio"];
-                if(!isset($verificadorEAC[$item["uf"]][$item["instAvaluacio"]])){
-                    $result["ERROR"][] = [
-                        'responseType' => $responseType,
-                        'field' => 'taulaPonderacioRA',
-                        'message' => sprintf("A la taula de registres de les ponderacions dels RA (taulaPonderacioRA), hi ha l'instrument d'avalaució %s corresponent a la UF %d, però aquest instrument no es troba definit a la taula d'instruments d'avalaució (taulaInstrumentsAvaluacio)."
-                                            ,$item["instAvaluacio"]
-                                            ,$item["unitat formativa"])
-                    ];                    
-                }
-            }                        
-            if(!empty($ponderacioRA)){
-                foreach ($ponderacioRA as $keyUf => $ponderacioRAUF) {
-                    foreach ($ponderacioRAUF as $keyRa => $ponderacio) {
-                        if($ponderacio!=100){
-                            $result["WARNING"][] = [
-                                'responseType' => $responseType,
-                                'field' => 'taulaPonderacioRA',
-                                'message' => sprintf("A la taula de registres de la ponderació dels RA (taulaPonderacioRA), la suma de les ponderacions dels instrumens d'aprenentatge del RA %d corresponenet a la UF %d no és 100. Reviseu si es tracta d'un error."
-                                                    ,$keyRa, $keyUf)
-                            ];
-                        }
-                    }
-                }
-            }
         }
         
         if (empty($result)) {

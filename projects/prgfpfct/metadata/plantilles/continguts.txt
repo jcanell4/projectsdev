@@ -101,6 +101,7 @@ El Departament d'Ensenyament té subscrites dues pòlisses complementàries:
 </WIOCCL:IF>
 
 :###====== Activitats Formatives de Referència ======###:
+:###
 <WIOCCL:IF condition="{#_ARRAY_LENGTH({##activitatsFormatives##})_#}\>1">
 ::table:T102
   :title:Activitats Formatives de Referència
@@ -112,6 +113,7 @@ El Departament d'Ensenyament té subscrites dues pòlisses complementàries:
 </WIOCCL:FOREACH>
 :::
 </WIOCCL:IF>
+###:
 
 :###====== Metodologia del {##creditmodul##} ======###:
 Atenent a les singularitats de l'IOC, l'alumne realitza les pràctiques de forma presencial a l'empresa però el seu seguiment es fa a distància.

@@ -5,7 +5,7 @@
                 "typeDef":"programacio",
                 "class": "exportDocument",
                 "fields": "ALL",
-                "extraFields": [{"name":"pdfDocument", "valueType":"page", "value":"continguts"}]
+                "extraFields": [{"name":"pdfDocument", "valueType":"page", "value":"plantilla"}]
             },
             "keys": {
                 "descripcio": {
