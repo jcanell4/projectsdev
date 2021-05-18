@@ -68,6 +68,10 @@ class ProjectExportAction extends ProjectAction{
                                                      $this->typesRender[$this->mainTypeName],
                                                      array(ProjectKeys::KEY_ID => $this->projectID));
 
+        $dataTemplate = $this->getModel()->getRawDocument($ret['projectMetaData']['fitxercontinguts']['value']);
+        preg_match("/~~FIELD_VERSION:([[:digit:]])~~/",$dataTemplate, $match);
+        $versionForQuality = $match[1];
+        
         $result = $render->process($this->dataArray);
         $result['ns'] = $this->projectNS;
         $result['ext'] = ".{$this->mode}";
