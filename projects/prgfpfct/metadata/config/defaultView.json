@@ -452,9 +452,6 @@
             },
             "default":"Direcció acadèmica FP"
         },
-        "plantilla": {
-            "type": "hidden"
-        },
         "fitxercontinguts": {
             "type": "hidden"
         },

@@ -51,15 +51,6 @@
                     "type": "objectArray",
                     "typeDef":"entradaResultatsAprenentatgeObjectiusTerminals"
                 },
-                "entradaActivitatsFormatives": {
-                    "type":"string",
-                    "mandatory": false,
-                    "parseOnView": true
-                },
-                "defActivitatsFormatives": {
-                    "type": "objectArray",
-                    "typeDef":"entradaActivitatsFormatives"
-                },
                 "entradaCc_historic":{
                     "type":"object",
                     "keys":{
@@ -150,22 +141,17 @@
                                 "readonly": true
                             }
                         },
-                        "plantilla": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default": "plantilles:documents_fp:programacions:fct:continguts"
-                        },
                         "fitxercontinguts": {
                             "type": "string",
                             "mandatory": true,
-                            "default": "continguts"
+                            "default": "plantilles:documents_fp:programacions:fct:continguts"
                         },
                         "resultatsAprenentatgeObjectiusTerminals": {
                             "type": "defResultatsAprenentatgeObjectiusTerminals",
                             "mandatory": true
                         },
                         "activitatsFormatives":{
-                            "type": "defActivitatsFormatives",
+                            "type": "string",
                             "mandatory": true,
                             "parseOnView": true
                         },

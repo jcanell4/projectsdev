@@ -1,4 +1,4 @@
-~~FELD_VERSION:1~~
+~~FIELD_VERSION:1~~
 :###
 ~~USE:WIOCCL~~
 <WIOCCL:SET var="creditmodul" type="literal" value="mòdul">
