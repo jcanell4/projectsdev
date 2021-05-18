@@ -153,7 +153,7 @@
                         "plantilla": {
                             "type": "string",
                             "mandatory": true,
-                            "default": "plantilles:docum_ioc:pla_treball_fp:prgfct:continguts"
+                            "default": "plantilles:documents_fp:programacions:fct:continguts"
                         },
                         "fitxercontinguts": {
                             "type": "string",
@@ -166,7 +166,8 @@
                         },
                         "activitatsFormatives":{
                             "type": "defActivitatsFormatives",
-                            "mandatory": true
+                            "mandatory": true,
+                            "parseOnView": true
                         },
                         "cc_historic": {
                             "type": "objectArray",

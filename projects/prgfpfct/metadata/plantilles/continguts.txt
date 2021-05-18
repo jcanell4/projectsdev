@@ -1,3 +1,4 @@
+~~FELD_VERSION:1~~
 :###
 ~~USE:WIOCCL~~
 <WIOCCL:SET var="creditmodul" type="literal" value="mòdul">
@@ -71,6 +72,7 @@ El Departament d'Ensenyament té subscrites dues pòlisses complementàries:
     * **Pòlissa d'assegurança de responsabilitat civil i patrimonial**
         Danys corporals o materials patits per terceres persones i causats, per acció o per omissió, per a l'alumne en practiques, cobrint les conseqüències econòmiques que se'n deriven. Cobreix tot l'alumne de centres públics de titularitat de la Generalitat de Catalunya.
 
+:###
 <WIOCCL:IF condition="{##tipusCicle##}==''LOE''">
 ====== Resultats d’Aprenentatge i Criteris d’Avaluació ======
 <WIOCCL:IF condition="{#_ARRAY_LENGTH({##resultatsAprenentatgeObjectiusTerminals##})_#}\>1">
@@ -85,7 +87,9 @@ El Departament d'Ensenyament té subscrites dues pòlisses complementàries:
 :::
 </WIOCCL:IF>
 </WIOCCL:IF>
+###:
 
+:###
 <WIOCCL:IF condition="{##tipusCicle##}==''LOGSE''">
 ====== Objectius Terminals ======
 <WIOCCL:IF condition="{#_ARRAY_LENGTH({##resultatsAprenentatgeObjectiusTerminals##})_#}\>1">
@@ -99,6 +103,7 @@ El Departament d'Ensenyament té subscrites dues pòlisses complementàries:
 :::
 </WIOCCL:IF>
 </WIOCCL:IF>
+###:
 
 :###====== Activitats Formatives de Referència ======###:
 :###

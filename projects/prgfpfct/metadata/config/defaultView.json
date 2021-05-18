@@ -28,7 +28,7 @@
                 "collapsed": false
             }
         },
-        "taules": {
+        "treball": {
             "parent": "",
             "label": "Objectius i Activitats",
             "n_columns": 12,
@@ -163,7 +163,7 @@
             "label": "Resultats d'Aprenentatge (LOE) / Objectius Terminals (LOGSE) (resultatsAprenentatgeObjectiusTerminals)",
             "n_columns": 12,
             "type": "editableObject",
-            "group": "taules",
+            "group": "treball",
             "n_rows": 8,
             "props": {
                 "required": true,
@@ -219,58 +219,17 @@
         "activitatsFormatives":{
             "label": "Activitats Formatives (activitatsFormatives)",
             "n_columns": 12,
-            "type": "editableObject",
-            "group": "taules",
-            "n_rows": 8,
+            "n_rows": 5,
+            "type":"textarea",
+            "group": "treball",
             "props": {
-                "required": true,
-                "data-editable-element": "table",
-                "title": "Indiqueu les Activitats Formatives."
+              "required": true,
+              "data-editable-element": "textarea",
+              "title": "Indiqueu les Activitats Formatives."
             },
             "config": {
-                "actions": {
-                    "add_default_row": "Afegir una AF",
-                    "remove_rows": "Eliminar les AF seleccionades",
-                    "add_default_row_before": "Afegir una AF abans de la fila seleccionada",
-                    "add_import": {
-                        "button_label": "Importar amb format '9. activitat' i '9.9. activitat'",
-                        "data": {
-                            "regexColSeparator": "^[[:blank:]]*([1-9]\\.)([[:digit:]]\\.*)*[[:blank:]](.*?)\n$",
-                            "regexRowSeparator": "\n"
-                        }
-                    }
-                },
-                "fields": {
-                    "nivell1":{
-                        "type": "number"
-                    },
-                    "nivell2":{
-                        "type": "number"
-                    },
-                    "descripcio": {
-                        "type": "textarea"
-                    }
-                },
-                "layout": [
-                    {
-                        "defaultCell": {
-                            "width": "10%"
-                        },
-                        "cells": [
-                            {
-                                "name": "Nivell",
-                                "field": "nivell",
-                                "editable": true
-                            },
-                            {
-                                "name": "Descripció de l'AF",
-                                "field": "descripcio",
-                                "width":"90%",
-                                "editable": true
-                            }
-                        ]
-                    }
-                ]
+                "renderable": true,
+                "mode": "xhtml"
             }
         },
         "cc_raonsModificacio":{
