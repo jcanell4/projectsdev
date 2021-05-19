@@ -172,13 +172,67 @@
             },
             "config": {
                 "actions": {
-                    "add_default_row": "Afegir un RA",
-                    "remove_rows": "Eliminar els RA seleccionats",
-                    "add_default_row_before": "Afegir un RA abans de la fila seleccionada",
+                    "add_default_row": "Afegir un RA / OT",
+                    "remove_rows": "Eliminar els RA / OT seleccionats",
+                    "add_default_row_before": "Afegir un RA / OT abans de la fila seleccionada",
                     "add_import": {
-                        "button_label": "Importar amb format '9. resultat' i '9.9 resultat'",
+                        "button_label": "Importar amb format '9. resultat/objectiu'",
                         "data": {
-                            "regexColSeparator": "^\\s*([0-9])\\.(\\d{0,2}) (.*?)$",
+                            "regexColSeparator": "^\\s*(\\d{1,2}\\.(.*?)$",
+                            "regexRowSeparator": "\n"
+                        }
+                    }
+                },
+                "fields": {
+                    "nivell":{
+                        "type": "number"
+                    },
+                    "descripcio": {
+                        "type": "textarea"
+                    }
+                },
+                "layout": [
+                    {
+                        "defaultCell": {
+                            "width": "10%"
+                        },
+                        "cells": [
+                            {
+                                "name": "Nivell",
+                                "field": "nivell",
+                                "editable": true
+                            },
+                            {
+                                "name": "Descripció del RA / OT",
+                                "field": "descripcio",
+                                "width":"90%",
+                                "editable": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "criterisAvaluacio":{
+            "label": "Criteris d'avaluació (LOE) (criterisAvaluacio)",
+            "n_columns": 12,
+            "type": "editableObject",
+            "group": "treball",
+            "n_rows": 8,
+            "props": {
+                "required": true,
+                "data-editable-element": "table",
+                "title": "Indiqueu els Criteris d'avaluació (LOE)."
+            },
+            "config": {
+                "actions": {
+                    "add_default_row": "Afegir un CA",
+                    "remove_rows": "Eliminar els CA seleccionats",
+                    "add_default_row_before": "Afegir un CA abans de la fila seleccionada",
+                    "add_import": {
+                        "button_label": "Importar amb format '9.9 criteri'",
+                        "data": {
+                            "regexColSeparator": "^\\s*(\\d{1,2})\\.(\\d{1,2})(.*?)$",
                             "regexRowSeparator": "\n"
                         }
                     }
@@ -201,12 +255,17 @@
                         },
                         "cells": [
                             {
-                                "name": "Nivell",
-                                "field": "nivell",
+                                "name": "RA",
+                                "field": "nivell1",
                                 "editable": true
                             },
                             {
-                                "name": "Descripció del RA",
+                                "name": "nivell",
+                                "field": "nivell2",
+                                "editable": true
+                            },
+                            {
+                                "name": "Descripció del CA",
                                 "field": "descripcio",
                                 "width":"90%",
                                 "editable": true

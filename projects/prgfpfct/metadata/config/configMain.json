@@ -30,10 +30,29 @@
                 "entradaResultatsAprenentatgeObjectiusTerminals": {
                     "type":"object",
                     "keys": {
-                        "nivell1": {
+                        "nivell": {
                             "type": "number",
                             "mandatory": true,
                             "default": "Indiqueu el nivell jeràrquic"
+                        },
+                        "descripcio": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "Escriviu el contingut del Resultat d'Aprenentatge (LOE) o de l'Objectiu Terminal (LOGSE)"
+                        }
+                    }
+                },
+                "defResultatsAprenentatgeObjectiusTerminals": {
+                    "type": "objectArray",
+                    "typeDef":"entradaResultatsAprenentatgeObjectiusTerminals"
+                },
+                "entradaCriterisAvaluacio": {
+                    "type":"object",
+                    "keys": {
+                        "nivell1": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": "Indiqueu el nivell del Resultat d'Aprenentatge"
                         },
                         "nivell2": {
                             "type": "number",
@@ -43,13 +62,13 @@
                         "descripcio": {
                             "type": "string",
                             "mandatory": true,
-                            "default": "Escriviu el contingut del Resultat d'Aprenentatge (LOE) o de l'Objectiu Terminal (LOGSE) (per a LOGSE el nivell 2 correspon als Criteris d'avaluació)"
+                            "default": "Escriviu el contingut del Criteri d'Avaluacio (LOE)"
                         }
                     }
                 },
-                "defResultatsAprenentatgeObjectiusTerminals": {
+                "defCriterisAvaluacio": {
                     "type": "objectArray",
-                    "typeDef":"entradaResultatsAprenentatgeObjectiusTerminals"
+                    "typeDef":"entradaCriterisAvaluacio"
                 },
                 "entradaCc_historic":{
                     "type":"object",
