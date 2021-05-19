@@ -178,13 +178,13 @@
                     "add_import": {
                         "button_label": "Importar amb format '9. resultat/objectiu'",
                         "data": {
-                            "regexColSeparator": "^\\s*(\\d{1,2}\\.(.*?)$",
+                            "regexColSeparator": "^\\s*(\\d{1,2})\\.(.*?)$",
                             "regexRowSeparator": "\n"
                         }
                     }
                 },
                 "fields": {
-                    "nivell":{
+                    "ra": {
                         "type": "number"
                     },
                     "descripcio": {
@@ -198,8 +198,8 @@
                         },
                         "cells": [
                             {
-                                "name": "Nivell",
-                                "field": "nivell",
+                                "name": "Codi RA / OT",
+                                "field": "ra",
                                 "editable": true
                             },
                             {
@@ -238,11 +238,11 @@
                     }
                 },
                 "fields": {
-                    "nivell1":{
-                        "type": "number"
+                    "ra":{
+                        "type": "conditionalselect"
                     },
-                    "nivell2":{
-                        "type": "number"
+                    "ca":{
+                        "type": "string"
                     },
                     "descripcio": {
                         "type": "textarea"
@@ -256,16 +256,27 @@
                         "cells": [
                             {
                                 "name": "RA",
-                                "field": "nivell1",
+                                "field": "ra",
+                                "editable": true,
+                                "config": {
+                                    "fieldsource": "resultatsAprenentatgeObjectiusTerminals",
+                                    "labelFields": ["ra", "descripcio"],
+                                    "labelSeparator": ": ",
+                                    "outputFields": ["ra"],
+                                    "outputSeparator": [","],
+                                    "outputMultiSeparator": [":"],
+                                    "hierarchySeparator": ".",
+                                    "multiple": false,
+                                    "validationRegex": "^\\d+$"
+                                }
+                            },
+                            {
+                                "name": "Codi C.A.",
+                                "field": "ca",
                                 "editable": true
                             },
                             {
-                                "name": "nivell",
-                                "field": "nivell2",
-                                "editable": true
-                            },
-                            {
-                                "name": "Descripció del CA",
+                                "name": "Descripció del C.A.",
                                 "field": "descripcio",
                                 "width":"90%",
                                 "editable": true
@@ -542,9 +553,6 @@
             "type": "hidden"
         },
         "cc_dadesValidador#signatura":{
-            "type": "hidden"
-        },
-        "documentVersion":{
             "type": "hidden"
         }
     }
