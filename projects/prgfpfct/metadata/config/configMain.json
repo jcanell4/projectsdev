@@ -141,10 +141,15 @@
                                 "readonly": true
                             }
                         },
-                        "fitxercontinguts": {
+                        "plantilla": {
                             "type": "string",
                             "mandatory": true,
                             "default": "plantilles:documents_fp:programacions:fct:continguts"
+                        },
+                        "fitxercontinguts": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "continguts"
                         },
                         "resultatsAprenentatgeObjectiusTerminals": {
                             "type": "defResultatsAprenentatgeObjectiusTerminals",

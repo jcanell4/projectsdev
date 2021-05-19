@@ -71,7 +71,7 @@ class IocTcPdf extends BasicIocTcPdf {
 
         $this->SetY($y_position);
         $titol_w = $this->getPageWidth()-($w0+$w1+$w2);
-        $this->MultiCell($titol_w, $cell_height*2, "Programacions de cicles formatius (LOGSE)", 1, 'C', 0, 0, "", "", true, 0, false, true, $cell_height*2, 'M');
+        $this->MultiCell($titol_w, $cell_height*2, "Programacions de cicles formatius (FCT)", 1, 'C', 0, 0, "", "", true, 0, false, true, $cell_height*2, 'M');
 
         // codi de pàgina actual: $this->getAliasNumPage() = {:pnp:} -> problema: ocupa 7 caracters en el render
         // codi de total pàgines: $this->getAliasNbPages() = {:ptp:} -> es calcula l'espai ocupat abans d'obtenir el valor real

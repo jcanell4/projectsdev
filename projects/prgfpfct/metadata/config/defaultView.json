@@ -178,7 +178,7 @@
                     "add_import": {
                         "button_label": "Importar amb format '9. resultat' i '9.9 resultat'",
                         "data": {
-                            "regexColSeparator": "^ *([1-9]\\.)([1-9])* (.*?)\n$",
+                            "regexColSeparator": "^\\s*([0-9])\\.(\\d{0,2}) (.*?)$",
                             "regexRowSeparator": "\n"
                         }
                     }
@@ -451,6 +451,9 @@
                 ]
             },
             "default":"Direcció acadèmica FP"
+        },
+        "plantilla": {
+            "type": "hidden"
         },
         "fitxercontinguts": {
             "type": "hidden"

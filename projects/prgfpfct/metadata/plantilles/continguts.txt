@@ -107,17 +107,7 @@ El Departament d'Ensenyament té subscrites dues pòlisses complementàries:
 
 :###====== Activitats Formatives de Referència ======###:
 :###
-<WIOCCL:IF condition="{#_ARRAY_LENGTH({##activitatsFormatives##})_#}\>1">
-::table:T102
-  :title:Activitats Formatives de Referència
-  :widths:1,4
-  :type:pt_taula
-^  nivell  ^  Descripció  ^
-<WIOCCL:FOREACH var="item" array="{##activitatsFormatives##}">
-|  {##item[nivell]##}  |{##item[descripcio]##} |
-</WIOCCL:FOREACH>
-:::
-</WIOCCL:IF>
+{##activitatsFormatives##}
 ###:
 
 :###====== Metodologia del {##creditmodul##} ======###:
@@ -185,10 +175,7 @@ L’avaluació del crèdit o {##creditmodul##} de formació en centres de trebal
 
 :###===== Valoració del dossier =====###:
 
-::table:T014
-  ::type_pt_taula
 |  **Dossier** = conveni + pròrrogues a la mateixa empresa.  |
-:::
 
   * S’entén com a dossier el conveni i les pròrrogues, si n’hi ha.
   * Cada dossier es valora en funció dels resultats d’aprenentatge (RA).

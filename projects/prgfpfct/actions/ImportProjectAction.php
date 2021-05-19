@@ -7,37 +7,7 @@ if (!defined('DOKU_INC')) die();
 
 class ImportProjectAction extends ViewProjectAction {
     
-    private function __getNotaMinimaInstrumentsAvaluacio($tipus, $importData) {
-        $conversor=[
-            "AC" => 'notaMinimaAC',
-            "PAF" => 'notaMinimaPAF',
-            "EAF" => 'notaMinimaEAF',
-            "JT" => 'notaMinimaJT'
-        ];
-        $default = 0;
-        if(isset($importData[$conversor[$tipus]])){
-            $ret = $importData[$conversor[$tipus]];
-        }else{
-            $ret = $default;
-        }
-        return $ret;
-    }
-    
-    private function __getAvaluacioInicialUF($tipus, $isFirst){
-        $APT = ["NO", "INICI", "PER_UF"];
-        $APR = ["No en té", "A l'inici del semestre", "A l'inici de la UF"];
-        if ($tipus === $APT[1] && $isFirst)
-            $ret = $APR[1];
-        elseif ($tipus === $APT[2])
-            $ret = $APR[2];
-        else
-            $ret = $APR[0];
-
-        return $ret;
-    }
-
     public function responseProcess() {
-        //
         // 1. Comprobar que el tipo de proyecto a importar es adecuado
         //
         $model = $this->getModel();
@@ -72,100 +42,20 @@ class ImportProjectAction extends ViewProjectAction {
                     if (!$import_data["tipusCicle"] || $import_data["tipusCicle"] == "LOE"){
                         // Taula d'importació
                         //camps directes
-                        $dataProject['cicle']       = $import_data['cicle'];
-                        $dataProject['modulId']     = $import_data['modulId'];
-                        $dataProject['modul']       = $import_data['modul'];
-                        $dataProject['duradaCicle'] = $import_data['duradaCicle'];
-
+                        $dataProject['cicle']   = $import_data['cicle'];
+                        $dataProject['modulId'] = $import_data['modulId'];
+                        $dataProject['modul']   = $import_data['modul'];
+                        $dataProject['durada']  = $import_data['duradaCicle'];
                         if (!$import_data["tipusCicle"]) {
-                            $dataProject['notaMinimaAC']  = $import_data['notaMinimaAC'];
-                            $dataProject['notaMinimaEAF'] = $import_data['notaMinimaEAF'];
-                            $dataProject['notaMinimaJT']  = $import_data['notaMinimaJT'];
-                            $dataProject['notaMinimaPAF'] = $import_data['notaMinimaPAF'];
-                            $dataProject['duradaPAF']     = $import_data['duradaPAF'];
-                        
-                            //Camps amb importació parcial
-                            //taulaInstrumentsAvaluacio
-                            if (!is_array($import_data["dadesQualificacioUFs"])) $import_data["dadesQualificacioUFs"]= json_decode ($import_data["dadesQualificacioUFs"], TRUE);
-                            if (isset($dataProject["taulaInstrumentsAvaluacio"])){
-                                if (!is_array($dataProject["taulaInstrumentsAvaluacio"])) $dataProject["taulaInstrumentsAvaluacio"]= json_decode ($dataProject["taulaInstrumentsAvaluacio"], TRUE);
-                            }else{
-                                $dataProject["taulaInstrumentsAvaluacio"]=array();
-                            }
-                            foreach ($import_data["dadesQualificacioUFs"] as $instAvToImport) {
-                                $dataProject["taulaInstrumentsAvaluacio"][]=[
-                                     "unitat formativa" => $instAvToImport["unitat formativa"]
-                                    ,"tipus" => $instAvToImport["tipus qualificació"]
-                                    ,"id" => $instAvToImport["abreviació qualificació"]
-                                    ,"descripcio" => ""
-                                    ,"treballEnEquip" => false
-                                    ,"esObligatori" => ($instAvToImport["tipus qualificació"]=="AC"?false:true)
-                                    ,"notaMinima" => $this->__getNotaMinimaInstrumentsAvaluacio($instAvToImport["tipus qualificació"], $import_data)
-                                    ,"ponderacio" => $instAvToImport["ponderació"]
-                                ];
-                            }                        
-                            //taulaDadesBlocs
-                            if (!is_array($dataProject['taulaDadesBlocs'])) $dataProject['taulaDadesBlocs'] = json_decode($dataProject['taulaDadesBlocs'], TRUE);
-                            $B = ["mòdul", "1r. bloc", "2n. bloc", "3r. bloc"];
-                            $T = ['bloc' => array_search($import_data['tipusBlocModul'], $B),
-                                  'horesBloc' => $import_data['durada']];
-                            $dataProject['taulaDadesBlocs'][] = $T;
-                            
-                            //taulaDadesUF
-                            if (!is_array($import_data["taulaDadesUF"])) $import_data["taulaDadesUF"]= json_decode ($import_data["taulaDadesUF"], TRUE);
-                            if (isset($dataProject["taulaDadesUF"])){
-                                if (!is_array($dataProject["taulaDadesUF"])) $dataProject["taulaDadesUF"]= json_decode ($dataProject["taulaDadesUF"], TRUE);
-                            }else{
-                                $dataProject["taulaDadesUF"]=array();
-                            }
-                            if (empty($dataProject["taulaDadesUF"])){
-                                foreach ($import_data['taulaDadesUF'] as $key => $toImport) {
-                                    $dataProject['taulaDadesUF'][] = [
-                                        "unitat formativa" => $toImport["unitat formativa"],
-                                        "nom" => $toImport["nom"],
-                                        "horesMinimes" => $toImport["hores"],
-                                        "horesLLiureDisposicio" => 0,
-                                        "hores" => $toImport["hores"],
-                                        "ponderació" => $toImport["ponderació"],
-                                        "avaluacioInicial" => $this->__getAvaluacioInicialUF($import_data["avaluacioInicial"], $key==0),
-                                        "bloc" => $toImport["bloc"],
-                                        "ordreImparticio" => $key + 1
-                                    ];
-                                }
-                            }
-                            //taulaDadesNuclisFormatius
-                            if (!is_array($import_data["taulaDadesUnitats"])) $import_data["taulaDadesUnitats"]= json_decode ($import_data["taulaDadesUnitats"], TRUE);
-                            if (isset($dataProject["taulaDadesNuclisFormatius"])){
-                                if (!is_array($dataProject["taulaDadesNuclisFormatius"])) $dataProject["taulaDadesNuclisFormatius"]= json_decode ($dataProject["taulaDadesNuclisFormatius"], TRUE);
-                            }else{
-                                $dataProject["taulaDadesNuclisFormatius"]=array();
-                            }
-                            foreach ($import_data['taulaDadesUnitats'] as $value) {
-                                if (isset($U) && $U['unitat formativa'] == $value['unitat formativa']){
-                                    $nf++;
-                                }else{
-                                    $nf=1;
-                                }
-                                $U['unitat formativa'] = $value['unitat formativa'];
-                                $U['nucli formatiu'] = $nf;
-                                $U['unitat al pla de treball'] = $value['unitat'];
-                                $U['nom'] = $value['nom'];
-                                $U['hores'] = $value['hores'];
-                                $dataProject['taulaDadesNuclisFormatius'][] = $U;
-                            }
-                        }else{
-                            if (!is_array($dataProject['taulaDadesBlocs'])) $dataProject['taulaDadesBlocs'] = json_decode($dataProject['taulaDadesBlocs'], TRUE);
-                            $T = ['bloc' => 0,
-                                  'horesBloc' => $import_data['durada']];
-                            $dataProject['taulaDadesBlocs'][] = $T;
+                            $dataProject['durada'] = $import_data['duradaPAF'];
                         }
                         
                         //resultatsAprenentatge
-                        if (!is_array($import_data["resultatsAprenentatge"])) $import_data["resultatsAprenentatge"]= json_decode ($import_data["resultatsAprenentatge"], TRUE);
-                        if (isset($dataProject["resultatsAprenentatge"])){
-                            if (!is_array($dataProject["resultatsAprenentatge"])) $dataProject["resultatsAprenentatge"]= json_decode ($dataProject["resultatsAprenentatge"], TRUE);
+                        if (!is_array($import_data["resultatsAprenentatge"])) $import_data["resultatsAprenentatge"] = json_decode($import_data["resultatsAprenentatge"], TRUE);
+                        if (isset($dataProject["resultatsAprenentatgeObjectiusTerminals"])){
+                            if (!is_array($dataProject["resultatsAprenentatgeObjectiusTerminals"])) $dataProject["resultatsAprenentatgeObjectiusTerminals"] = json_decode($dataProject["resultatsAprenentatgeObjectiusTerminals"], TRUE);
                         }else{
-                            $dataProject["resultatsAprenentatge"]=array();
+                            $dataProject["resultatsAprenentatgeObjectiusTerminals"] = [];
                         }
                         foreach ($import_data["resultatsAprenentatge"] as $value) {
                             if (preg_match('/(UF(\d).{0,1})RA(\d)/', $value['id'], $match)) {
@@ -181,7 +71,7 @@ class ImportProjectAction extends ViewProjectAction {
                             $Z['descripcio'] = $value['descripcio'];
                             $Z['ponderacio'] = "";
                             $Z['hores'] = 0;
-                            $dataProject['resultatsAprenentatge'][] = $Z;
+                            $dataProject['resultatsAprenentatgeObjectiusTerminals'][] = $Z;
                         }
 
                         $summary = "Importació de dades correcta des del projecte '{$this->params['project_import']}'";

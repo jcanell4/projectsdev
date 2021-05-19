@@ -51,6 +51,8 @@ class ProjectExportAction extends ProjectAction{
 
     protected function preResponseProcess() {
         parent::preResponseProcess();
+        //Fa una còpia de la plantilla de continguts des de l'origen de la plantilla al directori de pages del projecte
+        $this->dataArray['documentVersion'] = $this->getModel()->createTemplateDocument($this->dataArray['plantilla']);
         //Guarda una revisió del pdf existent abans no es guardi la nova versió
         $ext = ($this->mode === "xhtml") ? ".zip" : ".pdf";
         $output_filename = $this->projectID . ":" . str_replace(':', '_', $this->projectID) . $ext;
@@ -67,10 +69,10 @@ class ProjectExportAction extends ProjectAction{
         $render = $this->factoryRender->createRender($this->typesDefinition[$this->mainTypeName],
                                                      $this->typesRender[$this->mainTypeName],
                                                      array(ProjectKeys::KEY_ID => $this->projectID));
-
-        $dataTemplate = $this->getModel()->getRawDocument($ret['projectMetaData']['fitxercontinguts']['value']);
+        //Obtenir el número de versió de qualitat
+        $dataTemplate = $this->getModel()->getRawDocument($this->dataArray['plantilla']);
         preg_match("/~~FIELD_VERSION:([[:digit:]])~~/",$dataTemplate, $match);
-        $versionForQuality = $match[1];
+        $this->dataArray['versionForQuality'] = $match[1];
         
         $result = $render->process($this->dataArray);
         $result['ns'] = $this->projectNS;

@@ -60,7 +60,7 @@ class exportDocument extends renderHtmlDocument {
                           "wlogo" => 10,
                           "hlogo" => 8,
                           "codi"  => "I61",
-                          "versió" => $data["documentVersion"]],
+                          "versió" => $data["versionForQuality"]],
                 "contingut" => json_decode($data["pdfDocument"], TRUE)   //contingut latex ja rendaritzat
             )
         );
