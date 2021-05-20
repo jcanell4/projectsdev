@@ -122,8 +122,8 @@ class prgfpfctProjectModel extends UniqueContentFileProjectModel{
         $resultatsAprenentatge = $data["resultatsAprenentatgeObjectiusTerminals"];
         if ($resultatsAprenentatge && !is_array($resultatsAprenentatge)){
            $resultatsAprenentatge = json_decode($resultatsAprenentatge, TRUE);
+            $data["resultatsAprenentatgeObjectiusTerminals"] = $resultatsAprenentatge;
         }
-        $data["resultatsAprenentatgeObjectiusTerminals"] = $resultatsAprenentatge;
         return $data;
     }
 
@@ -131,12 +131,8 @@ class prgfpfctProjectModel extends UniqueContentFileProjectModel{
         $resultatsAprenentatge = $data["resultatsAprenentatgeObjectiusTerminals"];
         if ($resultatsAprenentatge && !is_array($resultatsAprenentatge)){
             $resultatsAprenentatge = json_decode($resultatsAprenentatge, TRUE);
+            $data["resultatsAprenentatgeObjectiusTerminals"] = $resultatsAprenentatge;
         }
-        //Calcula les hores per bloc i si cal, la pnderació.
-        $total = 0;
-
-        $data["resultatsAprenentatgeObjectiusTerminals"] = $resultatsAprenentatge;
-        $data["durada"] = $total;
 
         // Dades de la gestió de la darrera modificació
         $this->dadesActualsGestio($data);

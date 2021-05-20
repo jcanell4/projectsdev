@@ -155,7 +155,7 @@
                            "labelButtonAcceptar": "'Acceptar'",
                            "labelButtonCancellar": "'Cancel·lar'",
                            "urlBase": "'lib/exe/ioc_ajax.php?call=project'",
-                           "projectType": ["ptfploe","ptfplogse", "sintesi"],
+                           "projectType": ["ptfct"],
                            "standbyId": "'bodyContent'",
                            "disableOnSend": true
                         }
