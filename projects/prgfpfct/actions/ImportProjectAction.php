@@ -42,38 +42,10 @@ class ImportProjectAction extends ViewProjectAction {
                     if (!$import_data["tipusCicle"] || $import_data["tipusCicle"] == "LOE"){
                         // Taula d'importació
                         //camps directes
-                        $dataProject['cicle']   = $import_data['cicle'];
-                        $dataProject['modulId'] = $import_data['modulId'];
-                        $dataProject['modul']   = $import_data['modul'];
-                        $dataProject['durada']  = $import_data['duradaCicle'];
-                        if (!$import_data["tipusCicle"]) {
-                            $dataProject['durada'] = $import_data['duradaPAF'];
-                        }
+                        $dataProject['tipusCicle'] = $import_data['tipusCicle'];
+                        $dataProject['cicle']      = $import_data['cicle'];
+                        $dataProject['durada']     = $import_data['durada'];
                         
-                        //resultatsAprenentatge
-                        if (!is_array($import_data["resultatsAprenentatge"])) $import_data["resultatsAprenentatge"] = json_decode($import_data["resultatsAprenentatge"], TRUE);
-                        if (isset($dataProject["resultatsAprenentatgeObjectiusTerminals"])){
-                            if (!is_array($dataProject["resultatsAprenentatgeObjectiusTerminals"])) $dataProject["resultatsAprenentatgeObjectiusTerminals"] = json_decode($dataProject["resultatsAprenentatgeObjectiusTerminals"], TRUE);
-                        }else{
-                            $dataProject["resultatsAprenentatgeObjectiusTerminals"] = [];
-                        }
-                        foreach ($import_data["resultatsAprenentatge"] as $value) {
-                            if (preg_match('/(UF(\d).{0,1})RA(\d)/', $value['id'], $match)) {
-                                $Z['uf'] = $match[2];
-                                $Z['ra'] = $match[3];
-                            }elseif (preg_match('/RA(\d)(.{0,1}(UF(\d)){0,1})/', $value['id'], $match)) {
-                                $Z['uf'] = $match[4];
-                                $Z['ra'] = $match[1];
-                            }else {
-                                $Z['uf'] = "";
-                                $Z['ra'] = "";
-                            }
-                            $Z['descripcio'] = $value['descripcio'];
-                            $Z['ponderacio'] = "";
-                            $Z['hores'] = 0;
-                            $dataProject['resultatsAprenentatgeObjectiusTerminals'][] = $Z;
-                        }
-
                         $summary = "Importació de dades correcta des del projecte '{$this->params['project_import']}'";
                         if ($model->setDataProject(json_encode($dataProject), $summary)) {
                             $resp['info'] = self::generateInfo("info", $summary, $projectID);
