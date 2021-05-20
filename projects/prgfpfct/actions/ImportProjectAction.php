@@ -7,9 +7,19 @@ if (!defined('DOKU_INC')) die();
 
 class ImportProjectAction extends ViewProjectAction {
     
+    protected function setParams($params) {
+        parent::setParams($params);
+        $this->getModel()->setIsOnView(false);
+    }
+
+    protected function postResponseProcess(&$response) {
+        parent::postResponseProcess($response);
+        $this->getModel()->setIsOnView(true); //Aquí no fa cas, no provoca cap resultat: no es mostra wiki rederitzat
+    }
+
     public function responseProcess() {
-        // 1. Comprobar que el tipo de proyecto a importar es adecuado
         //
+        // 1. Comprobar que el tipo de proyecto a importar es adecuado
         $model = $this->getModel();
         $projectID = $this->params[ProjectKeys::KEY_ID];
         $metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($projectID, "management", $this->params[ProjectKeys::KEY_PROJECT_TYPE]);
