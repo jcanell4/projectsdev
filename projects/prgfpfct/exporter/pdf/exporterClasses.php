@@ -60,8 +60,9 @@ class IocTcPdf extends BasicIocTcPdf {
         $this->MultiCell($w0, $cell_height*2, $this->Image($f,$x,$y,$w,$h,'JPG','','',true,300,'',false,false,0,['CM']), 0, 'L', 0, 0, "", "", true, 0, false, true, $cell_height*2, 'M');
         $this->SetTextColor(0);
 
+        $titol = $this->peu['titol'];
         $codi = " codi: ".$this->peu['codi'];
-        $versio = " versió: ".$this->peu['versió'];
+        $versio = " versió: ".$this->peu['versio'];
         $w1 = max(10, strlen($codi), strlen($versio)) * 2;
         $w1 = min(30, $w1);
         $w2 = 22;
@@ -71,7 +72,7 @@ class IocTcPdf extends BasicIocTcPdf {
 
         $this->SetY($y_position);
         $titol_w = $this->getPageWidth()-($w0+$w1+$w2);
-        $this->MultiCell($titol_w, $cell_height*2, "Programacions de cicles formatius (FCT)", 1, 'C', 0, 0, "", "", true, 0, false, true, $cell_height*2, 'M');
+        $this->MultiCell($titol_w, $cell_height*2, $titol, 1, 'C', 0, 0, "", "", true, 0, false, true, $cell_height*2, 'M');
 
         // codi de pàgina actual: $this->getAliasNumPage() = {:pnp:} -> problema: ocupa 7 caracters en el render
         // codi de total pàgines: $this->getAliasNbPages() = {:ptp:} -> es calcula l'espai ocupat abans d'obtenir el valor real
@@ -113,15 +114,16 @@ class PdfRenderer extends BasicPdfRenderer {
         $this->iocTcPdf->SetX(100);
         $this->iocTcPdf->SetY($y=80);
         $this->iocTcPdf->SetFont($this->firstPageFont, 'B', 25);
-        $this->iocTcPdf->Write(25, "Programacions de cicles formatius", '', false, "L");
+
+        $titol = $params['data']['titol'];
+        $this->iocTcPdf->Write(25, $titol['titol'], '', false, "L");
 
         $this->iocTcPdf->SetY($y+=60);
         $this->iocTcPdf->SetFont($this->firstPageFont, 'B', 15);
-        $titol = $params['data']['titol'];
         $text = "Departament: {$titol['departament']}\n"
               . "Cicle formatiu: {$titol['cicle']}\n"
-              . "Mòdul {$titol['modulId']}: {$titol['modul']}\n"
-              . "Hores totals: {$titol['hores']}";
+              . "Mòdul {$titol['modulId']}: Formació en centres de treball (FCT)\n"
+              . "Hores totals: {$titol['hores']} h";
         $this->iocTcPdf->Write(8, $text, '', false, "L");
 
         //peu de pàgina
