@@ -77,15 +77,14 @@ El Departament d'Ensenyament té subscrites dues pòlisses complementàries:
 ====== Resultats d’Aprenentatge i Criteris d’Avaluació ======
 <WIOCCL:IF condition="{#_ARRAY_LENGTH({##resultatsAprenentatgeObjectiusTerminals##})_#}\>1">
 <WIOCCL:FOREACH var="itemRA" array="{##resultatsAprenentatgeObjectiusTerminals##}">
-**{##itemRA[ra]##} {##itemRA[descripcio]##}** \\
+&nbsp;&nbsp;&nbsp;&nbsp;**{##itemRA[ra]##} {##itemRA[descripcio]##}**\\
 <WIOCCL:FOREACH var="itemCA" array="{##criterisAvaluacio##}" filter="{##itemCA[ra]##}=={##itemRA[ra]##}">
-{##itemCA[ca]##} {##itemCA[descripcio]##} \\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{##itemCA[ca]##} {##itemCA[descripcio]##} \\
 </WIOCCL:FOREACH>
 </WIOCCL:FOREACH>
 </WIOCCL:IF>
 </WIOCCL:IF>
 ###:
-
 :###
 <WIOCCL:IF condition="{##tipusCicle##}==''LOGSE''">
 ====== Objectius Terminals ======

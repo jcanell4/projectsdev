@@ -35,8 +35,6 @@ class exportDocument extends renderHtmlDocument {
 
         $departament = html_entity_decode(htmlspecialchars_decode($data["departament"], ENT_COMPAT|ENT_QUOTES));
         $cicle = html_entity_decode(htmlspecialchars_decode($data["cicle"], ENT_COMPAT|ENT_QUOTES));
-        $modul = html_entity_decode(htmlspecialchars_decode($data["modul"], ENT_COMPAT|ENT_QUOTES));
-        $modulId = html_entity_decode(htmlspecialchars_decode($data["modulId"], ENT_COMPAT|ENT_QUOTES));
 
         $params = array(
             "id" => $this->cfgExport->id,
@@ -50,18 +48,19 @@ class exportDocument extends renderHtmlDocument {
                              "wlogo" => 9.9,
                              "hlogo" => 11.1,
                              "ltext" => "Generalitat de Catalunya\nDepartament d'Educació\nInstitut Obert de Catalunya",
-                             "rtext" => $cicle."\n".$modulId." ".$modul],
-                "titol" => ["departament" => $departament,
+                             "rtext" => ""],
+                "titol" => ["titol" => "Programacions cicles formatius",
+                            "departament" => $departament,
                             "cicle" => $cicle,
-                            "modulId" => $modulId,
-                            "modul" => $modul,
-                            "hores" => $data["durada"]],
+                            "modulId" => $data["modulId"],
+                            "hores" => $data['durada']],
                 "peu" => ["logo"  => $this->cfgExport->rendererPath . "/resources/escutIOC.jpg",
+                          "titol" => "Programacions FCT",
                           "wlogo" => 10,
                           "hlogo" => 8,
-                          "codi"  => "I61",
-                          "versió" => $data["versionForQuality"]],
-                "contingut" => json_decode($data["pdfDocument"], TRUE)   //contingut latex ja rendaritzat
+                          "codi"  => "I33",
+                          "versio" => $data['documentVersion']],
+                "contingut" => json_decode($data['pdfDocument'], TRUE)   //contingut latex ja rendaritzat
             )
         );
         $pdfRenderer = new PdfRenderer();

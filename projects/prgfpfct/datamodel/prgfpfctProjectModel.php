@@ -25,21 +25,28 @@ class prgfpfctProjectModel extends UniqueContentFileProjectModel{
     }
 
     /**
-     * Overwrite
+     * Overwrite: Hace una copia de la plantilla continguts, si es más nueva, y la guarda readonly para este proyecto
+     * además, obtiene y retorna la versión de calidad
      * @param array $data : array de datos del proyecto
-     * @return digit : retorn extra de la versió de qualitat
+     * @return number : versión de calidad obtenida de la plantilla
      */
     public function createTemplateDocument($data=NULL){
-        if (is_array($data)) $data = $data['projectMetaData']['plantilla']['value'];
+        if (is_array($data))
+            $data = $data['projectMetaData']['plantilla']['value'];
         $dataTemplate = $this->getRawDocument($data);
         preg_match("/~~FIELD_VERSION:([[:digit:]])~~/",$dataTemplate, $match);
         $versionForQuality = $match[1];
-        $dataTemplate = ":###".preg_replace(["/:###/","/###:/","/~~WIOCCL_DATA.+~~/","/~~FIELD_VERSION:.*?~~/"], "", $dataTemplate)."###:";
-        $nomfitxercontinguts = $this->getTemplateContentDocumentId();
-        $desti = $this->getContentDocumentId($nomfitxercontinguts);
-        $this->getDokuPageModel()->setData([PageKeys::KEY_ID => $desti,
-                                             PageKeys::KEY_WIKITEXT => $dataTemplate,
-                                             PageKeys::KEY_SUM => "generate project"]);
+
+        $desti = $this->getContentDocumentId($this->getTemplateContentDocumentId());
+
+        $templateDate = filemtime(wikiFN($data));
+        $contingutsDate = filemtime(wikiFN($desti));
+        if ($templateDate > $contingutsDate) {
+            $dataTemplate = ":###".preg_replace(["/:###/","/###:/","/~~WIOCCL_DATA.+~~/","/~~FIELD_VERSION:.*?~~/"], "", $dataTemplate)."###:";
+            $this->getDokuPageModel()->setData([PageKeys::KEY_ID => $desti,
+                                                 PageKeys::KEY_WIKITEXT => $dataTemplate,
+                                                 PageKeys::KEY_SUM => "generate project"]);
+        }
         return $versionForQuality;
     }
 

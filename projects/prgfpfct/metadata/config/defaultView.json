@@ -525,9 +525,6 @@
         "plantilla": {
             "type": "hidden"
         },
-        "fitxercontinguts": {
-            "type": "hidden"
-        },
         "cc_dadesAutor#nomGestor":{
             "type": "hidden"
         },
@@ -553,6 +550,9 @@
             "type": "hidden"
         },
         "cc_dadesValidador#signatura":{
+            "type": "hidden"
+        },
+        "documentVersion":{
             "type": "hidden"
         }
     }
