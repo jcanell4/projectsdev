@@ -7,16 +7,6 @@ if (!defined('DOKU_INC')) die();
 
 class ImportProjectAction extends ViewProjectAction {
     
-    protected function setParams($params) {
-        parent::setParams($params);
-        $this->getModel()->setIsOnView(false);
-    }
-
-    protected function postResponseProcess(&$response) {
-        parent::postResponseProcess($response);
-        $this->getModel()->setIsOnView(true); //Aquí no fa cas, no provoca cap resultat: no es mostra wiki rederitzat
-    }
-
     public function responseProcess() {
         //
         // 1. Comprobar que el tipo de proyecto a importar es adecuado
@@ -41,7 +31,7 @@ class ImportProjectAction extends ViewProjectAction {
             $has_perm_rol = in_array(WikiIocInfoManager::getInfo('client'), $importRoles['roleData']);
 
             if ($has_perm_group || $has_perm_rol) {
-                $dataProject = $model->getCurrentDataProject();
+                $dataProject = $model->getCurrentDataProject(false, false);
                 $import_metaDataQuery = $model->getPersistenceEngine()->createProjectMetaDataQuery($this->params['project_import'], "main", $importProjectType);
                 $import_data = $import_metaDataQuery->getDataProject($this->params['project_import'], $importProjectType, "main");
 
