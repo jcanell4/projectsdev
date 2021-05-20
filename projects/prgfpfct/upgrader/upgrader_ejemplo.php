@@ -29,7 +29,6 @@ class upgrader_ejemplo extends CommonUpgrader {
                 $dataProject = $this->model->getCurrentDataProject($this->metaDataSubSet);
                 if (!is_array($dataProject))
                     $dataProject = json_decode($dataProject, TRUE);
-                $dataProject['documentVersion'] = $dataProject['documentVersion']+1;
                 $ret = $this->model->setDataProject(json_encode($dataProject), "Upgrade fields: version ".($ver-1)." to $ver", '{"fields":'.$ver.'}');
 
                 //Transforma el archivo continguts.txt del proyecto desde la versión 0 a la versión 1
