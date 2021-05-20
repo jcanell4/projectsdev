@@ -44,8 +44,8 @@ class prgfpfctProjectModel extends UniqueContentFileProjectModel{
         if ($templateDate > $contingutsDate) {
             $dataTemplate = ":###".preg_replace(["/:###/","/###:/","/~~WIOCCL_DATA.+~~/","/~~FIELD_VERSION:.*?~~/"], "", $dataTemplate)."###:";
             $this->getDokuPageModel()->setData([PageKeys::KEY_ID => $desti,
-                                                 PageKeys::KEY_WIKITEXT => $dataTemplate,
-                                                 PageKeys::KEY_SUM => "generate project"]);
+                                                PageKeys::KEY_WIKITEXT => $dataTemplate,
+                                                PageKeys::KEY_SUM => "generate project"]);
         }
         return $versionForQuality;
     }
