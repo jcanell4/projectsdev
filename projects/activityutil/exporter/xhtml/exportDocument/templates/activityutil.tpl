@@ -9,24 +9,13 @@
     <!-- Own files -->
     <link rel="stylesheet" href="css/basic.css">
     <link rel="stylesheet" href="css/{##estil##}.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/modernizr-1.7.min.js"></script>
+    <script type="text/javascript" src="js/Hyphenator.js"></script>
+    <script type="text/javascript" src="js/build.js"></script>
     <title>IOC - Utilitats d'activitats - {##titol##}</title>
 </head>
 <body>
-  <!-- Side navigation -->
-  <div id="mySidenav" class="sidenav open">
-    <div class="closebtn" onclick="closeNav()">&times;</div>
-    <div class="content_index fade_in" id="myContentIndex">
-        @@TOC(documentPartsHtml)@@
-    </div>
-  </div>
-  
-  <span class="hamburger hidden" id="myHamburger" onclick="openNav()">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false">
-        <title>Menu</title>
-        <path stroke="currentColor" stroke-width="2.4" stroke-linecap="butt" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path>
-    </svg>
-  </span>
-
   <header class="main_header">
     <div class="container">
       <h1>{##titol##}</h1>
@@ -55,9 +44,5 @@
     <div id="printbtn" onclick="printDoc('{##pdf_filename_toprint##}')"><span>Descarrega't el PDF</span></div>
   </div>
 
-  <script src="js/main.js"></script>
-<WIOCCL:IF condition="{##amagarMenuInici##}==true">
-  <script>closeNav()</script>
-</WIOCCL:IF>
 </body>
 </html>

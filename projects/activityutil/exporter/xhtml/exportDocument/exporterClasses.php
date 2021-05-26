@@ -49,7 +49,7 @@ class exportDocument extends renderHtmlDocument {
 
             if ($zip->addFromString('index.html', $document)) {
                 $allPathTemplate = $this->cfgExport->rendererPath . "/$pathTemplate";
-                $this->addFilesToZip($zip, $allPathTemplate, "", "css", FALSE, $data['estil'].".css");
+                $this->addFilesToZip($zip, $allPathTemplate, "", "css");
                 $this->addDefaultCssFilesToZip($zip, "");
                 $this->addFilesToZip($zip, $allPathTemplate, "", "img");
                 $this->addFilesToZip($zip, $allPathTemplate, "", "js");

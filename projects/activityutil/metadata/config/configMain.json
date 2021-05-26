@@ -137,11 +137,6 @@
                             "mandatory": true,
                             "default":true
                         },
-                        "amagarMenuInici": {
-                            "type": "boolean",
-                            "mandatory": true,
-                            "default":false
-                        },
                         "documents": {
                             "type": "extraDoc",
                             "default": [{"ordre":1, "nom":"continguts"}]
