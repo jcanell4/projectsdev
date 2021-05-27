@@ -1766,7 +1766,8 @@ article figure img {
 .ioctextl,
 .iocexample,
 .iocimportant,
-.iocquote {
+.iocquote,
+.iocinclude{
  clear: left;
  overflow: hidden;
 }
@@ -1806,6 +1807,17 @@ article figure img {
  padding: 18px;
  margin: 1em auto;
 }
+.iocinclude .ioccontent {
+    clear: both !important;
+    font-size: 100%;
+    width: 90%;
+    color: #2c2c2c;
+    background: url("../../img/iocinclude.png") no-repeat scroll 98% 1em #efefef;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 8px;
+    margin: 10px 2px auto;
+}
 .iocimportant .ioccontent {
  clear: both !important;
  width: 80%;
@@ -1838,7 +1850,8 @@ article figure img {
 .iocexample p,
 .iocimportant p,
 .iocreference p,
-.iocnote p {
+.iocnote p,
+.iocinclude p{
  margin-bottom: 0.5em;
 }
 .ioctextl img,
