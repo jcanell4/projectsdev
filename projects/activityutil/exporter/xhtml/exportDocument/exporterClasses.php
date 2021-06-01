@@ -29,6 +29,7 @@ class exportDocument extends renderHtmlDocument {
         parent::initParams();
     }
 
+    // En este modulo NO se genera archivo PDF
     public function cocinandoLaPlantillaConDatos($data) {
         $result = array();
         $result["tmp_dir"] = $this->cfgExport->tmp_dir;
@@ -37,14 +38,12 @@ class exportDocument extends renderHtmlDocument {
         }
         $output_filename = $this->cfgExport->output_filename;
         $pathTemplate = "xhtml/exportDocument/templates";
-        $filenamepdf = "$output_filename.pdf";
 
         $zip = new ZipArchive;
         $zipFile = $this->cfgExport->tmp_dir."/$output_filename.zip";
         $res = $zip->open($zipFile, ZipArchive::CREATE);
 
         if ($res === TRUE) {
-            $data['pdf_filename_toprint'] = $filenamepdf;
             $document = $this->replaceInTemplate($data, "$pathTemplate/activityutil.tpl");
 
             if ($zip->addFromString('index.html', $document)) {
@@ -53,38 +52,6 @@ class exportDocument extends renderHtmlDocument {
                 $this->addDefaultCssFilesToZip($zip, "");
                 $this->addFilesToZip($zip, $allPathTemplate, "", "img");
                 $this->addFilesToZip($zip, $allPathTemplate, "", "js");
-
-                $titol = html_entity_decode(htmlspecialchars_decode($data["titol"], ENT_COMPAT|ENT_QUOTES));
-                $subtitol = html_entity_decode(htmlspecialchars_decode($data["subtitol"], ENT_COMPAT|ENT_QUOTES));
-                $nom_real = html_entity_decode(htmlspecialchars_decode($data["nom_real"], ENT_COMPAT|ENT_QUOTES));
-                $data_fitxer = html_entity_decode(htmlspecialchars_decode($data["data_fitxercontinguts"], ENT_COMPAT|ENT_QUOTES));
-                $entitat_responsable = html_entity_decode(htmlspecialchars_decode($data["entitatResponsable"], ENT_COMPAT|ENT_QUOTES));
-
-                $params = array(
-                    "id" => $this->cfgExport->id,
-                    "path_templates" => $this->cfgExport->rendererPath . "/pdf/exportDocument/templates",  // directori on es troben les plantilles latex usades per crear el pdf
-                    "tmp_dir" => $this->cfgExport->tmp_dir,    //directori temporal on crear el pdf
-                    "lang" => strtoupper($this->cfgExport->lang),
-                    "mode" => isset($this->mode) ? $this->mode : $this->filetype,
-                    "max_img_size" => ($data['max_img_size']) ? $data['max_img_size'] : WikiGlobalConfig::getConf('max_img_size', 'wikiiocmodel'),
-                    "style" => $this->cfgExport->rendererPath . "/xhtml/exportDocument/pdf/".$data["estil"].".stypdf",
-                    "data" => array(
-                        "header" => ["logo"  => $this->cfgExport->rendererPath . "/resources/escutGene.jpg",
-                                     "wlogo" => 9.9,
-                                     "hlogo" => 11.1,
-                                     "ltext" => "Generalitat de Catalunya\nDepartament d'Educació\nInstitut Obert de Catalunya",
-                                     "rtext" => $titol],
-                        "titol" => ['titol'    => $titol,
-                                    'subtitol' => $subtitol,
-                                    'autor'    => $data['mostrarAutor']==="true" || $data['mostrarAutor']===true ? $nom_real : "",
-                                    'entitatResponsable' => $entitat_responsable,
-                                    'data'     => $data_fitxer],                       
-                        "contingut" => json_decode($data["documentPartsPdf"], TRUE)   //contingut latex ja rendaritzat
-                    )
-                );
-                $pdfRenderer = new PdfRenderer();
-                $pdfRenderer->renderDocument($params, $filenamepdf);
-                $zip->addFile($this->cfgExport->tmp_dir."/$filenamepdf", "/$filenamepdf");
                 $this->attachMediaFiles($zip);
 
                 $result["file"] = $zipFile;
