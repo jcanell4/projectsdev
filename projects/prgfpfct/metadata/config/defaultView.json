@@ -39,16 +39,6 @@
                 "collapsed": false
             }
         },
-        "authorship": {
-            "parent": "",
-            "label": "Autoria",
-            "n_columns": 12,
-            "frame": true,
-            "config":{
-                "collapsable": true,
-                "collapsed": true
-            }
-        },
         "gestioDocument": {
             "parent": "",
             "label": "Informació sobre la gestió del document i el control dels canvis",
