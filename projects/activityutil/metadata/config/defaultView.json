@@ -134,7 +134,7 @@
                     "remove_rows": "Eliminar una activitat"
                 },
                 "fields": {
-                    "fitxer": {
+                    "nom": {
                         "type": "string"
                     },
                     "descripcio": {
@@ -149,7 +149,7 @@
                         "cells": [
                             {
                                 "name": "Nom del document",
-                                "field": "fitxer",
+                                "field": "nom",
                                 "width": "20%",
                                 "editable": true
                             },

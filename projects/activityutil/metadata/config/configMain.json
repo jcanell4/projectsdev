@@ -75,7 +75,7 @@
                 "extraDocuments": {
                     "type":"object",
                     "keys": {
-                        "fitxer": {
+                        "nom": {
                             "type": "string",
                             "mandatory": true,
                             "default": "Indiqueu el nom del document"
@@ -128,7 +128,7 @@
                         },
                         "documents": {
                             "type": "extraDoc",
-                            "default": [{"fitxer":"continguts", "descripcio":"", "sendftp":""}]
+                            "default": [{"nom":"continguts", "descripcio":"", "sendftp":""}]
                         },
                         "nom_real": {
                             "type": "string",
