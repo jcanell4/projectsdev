@@ -75,15 +75,19 @@
                 "extraDocuments": {
                     "type":"object",
                     "keys": {
-                        "ordre": {
-                            "type": "number",
-                            "mandatory": true,
-                            "default": "{#_INC(1)_#}" 
-                        },
-                        "nom": {
+                        "fitxer": {
                             "type": "string",
                             "mandatory": true,
                             "default": "Indiqueu el nom del document"
+                        },
+                        "descripcio": {
+                            "type": "string",
+                            "default": "Escriu una descripció pel document"
+                        },
+                        "sendftp": {
+                            "type": "boolean",
+                            "mandatory": true,
+                            "comment": "Indica si s'ha d'enviar per FTP"
                         }
                     }                    
                 },
@@ -94,16 +98,6 @@
                 "activityutil": {
                     "type": "object",
                     "keys": {
-                        "titol": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default":"Poseu-hi el títol"
-                        },
-                        "subtitol": {
-                            "type": "string",
-                            "default": "Indiqueu el subtítol",
-                            "mandatory": true
-                        },
                         "autor": {
                             "type": "string",
                             "mandatory": true,
@@ -124,12 +118,7 @@
                             "mandatory": true,
                             "default": "main"
                         },                                                
-                        "nivells": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default": "3"
-                        },                                                
-                        "entitatResponsable": {
+                       "entitatResponsable": {
                             "type": "string"
                         },
                         "mostrarAutor": {
@@ -139,7 +128,7 @@
                         },
                         "documents": {
                             "type": "extraDoc",
-                            "default": [{"ordre":1, "nom":"continguts"}]
+                            "default": [{"fitxer":"continguts", "descripcio":"", "sendftp":""}]
                         },
                         "nom_real": {
                             "type": "string",
