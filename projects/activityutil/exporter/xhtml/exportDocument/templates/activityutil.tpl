@@ -13,7 +13,7 @@
     <script src="js/modernizr-1.7.min.js"></script>
     <script type="text/javascript" src="js/Hyphenator.js"></script>
     <script type="text/javascript" src="js/build.js"></script>
-    <title>IOC - Utilitats d'activitats - {##titol##}</title>
+    <title>IOC - Utilitats d'activitats</title>
 </head>
 <body>
 <div class="container">
