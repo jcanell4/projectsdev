@@ -11,7 +11,7 @@
     "metaDataComponentTypes": [
         {
             "main": {
-                "documents": ["plantilles:activityutil"],
+                "documents": false,
                 "folders": false
             }
         }
