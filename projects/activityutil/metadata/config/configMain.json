@@ -23,6 +23,16 @@
             }
         }        
     ],
+    "metaDataFtpSender": [
+        {
+            "main": {
+                "files": {
+                    "factivity1": {"local":"mediadir", "type":"zip", "action":[1], "remoteIndex":"index.html"}
+                },
+                "ftpId": "activity_util"
+            }
+        }
+    ],
     "metaDataExport": [
         {
             "main": {

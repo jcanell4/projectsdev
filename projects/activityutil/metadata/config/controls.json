@@ -17,7 +17,6 @@
                "disableOnSend": true
             }
         },
-
         "scripts": {
             "getFunctions": {
                 "path": "HtmlExportGetFunction.js"
@@ -34,6 +33,32 @@
                     "page.action": "'project_view'",
                     "page.isRevision": "false",
                     "page.generated":"true"
+                }
+            }
+        }
+    },
+    "ftpSend": {
+        "parms": {
+            "DOM": {
+               "id": "ftpProjectButton"
+            }
+        },
+        "scripts": {
+            "updateHandler": {
+                "permissions": [
+                   "isadmin",
+                   "ismanager"
+                ],
+                "rols": [
+                   "responsable",
+                   "autor"
+                ],
+                "conditions": {
+                    "page.action": "'project_view'",
+                    "page.generated":"true",
+                    "page.isRevision": "false",
+                    "page.updateButton": "0",
+                    "page.ftpProjectButton": "true"
                 }
             }
         }
