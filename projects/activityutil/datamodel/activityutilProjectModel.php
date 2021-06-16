@@ -29,35 +29,24 @@ class activityutilProjectModel extends MultiContentFilesProjectModel {
             $dataProject = $this->getCurrentDataProject();
             $vellsDocuments = json_decode($dataProject['documents'], true);
 
-            $nom_continguts = $this->_getContingutsName();
-            $template = $this->getRawProjectTemplate(substr($nom_continguts, 0, -4));
-            $path_continguts = WikiGlobalConfig::getConf('datadir')."/".str_replace(":", "/", $this->getId());
+            $id = $this->getId();
+            $path_continguts = WikiGlobalConfig::getConf('datadir')."/".str_replace(":", "/", $id);
 
             foreach ($nousDocuments as $k => $doc) {
                 if (!isset($vellsDocuments[$k]['nom'])) {
-                    file_put_contents("$path_continguts/{$doc['nom']}.txt", $template);
+                    $this->createPageFromTemplate("$id:{$doc['nom']}", NULL, $this->getRawProjectTemplate(), "create page");
                 }
                 else if ($doc['nom'] !== $vellsDocuments[$k]['nom']) {
-                    rename("$path_continguts/{$vellsDocuments[$k]['nom']}.txt", "$path_continguts/{$doc['nom']}.txt");
+                    $this->renamePage($id, $path_continguts, $vellsDocuments[$k]['nom'], $doc['nom']);
                 }
             }
-            //En el cas que s'hagin eliminat files de document
+            //En el cas que s'hagin eliminat files de la taula de documents
             for ($i=$k+1; $i<count($vellsDocuments); $i++) {
-                unlink("$path_continguts/{$vellsDocuments[$i]['nom']}.txt");
+                $this->createPageFromTemplate("$id:{$vellsDocuments[$i]['nom']}", NULL, NULL, "remove page");
             }
         }
         else {
             throw new Exception("Aquí passa alguna cosa rara");
-        }
-    }
-
-    private function _getContingutsName() {
-        $project_dir = $this->getProjectTypeDir()."/metadata/plantilles";
-        $list = scandir($project_dir);
-        foreach ($list as $file) {
-            if (is_file("$project_dir/$file")) {
-                return $file;
-            }
         }
     }
 
