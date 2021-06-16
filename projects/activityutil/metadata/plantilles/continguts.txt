@@ -1,8 +1,8 @@
-====== Principis especulatius ======
+====== Títol activitat ======
 
-  * Heterodoxia fenoménica
-  * Haschsdrests brewstots
-
-===== Moda juvenil =====
-
-Bla, bla
+[##TODO: Escriviu l'enunciat de l'activitat. Si cal podeu usar la sintaxi include per exemple:[[EXEMPLE:
+#Llegiu l'apartat X que us incloem tot seguit:
+#::include:
+#{{section>id:del:document:a:visualitzar#títol de la secció}}
+#:::
+EXEMPLE]]##]
