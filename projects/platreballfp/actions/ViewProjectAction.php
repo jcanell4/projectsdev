@@ -34,6 +34,7 @@ class ViewProjectAction extends BasicViewProjectAction{
                 $arraytaula = json_decode($metaDataConfigProject['arraytaula'], TRUE);
                 $anyActual = date("Y");
                 $dataActual = new DateTime();
+                $dataActual->setTime(0, 0, 0);
 
                 foreach ($arraytaula as $elem) {
                     if ($response[ProjectKeys::KEY_PROJECT_METADATA]['semestre']['value'] == "1") { //$response[ProjectKeys::KEY_PROJECT_METADATA]['semestre']['value'] Semestre actual indicado en los datos del proyecto
