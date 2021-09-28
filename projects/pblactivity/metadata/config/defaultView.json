@@ -91,7 +91,7 @@
         }
       },
       "paper": {
-        "label":"Paper d l'activitat dins l'itinerari del procés d'aprennetatge",
+        "label":"Paper d l'activitat dins l'itinerari del procés d'aprenentatge",
         "group": "intro",
         "mandatory": true,
         "n_columns": 12,
@@ -155,7 +155,7 @@
         }            
       },
       "objectius":{
-        "label":"Objectius d'aprennetatge de l'activitat",
+        "label":"Objectius d'aprenentatge de l'activitat",
         "group": "coneixements",
         "type": "textarea",
         "n_rows": 5,
