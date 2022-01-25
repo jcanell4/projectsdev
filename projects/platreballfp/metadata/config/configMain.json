@@ -31,6 +31,8 @@
     "metaDataProjectStructure": [
         {
             "main": "meta.mdpr",
+            "viewfiles": {"defaultView": "defaultView", "updateView" :  "updateView", "firstView" :  "firstView"},
+            "viewfiles": {"defaultView": "defaultView"},
             "versions": {
                 "templates": {"continguts":4}
             },

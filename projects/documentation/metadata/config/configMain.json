@@ -81,7 +81,7 @@
         },
         {
             "main": "meta.mdpr",
-            "viewfiles": ["defaultView"],
+            "viewfiles": {"defaultView": "defaultView"},
             "versions": {
                 "fields": 1,
                 "templates": {"continguts":1}

@@ -25,6 +25,7 @@
     "metaDataProjectStructure": [
         {
             "main": "meta.mdpr",
+            "viewfiles": {"defaultView": "defaultView"},
             "mainType": {
                 "type": "object",
                 "typeDef": "especificació"
