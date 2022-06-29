@@ -24,9 +24,8 @@ class upgrader_1 extends CommonUpgrader {
             case "fields":
                 //Transforma los datos del proyecto "documentation" desde la estructura de la versión 0 a la versión 1
                 $dataProject = $this->model->getCurrentDataProject($this->metaDataSubSet);
-                if (!is_array($dataProject)) {
-                    $dataProject = json_decode($dataProject, TRUE);
-                }
+                $dataProject =  IocCommon::toArrayThroughArrayOrJson($dataProject);
+
                 $name0 = "addressmedia";  //nombre de clave original (versión 0)
                 $name1 = "media_address";   //nuevo nombre de clave (versión 1)
                 //Este proceso cambia el nombre de un campo del primer nivel

@@ -22,9 +22,8 @@ class upgrader_1 extends CommonUpgrader {
         switch ($type) {
             case "fields":
                 $dataProject = $this->model->getCurrentDataProject($this->metaDataSubSet);
-                if (!is_array($dataProject)) {
-                    $dataProject = json_decode($dataProject, TRUE);
-                }
+                $dataProject =  IocCommon::toArrayThroughArrayOrJson($dataProject);
+
                 //Cambiar el nombre de un campo del primer nivel
                 $name0 = "activitatsAprenentatge";  //nombre de clave original (versión 0)
                 $name1 = "actvtsAprntg";            //nuevo nombre de clave (versión 1)
