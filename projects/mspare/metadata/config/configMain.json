@@ -2,8 +2,6 @@
     "metaDataClassesNameSpaces": [
         {
             "main": {
-                "MetaDataDAO": "defaultProject",
-                "MetaDataEntity": "defaultProject",
                 "MetaDataRender": "mspare"
             }
         }

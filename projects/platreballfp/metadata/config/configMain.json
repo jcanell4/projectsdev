@@ -2,9 +2,7 @@
     "metaDataClassesNameSpaces": [
         {
             "main": {
-                "MetaDataDAO": "defaultProject",
-                "MetaDataEntity": "defaultProject",
-                "MetaDataRender": "ptfploe"
+                "MetaDataRender": "platreballfp"
             }
         }
     ],

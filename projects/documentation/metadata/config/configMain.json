@@ -2,15 +2,11 @@
     "metaDataClassesNameSpaces": [
         {
             "main": {
-                "MetaDataDAO": "defaultProject",
-                "MetaDataEntity": "defaultProject",
                 "MetaDataRender": "documentation"
             }
         },
         {
             "s2": {
-                "MetaDataDAO": "defaultProject",
-                "MetaDataEntity": "defaultProject",
                 "MetaDataRender": "documentation"
             }
         }

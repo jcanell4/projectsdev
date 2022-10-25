@@ -26,7 +26,7 @@ class taulasubsDokuModelManager extends AbstractModelManager{
                'Authorization' => array(self::DLI."authorization/", self::DEF."authorization/"), //se usa cuando los ficheros de esta clase están en un directorio ajeno a este proyecto
                'Action'        => array(self::DLI."actions/", self::DEF."actions/extra/"),
                'Model'         => array(self::DLI."datamodel/", self::CFG."datamodel/"),
-               'MetaData'      => array(self::DEF."metadata/", self::MOD."metadata/"),
+               'Render'        => array(self::DLI."metadata/"),
                'Renderer'      => array(self::PRJ."renderer/"),
                'Upgrader'      => array(self::PRJ."upgrader/")
            );

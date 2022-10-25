@@ -2,10 +2,9 @@
 /**
  * Component: Project / MetaData
  */
-namespace pblactivity;
 if (!defined("DOKU_INC")) die();
 
-class MetaDataRender extends \MetaDataRenderAbstract {
+class MetaDataRender extends BasicMetaDataRender {
 
     public static $DEFAULT_SINGLE_VALUES = ["string"=>"", "number"=>0, "boolean"=>false];
 
