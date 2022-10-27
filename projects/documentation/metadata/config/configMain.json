@@ -1,15 +1,7 @@
 {
     "metaDataClassesNameSpaces": [
-        {
-            "main": {
-                "MetaDataRender": "documentation"
-            }
-        },
-        {
-            "s2": {
-                "MetaDataRender": "documentation"
-            }
-        }
+        "main",
+        "s2"
     ],
     "metaDataComponentTypes": [
         {

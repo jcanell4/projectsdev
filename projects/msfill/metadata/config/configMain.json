@@ -1,10 +1,6 @@
 {
     "metaDataClassesNameSpaces": [
-        {
-            "main": {
-                "MetaDataRender": "msfill"
-            }
-        }
+        "main"
     ],
     "metaDataComponentTypes": [
         {

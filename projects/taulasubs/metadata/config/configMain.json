@@ -1,10 +1,6 @@
 {
     "metaDataClassesNameSpaces": [
-        {
-            "main": {
-                "MetaDataRender": "taulasubs"
-            }
-        }
+        "main"
     ],
     "metaDataProjectStructure": [
         {
