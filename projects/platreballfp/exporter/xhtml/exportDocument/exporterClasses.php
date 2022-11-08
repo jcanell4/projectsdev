@@ -91,38 +91,4 @@ class exportDocument extends renderHtmlDocument {
         return $document;
     }
 
-    protected function attachMediaFiles(&$zip) {
-        //Attach media files
-        foreach($this->cfgExport->media_files as $f){
-            resolve_mediaid(getNS($f), $f, $exists);
-            if ($exists) {
-                //eliminamos el primer nivel del ns
-                $arr = explode(":", $f);
-                array_shift($arr);
-                $zip->addFile(mediaFN($f), 'img/'.implode("/", $arr));
-            }
-        }
-        $this->cfgExport->media_files = array();
-
-        //Attach latex files
-        foreach($this->cfgExport->latex_images as $f){
-            if (file_exists($f)) $zip->addFile($f, 'img/'.basename($f));
-        }
-        $this->cfgExport->latex_images = array();
-
-        //Attach graphviz files
-        foreach($this->cfgExport->graphviz_images as $f){
-            if (file_exists($f)) $zip->addFile($f, 'img/'.basename($f));
-        }
-        $this->cfgExport->graphviz_images = array();
-
-        //Attach gif (png, jpg, etc) files
-        foreach($this->cfgExport->gif_images as $m){
-            if (file_exists(mediaFN($m))) $zip->addFile(mediaFN($m), "img/". str_replace(":", "/", $m));
-        }
-        $this->cfgExport->gif_images = array();
-
-        if (session_status() == PHP_SESSION_ACTIVE) session_destroy();
-    }
-
 }
