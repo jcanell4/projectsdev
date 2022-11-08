@@ -4,8 +4,6 @@
  * renderDocument: clase que renderiza grupos de elementos
  */
 if (!defined('DOKU_INC')) die();
-if (!defined('DOKU_LIB_IOC')) define('DOKU_LIB_IOC', DOKU_INC."lib/lib_ioc/");
-if (!defined('WIKI_LIB_IOC_MODEL')) define('WIKI_LIB_IOC_MODEL', DOKU_LIB_IOC."wikiiocmodel/");
 
 class exportDocument extends renderHtmlDocument {
 
@@ -48,7 +46,6 @@ class exportDocument extends renderHtmlDocument {
             if ($zip->addFromString('html/index.html', $document)) {
                 $pathTemplate = $this->cfgExport->rendererPath . "/$pathTemplate";
                 $this->addFilesToZip($zip, $pathTemplate, "html/", "css");
-//                $this->addFilesToZip($zip, WIKI_LIB_IOC_MODEL."exporter/xhtml", "html/", "css");
                 $this->addDefaultCssFilesToZip($zip, "html/");
                 $this->addFilesToZip($zip, $pathTemplate, "html/", "js");
                 $this->addFilesToZip($zip, $pathTemplate, "html/", "img");
@@ -70,7 +67,9 @@ class exportDocument extends renderHtmlDocument {
             $result['error'] = true;
             $result['info'] = $this->cfgExport->aLang['nozipfile'];
         }
-        return $result;
+        $this->setResultFileList($result);
+
+        return $data;
     }
 
     private function replaceInTemplate($data, $file) {
@@ -129,7 +128,7 @@ class exportDocument extends renderHtmlDocument {
         return $document;
     }
 
-    private function attachMediaFiles(&$zip) {
+    protected function attachMediaFiles(&$zip) {
         global $conf;
         //Attach media files
         foreach($this->cfgExport->media_files as $f){
@@ -167,14 +166,6 @@ class exportDocument extends renderHtmlDocument {
         }
     }
 
-//    private function addFilesToZip(&$zip, $base, $d, $dir) {
-//        $zip->addEmptyDir("$d$dir");
-//        $files = $this->getDirFiles("$base/$dir");
-//        foreach($files as $f){
-//            $zip->addFile($f, "$d$dir/".basename($f));
-//        }
-//    }
-
     /**
      * Fill files var with all media files stored on directory var
      * @param string $directory
@@ -202,29 +193,6 @@ class exportDocument extends renderHtmlDocument {
      */
     private function removeDir($directory) {
         return IocCommon::removeDir($directory);
-//        if (!file_exists($directory) || !is_dir($directory) || !is_readable($directory)) {
-//            return FALSE;
-//        }else {
-//            $dh = opendir($directory);
-//            while ($contents = readdir($dh)) {
-//                if ($contents != '.' && $contents != '..') {
-//                    $path = "$directory/$contents";
-//                    if (is_dir($path)) {
-//                        $this->removeDir($path);
-//                    }else {
-//                        unlink($path);
-//                    }
-//                }
-//            }
-//            closedir($dh);
-//
-//            if (file_exists($directory)) {
-//                if (!rmdir($directory)) {
-//                    return FALSE;
-//                }
-//            }
-//            return TRUE;
-//        }
     }
 }
 
