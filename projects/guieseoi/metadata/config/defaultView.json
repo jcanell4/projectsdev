@@ -97,238 +97,238 @@
             }
         },
         "moodleCourseId": {
-          "label" : "Identificador del curs a moodle (moodleCourseId)",
-          "n_columns": 6,
-          "group": "actualitzables",
-          "props": {
-            "required": true,
-            "title": "Indiqueu el valor de l'identificador del curs de moodle al que pertany aquest pla de treball. Si no hi poseu un valor correcte no es pujaran les dades al calendari."
-          }
+            "label" : "Identificador del curs a moodle (moodleCourseId)",
+            "n_columns": 6,
+            "group": "actualitzables",
+            "props": {
+                "required": true,
+                "title": "Indiqueu el valor de l'identificador del curs de moodle al que pertany aquest pla de treball. Si no hi poseu un valor correcte no es pujaran les dades al calendari."
+            }
         },
         "cicle": {
-          "label" : "Nom del cicle (cicle)",
-          "n_columns": 8,
-          "group": "main",
-          "props": {
-            "required": true,
-            "title": "indiqueu el nom del cicle"
-          }
+            "label" : "Nom del cicle (cicle)",
+            "n_columns": 8,
+            "group": "main",
+            "props": {
+                "required": true,
+                "title": "indiqueu el nom del cicle"
+            }
         },
         "duradaCicle": {
-          "label" : "Durada del Cicle(duradaCicle)",
-          "n_columns": 4,
-          "group": "main",
-          "props": {
-            "required": true,
-            "title": "Indiqueu la durada del cicle en hores"
-          }
+            "label" : "Durada del Cicle(duradaCicle)",
+            "n_columns": 4,
+            "group": "main",
+            "props": {
+                "required": true,
+                "title": "Indiqueu la durada del cicle en hores"
+            }
         },
         "modulId": {
-          "label" : "Codi del mòdul (modulId)",
-          "n_columns": 2,
-          "group": "main",
-          "props": {
-            "required": true,
-            "title": "indiqueu el codi del mòdul en format MXX. Per exemple: M02"
-          }
+            "label" : "Codi del mòdul (modulId)",
+            "n_columns": 2,
+            "group": "main",
+            "props": {
+                "required": true,
+                "title": "indiqueu el codi del mòdul en format MXX. Per exemple: M02"
+            }
         },
         "modul": {
-          "label" : "Nom del mòdul o bloc (modul)",
-          "n_columns": 8,
-          "group": "main",
-          "props": {
-            "required": true,
-            "title": "indiqueu el nom del mòdul. Per exemple: Seguretat i alta disponibilitat"
-          }
+            "label" : "Nom del mòdul o bloc (modul)",
+            "n_columns": 8,
+            "group": "main",
+            "props": {
+                "required": true,
+                "title": "indiqueu el nom del mòdul. Per exemple: Seguretat i alta disponibilitat"
+            }
         },
         "durada": {
-          "label" : "Durada (durada)",
-          "n_columns": 2,
-          "group": "main",
-          "props": {
-            "required": true,
-            "readonly": true,
-            "title": "Aquest és un camp calculat. No l'heu d'introduir"
-          }
+            "label" : "Durada (durada)",
+            "n_columns": 2,
+            "group": "main",
+            "props": {
+                "required": true,
+                "readonly": true,
+                "title": "Aquest és un camp calculat. No l'heu d'introduir"
+            }
         },
         "coordinador": {
-          "label" : "Coordinador (coordinador)",
-          "n_columns": 6,
-          "group": "main",
-          "props": {
-            "required": true,
-            "title": "Indiqueu el nom del coordinador"
-          }
+            "label" : "Coordinador (coordinador)",
+            "n_columns": 6,
+            "group": "main",
+            "props": {
+                "required": true,
+                "title": "Indiqueu el nom del coordinador"
+            }
         },
         "professors": {
-          "label" : "Professors (professors)",
-          "n_columns": 6,
-          "group": "main",
-          "props": {
-            "required": true,
-            "title": "Indiqueu el/s nom/s del/s professor/s"
-          }
+            "label" : "Professors (professors)",
+            "n_columns": 6,
+            "group": "main",
+            "props": {
+                "required": true,
+                "title": "Indiqueu el/s nom/s del/s professor/s"
+            }
         },
         "urlMaterialDidactic": {
-          "label" : "Adreça del material didàctic (urlMaterialDidactic)",
-          "n_columns": 8,
-          "group": "main",
-          "props": {
-            "required": true,
-            "title": "indiqueu la URL per accedir als materials didàctics"
-          }
+            "label" : "Adreça del material didàctic (urlMaterialDidactic)",
+            "n_columns": 8,
+            "group": "main",
+            "props": {
+                "required": true,
+                "title": "indiqueu la URL per accedir als materials didàctics"
+            }
         },
         "dedicacio": {
-          "type":"number",
-          "label" : "Dedicació setmanal (dedicacio)",
-          "n_columns": 4,
-          "group": "main",
-          "props": {
-            "required": true,
-            "title": "indiqueu el número d'hores de dedicació setmanal"
-          }
+            "type":"number",
+            "label" : "Dedicació setmanal (dedicacio)",
+            "n_columns": 4,
+            "group": "main",
+            "props": {
+                "required": true,
+                "title": "indiqueu el número d'hores de dedicació setmanal"
+            }
         },
         "requerimentsMatricula": {
-          "n_columns": 12,
-          "label" : "Requisits (requerimentsMatricula)",
-          "group": "main",
-          "props": {
-            "required": true,
-            "title": "indiqueu quins són els requeriments de la matrícula d'aquest mòdul o bloc"
-          }
+            "n_columns": 12,
+            "label" : "Requisits (requerimentsMatricula)",
+            "group": "main",
+            "props": {
+                "required": true,
+                "title": "indiqueu quins són els requeriments de la matrícula d'aquest mòdul o bloc"
+            }
         },
         "descripcio": {
-          "n_columns": 12,
-          "label" : "Aquest bloc/mòdul ... (descripcio)",
-          "type": "textarea",
-          "n_rows": 6,
-          "props": {
-            "data-editable-element": "textarea",
-            "title": "continua la frase a fí de descriure breument el contingut del bloc/mòdul"
-          },
-          "config": {
-              "renderable": true,
-              "mode": "xhtml"
-          },
-          "group": "main"
+            "n_columns": 12,
+            "label" : "Aquest bloc/mòdul ... (descripcio)",
+            "type": "textarea",
+            "n_rows": 6,
+            "props": {
+                "data-editable-element": "textarea",
+                "title": "continua la frase a fí de descriure breument el contingut del bloc/mòdul"
+            },
+            "config": {
+                "renderable": true,
+                "mode": "xhtml"
+            },
+            "group": "main"
         },
         "itinerarisRecomanats": {
-          "label": "Taula dels itineraris recomanats (itinerarisRecomanats)",
-          "n_columns": 12,
-          "type": "editableObject",
-          "group": "main",
-          "n_rows": 5,
-          "props": {
-            "data-editable-element": "table",
-            "title": "Itineraris recomanats"
-          },
-          "config": {
-            "actions": {
-              "add_default_row": "Afegir fila",
-              "remove_rows": "Eliminar files ",
-              "add_default_row_before": "Afegir fila abans de la fila seleccionada"
+            "label": "Taula dels itineraris recomanats (itinerarisRecomanats)",
+            "n_columns": 12,
+            "type": "editableObject",
+            "group": "main",
+            "n_rows": 5,
+            "props": {
+                "data-editable-element": "table",
+                "title": "Itineraris recomanats"
             },
-            "fields": {
-              "mòdul": {
-                "type": "string"
-              },
-              "itinerariRecomanatS1": {
-                "type": "number"
-              },
-              "itinerariRecomanatS2": {
-                "type": "number"
-              }
+            "config": {
+                "actions": {
+                    "add_default_row": "Afegir fila",
+                    "remove_rows": "Eliminar files ",
+                    "add_default_row_before": "Afegir fila abans de la fila seleccionada"
+                },
+                "fields": {
+                    "mòdul": {
+                        "type": "string"
+                    },
+                    "itinerariRecomanatS1": {
+                        "type": "number"
+                    },
+                    "itinerariRecomanatS2": {
+                        "type": "number"
+                    }
+                }
             }
-          }
         },
         "semestre": {
-          "label": "Semestre (semestre)",
-          "n_columns": 6,
-          "group": "actualitzables",
-          "props":{
-                  "min":1,
-                  "max":2,
-                  "title" : "Indiqueu quin és el semestre actual"
-          }
+            "label": "Semestre (semestre)",
+            "n_columns": 6,
+            "group": "actualitzables",
+            "props":{
+                "min":1,
+                "max":2,
+                "title" : "Indiqueu quin és el semestre actual"
+            }
         },
         "taulaDadesUF": {
-          "label": "Unitats Formatives (taulaDadesUF)",
-          "n_columns": 12,
-          "type": "editableObject",
-          "group": "main",
-          "n_rows": 5,
-          "props": {
-            "data-editable-element": "table",
-            "title": "Detalleu les dades de cada UF. No cal que ompliu les hores de les UFs detallades en aquest bloc o mòdul, es calculen automàticament."
-          },
-          "config": {
-            "actions": {
-              "set_multiple_default_rows": "Definir el nombre d'Unitats Formatives del mòdul",
-              "remove_rows": "Eliminar les Unitats Formatives seleccionades",
-              "add_default_row_before": "Afegir unitat abans de la fila seleccionada"
+            "label": "Unitats Formatives (taulaDadesUF)",
+            "n_columns": 12,
+            "type": "editableObject",
+            "group": "main",
+            "n_rows": 5,
+            "props": {
+                "data-editable-element": "table",
+                "title": "Detalleu les dades de cada UF. No cal que ompliu les hores de les UFs detallades en aquest bloc o mòdul, es calculen automàticament."
             },
-            "fields": {
-              "bloc":{
-                "type": "number"
-              },
-              "unitat formativa": {
-                "type": "number"
-              },
-              "nom": {
-                "type": "string"
-              },
-              "ordreImparticio":{
-                "type": "number"
-              },
-              "hores": {
-                "type": "number"
-              },
-              "ponderació": {
-                "type": "decimal"
-              }
-            },
-            "layout": [
-              {
-                "defaultCell": {
-                  "width": "5%"
+            "config": {
+                "actions": {
+                    "set_multiple_default_rows": "Definir el nombre d'Unitats Formatives del mòdul",
+                    "remove_rows": "Eliminar les Unitats Formatives seleccionades",
+                    "add_default_row_before": "Afegir unitat abans de la fila seleccionada"
                 },
-                "cells": [
-                  {
-                    "name": "unitat formativa",
-                    "field": "unitat formativa",
-                    "editable": true
-                  },
-                  {
-                    "name": "Bloc",
-                    "field": "bloc",
-                    "editable": true
-                  },
-                  {
-                    "name": "nom",
-                    "field": "nom",
-                    "width":"40%",
-                    "editable": true
-                  },
-                  {
-                    "name": "Ordre d'impartició",
-                    "field": "ordreImparticio",
-                    "editable": true
-                  },
-                  {
-                    "name": "hores",
-                    "field": "hores",
-                    "editable": true
-                  },
-                  {
-                    "name": "ponderació",
-                    "field": "ponderació",
-                    "constraints": "{\"places\":2}",
-                    "editable": true
-                  }
+                "fields": {
+                    "bloc":{
+                        "type": "number"
+                    },
+                    "unitat formativa": {
+                        "type": "number"
+                    },
+                    "nom": {
+                        "type": "string"
+                    },
+                    "ordreImparticio":{
+                        "type": "number"
+                    },
+                    "hores": {
+                        "type": "number"
+                    },
+                    "ponderació": {
+                        "type": "decimal"
+                    }
+                },
+                "layout": [
+                    {
+                        "defaultCell": {
+                            "width": "5%"
+                        },
+                        "cells": [
+                            {
+                                "name": "unitat formativa",
+                                "field": "unitat formativa",
+                                "editable": true
+                            },
+                            {
+                                "name": "Bloc",
+                                "field": "bloc",
+                                "editable": true
+                            },
+                            {
+                                "name": "nom",
+                                "field": "nom",
+                                "width":"40%",
+                                "editable": true
+                            },
+                            {
+                                "name": "Ordre d'impartició",
+                                "field": "ordreImparticio",
+                                "editable": true
+                            },
+                            {
+                                "name": "hores",
+                                "field": "hores",
+                                "editable": true
+                            },
+                            {
+                                "name": "ponderació",
+                                "field": "ponderació",
+                                "constraints": "{\"places\":2}",
+                                "editable": true
+                            }
+                        ]
+                    }
                 ]
-              }
-            ]
-          }
+            }
         },
         "taulaDadesUnitats": {
           "label": "Unitats (taulaDadesUnitats)",
@@ -1196,59 +1196,59 @@
           }
         },
         "supervisor": {
-          "type": "amd",
-          "label": "Supervisor (supervisor)",
-          "n_columns": 4,
-          "group": "authorship",
-          "props": {
-            "required": true
-          },
-          "config":{
-            "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin"], "deniedResponse":true}}]},
-            "class" : {
-              "edit": "IocFilteredList",
-              "view": "IocListSelectedItems"
+            "type": "amd",
+            "label": "Supervisor (supervisor)",
+            "n_columns": 4,
+            "group": "authorship",
+            "props": {
+                "required": true
             },
-            "data": {
-              "ns":"",
-              "buttonLabel": "Cercar",
-              "fieldName": "supervisor",
-              "dialogTitle" : "Cercar supervisor",
-              "dialogButtonLabel" : "Afegir supervior",
-              "data": "",
-              "dataQuery": {
-                "filter": ""
-              },
-              "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
-              "fields": {
-                "username": "Nom d'usuari",
-                "name": "Nom"
-              },
-              "fieldId": "username",
-              "defaultEntryField": "name"
-            }
-          }
+            "config":{
+                "readonly": {"and":[{"class":"ValidationByRoles", "data":{"roles":["responsable"], "deniedResponse":true}}, {"class":"ValidationByGroups", "data":{"groups":["admin"], "deniedResponse":true}}]},
+                "class" : {
+                  "edit": "IocFilteredList",
+                  "view": "IocListSelectedItems"
+                },
+                "data": {
+                  "ns":"",
+                  "buttonLabel": "Cercar",
+                  "fieldName": "supervisor",
+                  "dialogTitle" : "Cercar supervisor",
+                  "dialogButtonLabel" : "Afegir supervior",
+                  "data": "",
+                  "dataQuery": {
+                    "filter": ""
+                  },
+                  "searchDataUrl": "lib/exe/ioc_ajax.php?call=user_list",
+                  "fields": {
+                    "username": "Nom d'usuari",
+                    "name": "Nom"
+                  },
+                  "fieldId": "username",
+                  "defaultEntryField": "name"
+                }
+              }
         },
         "notaMinimaAC": {
-          "type":"hidden"
+            "type":"hidden"
         },
         "plantilla": {
-          "type" : "hidden"
+            "type" : "hidden"
         },
         "fitxercontinguts": {
-          "type" : "hidden"
+            "type" : "hidden"
         },
         "hiHaRecuperacioPerJT":{
-          "type" : "hidden"
+            "type" : "hidden"
         },
         "hiHaSolucioPerEAF":{
-          "type" : "hidden"
+            "type" : "hidden"
         },
         "hiHaSolucioPerAC":{
-          "type" : "hidden"
+            "type" : "hidden"
         },
         "hiHaEnunciatRecuperacioPerEAF":{
-        "type" : "hidden"
-      }
+            "type" : "hidden"
+        }
     }
 }

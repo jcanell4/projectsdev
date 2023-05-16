@@ -25,15 +25,14 @@
             "main": "meta.mdpr",
             "viewfiles": {"defaultView": "defaultView", "updateView" : "updateView", "firstView": "firstView"},
             "versions": {
-                "fields": 11,
-                "templates": {"continguts": 1} 
+                "fields": 0,
+                "templates": {"continguts": 0}
             },
             "mainType": {
                 "type": "object",
                 "typeDef": "dadesguieseoi"
             },
             "typesDefinition": {
-                
                 "entradaAvaluacioNoCert": {
                     "type":"object",
                     "keys": {
@@ -53,8 +52,6 @@
                     "type": "objectArray",
                     "typeDef":"entradaAvaluacioNoCert"
                 },                
-                                           
-                                                 
                 "entradaCalendariNoCert": {
                     "type": "object",
                     "keys": {
@@ -100,7 +97,6 @@
                     "type": "objectArray",
                     "typeDef":"entradaCalendariNoCert"
                 },                                                
-                                                               
                 "entradaDadesBlocs": {
                     "type": "object",
                     "keys": {
@@ -140,7 +136,6 @@
                     "type": "objectArray",
                     "typeDef":"entradaDadesBlocs"
                 },                                                
-                                                 
                 "dadesguieseoi": {
                     "type": "object",
                     "keys": {
@@ -191,19 +186,15 @@
                                         "valueIfFalse":140      
                                     }       
                                 }
-                            },
-                            "props" : {
-                                "readonly": true          
-                            } 
-                        },                        
-
-
+                                "props" : {
+                                    "readonly": true
+                                }
+                        },
                         "coordinador": {
                             "type": "string",
                             "default": "Indiqueu el nom del coordinador",
                             "mandatory": true
                         },
-
                         "descripcio": {
                             "type": "string",
                             "mandatory": true
@@ -233,36 +224,28 @@
                             "mandatory": false,
                             "default":"01/01/2000"
                         },
-                                                                       
                         "taulaDadesBlocs": {
                             "type": "defTaulaDadesBlocs",
                             "mandatory": true
-                        },     
+                        },
                         "notaMinima": {
                             "type": "number",
                             "mandatory": true,
                             "default": 65
                         },
-                        
                         "comSerasAvaluatNoCert": {
                             "type": "defAvaluacioNoCert",
-                            "mandatory": false                                                     
+                            "mandatory": false
                         },
                         "comSerasAvaluatCert": {
                             "type": "string",
                             "default": "Aqui explicació de com serà avaluat",
-                            "mandatory": false                                                    
+                            "mandatory": false
                         },
-                                              
                         "calendariNoCert": {
                             "type": "defCalendariNoCert",
                             "mandatory": true
                         },
-                                               
-                                            
-                                                
-                                                
- 
                         "autor": {
                             "type": "string",
                             "mandatory": true,
@@ -274,13 +257,11 @@
                             "mandatory": true,
                             "isRole":true
                         },
-                        
                          "plantilla": {
                             "type": "string",
                             "mandatory": true,
                             "default": "plantilles:docum_ioc:guies_eoi:loe:continguts"
                         },
-
                         "fitxercontinguts": {
                             "type": "string",
                             "mandatory": true,
@@ -299,7 +280,7 @@
                         }
                     }
                 }
+            }
         }
-        
     ]
 }
