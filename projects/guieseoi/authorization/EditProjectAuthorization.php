@@ -5,13 +5,14 @@
  * que el usuario sea el Responsable o del grupo "admin" o "projectmanager"
  * @author Rafael Claver
  */
-if (!defined('DOKU_INC')) die();
+defined('DOKU_INC') || die();
 
-class EditProjectAuthorization extends SupervisorProjectAuthorization {
+class EditProjectAuthorization extends ResponsableProjectAuthorization {
 
     public function __construct() {
         parent::__construct();
-        $this->allowedGroups = ["admin"];
+        $this->allowedGroups = ["admin", "manager"];
+        $this->allowedRoles[] = ProjectPermission::ROL_AUTOR;
     }
 
 }

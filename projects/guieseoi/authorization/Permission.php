@@ -6,7 +6,6 @@
  */
 namespace guieseoi;
 
-if (!defined('DOKU_INC') ) die();
+defined('DOKU_INC') || die();
 
-class Permission extends \SupervisorPermission {
-}
+class Permission extends \ProjectPermission {}
