@@ -25,8 +25,8 @@
             "main": "meta.mdpr",
             "viewfiles": {"defaultView": "defaultView", "updateView" : "updateView", "firstView": "firstView"},
             "versions": {
-                "fields": 11,
-                "templates": {"continguts": 1} 
+                "fields": 0,
+                "templates": {"continguts": 0} 
             },
             "mainType": {
                 "type": "object",
@@ -151,7 +151,7 @@
                         },
                         "codi_modul": {
                             "type": "string",
-                            "default": "Indiqueu el codi del mòdul",
+                            "default": "Indiqueu el codi del mòdul. Per exemple I_ANG_1B1",
                             "mandatory": true
                         },
                         "modul": {
@@ -190,115 +190,112 @@
                                         "valueIfTrue":70,
                                         "valueIfFalse":140      
                                     }       
-                                }
-                            },
-                            "props" : {
-                                "readonly": true          
-                            } 
-                        },                        
+                            }
+                        },
+                        "props" : {
+                            "readonly": true          
+                        } 
+                    },                        
 
 
-                        "coordinador": {
-                            "type": "string",
-                            "default": "Indiqueu el nom del coordinador",
-                            "mandatory": true
-                        },
+                    "coordinador": {
+                        "type": "string",
+                        "default": "Indiqueu el nom del coordinador",
+                        "mandatory": true
+                    },
 
-                        "descripcio": {
-                            "type": "string",
-                            "mandatory": true
-                        },
-                        "dataCertA1": {
-                            "type": "date",
-                            "mandatory": false,
-                            "default":"01/01/2000"
-                        },
-                        "dataCertB1": {
-                            "type": "date",
-                            "mandatory": false,
-                            "default":"01/01/2000"
-                        },
-                        "dataCertB2": {
-                            "type": "date",
-                            "mandatory": false,
-                            "default":"01/01/2000"
-                        },
-                        "dataCertC1": {
-                            "type": "date",
-                            "mandatory": false,
-                            "default":"01/01/2000"
-                        },
-                        "dataCertC2": {
-                            "type": "date",
-                            "mandatory": false,
-                            "default":"01/01/2000"
-                        },
-                                                                       
-                        "taulaDadesBlocs": {
-                            "type": "defTaulaDadesBlocs",
-                            "mandatory": true
-                        },     
-                        "notaMinima": {
-                            "type": "number",
-                            "mandatory": true,
-                            "default": 65
-                        },
-                        
-                        "comSerasAvaluatNoCert": {
-                            "type": "defAvaluacioNoCert",
-                            "mandatory": false                                                     
-                        },
-                        "comSerasAvaluatCert": {
-                            "type": "string",
-                            "default": "Aqui explicació de com serà avaluat",
-                            "mandatory": false                                                    
-                        },
-                                              
-                        "calendariNoCert": {
-                            "type": "defCalendariNoCert",
-                            "mandatory": true
-                        },
-                                               
-                                            
-                                                
-                                                
- 
-                        "autor": {
-                            "type": "string",
-                            "mandatory": true,
-                            "isRole":true
-                        },
-                        "responsable": {
-                            "type": "string",
-                            "struc_chars": "40",
-                            "mandatory": true,
-                            "isRole":true
-                        },
-                        
-                         "plantilla": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default": "plantilles:docum_ioc:guies_eoi:loe:continguts"
-                        },
+                    "descripcio": {
+                        "type": "string",
+                        "mandatory": true
+                    },
+                    "dataCertA1": {
+                        "type": "date",
+                        "mandatory": false,
+                        "default":"01/01/2000"
+                    },
+                    "dataCertB1": {
+                        "type": "date",
+                        "mandatory": false,
+                        "default":"01/01/2000"
+                    },
+                    "dataCertB2": {
+                        "type": "date",
+                        "mandatory": false,
+                        "default":"01/01/2000"
+                    },
+                    "dataCertC1": {
+                        "type": "date",
+                        "mandatory": false,
+                        "default":"01/01/2000"
+                    },
+                    "dataCertC2": {
+                        "type": "date",
+                        "mandatory": false,
+                        "default":"01/01/2000"
+                    },
 
-                        "fitxercontinguts": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default": "continguts"
-                        },
-                        "moodleCourseId": {
-                            "type": "number",
-                            "mandatory": true,
-                            "default": 0
-                        },
-                        "dataFromMix":{
-                            "type":"boolean",
-                            "viewType":"hidden",
-                            "mandatory": false,
-                            "default":false
-                        }
+                    "taulaDadesBlocs": {
+                        "type": "defTaulaDadesBlocs",
+                        "mandatory": true
+                    },     
+                    "notaMinima": {
+                        "type": "number",
+                        "mandatory": true,
+                        "default": 65
+                    },
+
+                    "comSerasAvaluatNoCert": {
+                        "type": "defAvaluacioNoCert",
+                        "mandatory": false                                                     
+                    },
+                    "comSerasAvaluatCert": {
+                        "type": "string",
+                        "default": "Aqui explicació de com serà avaluat",
+                        "mandatory": false                                                    
+                    },
+
+                    "calendariNoCert": {
+                        "type": "defCalendariNoCert",
+                        "mandatory": true
+                    },
+
+                    "autor": {
+                        "type": "string",
+                        "mandatory": true,
+                        "isRole":true
+                    },
+                    "responsable": {
+                        "type": "string",
+                        "struc_chars": "40",
+                        "mandatory": true,
+                        "isRole":true
+                    },
+
+                    "plantilla": {
+                        "type": "string",
+                        "mandatory": true,
+                        "default": "plantilles:docum_ioc:guies_eoi:loe:continguts"
+                    },
+
+                    "fitxercontinguts": {
+                        "type": "string",
+                        "mandatory": true,
+                        "default": "continguts"
+                    },
+                    "moodleCourseId": {
+                        "type": "number",
+                        "viewType":"hidden",
+                        "mandatory": true,
+                        "default": 0
+                    },
+                    "dataFromMix":{
+                        "type":"boolean",
+                        "viewType":"hidden",
+                        "mandatory": false,
+                        "default":false
                     }
                 }
+            }
         }
         
     ]
