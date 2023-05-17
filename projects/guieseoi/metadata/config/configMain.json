@@ -262,16 +262,6 @@
                             "mandatory": true,
                             "isRole":true
                         },
-                        "plantilla": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default": "plantilles:docum_ioc:guies_eoi:continguts"
-                        },
-                        "fitxercontinguts": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default": "continguts"
-                        },
                         "dataFromMix":{
                             "type":"boolean",
                             "viewType":"hidden",

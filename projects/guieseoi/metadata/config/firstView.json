@@ -37,6 +37,17 @@
                 "collapsable":true,
                 "collapsed":false
             }
+        },
+        "actualitzables": {
+            "parent": "",
+            "label": "Dades actualitzables",
+            "n_columns": 12,
+            "n_rows": 1,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
         }
     },
     "fields": {
@@ -51,7 +62,7 @@
         },
         "modul": {
             "label": "Nom del mòdul (modul)",
-            "n_columns": 8,
+            "n_columns": 3,
             "group": "dadesBasiques",
             "props": {
                 "required": true,
@@ -69,12 +80,12 @@
         },
         "isCert": {
             "type":"checkbox",
-            "label": "És Cert (isCert)",
-            "n_columns": 3,
-            "group": "main",
+            "label": "És Certificat (isCert)",
+            "n_columns": 2,
+            "group": "dadesBasiques",
             "props": {
                 "required": true,
-                "title": "indiqueu si és Cert"
+                "title": "indiqueu si és Certificat"
             }
         },
         "durada": {
@@ -90,7 +101,7 @@
         "dedicacio": {
             "type":"number",
             "label": "Dedicació setmanal (dedicacio)",
-            "n_columns": 4,
+            "n_columns": 2,
             "group": "dadesBasiques",
             "props": {
                 "required": true,
@@ -99,12 +110,12 @@
         },
         "descripcio": {
             "n_columns": 12,
-            "label": "Aquest bloc/mòdul ... (descripcio)",
+            "label": "Aquest mòdul ... (descripcio)",
             "type": "textarea",
             "n_rows": 6,
             "props": {
                 "data-editable-element": "textarea",
-                "title": "continua la frase a fí de descriure breument el contingut del bloc/mòdul"
+                "title": "continua la frase per descriure breument el contingut del mòdul"
             },
             "config": {
                 "renderable": true,
@@ -114,63 +125,18 @@
         },
         "coordinador": {
             "label": "Coordinador (coordinador)",
-            "n_columns": 6,
-            "group": "dadesBasiques",
+            "n_columns": 4,
+            "group": "authorship",
             "props": {
                 "required": true,
                 "title": "Indiqueu el nom del coordinador"
-            }
-        },
-        "dataCertA1": {
-            "label": "Data de la Cert A1 (dataCertA1)",
-            "n_columns": 4,
-            "group": "actualitzables",
-            "props": {
-                "required": true,
-                "title": "Indiqueu la data en que es realitzarà la Cert A1"
-            }
-        },
-        "dataCertB1": {
-            "label": "Data de la Cert A1 (dataCertB1)",
-            "n_columns": 4,
-            "group": "actualitzables",
-            "props": {
-                "required": true,
-                "title": "Indiqueu la data en que es realitzarà la Cert B1"
-            }
-        },
-        "dataCertB2": {
-            "label": "Data de la Cert A1 (dataCertB2)",
-            "n_columns": 4,
-            "group": "actualitzables",
-            "props": {
-                "required": true,
-                "title": "Indiqueu la data en que es realitzarà la Cert B2"
-            }
-        },
-        "dataCertC1": {
-            "label": "Data de la Cert A1 (dataCertC1)",
-            "n_columns": 4,
-            "group": "actualitzables",
-            "props": {
-                "required": true,
-                "title": "Indiqueu la data en que es realitzarà la Cert C1"
-            }
-        },
-        "dataCertC2": {
-            "label": "Data de la Cert A1 (dataCertC2)",
-            "n_columns": 4,
-            "group": "actualitzables",
-            "props": {
-                "required": true,
-                "title": "Indiqueu la data en que es realitzarà la Cert C2"
             }
         },
         "taulaDadesBlocs": {
             "label": "Unitats Formatives (taulaDadesBlocs)",
             "n_columns": 12,
             "type": "editableObject",
-            "group": "main",
+            "group": "dadesBasiques",
             "n_rows": 5,
             "props": {
                 "data-editable-element": "table",
@@ -248,8 +214,8 @@
         },
         "notaMinima": {
             "label": "Nota mínima (notaMinima)",
-            "n_columns":6,
-            "group": "main",
+            "n_columns":2,
+            "group": "dadesBasiques",
             "props": {
                 "required": true,
                 "title": "Indiqueu la nota mínima que cal treure"
@@ -259,7 +225,7 @@
             "label": "Com seràs avaluat -No Certificat- (comSerasAvaluatNoCert)",
             "n_columns": 12,
             "type": "editableObject",
-            "group": "main",
+            "group": "dadesBasiques",
             "n_rows": 5,
             "props": {
                 "data-editable-element": "table",
@@ -463,12 +429,6 @@
             }
         },
         "semestre": {
-            "type": "hidden"
-        },
-        "plantilla": {
-            "type": "hidden"
-        },
-        "fitxercontinguts": {
             "type": "hidden"
         }
     }
