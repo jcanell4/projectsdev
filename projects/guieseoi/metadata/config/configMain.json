@@ -33,7 +33,6 @@
                 "typeDef": "dadesguieseoi"
             },
             "typesDefinition": {
-                
                 "entradaAvaluacioNoCert": {
                     "type":"object",
                     "keys": {
@@ -53,8 +52,6 @@
                     "type": "objectArray",
                     "typeDef":"entradaAvaluacioNoCert"
                 },                
-                                           
-                                                 
                 "entradaCalendariNoCert": {
                     "type": "object",
                     "keys": {
@@ -100,7 +97,6 @@
                     "type": "objectArray",
                     "typeDef":"entradaCalendariNoCert"
                 },                                                
-                                                               
                 "entradaDadesBlocs": {
                     "type": "object",
                     "keys": {
@@ -140,7 +136,6 @@
                     "type": "objectArray",
                     "typeDef":"entradaDadesBlocs"
                 },                                                
-                                                 
                 "dadesguieseoi": {
                     "type": "object",
                     "keys": {
@@ -297,6 +292,5 @@
                 }
             }
         }
-        
     ]
 }

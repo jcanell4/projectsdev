@@ -6,11 +6,11 @@
  */
 if (!defined("DOKU_INC")) die();
 
-class guieseoiProjectModel extends MoodleContentFilesProjectModel {
+class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {
 
     public function __construct($persistenceEngine)  {
         parent::__construct($persistenceEngine);
-        $this->needGenerateAction=false;        
+        $this->needGenerateAction = false;
     }
 
     /* s'eliminara perquè...
