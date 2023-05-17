@@ -6,16 +6,6 @@
         "rows_row": 1
     },
     "groups": {
-        "authorship": {
-            "parent": "",
-            "label": "Autoria",
-            "n_columns": 12,
-            "frame": true,
-            "config":{
-                "collapsable":true,
-                "collapsed":false
-            }
-        },
         "dadesBasiques": {
             "parent": "",
             "label":"Dades bàsiques",
@@ -43,6 +33,16 @@
             "label": "Dades actualitzables",
             "n_columns": 12,
             "n_rows": 1,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
+        },
+        "authorship": {
+            "parent": "",
+            "label": "Autoria",
+            "n_columns": 12,
             "frame": true,
             "config":{
                 "collapsable":true,
@@ -81,7 +81,7 @@
         "isCert": {
             "type":"checkbox",
             "label": "És Certificat (isCert)",
-            "n_columns": 2,
+            "n_columns": 3,
             "group": "dadesBasiques",
             "props": {
                 "required": true,
@@ -90,7 +90,7 @@
         },
         "durada": {
             "label": "Durada (durada)",
-            "n_columns": 2,
+            "n_columns": 3,
             "group": "dadesBasiques",
             "props": {
                 "required": true,
@@ -101,11 +101,20 @@
         "dedicacio": {
             "type":"number",
             "label": "Dedicació setmanal (dedicacio)",
-            "n_columns": 2,
+            "n_columns": 3,
             "group": "dadesBasiques",
             "props": {
                 "required": true,
                 "title": "indiqueu el número d'hores de dedicació setmanal"
+            }
+        },
+        "coordinador": {
+            "label": "Coordinador (coordinador)",
+            "n_columns": 4,
+            "group": "dadesBasiques",
+            "props": {
+                "required": true,
+                "title": "Indiqueu el nom del coordinador"
             }
         },
         "descripcio": {
@@ -122,15 +131,6 @@
                 "mode": "xhtml"
             },
             "group": "dadesBasiques"
-        },
-        "coordinador": {
-            "label": "Coordinador (coordinador)",
-            "n_columns": 4,
-            "group": "authorship",
-            "props": {
-                "required": true,
-                "title": "Indiqueu el nom del coordinador"
-            }
         },
         "dataCertA1": {
             "label": "Data de la Certificació A1 (dataCertA1)",
@@ -317,7 +317,6 @@
             "n_columns": 12,
             "group": "dadesBasiques",
             "props": {
-                "required": true,
                 "title": "Com seràs avaluat -Certificat-"
             }
         },
