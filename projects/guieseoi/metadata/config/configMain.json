@@ -26,7 +26,7 @@
             "viewfiles": {"defaultView": "defaultView", "updateView": "updateView", "firstView": "firstView"},
             "versions": {
                 "fields": 0,
-                "templates": {"continguts": 0}
+                "templates": {"continguts": 0} 
             },
             "mainType": {
                 "type": "object",
@@ -146,7 +146,7 @@
                         },
                         "codi_modul": {
                             "type": "string",
-                            "default": "Indiqueu el codi del mòdul",
+                            "default": "Indiqueu el codi del mòdul. Per exemple I_ANG_1B1",
                             "mandatory": true
                         },
                         "modul": {
@@ -174,7 +174,7 @@
                             "mandatory": true,
                             "calculateOnSave": {
                                 "class": "CalculateConditionalValue",
-                                "data":{ 
+                                "data":{
                                     "condition":{
                                         "_type_":"operation",
                                         "values":[
@@ -280,7 +280,7 @@
                         }
                     }
                 }
-            }
+            } 
         }
     ]
 }
