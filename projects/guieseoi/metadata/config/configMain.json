@@ -23,7 +23,7 @@
     "metaDataProjectStructure": [
         {
             "main": "meta.mdpr",
-            "viewfiles": {"defaultView": "defaultView", "updateView" : "updateView", "firstView": "firstView"},
+            "viewfiles": {"defaultView": "defaultView", "updateView": "updateView", "firstView": "firstView"},
             "versions": {
                 "fields": 0,
                 "templates": {"continguts": 0}
@@ -41,7 +41,7 @@
                             "mandatory": true,
                             "default": "Tipus de tasca"
                         },
-                        "ponderació": {
+                        "ponderacio": {
                             "type": "decimal",
                             "constraints": "{\"places\":2}",
                             "mandatory": true
@@ -80,7 +80,7 @@
                             "default":true,
                             "mandatory": true
                         },
-                        "data qualificació": {
+                        "data qualificacio": {
                             "type": "date",
                             "default":"{#_TODAY()_#}",
                             "mandatory": true
@@ -153,6 +153,11 @@
                             "type": "string",
                             "mandatory": true
                         },
+                        "moodleCourseId": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": 0
+                        },
                         "isCert":{
                             "type":"boolean",
                             "mandatory": true,
@@ -170,33 +175,33 @@
                             "calculateOnSave": {
                                 "class": "CalculateConditionalValue",
                                 "data":{ 
-                                        "condition":{
-                                            "_type_":"operation",
-                                             "values":[
-                                                {
-                                                    "_type_":"field",
-                                                    "name":"durada",
-                                                    "values":"$values"
-                                                },
-                                                "semestral"
-                                            ],
-                                            "operation":"=="
-                                        },
-                                        "valueIfTrue":70,
-                                        "valueIfFalse":140      
-                                    }       
-                                }
-                                "props" : {
-                                    "readonly": true
-                                }
+                                    "condition":{
+                                        "_type_":"operation",
+                                        "values":[
+                                            {
+                                                "_type_":"field",
+                                                "name":"durada",
+                                                "values":"$values"
+                                            },
+                                            "semestral"
+                                        ],
+                                        "operation":"=="
+                                    },
+                                    "valueIfTrue":70,
+                                    "valueIfFalse":140      
+                                }       
+                            },
+                            "props": {
+                                "readonly": true
+                            }
+                        },
+                        "descripcio": {
+                            "type": "string",
+                            "mandatory": true
                         },
                         "coordinador": {
                             "type": "string",
                             "default": "Indiqueu el nom del coordinador",
-                            "mandatory": true
-                        },
-                        "descripcio": {
-                            "type": "string",
                             "mandatory": true
                         },
                         "dataCertA1": {
@@ -257,20 +262,15 @@
                             "mandatory": true,
                             "isRole":true
                         },
-                         "plantilla": {
+                        "plantilla": {
                             "type": "string",
                             "mandatory": true,
-                            "default": "plantilles:docum_ioc:guies_eoi:loe:continguts"
+                            "default": "plantilles:docum_ioc:guies_eoi:continguts"
                         },
                         "fitxercontinguts": {
                             "type": "string",
                             "mandatory": true,
                             "default": "continguts"
-                        },
-                        "moodleCourseId": {
-                            "type": "number",
-                            "mandatory": true,
-                            "default": 0
                         },
                         "dataFromMix":{
                             "type":"boolean",
