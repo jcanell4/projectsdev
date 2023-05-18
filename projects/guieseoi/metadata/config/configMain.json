@@ -170,25 +170,25 @@
                             "calculateOnSave": {
                                 "class": "CalculateConditionalValue",
                                 "data":{ 
-                                        "condition":{
-                                            "_type_":"operation",
-                                             "values":[
-                                                {
-                                                    "_type_":"field",
-                                                    "name":"durada",
-                                                    "values":"$values"
-                                                },
-                                                "semestral"
-                                            ],
-                                            "operation":"=="
-                                        },
-                                        "valueIfTrue":70,
-                                        "valueIfFalse":140      
-                                    }       
-                            }
-                        },
-                        "props" : {
-                            "readonly": true          
+                                    "condition":{
+                                        "_type_":"operation",
+                                         "values":[
+                                            {
+                                                "_type_":"field",
+                                                "name":"durada",
+                                                "values":"$values"
+                                            },
+                                            "semestral"
+                                        ],
+                                        "operation":"=="
+                                    },
+                                    "valueIfTrue":70,
+                                    "valueIfFalse":140      
+                                }       
+                            },
+                            "props" : {
+                                "readonly": true          
+                            }                    
                         }, 
                         "coordinador": {
                         "type": "string",
