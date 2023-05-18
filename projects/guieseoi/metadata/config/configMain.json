@@ -189,106 +189,109 @@
                         },
                         "props" : {
                             "readonly": true          
-                        } 
-                    },                        
-
-
-                    "coordinador": {
+                        }, 
+                        "coordinador": {
                         "type": "string",
                         "default": "Indiqueu el nom del coordinador",
                         "mandatory": true
-                    },
+                        },
 
-                    "descripcio": {
-                        "type": "string",
-                        "mandatory": true
-                    },
-                    "dataCertA1": {
-                        "type": "date",
-                        "mandatory": false,
-                        "default":"01/01/2000"
-                    },
-                    "dataCertB1": {
-                        "type": "date",
-                        "mandatory": false,
-                        "default":"01/01/2000"
-                    },
-                    "dataCertB2": {
-                        "type": "date",
-                        "mandatory": false,
-                        "default":"01/01/2000"
-                    },
-                    "dataCertC1": {
-                        "type": "date",
-                        "mandatory": false,
-                        "default":"01/01/2000"
-                    },
-                    "dataCertC2": {
-                        "type": "date",
-                        "mandatory": false,
-                        "default":"01/01/2000"
-                    },
+                        "descripcio": {
+                            "type": "string",
+                            "mandatory": true
+                        },
+                        "dataCertA1": {
+                            "type": "date",
+                            "mandatory": false,
+                            "default":"01/01/2000"
+                        },
+                        "dataCertB1": {
+                            "type": "date",
+                            "mandatory": false,
+                            "default":"01/01/2000"
+                        },
+                        "dataCertB2": {
+                            "type": "date",
+                            "mandatory": false,
+                            "default":"01/01/2000"
+                        },
+                        "dataCertC1": {
+                            "type": "date",
+                            "mandatory": false,
+                            "default":"01/01/2000"
+                        },
+                        "dataCertC2": {
+                            "type": "date",
+                            "mandatory": false,
+                            "default":"01/01/2000"
+                        },
+                        "nivellProvaC": {
+                            "type": "string",
+                            "mandatory": false,
+                            "default":"Indiqueu A1, B1, B2, C1 O C2"
+                        },
 
-                    "taulaDadesBlocs": {
-                        "type": "defTaulaDadesBlocs",
-                        "mandatory": true
-                    },     
-                    "notaMinima": {
-                        "type": "number",
-                        "mandatory": true,
-                        "default": 65
-                    },
+                        "taulaDadesBlocs": {
+                            "type": "defTaulaDadesBlocs",
+                            "mandatory": true
+                        },     
+                        "notaMinima": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": 65
+                        },
 
-                    "comSerasAvaluatNoCert": {
-                        "type": "defAvaluacioNoCert",
-                        "mandatory": false                                                     
-                    },
-                    "comSerasAvaluatCert": {
-                        "type": "string",
-                        "default": "Aqui explicació de com serà avaluat",
-                        "mandatory": false                                                    
-                    },
+                        "comSerasAvaluatNoCert": {
+                            "type": "defAvaluacioNoCert",
+                            "mandatory": false                                                     
+                        },
+                        "comSerasAvaluatCert": {
+                            "type": "string",
+                            "default": "Aqui explicació de com serà avaluat",
+                            "mandatory": false                                                    
+                        },
 
-                    "calendariNoCert": {
-                        "type": "defCalendariNoCert",
-                        "mandatory": true
-                    },
+                        "calendariNoCert": {
+                            "type": "defCalendariNoCert",
+                            "mandatory": true
+                        },
 
-                    "autor": {
-                        "type": "string",
-                        "mandatory": true,
-                        "isRole":true
-                    },
-                    "responsable": {
-                        "type": "string",
-                        "struc_chars": "40",
-                        "mandatory": true,
-                        "isRole":true
-                    },
+                        "autor": {
+                            "type": "string",
+                            "mandatory": true,
+                            "isRole":true
+                        },
+                        "responsable": {
+                            "type": "string",
+                            "struc_chars": "40",
+                            "mandatory": true,
+                            "isRole":true
+                        },
 
-                    "plantilla": {
-                        "type": "string",
-                        "mandatory": true,
-                        "default": "plantilles:docum_ioc:guies_eoi:loe:continguts"
-                    },
+                        "plantilla": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "plantilles:docum_ioc:guies_eoi:loe:continguts"
+                        },
 
-                    "fitxercontinguts": {
-                        "type": "string",
-                        "mandatory": true,
-                        "default": "continguts"
-                    },
-                    "moodleCourseId": {
-                        "type": "number",
-                        "viewType":"hidden",
-                        "mandatory": true,
-                        "default": 0
-                    },
-                    "dataFromMix":{
-                        "type":"boolean",
-                        "viewType":"hidden",
-                        "mandatory": false,
-                        "default":false
-                    }
+                        "fitxercontinguts": {
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "continguts"
+                        },
+                        "moodleCourseId": {
+                            "type": "number",
+                            "viewType":"hidden",
+                            "mandatory": true,
+                            "default": 0
+                        },
+                        "dataFromMix":{
+                            "type":"boolean",
+                            "viewType":"hidden",
+                            "mandatory": false,
+                            "default":false
+                        }
+                    }                          
                 }
             }
         }

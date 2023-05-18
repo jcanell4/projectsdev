@@ -13,7 +13,6 @@ class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {
         $this->needGenerateAction=false;        
     }
 
-
     
      /* ------------------------------
      * updateCalculatedFieldsOnRead
@@ -47,23 +46,7 @@ class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {
     */
 
 
-    /* ------------------------------
-     * getCalendarDates
-     * Puja dades al calendari de moodle
-     * Llista de les dates a pujar al calendari amb el format següent:
-     *  - title
-     *  - date (en format yyyy-mm-dd)
-     *  - description
-     * ------------------------------
-    public function getCalendarDates() {
-        $ret = array();
-        //Per enviar dades al calendari. 
-        //la deixem buida en previsió de que més endavant la necessitem.
 
-        return $ret;
-    }
-     * *
-     */
     
     
      /* ------------------------------
@@ -92,15 +75,50 @@ class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {
         }
     }
 
-    //M'obliga a implementar la funció abstracta... però no fa res.. és correcte?
-    public function getCalendarDates() {
-        parent::getCalendarDates();
-    }
 
-    //M'obliga a implementar la funció abstracta... però no fa res.. és correcte?
-    public function getCourseId() {
-        parent::getCourseId();
+    /* ------------------------------
+     * getCalendarDates
+     * Puja dades al calendari de moodle
+     * Llista de les dates a pujar al calendari amb el format següent:
+     *  - title
+     *  - date (en format yyyy-mm-dd)
+     *  - description
+     * ------------------------------*/
+    public function getCalendarDates() {
+        $ret = array();
+        $data = $this->getCurrentDataProject();
+        //Per enviar dades al calendari. 
+        
+        if($data["isCert"]){
+        //Si és certificat
+        //Retornem dades de proves certificació 
+            $ret[] = [
+                "title"=>sprintf("%s - Prova %s", $data["codi_modul"], $data['nivellProvaC']),
+                "date"=>$data["dataCertA1"]
+            ];            
+        }else{
+            //Si no és certificat
+            //Retornem dades de calendariNoCert: bloc id, tipus activitat i data de lliurament
+            if(is_string($data["calendariNoCert"])){
+                $calendariNC = json_decode($data["calendariNoCert"], true);
+            }else{
+                $calendariNC = $data["calendariNoCert"];
+            }
+            foreach ($calendariNC as $item) {
+                $ret[] = [
+                    "title"=>sprintf("%s bloc%d - %s", $data["codi_modul"], $item["bloc"]), $item['tipus activitat'],
+                    "date"=>$item["data lliurament"]
+                ];
+            }
+        }
+        return $ret;
     }
+     /* No farà res si no activem acció d'enviar calendari.
+     * Però, mentrestant: enviem les dates que a nosaltres es semblen rellevants.
+     * Si després es volgués, implementariem l'acció
+     * *
+     */
+    
 
     /* ------------------------------
      * getCourseId
@@ -108,9 +126,10 @@ class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {
      * actualitzar el calendari de 
      * l'aula des d'aquí
      * ------------------------------*/
-    /*
     public function getCourseId() {
         $data = $this->getCurrentDataProject();
         return $data["moodleCourseId"];
-    }*/
+    }
+
+
 }
