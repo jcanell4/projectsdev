@@ -204,7 +204,7 @@
                             "default": "Indiqueu el nom del coordinador",
                             "mandatory": true
                         },
-                        "dataCertA1": {
+                        "dataCertA2": {
                             "type": "date",
                             "mandatory": false,
                             "default":"01/01/2000"
@@ -225,6 +225,11 @@
                             "default":"01/01/2000"
                         },
                         "dataCertC2": {
+                            "type": "date",
+                            "mandatory": false,
+                            "default":"01/01/2000"
+                        },
+                        "dataCert": {
                             "type": "date",
                             "mandatory": false,
                             "default":"01/01/2000"
@@ -251,7 +256,7 @@
                             "type": "defCalendariNoCert",
                             "mandatory": true
                         },
-                        "nivellProvaC": {
+                        "nivellProvaCert": {
                             "type": "string",
                             "mandatory": false,
                             "default":"Indiqueu A1, B1, B2, C1 O C2"

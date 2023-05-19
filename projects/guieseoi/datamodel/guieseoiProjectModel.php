@@ -93,21 +93,25 @@ class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {
         //Si és certificat
         //Retornem dades de proves certificació 
             $ret[] = [
-                "title"=>sprintf("%s - Prova %s", $data["codi_modul"], $data['nivellProvaC']),
-                "date"=>$data["dataCertA1"]
+                "title"=>sprintf("%s - Prova %s", $data["codi_modul"], $data['nivellProvaCert']),
+                "date"=>$data["dataCert"]
             ];            
         }else{
             //Si no és certificat
-            //Retornem dades de calendariNoCert: bloc id, tipus activitat i data de lliurament
-            if(is_string($data["calendariNoCert"])){
-                $calendariNC = json_decode($data["calendariNoCert"], true);
+            //Retornem dades de entradaDadesBlocs: bloc id, tipus activitat i data de lliurament
+            if(is_string($data["entradaDadesBlocs"])){
+                $dadesBlocs = json_decode($data["entradaDadesBlocs"], true);
             }else{
-                $calendariNC = $data["calendariNoCert"];
+                $dadesBlocs = $data["entradaDadesBlocs"];
             }
-            foreach ($calendariNC as $item) {
+            foreach ($dadesBlocs as $item) {
                 $ret[] = [
-                    "title"=>sprintf("%s bloc%d - %s", $data["codi_modul"], $item["bloc"]), $item['tipus activitat'],
-                    "date"=>$item["data lliurament"]
+                    "title"=>sprintf("%s bloc%d - inici", $data["codi_modul"], $item["id"]),
+                    "date"=>$item["inici"]
+                ];
+                $ret[] = [
+                    "title"=>sprintf("%s bloc%d - fi", $data["codi_modul"], $item['id']),
+                    "date"=>$item["final"]
                 ];
             }
         }
