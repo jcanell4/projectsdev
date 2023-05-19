@@ -126,7 +126,7 @@
         },
         "responsable": {
             "type": "amd",
-            "label": "Responsable de la creació (responsable)",
+            "label": "Responsable del mòdul (responsable)",
             "n_columns": 4,
             "group": "authorship",
             "props": {

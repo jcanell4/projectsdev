@@ -80,12 +80,12 @@
         },
         "isCert": {
             "type":"checkbox",
-            "label": "És Certificat (isCert)",
+            "label": "És Certificat? (isCert)",
             "n_columns": 3,
             "group": "dadesBasiques",
             "props": {
                 "required": true,
-                "title": "indiqueu si és Certificat"
+                "title": "Indiqueu si és un mòdul amb prova de Certificació""
             }
         },
         "durada": {
@@ -133,11 +133,11 @@
             "group": "dadesBasiques"
         },
         "taulaDadesBlocs": {
-            "label": "Unitats Formatives (taulaDadesBlocs)",
+            "label": "Blocs (taulaDadesBlocs)",
             "n_columns": 12,
             "type": "editableObject",
             "group": "dadesBasiques",
-            "n_rows": 5,
+            "n_rows": 8,
             "props": {
                 "data-editable-element": "table",
                 "title": "Detalleu les dades de cada bloc. No cal que ompliu les hores dels blocs detallades en aquest mòdul, es calculen automàticament."
@@ -395,7 +395,7 @@
         },
         "responsable": {
             "type": "amd",
-            "label": "Responsable de la creació (responsable)",
+            "label": "Responsable del mòdul (responsable)",
             "n_columns": 4,
             "group": "authorship",
             "props": {
