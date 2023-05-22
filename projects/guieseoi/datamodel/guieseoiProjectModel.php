@@ -135,5 +135,4 @@ class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {
         return $data["moodleCourseId"];
     }
 
-
 }
