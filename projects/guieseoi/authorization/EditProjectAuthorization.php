@@ -7,7 +7,7 @@
  */
 defined('DOKU_INC') || die();
 
-class EditProjectAuthorization extends ResponsableProjectAuthorization {
+class EditProjectAuthorization extends ProjectCommandAuthorization {
 
     public function __construct() {
         parent::__construct();
