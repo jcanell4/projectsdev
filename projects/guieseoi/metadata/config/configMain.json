@@ -174,10 +174,10 @@
                             "mandatory": true,
                             "calculateOnSave": {
                                 "class": "CalculateConditionalValue",
-                                "data":{
+                                "data":{ 
                                     "condition":{
                                         "_type_":"operation",
-                                        "values":[
+                                         "values":[
                                             {
                                                 "_type_":"field",
                                                 "name":"durada",
@@ -192,9 +192,9 @@
                                 }       
                             },
                             "props": {
-                                "readonly": true
-                            }
-                        },
+                                "readonly": true          
+                            }                    
+                        }, 
                         "descripcio": {
                             "type": "string",
                             "mandatory": true
@@ -250,6 +250,11 @@
                         "calendariNoCert": {
                             "type": "defCalendariNoCert",
                             "mandatory": true
+                        },
+                        "nivellProvaC": {
+                            "type": "string",
+                            "mandatory": false,
+                            "default":"Indiqueu A1, B1, B2, C1 O C2"
                         },
                         "autor": {
                             "type": "string",
