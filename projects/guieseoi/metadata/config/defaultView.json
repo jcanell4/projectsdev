@@ -266,6 +266,15 @@
                 "title": "Indiqueu la nota mínima que cal treure"
             }
         },
+        "nivellProvaC": {
+            "label": "Nivell prova C (nivellProvaC)",
+            "n_columns":2,
+            "group": "dadesBasiques",
+            "props": {
+                "required": false,
+                "title": "Indiqueu Nivell prova C"
+            }
+        },
         "comSerasAvaluatNoCert": {
             "label": "Com seràs avaluat -No Certificat- (comSerasAvaluatNoCert)",
             "n_columns": 12,

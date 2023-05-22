@@ -7,9 +7,7 @@
  */
 defined('DOKU_INC') || die();
 
-//[JOSEP] ALERTA! Aquesta classe, crec que no cal. El grup admin i manager són del grup d'adminitradors i ja té permis. No cal donar-li aquí!
-//Si s'ha posat perquè no funcionava, cal cirregir-lo en origen, no apadaçar-lo com ara.
-class EditProjectAuthorization extends ResponsableProjectAuthorization {
+class EditProjectAuthorization extends ProjectCommandAuthorization {
 
     public function __construct() {
         parent::__construct();
