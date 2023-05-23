@@ -161,10 +161,10 @@
         "semestre": {
             "type": "hidden"
         },
-        "nivellProvaC": {
+        "nivellProvaCert": {
             "type": "hidden"
         },
-        "dataCertA1": {
+        "dataCertA2": {
             "type": "hidden"
         },
         "dataCertB1": {

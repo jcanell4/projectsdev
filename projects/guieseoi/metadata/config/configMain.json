@@ -259,7 +259,7 @@
                         "nivellProvaCert": {
                             "type": "string",
                             "mandatory": false,
-                            "default":"Indiqueu A1, B1, B2, C1 O C2"
+                            "default":"Indiqueu A2, B1, B2, C1 O C2"
                         },
                         "autor": {
                             "type": "string",

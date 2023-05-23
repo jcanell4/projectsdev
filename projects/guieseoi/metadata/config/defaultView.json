@@ -132,8 +132,8 @@
             },
             "group": "dadesBasiques"
         },
-        "dataCertA1": {
-            "label": "Data de la Certificació A1 (dataCertA1)",
+        "dataCertA2": {
+            "label": "Data de la Certificació A1 (dataCertA2)",
             "n_columns": 4,
             "group": "actualitzables",
             "props": {
@@ -266,13 +266,13 @@
                 "title": "Indiqueu la nota mínima que cal treure"
             }
         },
-        "nivellProvaC": {
-            "label": "Nivell prova C (nivellProvaC)",
+        "nivellProvaCert": {
+            "label": "Nivell prova C (nivellProvaCert)",
             "n_columns":2,
             "group": "dadesBasiques",
             "props": {
                 "required": false,
-                "title": "Indiqueu Nivell prova C"
+                "title": "Indiqueu el Nivell de la prova de Certificat: A2, B1, B2, C1 O C2"
             }
         },
         "comSerasAvaluatNoCert": {
