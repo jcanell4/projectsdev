@@ -222,7 +222,7 @@
             }
         },
         "nivellProvaCert": {
-            "label": "Nivell prova C (nivellProvaCert)",
+            "label": "Nivell prova Certificat (nivellProvaCert)",
             "n_columns":2,
             "group": "dadesBasiques",
             "props": {
