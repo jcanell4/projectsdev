@@ -6,7 +6,6 @@
  */
 if (!defined('DOKU_INC')) die();
 
-//[JOSEP] ALERTA! SI no hi ha dades extres, crec que aquersta classe és innecessaria!
 class command_plugin_projectsdev_projects_guieseoi_projectUpdate extends abstract_project_command_class {
 
     public function __construct() {
