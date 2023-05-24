@@ -221,13 +221,13 @@
                 "title": "Indiqueu la nota mínima que cal treure"
             }
         },
-        "nivellProvaC": {
-            "label": "Nivell prova C (nivellProvaC)",
+        "nivellProvaCert": {
+            "label": "Nivell prova Certificat (nivellProvaCert)",
             "n_columns":2,
             "group": "dadesBasiques",
             "props": {
                 "required": false,
-                "title": "Indiqueu Nivell prova C"
+                "title": "Indiqueu Nivell prova Certificat:  A1, B1, B2, C1 O C2"
             }
         },
         "comSerasAvaluatNoCert": {
@@ -439,7 +439,7 @@
         "semestre": {
             "type": "hidden"
         },
-        "dataCertA1": {
+        "dataCertA2": {
             "type": "hidden"
         },
         "dataCertB1": {
@@ -452,6 +452,9 @@
             "type": "hidden"
         },
         "dataCertC2": {
+            "type": "hidden"
+        },
+        "dataCert": {
             "type": "hidden"
         }
     }

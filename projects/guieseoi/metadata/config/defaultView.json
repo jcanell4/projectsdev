@@ -142,7 +142,7 @@
             }
         },
         "dataCertB1": {
-            "label": "Data de la Certificació A1 (dataCertB1)",
+            "label": "Data de la Certificació B1 (dataCertB1)",
             "n_columns": 4,
             "group": "actualitzables",
             "props": {
@@ -151,7 +151,7 @@
             }
         },
         "dataCertB2": {
-            "label": "Data de la Certificació A1 (dataCertB2)",
+            "label": "Data de la Certificació B2 (dataCertB2)",
             "n_columns": 4,
             "group": "actualitzables",
             "props": {
@@ -160,7 +160,7 @@
             }
         },
         "dataCertC1": {
-            "label": "Data de la Certificació A1 (dataCertC1)",
+            "label": "Data de la Certificació C1 (dataCertC1)",
             "n_columns": 4,
             "group": "actualitzables",
             "props": {
@@ -169,12 +169,21 @@
             }
         },
         "dataCertC2": {
-            "label": "Data de la Certificació A1 (dataCertC2)",
+            "label": "Data de la Certificació C2 (dataCertC2)",
             "n_columns": 4,
             "group": "actualitzables",
             "props": {
                 "required": true,
                 "title": "Indiqueu la data en que es realitzarà la prova de Certificació C2"
+            }
+        },
+        "dataCert": {
+            "label": "Data de la Certificació (dataCert)",
+            "n_columns": 4,
+            "group": "actualitzables",
+            "props": {
+                "required": true,
+                "title": "Indiqueu la data en que es realitzarà la prova de Certificació"
             }
         },
         "taulaDadesBlocs": {
@@ -266,13 +275,13 @@
                 "title": "Indiqueu la nota mínima que cal treure"
             }
         },
-        "nivellProvaC": {
-            "label": "Nivell prova C (nivellProvaC)",
+        "nivellProvaCert": {
+            "label": "Nivell prova Certificat (nivellProvaCert)",
             "n_columns":2,
             "group": "dadesBasiques",
             "props": {
                 "required": false,
-                "title": "Indiqueu Nivell prova C"
+                "title": "Indiqueu Nivell prova Certificat:  A1, B1, B2, C1 O C2"
             }
         },
         "comSerasAvaluatNoCert": {
