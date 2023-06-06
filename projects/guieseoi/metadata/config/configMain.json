@@ -60,7 +60,7 @@
                             "default": "{#_COPY(1)_#}",
                             "mandatory": true
                         },
-                        "tipus activitat": {
+                        "tipusActivitat": {
                             "type": "string",
                             "default": "tipus d'activitat",
                             "mandatory": true
@@ -70,7 +70,7 @@
                             "default": "nom de l'activitat",
                             "mandatory": true
                         },
-                        "data lliurament": {
+                        "dataLliurament": {
                             "type": "date",
                             "default":"{#_TODAY()_#}",
                             "mandatory": true
@@ -80,12 +80,12 @@
                             "default":true,
                             "mandatory": true
                         },
-                        "data qualificacio": {
+                        "dataQualificacio": {
                             "type": "date",
                             "default":"{#_TODAY()_#}",
                             "mandatory": true
                         },
-                        "ponderacio nota": {
+                        "ponderacioNota": {
                             "type": "number",
                             "default": "0",
                             "mandatory": true
@@ -195,6 +195,34 @@
                                 "readonly": true          
                             }                    
                         }, 
+                        "numblocs": {
+                            "type": "number",
+                            "default": 6,
+                            "viewType":"hidden",
+                            "mandatory": true,
+                            "calculateOnSave": {
+                                "class": "CalculateConditionalValue",
+                                "data":{ 
+                                    "condition":{
+                                        "_type_":"operation",
+                                         "values":[
+                                            {
+                                                "_type_":"field",
+                                                "name":"durada",
+                                                "values":"$values"
+                                            },
+                                            "semestral"
+                                        ],
+                                        "operation":"=="
+                                    },
+                                    "valueIfTrue":6,
+                                    "valueIfFalse":10      
+                                }       
+                            },
+                            "props": {
+                                "readonly": true          
+                            }                    
+                        },                         
                         "descripcio": {
                             "type": "string",
                             "mandatory": true
