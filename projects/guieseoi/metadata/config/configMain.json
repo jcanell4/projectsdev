@@ -146,17 +146,13 @@
                         },
                         "codi_modul": {
                             "type": "string",
-                            "default": "Indiqueu el codi del mòdul. Per exemple I_ANG_1B1",
+                            "default": "ANG_1B1",
                             "mandatory": true
                         },
                         "modul": {
                             "type": "string",
+                            "default": "anglès",
                             "mandatory": true
-                        },
-                        "moodleCourseId": {
-                            "type": "number",
-                            "mandatory": true,
-                            "default": 0
                         },
                         "isCert":{
                             "type":"boolean",
@@ -229,8 +225,13 @@
                         },
                         "coordinador": {
                             "type": "string",
-                            "default": "Indiqueu el nom del coordinador",
+                            "default": "nom del coordinador",
                             "mandatory": true
+                        },
+                        "moodleCourseId": {
+                            "type": "number",
+                            "mandatory": true,
+                            "default": 0
                         },
                         "dataCertA2": {
                             "type": "date",
@@ -264,6 +265,15 @@
                         },
                         "taulaDadesBlocs": {
                             "type": "defTaulaDadesBlocs",
+                            "default":[
+                                {"id":"Bloc 0","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
+                                {"id":"Bloc 1","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
+                                {"id":"Bloc 2","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
+                                {"id":"Bloc 3","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
+                                {"id":"Bloc 4","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
+                                {"id":"Bloc 5","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
+                                {"id":"Bloc 6","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."}
+                            ],
                             "mandatory": true
                         },
                         "notaMinima": {
@@ -273,15 +283,42 @@
                         },
                         "comSerasAvaluatNoCert": {
                             "type": "defAvaluacioNoCert",
+                            "default":[
+                                {"nom":"Tests dels blocs","ponderacio":"20"},
+                                {"nom":"Lliuraments","ponderacio":"20"},   
+                                {"nom":"Aportacions al fòrum","ponderacio":"20"},   
+                                {"nom":"Portfoli","ponderacio":"10"},          
+                                {"nom":"Prova  final de mòdul","ponderacio":"10"}
+                            ],
                             "mandatory": false
                         },
                         "comSerasAvaluatCert": {
                             "type": "string",
-                            "default": "Aqui explicació de com serà avaluat",
+                            "default": "Per mòduls amb certificació, l'avaluació es concreta en aquesta prova de certificació. És una prova que ...",
                             "mandatory": false
                         },
                         "calendariNoCert": {
                             "type": "defCalendariNoCert",
+                            "default":[
+                                {"bloc":"1","tipusActivitat":"Grammar","activitat":"...","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"1","tipusActivitat":"Test","activitat":"Test 1","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"1","tipusActivitat":"Portfoli","activitat":"Portfoli 1","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"2","tipusActivitat":"Grammar","activitat":"...","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"2","tipusActivitat":"Test","activitat":"Test 2","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"2","tipusActivitat":"Portfoli","activitat":"Portfoli 2","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"3","tipusActivitat":"Grammar","activitat":"...","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"3","tipusActivitat":"Test","activitat":"Test 3","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"3","tipusActivitat":"Portfoli","activitat":"Portfoli 3","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"4","tipusActivitat":"Grammar","activitat":"...","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"4","tipusActivitat":"Test","activitat":"Test 4","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"4","tipusActivitat":"Portfoli","activitat":"Portfoli 4","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"5","tipusActivitat":"Grammar","activitat":"...","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"5","tipusActivitat":"Test","activitat":"Test 5","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"5","tipusActivitat":"Portfoli","activitat":"Portfoli 5","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"6","tipusActivitat":"Grammar","activitat":"...","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"6","tipusActivitat":"Test","activitat":"Test 6","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
+                                {"bloc":"6","tipusActivitat":"Portfoli","activitat":"Portfoli 6","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"}
+                            ],
                             "mandatory": true
                         },
                         "nivellProvaCert": {

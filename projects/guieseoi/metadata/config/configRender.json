@@ -1,21 +1,18 @@
 {
     "typesDefinition": {
-        "pla": {
-            "render": {
-                "typeDef":"pla",
+        "dadesguieseoi": {
+            "render": { 
+                "typeDef":"dadesguieseoi",
                 "class": "exportDocument",
-                "fields": "ALL",
-                "extraFields": [{"name":"pdfDocument", "valueType":"field", "value":"fitxercontinguts"}]
+                "fields": "ALL", 
+                "extraFields": [{"name":"pepitoFitxerContinguts", "valueType":"page", "value":"continguts"}]
             },
-            "keys": {
+            "keys": { 
                 "descripcio": {
-                    "render": {"class": "renderRenderizableText"}
+                    "render": {"class": "renderRenderizableText"} 
                 },
-                "fitxercontinguts": {
+                "pepitoFitxerContinguts": {
                     "render": {"class": "renderFile"}
-                },
-                "pdfDocument": {
-                    "render": {"class": "renderFileToPsDom"}
                 }
             }
         }

@@ -1,4 +1,5 @@
 <!doctype html>
+//marjose: cal actualitzar per guieseoi
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -48,7 +49,7 @@
   <br class="salt_impr">
 
   <div class="container">
-    {##fitxercontinguts##}  
+    {##pepitoFitxerContinguts##}  
     <div id="printbtn" onclick="printDoc()"><span>Descarrega't el PDF</span></div>
   </div>
     

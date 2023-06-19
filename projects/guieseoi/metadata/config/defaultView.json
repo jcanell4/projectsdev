@@ -53,7 +53,7 @@
     "fields": {
         "codi_modul": {
             "label": "Codi del mòdul (codi_modul)",
-            "n_columns": 3,
+            "n_columns": 5,
             "group": "dadesBasiques",
             "props": {
                 "required": true,
@@ -61,17 +61,26 @@
             }
         },
         "modul": {
-            "label": "Nom del mòdul (modul)",
-            "n_columns": 3,
+            "type":"select",
+            "n_columns": 5,
+            "label": "Mòdul (modul)",
             "group": "dadesBasiques",
             "props": {
                 "required": true,
                 "title": "indiqueu el nom del mòdul."
+            },
+            "config":{
+                "options":[
+                    {"value":"mòdul"},
+                    {"value":"alemany"},
+                    {"value":"anglès"},
+                    {"value":"català"}
+                ]
             }
         },
         "moodleCourseId": {
             "label": "Identificador del curs a moodle (moodleCourseId)",
-            "n_columns": 3,
+            "n_columns": 5,
             "group": "dadesBasiques",
             "props": {
                 "required": true,
@@ -81,7 +90,7 @@
         "isCert": {
             "type":"checkbox",
             "label": "És Certificat? (isCert)",
-            "n_columns": 3,
+            "n_columns": 5,
             "group": "dadesBasiques",
             "props": {
                 "required": true,
@@ -90,7 +99,7 @@
         },
         "durada": {
             "label": "Durada (durada)",
-            "n_columns": 3,
+            "n_columns": 5,
             "group": "dadesBasiques",
             "props": {
                 "required": true,

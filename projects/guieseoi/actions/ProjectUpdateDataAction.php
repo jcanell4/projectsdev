@@ -2,6 +2,10 @@
 if (!defined('DOKU_INC')) die();
 
 class ProjectUpdateDataAction extends ViewProjectAction {
+    //marjose: 
+    //s'executa quan s'actualitza cada semestre. 
+    //cal actualitzar-ho amb els camps corresponents
+    
 
     protected function runAction() {
         $projectType = $this->params[ProjectKeys::KEY_PROJECT_TYPE];
