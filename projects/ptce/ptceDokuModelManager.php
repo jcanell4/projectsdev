@@ -4,6 +4,7 @@
  * - proporciona acceso a las Autorizaciones, ModelAdapter y Renderer del proyecto 'ptce'
  * - define las rutas de las clases y las clases por defecto necesarias para este proyecto
  * @author Rafael Claver
+ * @aprenent Marjose
  */
 if (!defined('DOKU_INC')) die();
 if (!defined('DOKU_LIB_IOC')) define('DOKU_LIB_IOC', DOKU_INC . "lib/lib_ioc/");
