@@ -2,6 +2,8 @@
     "metaDataSubsetsList": [
         "main"
     ],
+    
+    
     "metaDataProjectConfig": [
         {
             "main": {
@@ -9,6 +11,9 @@
             }
         }        
     ],
+    
+    
+    
     "metaDataFtpSender": [
         {
             "main": {

@@ -266,7 +266,9 @@
             "type": "hidden"
         },
         "plantilla": {
-            "type": "hidden"
+                            "type": "string",
+                            "mandatory": true,
+                            "default": "plantilles:docum_ioc:pla_treball_fp:loe:continguts"
         },
         "fitxercontinguts": {
             "type": "hidden"

@@ -3,12 +3,22 @@
  * ProjectExportAction: clases de procesos, establecidas en el fichero de configuración,
  *                  correspondientes a los tipos de datos del proyecto
  * @culpable Rafael Claver
+ * @aprenent Marjose
  */
 if (!defined('DOKU_INC')) die();
 if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC."lib/plugins/");
-if (!defined('WIKI_IOC_MODEL')) define('WIKI_IOC_MODEL', DOKU_PLUGIN."wikiiocmodel/");
+//if (!defined('WIKI_IOC_MODEL')) define('WIKI_IOC_MODEL', DOKU_PLUGIN."wikiiocmodel/");
+if (!defined('WIKI_IOC_MODEL')) define('WIKI_IOC_MODEL', DOKU_PLUGIN."projectsdev/");
+
 if (!defined('EXPORT_TMP')) define('EXPORT_TMP',DOKU_PLUGIN.'tmp/latex/');
+
 define('WIKI_IOC_PROJECT', WIKI_IOC_MODEL . "projects/ptce/");
+
+
+//-------
+
+//-------
+
 
 class ProjectExportAction  extends ProjectAction{
     const PATH_RENDERER = WIKI_IOC_PROJECT."exporter/";
@@ -102,7 +112,9 @@ class ProjectExportAction  extends ProjectAction{
      *                  Si se indica el metaDataSubSet, es que espera encontrar una estructura
      */
     private function getProjectConfigFile($filename, $rama, $metaDataSubSet=NULL) {
-        $config = @file_get_contents(self::PATH_CONFIG_FILE.$filename);
+        //MARJOSE
+        //$config = @file_get_contents(self::PATH_CONFIG_FILE.$filename);
+        $config = @file_get_contents(WikiIocPluginController::getProjectTypeDir($this->projectType) . "metadata/config/" . $filename);
         if ($config != FALSE) {
             $array = json_decode($config, true);
             if ($metaDataSubSet) {
