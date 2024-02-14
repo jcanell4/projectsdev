@@ -71,10 +71,9 @@
             },
             "config":{
                 "options":[
-                    {"value":"mòdul"},
-                    {"value":"alemany"},
-                    {"value":"anglès"},
-                    {"value":"català"}
+                    {"value":"Alemany"},
+                    {"value":"Anglès"},
+                    {"value":"Català"}
                 ]
             }
         },
@@ -195,7 +194,7 @@
                 "title": "Indiqueu la data en que es realitzarà la prova de Certificació"
             }
         },
-        "taulaDadesBlocs": {
+        "entradaDadesBlocs": {
             "label": "Blocs (taulaDadesBlocs)",
             "n_columns": 12,
             "type": "editableObject",
@@ -207,19 +206,19 @@
             },
             "config": {
                 "actions": {
-                    "set_multiple_default_rows": "Definir el nombre d'Unitats Formatives del mòdul",
-                    "remove_rows": "Eliminar les Unitats Formatives seleccionades",
-                    "add_default_row_before": "Afegir unitat abans de la fila seleccionada"
+                    "set_multiple_default_rows": "Definir el nombre de blocs del mòdul",
+                    "remove_rows": "Eliminar els blocs seleccionats",
+                    "add_default_row_before": "Afegir un bloc abans de la fila seleccionada"
                 },
                 "fields": {
                     "id":{
                         "type": "number"
                     },
                     "inici": {
-                        "type": "number"
+                        "type": "date"
                     },
                     "final": {
-                        "type": "number"
+                        "type": "date"
                     },
                     "nom": {
                         "type": "string"
@@ -234,7 +233,8 @@
                 "layout": [
                     {
                         "defaultCell": {
-                            "width": "5%"
+                            "width": "21%",
+                          "editable": true
                         },
                         "cells": [
                             {

@@ -21,7 +21,7 @@
         <h1>{##codi_modul##} {##modul##}<WIOCCL:IF condition="true=={##isCert##}"> - Amb certificació </WIOCCL:IF></h1>
     </div>
     <div class="rflexjust"><!-- he canviat el pt.htmlper guiaeoi.tpl -->
-        <a href="guiaeoi_sencer/guiaeoi.tpl" target="_blank"><img src="img/programacio.png" title="Consulteu aquí la GUIA completa"/></a>
+        <a href="pt_sencer/guiaeoi.tpl" target="_blank"><img src="img/programacio.png" title="Consulteu aquí la GUIA completa"/></a>
     </div>
 </header>
 <!-- /Capçalera -->
@@ -78,21 +78,21 @@
         <table class="own_table">
           <tr>
             <th></th>
-            <th colspan="2">Durada</th>
+            <th>Inici</th>
+            <th>Final</th>
             <th>Nom</th>
             <th>Objectius</th>
             <th>Continguts</th>
           </tr>
             <WIOCCL:FOREACH var="itemCal" array="{##taulaDadesBlocs##}">   
-                  <tr>
-                    <th>Bloc {##itemCal[id]##}</th>
-                    <td>{#_UPPERCASE("{##itemCal[tipus període]##}", 1)_#} {##itemCal[període]##}</td>
-                    <td>{#_DATE("{##itemCal[inici]##}")_#}</td>
-                    <td>{#_DATE("{##itemCal[final]##}")_#}</td>
-                    <td>{##itemCal[nom]##}</td>
-                    <td>{##itemCal[objectius]##}</td>
-                    <td>{##itemCal[continguts]##}</td>
-                  </tr>
+            <tr>
+              <th>{##itemCal[id]##}</th>
+              <td>{#_DATE("{##itemCal[inici]##}")_#}</td>
+              <td>{#_DATE("{##itemCal[final]##}")_#}</td>
+              <td>{##itemCal[nom]##}</td>
+              <td>{##itemCal[objectius]##}</td>
+              <td>{##itemCal[continguts]##}</td>
+            </tr>
             </WIOCCL:FOREACH>
         </table>
   </div>

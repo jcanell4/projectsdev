@@ -71,10 +71,9 @@
             },
             "config":{
                 "options":[
-                    {"value":"mòdul"},
-                    {"value":"alemany"},
-                    {"value":"anglès"},
-                    {"value":"català"}
+                    {"value":"Alemany"},
+                    {"value":"Anglès"},
+                    {"value":"Català"}
                 ]
             }
         },
@@ -130,7 +129,7 @@
             },
             "group": "dadesBasiques"
         },
-        "taulaDadesBlocs": {
+        "entradaDadesBlocs": {
             "label": "Blocs (taulaDadesBlocs)",
             "n_columns": 12,
             "type": "editableObject",
@@ -151,10 +150,10 @@
                         "type": "number"
                     },
                     "inici": {
-                        "type": "string"
+                        "type": "date"
                     },
                     "final": {
-                        "type": "string"
+                        "type": "date"
                     },
                     "nom": {
                         "type": "string"
@@ -169,7 +168,8 @@
                 "layout": [
                     {
                         "defaultCell": {
-                            "width": "7%"
+                            "width" : "21%",
+                            "editable": true
                         },
                         "cells": [
                             {
