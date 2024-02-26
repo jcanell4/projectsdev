@@ -157,12 +157,6 @@
                     },
                     "nom": {
                         "type": "string"
-                    },
-                    "objectius":{
-                        "type": "string"
-                    },
-                    "continguts": {
-                        "type": "string"
                     }
                 },
                 "layout": [
@@ -192,18 +186,6 @@
                             {
                                 "name": "nom",
                                 "field": "nom",
-                                "width":"25%",
-                                "editable": true
-                            },
-                            {
-                                "name": "objectius",
-                                "field": "objectius",
-                                "width":"25%",
-                                "editable": true
-                            },
-                            {
-                                "name": "continguts",
-                                "field": "continguts",
                                 "width":"25%",
                                 "editable": true
                             }
@@ -311,7 +293,7 @@
         
         "calendariNoCert": {
             "label": "Temporització -No Certificat- (calendariNoCert)",
-            "n_columns": 12,
+            "n_columns": 10,
             "type": "editableObject",
             "group": "actualitzables",
             "n_rows": 9,
@@ -327,7 +309,12 @@
                 },
                 "fields": {
                     "bloc": {
-                        "type": "number"
+                        "type": "select",
+                        "props": {
+                            "required": true,
+                            "title": "indiqueu el bloc."
+                        },
+                        "options": [1, 2, 3, 4, 5, 6]
                     },
                     "tipus activitat": {
                         "type": "select",
@@ -335,26 +322,31 @@
                             "required": true,
                             "title": "indiqueu tipus d'activitat."
                         },
-                        "config":{
-                            "options":[
-                                {"value":"activitat"},
-                                {"value":"prova final"},
-                                {"value":"test"},
-                                {"value":"portfoli"},
-                                {"value":"grammar"},
-                                {"value":"listening"}
-                            ]
-                        }
+
+                        "options":[
+                            {"value":"Assignments"},
+                            {"value":"Practice Tasks"},
+                            {"value":"Participació a Forum activities"},
+                            {"value":"Progress Test"},
+                            {"value":"Oral exam"},
+                            {"value":"Final test"},
+                            {"value":"Aufgaben"},
+                            {"value":"Forumstexte"},
+                            {"value":"Test Einheit"},
+                            {"value":"Möndliche Prüfung"},
+                            {"value":"Endtest"},
+                            {"value":"Prova oral"},
+                            {"value":"Prova final"}
+                        ]
                     },
+ 
+                   
  
                     "activitat": {
                         "type": "string"
                     },
                     "data lliurament": {
                         "type": "date"
-                    },
-                    "teRetroaccio": {
-                      "type": "boolean"
                     },
                     "data qualificacio": {
                       "type": "date"
@@ -371,7 +363,8 @@
                         "cells": [
                             {
                                 "name": "bloc",
-                                "field": "bloc"
+                                "field": "bloc",
+                                "editable": true            
                             },
                             {
                                 "name": "tipus activitat",
@@ -386,11 +379,6 @@
                             {
                                 "name": "data lliurament",
                                 "field": "data lliurament",
-                                "editable": true                            
-                            },
-                            {
-                                "name": "te retroaccio",
-                                "field": "teRetroaccio",
                                 "editable": true                            
                             },
                             {

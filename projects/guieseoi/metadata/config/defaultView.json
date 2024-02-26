@@ -222,12 +222,6 @@
                     },
                     "nom": {
                         "type": "string"
-                    },
-                    "objectius":{
-                        "type": "string"
-                    },
-                    "continguts": {
-                        "type": "string"
                     }
                 },
                 "layout": [
@@ -257,19 +251,8 @@
                                 "field": "nom",
                                 "width":"30%",
                                 "editable": true
-                            },
-                            {
-                                "name": "objectius",
-                                "field": "objectius",
-                                "width":"30%",
-                                "editable": true
-                            },
-                            {
-                                "name": "continguts",
-                                "field": "continguts",
-                                "width":"30%",
-                                "editable": true
                             }
+                            
                         ]
                     }
                 ]
@@ -349,7 +332,7 @@
         },
         "calendariNoCert": {
             "label": "Temporització -No Certificat- (calendariNoCert)",
-            "n_columns": 12,
+            "n_columns": 10,
             "type": "editableObject",
             "group": "actualitzables",
             "n_rows": 9,
@@ -365,19 +348,18 @@
                 },
                 "fields": {
                     "bloc": {
-                        "type": "number"
+                        "type": "select",
+                        "options": [1, 2, 3, 4, 5, 6]
                     },
                     "tipus activitat": {
-                        "type": "string"
+                        "type": "select",
+                        "options": ["Assignments","Practice Tasks","Participació a Forum activities","Progress Test","Oral exam","Final test","Aufgaben","Forumstexte","Test Einheit","Möndliche Prüfung","Endtest","Prova oral","Prova final"]
                     },
                     "activitat": {
                         "type": "string"
                     },
                     "data lliurament": {
                         "type": "date"
-                    },
-                    "teRetroaccio": {
-                      "type": "boolean"
                     },
                     "data qualificacio": {
                       "type": "date"
@@ -394,7 +376,8 @@
                         "cells": [
                             {
                                 "name": "bloc",
-                                "field": "bloc"
+                                "field": "bloc",
+                                "editable": true            
                             },
                             {
                                 "name": "tipus activitat",
@@ -409,11 +392,6 @@
                             {
                                 "name": "data lliurament",
                                 "field": "data lliurament",
-                                "editable": {"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}}
-                            },
-                            {
-                                "name": "teRetroaccio",
-                                "field": "teRetroaccio",
                                 "editable": {"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}}
                             },
                             {
