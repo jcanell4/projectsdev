@@ -140,6 +140,15 @@
             },
             "group": "dadesBasiques"
         },
+        "dataBloc11": {
+            "label": "Data Bloc1 (dataPaf11)",
+            "n_columns": 4,
+            "group": "actualitzables",
+            "props": {
+                "required": true,
+                "title": "Indiqueu la data dataPaf11"
+            }
+        },
         "dataCertA2": {
             "label": "Data de la Certificació A1 (dataCertA2)",
             "n_columns": 4,
@@ -194,8 +203,8 @@
                 "title": "Indiqueu la data en que es realitzarà la prova de Certificació"
             }
         },
-        "entradaDadesBlocs": {
-            "label": "Blocs (taulaDadesBlocs)",
+        "dadesBlocs": {
+            "label": "Blocs (dadesBlocs)",
             "n_columns": 12,
             "type": "editableObject",
             "group": "dadesBasiques",
@@ -331,84 +340,101 @@
             }
         },
         "calendariNoCert": {
-            "label": "Temporització -No Certificat- (calendariNoCert)",
-            "n_columns": 10,
+            "label": "Calendari -No Certificat- (calendariNoCert)",
+            "n_columns": 12,
             "type": "editableObject",
-            "group": "actualitzables",
-            "n_rows": 9,
+            "group": "avaluacio",
+            "n_rows": 17,
             "props": {
                 "data-editable-element": "table",
-                "title": "Períodes en que seqüenciem el procés d'aprenentatge (apartats, projectes, pràctiques, etc.) i detall de la temporització"
+                "title": "Calendari -No Certificat-."
             },
             "config": {
                 "actions": {
-                    "add_default_row": {"condition":{"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}},"label":"Afegir període"},
-                    "remove_rows": {"condition":{"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}},"label":"Eliminar períodes seleccionats"},
-                    "add_default_row_before": {"condition":{"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}},"label":"Afegir període abans de la fila seleccionada"}
+                    "add_default_row": "Afegir bloc",
+                    "remove_rows": "Eliminar els elements seleccionades",
+                    "add_default_row_before": "Afegir un element abans de la fila seleccionada"
                 },
-                "fields": {
+                "fields": {                 
                     "bloc": {
-                        "type": "select",
-                        "options": [1, 2, 3, 4, 5, 6]
+                        "type": "number",
+                        "mandatory": true,
+                        "default": "{#_INC(1)_#}"
                     },
-                    "tipus activitat": {
+                                
+                    "tipusActivitat": {
                         "type": "select",
-                        "options": ["Assignments","Practice Tasks","Participació a Forum activities","Progress Test","Oral exam","Final test","Aufgaben","Forumstexte","Test Einheit","Möndliche Prüfung","Endtest","Prova oral","Prova final"]
+                        "options": ["lectura", "vídeo", "autoavaluació", "fòrum", "qüestionari", "exercicis", "activitat", "valoració"]
                     },
                     "activitat": {
-                        "type": "string"
+                        "type": "string",
+                        "default": "nom de l'activitat",
+                        "mandatory": true
                     },
-                    "data lliurament": {
-                        "type": "date"
+                    "dataLliurament": {
+                        "type": "date",
+                        "default":"{#_TODAY()_#}",
+                        "mandatory": true
+                    },                 
+                    "dataQualificacio": {
+                        "type": "date",
+                        "default":"{#_TODAY()_#}",
+                        "mandatory": true
                     },
-                    "data qualificacio": {
-                      "type": "date"
-                    },
-                    "ponderacio nota": {
-                      "type": "number"
-                    }
+                    "ponderacioNota": {
+                        "type": "number",
+                        "default": "0",
+                        "mandatory": true
+                    }                                            
                 },
                 "layout": [
                     {
                         "defaultCell": {
-                            "width" : "5%"
+                            "width": "5%"
                         },
                         "cells": [
                             {
                                 "name": "bloc",
                                 "field": "bloc",
-                                "editable": true            
+                                "width":"5%",
+                                "editable": true
                             },
                             {
-                                "name": "tipus activitat",
-                                "field": "tipus activitat",
-                                "editable": {"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}}
+                                "name": "tipus Activitat",
+                                "field": "tipusActivitat",
+                                "width":"20%",
+                                "editable": true
                             },
                             {
                                 "name": "activitat",
                                 "field": "activitat",
-                                "editable": {"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}}
-                            },
-                            {
-                                "name": "data lliurament",
-                                "field": "data lliurament",
-                                "editable": {"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}}
-                            },
-                            {
-                                "name": "data qualificacio",
-                                "field": "data qualificacio",
+                                "width":"35%",
                                 "editable": true
                             },
                             {
-                                "name": "ponderacio nota",
-                                "field": "ponderacio nota",
+                                "name": "data Lliurament",
+                                "field": "dataLliurament",
+                                "width":"10%",
+                                "editable": true
+                            },
+                            {
+                                "name": "data Qualificacio",
+                                "field": "dataQualificacio",
+                                "width":"10%",
+                                "editable": true
+                            },                            
+                            {
+                                "name": "ponderacio Nota %",
+                                "field": "ponderacioNota",
+                                "width":"10%",
                                 "editable": true
                             }
+
                         ]
                     }
                 ]
             }
-        },
+        }, 
         "autor": {
             "type": "amd",
             "label": "Autor (autor)",

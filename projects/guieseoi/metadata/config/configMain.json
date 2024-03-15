@@ -57,7 +57,8 @@
                     "keys": {
                         "bloc": {
                             "type": "number",
-                            "mandatory": true
+                            "mandatory": true,
+                            "default": "{#_INC(1)_#}"
                         },
                         "tipusActivitat": {
                             "type": "string",
@@ -66,6 +67,7 @@
                         },
                         "activitat": {
                             "type": "string",
+                            "default": "nom de l'activitat",
                             "mandatory": true
                         },
                         "dataLliurament": {
@@ -100,7 +102,6 @@
                         },
                         "inici": {
                             "type": "date",
-                            "default":"{#_TODAY()_#}",
                             "mandatory": true
                         },
                         "final": {
@@ -217,6 +218,11 @@
                             "mandatory": true,
                             "default": 0
                         },
+                        "dataBloc11": {
+                            "type": "date",
+                            "mandatory": true,
+                            "default":"01/01/2000"
+                        },   
                         "dataCertA2": {
                             "type": "date",
                             "mandatory": false,
@@ -247,18 +253,18 @@
                             "mandatory": false,
                             "default":"01/01/2000"
                         },
-                        "taulaDadesBlocs": {
+                        "dadesBlocs": {
                             "type": "defTaulaDadesBlocs",
                             "default":[
-                                {"id":"Bloc 0","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
-                                {"id":"Bloc 1","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
-                                {"id":"Bloc 2","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
-                                {"id":"Bloc 3","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
-                                {"id":"Bloc 4","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
-                                {"id":"Bloc 5","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
-                                {"id":"Bloc 6","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."}
+                                {"id":"Bloc 0","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 1","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 2","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 3","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 4","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 5","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 6","inici":"01/01/2000","final":"","nom":"nom del bloc"}
                             ],
-                            "mandatory": true
+                            "mandatory": false
                         },
                         "notaMinima": {
                             "type": "number",
@@ -272,7 +278,7 @@
                                 {"nom":"Lliuraments","ponderacio":"20"},   
                                 {"nom":"Aportacions al fòrum","ponderacio":"20"},   
                                 {"nom":"Portfoli","ponderacio":"10"},          
-                                {"nom":"Prova  final de mòdul","ponderacio":"10"}
+                                {"nom":"Prova final de mòdul","ponderacio":"10"}
                             ],
                             "mandatory": false
                         },
@@ -284,9 +290,10 @@
                         "calendariNoCert": {
                             "type": "defCalendariNoCert",
                             "default":[
-                                {"bloc":"1","tipusActivitat":"","activitat":"","dataLliurament":"01/01/2024","dataQualificacio":"01/01/2024","ponderacioNota":""}
-                              ],
+                                {"bloc":"1","tipusActivitat":"lectura","activitat":"Nom de l'activitata","dataLliurament":"","dataQualificacio":"","ponderacioNota":"10"}
+                            ],
                             "mandatory": true
+                
                         },
                         "nivellProvaCert": {
                             "type": "string",
@@ -316,3 +323,4 @@
         }
     ]
 }
+
