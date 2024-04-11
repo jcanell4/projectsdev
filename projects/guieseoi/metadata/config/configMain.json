@@ -57,8 +57,8 @@
                     "keys": {
                         "bloc": {
                             "type": "number",
-                            "default": "{#_COPY(1)_#}",
-                            "mandatory": true
+                            "mandatory": true,
+                            "default": "{#_INC(1)_#}"
                         },
                         "tipusActivitat": {
                             "type": "string",
@@ -74,12 +74,7 @@
                             "type": "date",
                             "default":"{#_TODAY()_#}",
                             "mandatory": true
-                        },
-                        "teRetroaccio":{ 
-                            "type": "boolean",
-                            "default":true,
-                            "mandatory": true
-                        },
+                        },                 
                         "dataQualificacio": {
                             "type": "date",
                             "default":"{#_TODAY()_#}",
@@ -107,7 +102,6 @@
                         },
                         "inici": {
                             "type": "date",
-                            "default":"{#_TODAY()_#}",
                             "mandatory": true
                         },
                         "final": {
@@ -119,17 +113,8 @@
                             "type": "string",
                             "mandatory": true,
                             "default": "nom del bloc"
-                        },
-                        "objectius": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default": "l'objectiu és..."
-                        },
-                        "continguts": {
-                            "type": "string",
-                            "mandatory": true,
-                            "default": "el contingut és..."
                         }
+
                     }
                 },
                 "defTaulaDadesBlocs": {
@@ -151,7 +136,7 @@
                         },
                         "modul": {
                             "type": "string",
-                            "default": "anglès",
+                            "default": "Anglès",
                             "mandatory": true
                         },
                         "isCert":{
@@ -233,6 +218,11 @@
                             "mandatory": true,
                             "default": 0
                         },
+                        "dataPaf11": {
+                            "type": "date",
+                            "mandatory": true,
+                            "default":"01/01/2000"
+                        },   
                         "dataCertA2": {
                             "type": "date",
                             "mandatory": false,
@@ -263,18 +253,18 @@
                             "mandatory": false,
                             "default":"01/01/2000"
                         },
-                        "taulaDadesBlocs": {
+                        "dadesBlocs": {
                             "type": "defTaulaDadesBlocs",
                             "default":[
-                                {"id":"Bloc 0","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
-                                {"id":"Bloc 1","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
-                                {"id":"Bloc 2","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
-                                {"id":"Bloc 3","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
-                                {"id":"Bloc 4","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
-                                {"id":"Bloc 5","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."},
-                                {"id":"Bloc 6","inici":"","final":"","nom":"nom del bloc","objectius":"l'objectiu és...","continguts":"el contingut és..."}
+                                {"id":"Bloc 0","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 1","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 2","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 3","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 4","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 5","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 6","inici":"01/01/2000","final":"","nom":"nom del bloc"}
                             ],
-                            "mandatory": true
+                            "mandatory": false
                         },
                         "notaMinima": {
                             "type": "number",
@@ -288,7 +278,7 @@
                                 {"nom":"Lliuraments","ponderacio":"20"},   
                                 {"nom":"Aportacions al fòrum","ponderacio":"20"},   
                                 {"nom":"Portfoli","ponderacio":"10"},          
-                                {"nom":"Prova  final de mòdul","ponderacio":"10"}
+                                {"nom":"Prova final de mòdul","ponderacio":"10"}
                             ],
                             "mandatory": false
                         },
@@ -300,26 +290,10 @@
                         "calendariNoCert": {
                             "type": "defCalendariNoCert",
                             "default":[
-                                {"bloc":"1","tipusActivitat":"Grammar","activitat":"...","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"1","tipusActivitat":"Test","activitat":"Test 1","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"1","tipusActivitat":"Portfoli","activitat":"Portfoli 1","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"2","tipusActivitat":"Grammar","activitat":"...","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"2","tipusActivitat":"Test","activitat":"Test 2","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"2","tipusActivitat":"Portfoli","activitat":"Portfoli 2","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"3","tipusActivitat":"Grammar","activitat":"...","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"3","tipusActivitat":"Test","activitat":"Test 3","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"3","tipusActivitat":"Portfoli","activitat":"Portfoli 3","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"4","tipusActivitat":"Grammar","activitat":"...","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"4","tipusActivitat":"Test","activitat":"Test 4","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"4","tipusActivitat":"Portfoli","activitat":"Portfoli 4","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"5","tipusActivitat":"Grammar","activitat":"...","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"5","tipusActivitat":"Test","activitat":"Test 5","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"5","tipusActivitat":"Portfoli","activitat":"Portfoli 5","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"6","tipusActivitat":"Grammar","activitat":"...","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"6","tipusActivitat":"Test","activitat":"Test 6","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"},
-                                {"bloc":"6","tipusActivitat":"Portfoli","activitat":"Portfoli 6","dataLliurament":"","teRetroaccio":"true","dataQualificacio":"","ponderacioNota":"10"}
+                                {"bloc":"1","tipusActivitat":"lectura","activitat":"Nom de l'activitata","dataLliurament":"","dataQualificacio":"","ponderacioNota":"10"}
                             ],
                             "mandatory": true
+                
                         },
                         "nivellProvaCert": {
                             "type": "string",
@@ -349,3 +323,4 @@
         }
     ]
 }
+

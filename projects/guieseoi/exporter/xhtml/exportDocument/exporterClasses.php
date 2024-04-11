@@ -1,6 +1,7 @@
 <?php
 /**
- * projecte: ptfploe
+ * *** MARJOSE: TO BE UPDATED ... it should be guieseoi ***
+ * projecte: ptfploe ... it should be guieseoi ***
  * exportDocument: clase que renderiza grupos de elementos
  */
 if (!defined('DOKU_INC')) die();

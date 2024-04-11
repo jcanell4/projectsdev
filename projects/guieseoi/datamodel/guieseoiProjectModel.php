@@ -7,6 +7,8 @@
 if (!defined("DOKU_INC")) die();
 
 //class guieseoiProjectModel extends MoodleContentFilesProjectModel {
+//class ptceProjectModel extends MoodleUniqueContentFilesProjectModel {
+//Perquè heretar d'una classe o altre?
 class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {    
     public function __construct($persistenceEngine)  {
         parent::__construct($persistenceEngine);
@@ -105,6 +107,7 @@ class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {
                 $dadesBlocs = $data["entradaDadesBlocs"];
             }
             foreach ($dadesBlocs as $item) {
+
                 $ret[] = [
                     "title"=>sprintf("%s bloc%d - inici", $data["codi_modul"], $item["id"]),
                     "date"=>$item["inici"]
@@ -113,6 +116,7 @@ class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {
                     "title"=>sprintf("%s bloc%d - fi", $data["codi_modul"], $item['id']),
                     "date"=>$item["final"]
                 ];
+
             }
         }
         return $ret;

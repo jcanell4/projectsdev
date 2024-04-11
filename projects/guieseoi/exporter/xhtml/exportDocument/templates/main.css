@@ -217,15 +217,79 @@ hr {
 
 /* Section 2 */
 
+
+
 .section2 {
   margin: 33px 0 37px 0;
 }
 
-/* Section 3 */
 
+
+
+/* Section 3 */
+/* blocs del mòdul*/
+.section3 {
+  margin: 34px 0 56px 0;
+}
+
+.section3 h2 {
+  font-size: 19px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 42px;
+}
+
+.section3 .own_table {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.section3 .own_table th {
+  height: 40px;
+  width: 145px;
+  background-color: #be176b;
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: bold;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.section3 .own_table td {
+  height: 40px;
+  background-color: #f9c9e1;
+  font-size: 12px;
+  color: #be176b;
+}
+
+/* Adjust the width of the 3rd, 4th, and 5th cells of every row */
+.section3 .own_table td:nth-child(2),
+.section3 .own_table td:nth-child(3) {
+            min-width: 80px;
+        }
+        
+/* Adjust the width of the 3rd, 4th, and 5th cells of every row */
+
+.section3 .own_table td:nth-child(3),
+.section3 .own_table td:nth-child(4),
+.section3 .own_table td:nth-child(4) {
+    min-width: 100px; 
+}
+
+
+.section3 .own_table th:first-of-type {
+  width: 65px;
+  font-size: 12px;
+  padding: 0 5px;
+}
+
+.section3 p span {
+  font-weight: 700;
+  color: #be176b;
+}
 
 /*** Itinerari recomanat */
-
+/*
 .section3 {
   margin: 34px 0 26px 0;
 }
@@ -339,7 +403,7 @@ hr {
   line-height: 1.14;
   text-align: center;
 }
-
+*/
 /*** Distribució horària */
 
 .section3 .requadre_distribucio {

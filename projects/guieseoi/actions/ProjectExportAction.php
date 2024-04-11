@@ -103,7 +103,10 @@ class ProjectExportAction  extends ProjectAction{
      *                  Si se indica el metaDataSubSet, es que espera encontrar una estructura
      */
     private function getProjectConfigFile($filename, $rama, $metaDataSubSet=NULL) {
-        $config = @file_get_contents(self::PATH_CONFIG_FILE.$filename);
+        //Canviat per poder treballar a projectsdev
+        //$config = @file_get_contents(self::PATH_CONFIG_FILE.$filename);
+        $config = @file_get_contents(WikiIocPluginController::getProjectTypeDir($this->projectType) . "metadata/config/" . $filename);
+  
         if ($config != FALSE) {
             $array = json_decode($config, true);
             if ($metaDataSubSet) {

@@ -71,10 +71,9 @@
             },
             "config":{
                 "options":[
-                    {"value":"mòdul"},
-                    {"value":"alemany"},
-                    {"value":"anglès"},
-                    {"value":"català"}
+                    {"value":"Alemany"},
+                    {"value":"Anglès"},
+                    {"value":"Català"}
                 ]
             }
         },
@@ -141,6 +140,15 @@
             },
             "group": "dadesBasiques"
         },
+        "dataPaf11": {
+            "label": "Data Bloc1 (dataPaf11)",
+            "n_columns": 4,
+            "group": "actualitzables",
+            "props": {
+                "required": true,
+                "title": "Indiqueu la data dataPaf11"
+            }
+        },
         "dataCertA2": {
             "label": "Data de la Certificació A1 (dataCertA2)",
             "n_columns": 4,
@@ -195,8 +203,8 @@
                 "title": "Indiqueu la data en que es realitzarà la prova de Certificació"
             }
         },
-        "taulaDadesBlocs": {
-            "label": "Blocs (taulaDadesBlocs)",
+        "dadesBlocs": {
+            "label": "Blocs (dadesBlocs)",
             "n_columns": 12,
             "type": "editableObject",
             "group": "dadesBasiques",
@@ -207,34 +215,29 @@
             },
             "config": {
                 "actions": {
-                    "set_multiple_default_rows": "Definir el nombre d'Unitats Formatives del mòdul",
-                    "remove_rows": "Eliminar les Unitats Formatives seleccionades",
-                    "add_default_row_before": "Afegir unitat abans de la fila seleccionada"
+                    "set_multiple_default_rows": "Definir el nombre de blocs del mòdul",
+                    "remove_rows": "Eliminar els blocs seleccionats",
+                    "add_default_row_before": "Afegir un bloc abans de la fila seleccionada"
                 },
                 "fields": {
                     "id":{
                         "type": "number"
                     },
                     "inici": {
-                        "type": "number"
+                        "type": "date"
                     },
                     "final": {
-                        "type": "number"
+                        "type": "date"
                     },
                     "nom": {
-                        "type": "string"
-                    },
-                    "objectius":{
-                        "type": "string"
-                    },
-                    "continguts": {
                         "type": "string"
                     }
                 },
                 "layout": [
                     {
                         "defaultCell": {
-                            "width": "5%"
+                            "width": "21%",
+                          "editable": true
                         },
                         "cells": [
                             {
@@ -257,19 +260,8 @@
                                 "field": "nom",
                                 "width":"30%",
                                 "editable": true
-                            },
-                            {
-                                "name": "objectius",
-                                "field": "objectius",
-                                "width":"30%",
-                                "editable": true
-                            },
-                            {
-                                "name": "continguts",
-                                "field": "continguts",
-                                "width":"30%",
-                                "editable": true
                             }
+                            
                         ]
                     }
                 ]
@@ -348,89 +340,101 @@
             }
         },
         "calendariNoCert": {
-            "label": "Temporització -No Certificat- (calendariNoCert)",
+            "label": "Calendari -No Certificat- (calendariNoCert)",
             "n_columns": 12,
             "type": "editableObject",
-            "group": "actualitzables",
-            "n_rows": 9,
+            "group": "avaluacio",
+            "n_rows": 17,
             "props": {
                 "data-editable-element": "table",
-                "title": "Períodes en que seqüenciem el procés d'aprenentatge (apartats, projectes, pràctiques, etc.) i detall de la temporització"
+                "title": "Calendari -No Certificat-."
             },
             "config": {
                 "actions": {
-                    "add_default_row": {"condition":{"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}},"label":"Afegir període"},
-                    "remove_rows": {"condition":{"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}},"label":"Eliminar períodes seleccionats"},
-                    "add_default_row_before": {"condition":{"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}},"label":"Afegir període abans de la fila seleccionada"}
+                    "add_default_row": "Afegir bloc",
+                    "remove_rows": "Eliminar els elements seleccionades",
+                    "add_default_row_before": "Afegir un element abans de la fila seleccionada"
                 },
-                "fields": {
+                "fields": {                 
                     "bloc": {
-                        "type": "number"
+                        "type": "number",
+                        "mandatory": true,
+                        "default": "{#_INC(1)_#}"
                     },
-                    "tipus activitat": {
-                        "type": "string"
+                                
+                    "tipusActivitat": {
+                        "type": "select",
+                        "options": ["lectura", "vídeo", "autoavaluació", "fòrum", "qüestionari", "exercicis", "activitat", "valoració"]
                     },
                     "activitat": {
-                        "type": "string"
+                        "type": "string",
+                        "default": "nom de l'activitat",
+                        "mandatory": true
                     },
-                    "data lliurament": {
-                        "type": "date"
+                    "dataLliurament": {
+                        "type": "date",
+                        "default":"{#_TODAY()_#}",
+                        "mandatory": true
+                    },                 
+                    "dataQualificacio": {
+                        "type": "date",
+                        "default":"{#_TODAY()_#}",
+                        "mandatory": true
                     },
-                    "teRetroaccio": {
-                      "type": "boolean"
-                    },
-                    "data qualificacio": {
-                      "type": "date"
-                    },
-                    "ponderacio nota": {
-                      "type": "number"
-                    }
+                    "ponderacioNota": {
+                        "type": "number",
+                        "default": "0",
+                        "mandatory": true
+                    }                                            
                 },
                 "layout": [
                     {
                         "defaultCell": {
-                            "width" : "5%"
+                            "width": "5%"
                         },
                         "cells": [
                             {
                                 "name": "bloc",
-                                "field": "bloc"
+                                "field": "bloc",
+                                "width":"5%",
+                                "editable": true
                             },
                             {
-                                "name": "tipus activitat",
-                                "field": "tipus activitat",
-                                "editable": {"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}}
+                                "name": "tipus Activitat",
+                                "field": "tipusActivitat",
+                                "width":"20%",
+                                "editable": true
                             },
                             {
                                 "name": "activitat",
                                 "field": "activitat",
-                                "editable": {"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}}
-                            },
-                            {
-                                "name": "data lliurament",
-                                "field": "data lliurament",
-                                "editable": {"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}}
-                            },
-                            {
-                                "name": "teRetroaccio",
-                                "field": "teRetroaccio",
-                                "editable": {"class":"ValidateByExactMatch", "data":{"responses":[{"key":"dataFromMix", "value":true}], "deniedResponse":true}}
-                            },
-                            {
-                                "name": "data qualificacio",
-                                "field": "data qualificacio",
+                                "width":"35%",
                                 "editable": true
                             },
                             {
-                                "name": "ponderacio nota",
-                                "field": "ponderacio nota",
+                                "name": "data Lliurament",
+                                "field": "dataLliurament",
+                                "width":"10%",
+                                "editable": true
+                            },
+                            {
+                                "name": "data Qualificacio",
+                                "field": "dataQualificacio",
+                                "width":"10%",
+                                "editable": true
+                            },                            
+                            {
+                                "name": "ponderacio Nota %",
+                                "field": "ponderacioNota",
+                                "width":"10%",
                                 "editable": true
                             }
+
                         ]
                     }
                 ]
             }
-        },
+        }, 
         "autor": {
             "type": "amd",
             "label": "Autor (autor)",
