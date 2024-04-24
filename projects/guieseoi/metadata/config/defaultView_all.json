@@ -6,9 +6,9 @@
         "rows_row": 1
     },
     "groups": {
-        "main": {
+        "dadesBasiques": {
             "parent": "",
-            "label":"Dades de llarga durada",
+            "label":"Dades bàsiques",
             "n_columns": 12,
             "n_rows": 1,
             "frame": true,
@@ -27,10 +27,10 @@
                 "collapsable":true,
                 "collapsed":false
             }
-        },        
+        },
         "actualitzables": {
             "parent": "",
-            "label": "Dades actualitzables semestralment",
+            "label": "Dades actualitzables",
             "n_columns": 12,
             "n_rows": 1,
             "frame": true,
@@ -53,8 +53,8 @@
     "fields": {
         "codi_modul": {
             "label": "Codi del mòdul (codi_modul)",
-            "n_columns": 3,
-            "group": "main",
+            "n_columns": 5,
+            "group": "dadesBasiques",
             "props": {
                 "required": true,
                 "title": "indiqueu el codi del mòdul"
@@ -62,9 +62,9 @@
         },
         "modul": {
             "type":"select",
-            "n_columns": 2,
+            "n_columns": 5,
             "label": "Mòdul (modul)",
-            "group": "main",
+            "group": "dadesBasiques",
             "props": {
                 "required": true,
                 "title": "indiqueu el nom del mòdul."
@@ -79,8 +79,8 @@
         },
         "moodleCourseId": {
             "label": "Identificador del curs a moodle (moodleCourseId)",
-            "n_columns": 3,
-            "group": "main",
+            "n_columns": 5,
+            "group": "dadesBasiques",
             "props": {
                 "required": true,
                 "title": "Indiqueu el valor de l'identificador del curs de moodle al que pertany aquesta guia de l'estudiant. Si no hi poseu un valor correcte no es pujaran les dades al calendari."
@@ -89,8 +89,8 @@
         "isCert": {
             "type":"checkbox",
             "label": "És Certificat? (isCert)",
-            "n_columns": 2,
-            "group": "main",
+            "n_columns": 5,
+            "group": "dadesBasiques",
             "props": {
                 "required": true,
                 "title": "Indiqueu si té prova de Certificació"
@@ -98,45 +98,19 @@
         },
         "durada": {
             "label": "Durada (durada)",
-            "n_columns": 3,
-            "group": "main",
+            "n_columns": 5,
+            "group": "dadesBasiques",
             "props": {
                 "required": true,
                 "readonly": true,
                 "title": "Aquest és un camp calculat. No l'heu d'introduir"
             }
         },
-        "nivellcurs": {
-            "type":"select",
-            "n_columns": 2,
-            "label": "Nivell (nivellcurs)",
-            "group": "main",
-            "props": {
-                "required": true,
-                "title": "Trieu el nivell"
-            },
-            "config":{
-                "options":[
-                    {"value":"1A"},
-                    {"value":"1B"},
-                    {"value":"2A"},
-                    {"value":"2B"},
-                    {"value":"3A"},
-                    {"value":"3B"},
-                    {"value":"4A"},
-                    {"value":"4B"},
-                    {"value":"5A"},
-                    {"value":"5B"},
-                    {"value":"C1"},
-                    {"value":"C2"}
-                ]
-            }
-        },
         "dedicacio": {
-            "type": "hidden",
+            "type":"number",
             "label": "Dedicació setmanal (dedicacio)",
             "n_columns": 3,
-            "group": "main",
+            "group": "dadesBasiques",
             "props": {
                 "required": true,
                 "title": "indiqueu el número d'hores de dedicació setmanal"
@@ -145,51 +119,37 @@
         "coordinador": {
             "label": "Coordinador (coordinador)",
             "n_columns": 4,
-            "group": "main",
+            "group": "dadesBasiques",
             "props": {
                 "required": true,
                 "title": "Indiqueu el nom del coordinador"
             }
         },
-        "descripcio": {
-            "type": "hidden"
-        },
-        
-        "dadesBlocs": {
-          "label": "Blocs d'estudi (dadesBlocs)",
-          "n_columns": 12,
-          "type": "editableObject",
-          "group": "main",
-          "n_rows": 6,
-          "props": {
-            "data-editable-element": "table",
-            "title": "Detalleu els blocs d'aprenentatge"
-          },
-          "config": {
-            "actions": {
-                    "add_default_row": "Afegir bloc",
-                    "remove_rows": "Eliminar els blocs seleccionats",
-                    "add_default_row_before": "Afegir un bloc abans de la fila seleccionada"
-            },
-            "fields": {
-              "id": {
-                "type": "number"                    
-              },
-              "inici": {
-                "type": "date"
-              },
-              "final": {
-                "type": "date",
-                "default":"{#_TODAY()_#}"
-              },
-              "nom": {
-                "type": "string"
-              }
+        "nivell": {
+            "type":"select",
+            "n_columns": 6,
+            "label": "indiqueu nivell(nivell)",
+            "group": "dadesBasiques",
+            "props": {
+                "required": false,
+                "title": "Indiqueu el nivell: 1A, 1B, 2A, 2B, 3A, 3B, 4A, 4B, 5A, 5B, C1, C2"
             }
-          }
-        },   
-        
-        
+        },
+        "descripcio": {
+            "n_columns": 12,
+            "label": "Aquest mòdul ... (descripcio)",
+            "type": "textarea",
+            "n_rows": 6,
+            "props": {
+                "data-editable-element": "textarea",
+                "title": "continua la frase per descriure breument el contingut del mòdul"
+            },
+            "config": {
+                "renderable": true,
+                "mode": "xhtml"
+            },
+            "group": "dadesBasiques"
+        },
         "dataPaf11": {
             "label": "Data Bloc1 (dataPaf11)",
             "n_columns": 4,
@@ -253,7 +213,70 @@
                 "title": "Indiqueu la data en que es realitzarà la prova de Certificació"
             }
         },
-  
+        "dadesBlocs": {
+            "label": "Blocs (dadesBlocs)",
+            "n_columns": 12,
+            "type": "editableObject",
+            "group": "dadesBasiques",
+            "n_rows": 8,
+            "props": {
+                "data-editable-element": "table",
+                "title": "Detalleu les dades de cada bloc. No cal que ompliu les hores dels blocs detallades en aquest mòdul, es calculen automàticament."
+            },
+            "config": {
+                "actions": {
+                    "set_multiple_default_rows": "Definir el nombre de blocs del mòdul",
+                    "remove_rows": "Eliminar els blocs seleccionats",
+                    "add_default_row_before": "Afegir un bloc abans de la fila seleccionada"
+                },
+                "fields": {
+                    "id":{
+                        "type": "number"
+                    },
+                    "inici": {
+                        "type": "date"
+                    },
+                    "final": {
+                        "type": "date"
+                    },
+                    "nom": {
+                        "type": "string"
+                    }
+                },
+                "layout": [
+                    {
+                        "defaultCell": {
+                            "width": "21%",
+                          "editable": true
+                        },
+                        "cells": [
+                            {
+                                "name": "id",
+                                "field": "id",
+                                "editable": false
+                            },
+                            {
+                                "name": "inici",
+                                "field": "inici",
+                                "editable": true
+                            },
+                            {
+                                "name": "final",
+                                "field": "final",
+                                "editable": true
+                            },
+                            {
+                                "name": "nom",
+                                "field": "nom",
+                                "width":"30%",
+                                "editable": true
+                            }
+                            
+                        ]
+                    }
+                ]
+            }
+        },
         "notaMinima": {
             "label": "Nota mínima (notaMinima)",
             "n_columns":2,
@@ -322,14 +345,14 @@
             "n_columns": 12,
             "type": "editableObject",
             "group": "actualitzables",
-            "n_rows": 8,
+            "n_rows": 17,
             "props": {
                 "data-editable-element": "table",
                 "title": "Calendari -No Certificat-."
             },
             "config": {
                 "actions": {
-                    "add_default_row": "Afegir activitat",
+                    "add_default_row": "Afegir bloc",
                     "remove_rows": "Eliminar els elements seleccionades",
                     "add_default_row_before": "Afegir un element abans de la fila seleccionada"
                 },

@@ -749,6 +749,77 @@ hr {
   margin-top: -10px;
 }
 
+
+/* Section 41 */
+
+.section41 {
+  margin: 34px 0 56px 0;
+}
+
+.section41 h2 {
+  font-size: 19px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 42px;
+}
+
+.section41 .own_table th {
+  height: 40px;
+  width: 245px;
+  background-color: #be176b;
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: bold;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.section41 .own_table td {
+  height: 40px;
+  width: 245px;
+  background-color: #f9c9e1;
+  font-size: 13px;
+  color: #be176b;
+}
+
+.section41 .own_table th[rowspan] {
+  width: 65px;
+  font-size: 12px;
+}
+
+/* Section 42 */
+
+.section42 {
+  margin: 34px 0 56px 0;
+}
+
+.section42 h2 {
+  font-size: 19px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 42px;
+}
+
+
+.section42 h3 {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 32px;
+}
+
+.section42 p {
+  font-size: 16px;
+  text-align: left;
+
+}
+.section42 ul {
+    padding-left: 22px;
+}
+.section42 li {
+    font-size: 15px;
+    text-align: left;
+}
 /* Section 5 */
 
 .section5 {

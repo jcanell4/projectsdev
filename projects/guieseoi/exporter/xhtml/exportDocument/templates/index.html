@@ -18,10 +18,7 @@
 <!-- Capçalera -->
 <header class="main_header">
     <div class="own_container">
-        <h1>{##codi_modul##} {##modul##}<WIOCCL:IF condition="true=={##isCert##}"> - Amb certificació </WIOCCL:IF></h1>
-    </div>
-    <div class="rflexjust"><!-- he canviat el pt.htmlper guiaeoi.tpl -->
-        <a href="pt_sencer/guiaeoi.tpl" target="_blank"><img src="img/programacio.png" title="Consulteu aquí la GUIA completa"/></a>
+        <h1>{##modul##}<WIOCCL:IF condition="true=={##isCert##}"> - Amb certificació </WIOCCL:IF></h1>
     </div>
 </header>
 <!-- /Capçalera -->
@@ -62,7 +59,7 @@
 <section class="section section2">
   <hr>
   <div class="own_container">
-    Aquest mòdul {##codi_modul##} {##modul##} {##descripcio##}
+    {##modul##} {##nivell##}  és un mòdul {##durada##}
   </div>
 </section>
 <!-- /Secció 2 -->
@@ -73,7 +70,7 @@
 <section class="section section3">
   <div class="own_container">  
       <h2>Què faràs en aquest mòdul?</h2>
-        <p>Els objectius i els continguts dels blocs són els següents:</p>
+        <p>El curs s'estructura en blocs que són els següents:</p>
         <br/>
         <table class="own_table">
           <tr>
@@ -81,17 +78,14 @@
             <th>Inici</th>
             <th>Final</th>
             <th>Nom</th>
-            <th>Objectius</th>
-            <th>Continguts</th>
           </tr>
-            <WIOCCL:FOREACH var="itemCal" array="{##taulaDadesBlocs##}">   
+            <WIOCCL:FOREACH var="itemCal" array="{##dadesBlocs##}">   
             <tr>
               <th>{##itemCal[id]##}</th>
               <td>{#_DATE("{##itemCal[inici]##}")_#}</td>
               <td>{#_DATE("{##itemCal[final]##}")_#}</td>
               <td>{##itemCal[nom]##}</td>
-              <td>{##itemCal[objectius]##}</td>
-              <td>{##itemCal[continguts]##}</td>
+
             </tr>
             </WIOCCL:FOREACH>
         </table>
@@ -100,43 +94,25 @@
 
 
 <!-- Secció 4 -->
-<section class="section section4">
+<section class="section section41">
   <div class="own_container">
-    <h2>Eines d'aprenentatge</h2>
-    <div class="requadre_eines">
-<WIOCCL:FOREACH var="item" array="{##einesAprenentatge##}" counter="ind">
-<WIOCCL:IF condition="{##ind##}==0">
-      <div class="puzzle puzzle_dalt" id="puzzle{#_SUMA({##ind##},1)_#}">
-</WIOCCL:IF>
-<WIOCCL:IF condition="{##ind##}\>0&&{##ind##}\<{#_SUBS({#_ARRAY_LENGTH({##einesAprenentatge##})_#},1)_#}">
-      <div class="puzzle puzzle_mig" id="puzzle{#_SUMA({##ind##},1)_#}">
-</WIOCCL:IF>
-<WIOCCL:IF condition="{##ind##}=={#_SUBS({#_ARRAY_LENGTH({##einesAprenentatge##})_#},1)_#}">
-      <div class="puzzle puzzle_baix" id="puzzle{#_SUMA({##ind##},1)_#}">
-</WIOCCL:IF>
-<WIOCCL:IF condition="{##item[tipus]##}==''lectura''">
-        <div class="section4_icona" id="llibre_icona"></div>
-</WIOCCL:IF>
-<WIOCCL:IF condition="{##item[tipus]##}==''autoavaluació''">
-        <div class="section4_icona" id="exercicis_icona"></div>
-</WIOCCL:IF>
-<WIOCCL:IF condition="{##item[tipus]##}==''fòrum''">
-        <div class="section4_icona" id="forum_icona"></div>
-</WIOCCL:IF>
-<WIOCCL:IF condition="{##item[tipus]##}==''qüestionari''">
-        <div class="section4_icona" id="questionari_icona"></div>
-</WIOCCL:IF>
-<WIOCCL:IF condition="{##item[tipus]##}==''exercicis''">
-        <div class="section4_icona" id="avaluacio_icona"></div>
-</WIOCCL:IF>
-        <div>
-          <h4>{##item[eina]##}</h4>
-          <h3>{##item[opcionalitat]##} <WIOCCL:IF condition="{##item[puntuable]##}==true">(puntua a l'AC)</WIOCCL:IF></h3>
-        </div>
-      </div>
-</WIOCCL:FOREACH>
-    </div>
-  </div>
+    <h2>Com seràs avaluat</h2>
+    <p>L'avaluació del curs es fa de manera continuada, a través dels tests i les tasques de producció oral i escrita proposades durant el curs. </p>
+    <p>Per aprovar el curs, és necessari obtenir un resultat final del {##notaMinima##} % o superior.</p>
+    <p>El càlcul del resultat final es fa atenent a la següent ponderació:</p>
+        <table class="own_table">
+          <tr>
+            <th>NOM</th>
+            <th>PONDERACIÓ</th>
+
+          </tr>
+            <WIOCCL:FOREACH var="itemAvalNoCert" array="{##comSerasAvaluatNoCert##}">   
+            <tr>
+              <th>{##itemAvalNoCert[nom]##}</th>
+              <td>{##itemAvalNoCert[ponderacio]##}</td>
+            </tr>
+            </WIOCCL:FOREACH>
+        </table>
 </section>
 <!-- /Secció 4 -->
 
@@ -148,387 +124,32 @@
     <h2>Calendari d’estudi</h2>
     <table class="own_table">
       <tr>
-        <th colspan="2"></th>
-        <th>Inici</th>
-        <th>Final</th>
+        <th></th>
+        <th>Tipus</th>
+        <th>Activitat</th>
+        <th>Lliurament</th>
+        <th>qualificació</th> 
+        <th>ponderació</th> 
       </tr>
-<WIOCCL:FOREACH var="itemU" array="{##taulaDadesUnitats##}">
-<WIOCCL:SUBSET subsetvar="filtered" array="{##calendari##}" arrayitem="itemsub" filter="{##itemsub[unitat]##}=={##itemU[unitat]##}">     
-<WIOCCL:FOREACH  var="itemCal" array="{##filtered##}" counter="cont">
+<WIOCCL:FOREACH var="itemCal" array="{##calendariNoCert##}">
+
       <tr>
-<WIOCCL:IF condition="{##cont##}==0">
-        <th rowspan="{#_ARRAY_LENGTH({##filtered##})_#}">U{##itemCal[unitat]##}</th>
-</WIOCCL:IF>
-        <td>{#_UPPERCASE("{##itemCal[tipus període]##}", 1)_#} {##itemCal[període]##}</td>
-        <td>{#_DATE("{##itemCal[inici]##}")_#}</td>
-        <td>{#_DATE("{##itemCal[final]##}")_#}</td>
+        <td>{##itemCal[bloc]##}</td>
+        <td>{##itemCal[tipusActivitat]##}</td>
+        <td>{##itemCal[activitat]##}</td>
+        <td>{#_DATE("{##itemCal[dataLliurament]##}")_#}</td>
+        <td>{#_DATE("{##itemCal[dataQualificacio]##}")_#}</td>
+        <td>{##itemCal[ponderacioNota]##}</td>
       </tr>
-</WIOCCL:FOREACH>
-</WIOCCL:SUBSET>
+
 </WIOCCL:FOREACH>
     </table>
   </div>
 </section>
 <!-- /Secció 5 -->
 
-<!-- Secció 6 -->
-<section class="section section6">
-  <div class="own_container">
-    <h2>Avaluació contínua (AC)</h2>
-    <p>És recomanable fer <strong>les activitats d’avaluació contínua</strong>, ja que la nota incideix en la qualificació final (<a href="#qualificacio">consulteu l'apartat de qualificació</a>).</p>
-    <br/>
-    <p>Els lliuraments s'han de realitzar dins dels terminis fixats i són improrrogables.</p>
-    <br/>
-    <p>L'AC inclou <span>{#_COUNTDISTINCT({##datesAC##},[''id''])_#} lliuraments</span>, distribuïts de la següent manera:</p>
-    <table class="own_table">
-      <tr>
-        <th colspan="2"></th>
-        <th>Publicació</th>
-        <th>Lliurament</th>
-<WIOCCL:IF condition="{##hiHaSolucioPerAC##}==true">
-        <th>Solució</th>
-</WIOCCL:IF>
-        <th>Qualificació</th>
-      </tr>
-<WIOCCL:SET var="previousEAC" type="literal" value="">
-<WIOCCL:REPARSE>
-<WIOCCL:FOREACH var="itemAC" array="{##datesAC##}">
-<WIOCCL:CHOOSE id="selector" lExpression="{##previousEAC##}" rExpression="{##itemAC[id]##}">
-<WIOCCL:CASE forchoose="selector" relation="==">
-<WIOCCL:RESET var="rowSpan_{##itemAC[id]##}" value="{#_SUMA({##rowSpan_{##itemAC[id]##}##},1)_#}"></WIOCCL:RESET>
-      <tr>
-        <th>U{##itemAC[unitat]##}</th>
-      </tr>
-</WIOCCL:CASE>
-<WIOCCL:DEFAULTCASE forchoose="selector">
-      <tr>
-        <th>U{##itemAC[unitat]##}</th>
-        <th rowspan="{%%rowSpan_{##itemAC[id]##}%%}">{##itemAC[id]##}</th>
-        <td rowspan="{%%rowSpan_{##itemAC[id]##}%%}">{#_DATE("{##itemAC[enunciat]##}")_#}</td>
-        <td rowspan="{%%rowSpan_{##itemAC[id]##}%%}">{#_DATE("{##itemAC[lliurament]##}")_#}</td>
-<WIOCCL:IF condition="{##hiHaSolucioPerAC##}==true">
-        <td rowspan="{%%rowSpan_{##itemAC[id]##}%%}"><WIOCCL:IF condition="{##itemAC[hiHaSolucio]##}==true">{#_DATE("{##itemAC[solució]##}")_#}</WIOCCL:IF><WIOCCL:IF condition="{##itemAC[hiHaSolucio]##}==false">--</WIOCCL:IF></td>
-</WIOCCL:IF>
-        <td rowspan="{%%rowSpan_{##itemAC[id]##}%%}">{#_DATE("{##itemAC[qualificació]##}")_#}</td>
-      </tr>
-<WIOCCL:RESET var="rowSpan_{##itemAC[id]##}" value="1"></WIOCCL:RESET>
-</WIOCCL:DEFAULTCASE>
-<WIOCCL:RESET var="previousEAC" type="literal" value="{##itemAC[id]##}"></WIOCCL:RESET>
-</WIOCCL:CHOOSE>
-</WIOCCL:FOREACH>
-</WIOCCL:REPARSE>
-</WIOCCL:SET>
-    </table>
-    <p>Compte! El sistema no permet fer lliuraments passades les <span>23.55 h</span> de la data prevista.</p>
-<WIOCCL:IF condition="{#_ARRAY_LENGTH({##datesJT##})_#}\>0">
-    <hr>
-    <br/>
-    <h2>Jornades tècniques</h2>
-    <p>Aquest <WIOCCL:IF condition="''m&ograve;dul''=={##tipusBlocModul##}">mòdul</WIOCCL:IF><WIOCCL:IF condition="''m&ograve;dul''!={##tipusBlocModul##}">bloc</WIOCCL:IF> requereix l'assistència a les jornades tècniques (JT). A continuació se'n detallen les dates importants:</p>
-    <table class="own_table">
-      <tr>
-        <th>Inscripció</th>
-        <th>Llista provisional</th>
-        <th>Llista definitiva</th>
-        <th>Data de la JT</th>
-        <th>Qualificació</th>
-      </tr>
-<WIOCCL:FOREACH var="item" array="{##datesJT##}">
-      <tr>
-        <td>{#_DATE("{##item[inscripció]##}")_#}</td>
-        <td>{#_DATE("{##item[llista provisional]##}")_#}</td>
-        <td>{#_DATE("{##item[llista definitiva]##}")_#}</td>
-        <td>{#_DATE("{##item[data JT]##}")_#}</td>
-        <td>{#_DATE("{##item[qualificació]##}")_#}</td>
-      </tr>
-</WIOCCL:FOREACH>            
-    </table>
-<WIOCCL:IF condition="true=={##hiHaRecuperacioPerJT##}">
-    <p>Si suspeneu la JT, podreu fer la recuperació. Les dates importants són:</p>
-    <table class="own_table">
-      <!--caption>recuperacions</caption-->
-      <tr>
-        <th>Inscripció</th>
-        <th>Llista provisional</th>
-        <th>Llista definitiva</th>
-        <th>Data de la JT</th>
-        <th>Qualificació</th>
-      </tr>
-<WIOCCL:FOREACH var="item" array="{##datesJT##}">
-      <tr>
-        <td>{#_DATE("{##item[inscripció recuperació]##}")_#}</td>
-        <td>{#_DATE("{##item[llista provisional recuperació]##}")_#}</td>
-        <td>{#_DATE("{##item[llista definitiva recuperació]##}")_#}</td>
-        <td>{#_DATE("{##item[data JT recuperació]##}")_#}</td>
-        <td>{#_DATE("{##item[qualificació recuperació]##}")_#}</td>
-      </tr>
-</WIOCCL:FOREACH>            
-    </table>
-<WIOCCL:IF condition="{##notaMinimaJT##}\>0">
-    <p>Es necessita una nota mínima de {##notaMinimaJT##},00 sense arrodoniment per poder aplicar el càlcul de la <span title"Qualificació Final">QF</span>.</p>
-</WIOCCL:IF>
-</WIOCCL:IF>
-</WIOCCL:IF>
-<WIOCCL:IF condition="{#_ARRAY_LENGTH({##datesEAF##})_#}\>0">
-    <hr>
-    <br/>
-    <h2>Exercicis d'avaluació final (EAF)</h2>
-<WIOCCL:SET var="numEafs" type="literal" value="{#_COUNTDISTINCT({##datesEAF##},[''id''])_#}">
-    <p>Aquest <WIOCCL:IF condition="''m&ograve;dul''=={##tipusBlocModul##}">mòdul</WIOCCL:IF><WIOCCL:IF condition="''m&ograve;dul''!={##tipusBlocModul##}">bloc</WIOCCL:IF> també inclou <span> {##numEafs##} EAF</span> <WIOCCL:IF condition="1=={##numEafs##}">distribuït</WIOCCL:IF><WIOCCL:IF condition="1\>{##numEafs##}">distribuïts</WIOCCL:IF> de la següent manera:</p>
-</WIOCCL:SET>
-    <table class="own_table">
-      <tr>
-        <th colspan="2"></th>
-        <th>Publicació</th>
-        <th>Lliurament</th>
-<WIOCCL:IF condition="{##hiHaSolucioPerEAF##}==true">
-        <th>Solució</th>
-</WIOCCL:IF> 
-        <th>Qualificació</th>
-      </tr>
-<WIOCCL:SET var="previousEAF" type="literal" value="">
-<WIOCCL:REPARSE>
-<WIOCCL:FOREACH var="item" array="{##datesEAF##}">
-<WIOCCL:CHOOSE id="selector" lExpression="{##previousEAF##}" rExpression="{##item[id]##}">
-<WIOCCL:CASE forchoose="selector" relation="==">
-<WIOCCL:RESET var="rowSpan_{##item[id]##}" value="{#_SUMA({##rowSpan_{##item[id]##}##},1)_#}"></WIOCCL:RESET>
-      <tr>
-        <th>U{##item[unitat]##}</th>
-      </tr>
-</WIOCCL:CASE>
-<WIOCCL:DEFAULTCASE forchoose="selector">
-      <tr>
-        <th>U{##item[unitat]##}</th>
-        <th rowspan="{%%rowSpan_{##item[id]##}%%}">{##item[id]##}</th>
-        <td rowspan="{%%rowSpan_{##item[id]##}%%}">{#_DATE("{##item[enunciat]##}")_#}</td>
-        <td rowspan="{%%rowSpan_{##item[id]##}%%}">{#_DATE("{##item[lliurament]##}")_#}</td>
-<WIOCCL:IF condition="{##hiHaSolucioPerEAF##}==true">
-        <td rowspan="{%%rowSpan_{##item[id]##}%%}"><WIOCCL:IF condition="{##item[hiHaSolucio]##}==true">{#_DATE("{##item[solució]##}")_#}</WIOCCL:IF><WIOCCL:IF condition="{##item[hiHaSolucio]##}==false">--</WIOCCL:IF></td>
-</WIOCCL:IF>
-        <td rowspan="{%%rowSpan_{##item[id]##}%%}">{#_DATE("{##item[qualificació]##}")_#}</td>
-      </tr>
-<WIOCCL:RESET var="rowSpan_{##item[id]##}" value="1"></WIOCCL:RESET>
-</WIOCCL:DEFAULTCASE>
-<WIOCCL:RESET var="previousEAF" type="literal" value="{##item[id]##}"></WIOCCL:RESET>
-</WIOCCL:CHOOSE>
-</WIOCCL:FOREACH>
-</WIOCCL:REPARSE>
-</WIOCCL:SET>
-    </table>
-<WIOCCL:IF condition="{##notaMinimaEAF##}\>0">
-    <p>Es necessita una nota mínima de {##notaMinimaEAF##},00 sense arrodoniment per poder aplicar el càlcul de la <span title"Qualificació Final">QF</span>.</p>
-</WIOCCL:IF>
-    <p>És obligatori fer els EAF durant el semestre i lliurar-los abans de la data límit indicada a la taula.</p>
-    <br/>
-    <p>Si suspeneu algun EAF diposeu de la recuperació:</p>
-    <table class="own_table">
-      <!--caption>recuperacions</caption-->
-      <tr>
-        <th colspan="2"></th>
- <WIOCCL:IF condition="{##hiHaEnunciatRecuperacioPerEAF##}==true">
-        <th>Publicació</th>
-</WIOCCL:IF>
-        <th>Lliurament</th>
-<WIOCCL:IF condition="{##hiHaSolucioPerEAF##}==true">
-        <th>Solució</th>
-</WIOCCL:IF>
-        <th>Qualificació</th>
-      </tr>
-<WIOCCL:SET var="previousEAF" type="literal" value="">
-<WIOCCL:REPARSE>
-<WIOCCL:FOREACH var="item" array="{##datesEAF##}">
-<WIOCCL:CHOOSE id="selector" lExpression="{##previousEAF##}" rExpression="{##item[id]##}">
-<WIOCCL:CASE forchoose="selector" relation="==">
-<WIOCCL:RESET var="rowSpan_{##item[id]##}" value="{#_SUMA({##rowSpan_{##item[id]##}##},1)_#}"></WIOCCL:RESET>
-      <tr>
-        <th>U{##item[unitat]##}</th>
-      </tr>
-</WIOCCL:CASE>
-<WIOCCL:DEFAULTCASE forchoose="selector">
-      <tr>
-        <th>U{##item[unitat]##}</th>
-        <th rowspan="{%%rowSpan_{##item[id]##}%%}">{##item[id]##}</th>
-<WIOCCL:IF condition="{##hiHaEnunciatRecuperacioPerEAF##}==true">		
-<WIOCCL:IF condition="{##item[hiHaEnunciatRecuperacio]##}==true">
-        <td rowspan="{%%rowSpan_{##item[id]##}%%}">{#_DATE("{##item[enunciat recuperació]##}")_#}</td>
-</WIOCCL:IF>
-<WIOCCL:IF condition="{##item[hiHaEnunciatRecuperacio]##}==false">
-         <td rowspan="{%%rowSpan_{##item[id]##}%%}">--</td>
-</WIOCCL:IF>
-</WIOCCL:IF>
-        <td rowspan="{%%rowSpan_{##item[id]##}%%}">{#_DATE("{##item[lliurament recuperació]##}")_#}</td>
-<WIOCCL:IF condition="{##hiHaSolucioPerEAF##}==true">
-        <td rowspan="{%%rowSpan_{##item[id]##}%%}"><WIOCCL:IF condition="{##item[hiHaSolucio]##}==true">{#_DATE("{##item[solució recuperació]##}")_#}</WIOCCL:IF><WIOCCL:IF condition="{##item[hiHaSolucio]##}==false">--</WIOCCL:IF></td>
-</WIOCCL:IF>
-        <td rowspan="{%%rowSpan_{##item[id]##}%%}">{#_DATE("{##item[qualificació recuperació]##}")_#}</td>
-      </tr>
-<WIOCCL:RESET var="rowSpan_{##item[id]##}" value="1"></WIOCCL:RESET>
-</WIOCCL:DEFAULTCASE>
-<WIOCCL:RESET var="previousEAF" type="literal" value="{##item[id]##}"></WIOCCL:RESET>
-</WIOCCL:CHOOSE>
-</WIOCCL:FOREACH>
-</WIOCCL:REPARSE>
-</WIOCCL:SET>
-    </table>
-    <p>És obligatori fer els EAF durant el semestre i lliurar-los abans de la data límit indicada a la taula.</p>
-</WIOCCL:IF>
-  </div>
-</section>
-<!-- /Secció 6 -->
 
 <hr>
-
-<!-- Secció 7 -->
-<section class="section section7">
-  <div class="own_container">
-    <h2>Prova final (PAF)</h2>
-    <div class="panell_pafs" title="La data i hora de la PAF es comunicarà a Tutoria">
-      <div class="paf_1">
-        <h3>PAF 1</h3>
-        <div class="section7_icona" id="paf-1-icona"></div>
-        <h3>{#_DATE("{##dataPaf11##}")_#}<WIOCCL:IF condition="!{#_IS_STR_EMPTY(''{##dataPaf12##}'')_#}&&''{##dataPaf12##}''!=''01/01/1970''"><br/>o<br/>{#_DATE("{##dataPaf12##}")_#}</WIOCCL:IF></h3>
-        <p>Qualificacions:</p>
-        <p>{#_DATE("{##dataQualificacioPaf1##}")_#}</p>
-        <div class="horizontal_separator"></div>
-      </div>
-      <div class="vertical_separator"></div>
-      <div class="paf_2">
-        <h3>PAF 2</h3>
-        <div class="section7_icona" id="paf-2-icona"></div>
-        <h3>{#_DATE("{##dataPaf21##}")_#}<WIOCCL:IF condition="!{#_IS_STR_EMPTY(''{##dataPaf22##}'')_#}&&''{##dataPaf22##}''!=''01/01/1970''"><br/>o<br/>{#_DATE("{##dataPaf22##}")_#}</WIOCCL:IF></h3>
-        <p>Qualificacions:</p>
-        <p>{#_DATE("{##dataQualificacioPaf2##}")_#}</p>
-        <div class="horizontal_separator"></div>
-      </div>
-    </div>
-    <p>Per poder tenir en compte la qualificació de l’AC, s’ha d’aconseguir a la PAF una qualificació mínima de <span>{##notaMinimaPAF##},00</span> sense cap arrodoniment (PAF 1 o PAF 2).</p>
-    <br/>
-    <p>Disposeu de més informació sobre les convocatòries al <a target="_blank" href="guiaeoi_sencer/guiaeoi.html">pla de treball complet</a>.</p>
-  </div>
-</section>
-<!-- /Secció 7 -->
-
-<hr>
-
-<!-- Secció 8 -->
-<section class="section section8">
-  <div class="own_container">
-    <h2 id="qualificacio">Qualificació</h2>
-     <div class="containerQualificacio" id="contenidorQualificacio">
-
-    </div>
-    <script type="text/javascript"> 
-(function(){
-<WIOCCL:SET var="nbloc" type="map" value="{##tipusBlocModul##}" map="{''m&ograve;dul'':0,''1r. bloc'':1,''2n. bloc'':2,''3r. bloc'':3}">
-    var dataArray1 = [
-<WIOCCL:FOREACH var="itemUf" array="{##taulaDadesUF##}" filter="{##itemUf[bloc]##}=={##nbloc##}">
-                      [
-                        {
-                          title :"UF{##itemUf[unitat formativa]##}",
-                          name :"UF{##itemUf[unitat formativa]##}",
-                          percent: 0
-                        },
-<WIOCCL:SET var="sum_ponderacio" type="literal" value="{#_ARRAY_GET_SUM({##dadesQualificacioUFs##},''ponderació'', ''unitat formativa'', ''{##itemUf[unitat formativa]##}'')_#}">
-<WIOCCL:FOREACH var="item" array="{##dadesQualificacioUFs##}" filter="{##item[unitat formativa]##}=={##itemUf[unitat formativa]##}">
-                       { 
-                          title :"{##item[descripció qualificació]##}",
-                          name :"{##item[abreviació qualificació]##}",
-                          percent: "{#_GET_PERCENT({##sum_ponderacio##}, {##item[ponderació]##})_#}"
-                        },
-</WIOCCL:FOREACH>
-</WIOCCL:SET>
-                      ],
-</WIOCCL:FOREACH>
-                      [
-                        {
-                          title :"FINAL",
-                          name :"FINAL",
-                          percent: 0
-                        },
-<WIOCCL:SET var="sum_ponderacio" type="literal" value="{#_ARRAY_GET_SUM({##taulaDadesUF##},''ponderació'')_#}">
-<WIOCCL:FOREACH var="item" array="{##taulaDadesUF##}">
-                       {
-                          title :"UF{##item[unitat formativa]##}",
-                          name :"UF{##item[unitat formativa]##}",
-                          percent: "{#_GET_PERCENT({##sum_ponderacio##}, {##item[ponderació]##})_#}"
-                        },
-</WIOCCL:FOREACH>
-</WIOCCL:SET>
-                      ]
-                    ];
-</WIOCCL:SET>
-
-
-    /*****************/
-
-    var numberOfRows = 0;
-    var numberOfCells = [];
-
-    for(var i = 0; i <= dataArray1.length - 1; i++) {
-        createPercentRow(i);
-        createTitleRow(i);
-        numberOfRows += 2;
-        numberOfCells += dataArray1[i].length;
-        }
-
-    for(var i = 0; i <= numberOfRows - 1; i++) {
-        for(var j = 0; j <= numberOfCells[i] - 1; j++) {
-          /* Creem cel·les de percentatge */
-          var newPercentCell =  document.createElement("div");
-          var newPercentContentCell =  document.createElement("span");
-          var percentCellContent = document.createTextNode(dataArray1[i][j].percent + "%");
-          document.createTextNode(dataArray1[i][j].percent + "%");
-          newPercentCell.setAttribute("class", "cellQualificacio");
-          newPercentContentCell.appendChild(percentCellContent);
-          newPercentCell.appendChild(newPercentContentCell);
-          newPercentCell.style.width = dataArray1[i][j].percent + "%";
-          document.getElementById("percent_row" + i).appendChild(newPercentCell);
-          /* Creem cel·les de títol */
-          var newTitleCell =  document.createElement("div");
-          var newTitleContentCell =  document.createElement("span");
-          var titleCellContent = document.createTextNode(dataArray1[i][j].name);
-          newTitleCell.setAttribute("class", "cellQualificacio");
-          newTitleCell.setAttribute("title", dataArray1[i][j].title);
-          newTitleContentCell.appendChild(titleCellContent);
-          newTitleCell.appendChild(newTitleContentCell);
-          newTitleCell.style.width = dataArray1[i][j].percent + "%";
-          document.getElementById("title_row" + i).appendChild(newTitleCell);
-        }
-    }
-
-    var allCells = document.querySelectorAll(".cellQualificacio");
-
-    for(var k = 0; k <= allCells.length - 1; k++) {
-
-      if (parseInt(allCells[k].style.width) > 0 && parseInt(allCells[k].style.width) < 25) {
-            allCells[k].classList.add("smallCell");
-            var textHolder = allCells[k].innerHTML;
-          }
-    }
-
-    /* Funcions per crear files */
-
-    function createPercentRow(index) {
-        var newPercentRow =  document.createElement("div");
-        newPercentRow.setAttribute("class", "rowQualificacio");
-        newPercentRow.setAttribute("id", "percent_row" + index);
-        document.getElementById("contenidorQualificacio").appendChild(newPercentRow);
-    }
-
-    function createTitleRow(index) {
-        var newTitleRow =  document.createElement("div");
-        newTitleRow.setAttribute("class", "rowQualificacio");
-        newTitleRow.setAttribute("id", "title_row" + index);
-        document.getElementById("contenidorQualificacio").appendChild(newTitleRow);
-    }
-})();
-    </script>
-    <a target="_blank" href="guiaeoi_sencer/guiaeoi.html">Consulteu aquí la guia completa</a>
-  </div>
-</section>
-<!-- /Secció 8 -->
-
-
 
 
 

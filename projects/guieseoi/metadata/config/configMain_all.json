@@ -85,18 +85,20 @@
                             "default": "0",
                             "mandatory": true
                         }
+                        
                     }
                 },
                 "defCalendariNoCert": {
                     "type": "objectArray",
                     "typeDef":"entradaCalendariNoCert"
-                },
+                },                                                
                 "entradaDadesBlocs": {
                     "type": "object",
                     "keys": {
                         "id": {
                             "type": "number",
-                            "mandatory": true
+                            "mandatory": true,
+                            "default": "{#_INC(1)_#}"
                         },
                         "inici": {
                             "type": "date",
@@ -104,18 +106,21 @@
                         },
                         "final": {
                             "type": "date",
+                            "default":"{#_TODAY()_#}",
                             "mandatory": true
                         },
                         "nom": {
                             "type": "string",
-                            "mandatory": true
+                            "mandatory": true,
+                            "default": "nom del bloc"
                         }
+
                     }
                 },
                 "defTaulaDadesBlocs": {
                     "type": "objectArray",
                     "typeDef":"entradaDadesBlocs"
-                },  
+                },                                                
                 "dadesguieseoi": {
                     "type": "object",
                     "keys": {
@@ -133,11 +138,6 @@
                             "type": "string",
                             "default": "Anglès",
                             "mandatory": true
-                        },
-                        "nivellcurs": {
-                            "type": "string",
-                            "mandatory": false,
-                            "default":"Indiqueu nivell"
                         },
                         "isCert":{
                             "type":"boolean",
@@ -256,15 +256,16 @@
                         "dadesBlocs": {
                             "type": "defTaulaDadesBlocs",
                             "default":[
-                                {"id":"1","inici":"","final":"","nom":"Per definir"},
-                                {"id":"2","inici":"","final":"","nom":"Per definir"},   
-                                {"id":"3","inici":"","final":"","nom":"Per definir"},   
-                                {"id":"4","inici":"","final":"","nom":"Per definir"},          
-                                {"id":"5","inici":"","final":"","nom":"Per definir"},          
-                                {"id":"6","inici":"","final":"","nom":"Per definir"}
+                                {"id":"Bloc 0","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 1","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 2","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 3","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 4","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 5","inici":"01/01/2000","final":"","nom":"nom del bloc"},
+                                {"id":"Bloc 6","inici":"01/01/2000","final":"","nom":"nom del bloc"}
                             ],
-                            "mandatory": true
-                        },                        
+                            "mandatory": false
+                        },
                         "notaMinima": {
                             "type": "number",
                             "mandatory": true,
@@ -289,9 +290,15 @@
                         "calendariNoCert": {
                             "type": "defCalendariNoCert",
                             "default":[
-                                {"bloc":"1","tipusActivitat":"lectura","activitat":"nom de l'activitat","dataLliurament":"","dataQualificacio":"","ponderacioNota":"10"}
+                                {"bloc":"1","tipusActivitat":"lectura","activitat":"Nom de l'activitata","dataLliurament":"","dataQualificacio":"","ponderacioNota":"10"}
                             ],
                             "mandatory": true
+                
+                        },
+                        "nivell": {
+                            "type": "string",
+                            "mandatory": false,
+                            "default":"Indiqueu A2, B1, B2, C1 O C2"
                         },
                         "autor": {
                             "type": "string",

@@ -6,39 +6,6 @@
         "rows_row": 1
     },
     "groups": {
-        "dadesBasiques": {
-            "parent": "",
-            "label":"Dades bàsiques",
-            "n_columns": 12,
-            "n_rows": 1,
-            "frame": true,
-            "config":{
-                "collapsable":true,
-                "collapsed":true
-            }
-        },
-        "avaluacio": {
-            "parent": "",
-            "label": "Sobre l'avaluació",
-            "n_columns": 12,
-            "n_rows": 1,
-            "frame": true,
-            "config":{
-                "collapsable":true,
-                "collapsed":true
-            }
-        },
-        "actualitzables": {
-            "parent": "",
-            "label": "Dades actualitzables",
-            "n_columns": 12,
-            "n_rows": 1,
-            "frame": true,
-            "config":{
-                "collapsable":true,
-                "collapsed":true
-            }
-        },
         "authorship": {
             "parent": "",
             "label": "Autoria",
@@ -46,7 +13,7 @@
             "frame": true,
             "config":{
                 "collapsable":true,
-                "collapsed":false
+                "collapsed":true
             }
         }
     },
@@ -72,10 +39,10 @@
         "descripcio": {
             "type": "hidden"
         },
-        "coordinador": {
-            "type": "hidden"
-        },
         "dadesBlocs": {
+            "type": "hidden"
+        },        
+        "coordinador": {
             "type": "hidden"
         },
         "notaMinima": {
@@ -161,10 +128,10 @@
         "semestre": {
             "type": "hidden"
         },
-        "nivellProvaCert": {
+        "nivellcurs": {
             "type": "hidden"
         },
-        "dataBloc11": {
+        "dataPaf11": {
             "type": "hidden"
         },
         "dataCertA2": {

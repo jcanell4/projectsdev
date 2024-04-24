@@ -6,43 +6,21 @@
         "rows_row": 1
     },
     "groups": {
+        "authorship": {
+            "parent": "",
+            "label": "Autoria",
+            "n_columns": 12,
+            "frame": true,
+            "config":{
+                "collapsable":true,
+                "collapsed":false
+            }
+        },        
         "dadesBasiques": {
             "parent": "",
             "label":"Dades bàsiques",
             "n_columns": 12,
             "n_rows": 1,
-            "frame": true,
-            "config":{
-                "collapsable":true,
-                "collapsed":false
-            }
-        },
-        "avaluacio": {
-            "parent": "",
-            "label": "Sobre l'avaluació",
-            "n_columns": 12,
-            "n_rows": 1,
-            "frame": true,
-            "config":{
-                "collapsable":true,
-                "collapsed":false
-            }
-        },
-        "actualitzables": {
-            "parent": "",
-            "label": "Dades actualitzables",
-            "n_columns": 12,
-            "n_rows": 1,
-            "frame": true,
-            "config":{
-                "collapsable":true,
-                "collapsed":false
-            }
-        },
-        "authorship": {
-            "parent": "",
-            "label": "Autoria",
-            "n_columns": 12,
             "frame": true,
             "config":{
                 "collapsable":true,
@@ -62,7 +40,7 @@
         },
         "modul": {
             "type":"select",
-            "n_columns": 3,
+            "n_columns": 2,
             "label": "Mòdul (modul)",
             "group": "dadesBasiques",
             "props": {
@@ -77,9 +55,12 @@
                 ]
             }
         },
+        "moodleCourseId": {
+            "type": "hidden"
+        },
         "durada": {
             "type":"select",
-            "n_columns": 3,
+            "n_columns": 2,
             "label": "Durada (durada)",
             "group": "dadesBasiques",
             "props": {
@@ -92,14 +73,44 @@
                     {"value":"anual"}
                 ]
             }
-        },
-        "moodleCourseId": {
+        },        
+        "nivellcurs": {
+            "type":"select",
             "n_columns": 2,
-            "label": "Identificador del curs a moodle (moodleCourseId)",
+            "label": "Nivell (nivellcurs)",
             "group": "dadesBasiques",
             "props": {
                 "required": true,
-                "title": "Indiqueu el valor de l'identificador del curs de moodle al que pertany aquesta guia de l'estudiant. Si no hi poseu un valor correcte no es pujaran les dades al calendari."
+                "title": "Trieu el nivell"
+            },
+            "config":{
+                "options":[
+                    {"value":"1A"},
+                    {"value":"1B"},
+                    {"value":"2A"},
+                    {"value":"2B"},
+                    {"value":"3A"},
+                    {"value":"3B"},
+                    {"value":"4A"},
+                    {"value":"4B"},
+                    {"value":"5A"},
+                    {"value":"5B"},
+                    {"value":"C1"},
+                    {"value":"C2"}
+                ]
+            }
+        },
+        "dedicacio": {
+            "type": "hidden"
+        },
+        "isCert": {
+            "type":"checkbox",
+            "label": "(isCert)",
+            "n_columns": 3,
+            "group": "dadesBasiques",
+            "props": {
+                "required": true,
+                "title": "És Certificat"
             }
         },
         "coordinador": {
@@ -110,131 +121,72 @@
                 "required": true,
                 "title": "Indiqueu el nom del coordinador"
             }
-        },
+        },   
         "descripcio": {
-            "n_columns": 12,
-            "label": "Aquest mòdul ... (descripcio)",
-            "type": "textarea",
-            "n_rows": 6,
-            "props": {
-                "data-editable-element": "textarea",
-                "title": "continua la frase per descriure breument el contingut del mòdul"
-            },
-            "config": {
-                "renderable": true,
-                "mode": "xhtml"
-            },
-            "group": "dadesBasiques"
-        },
-        "dadesBlocs": {
             "type": "hidden"
         },
+        "dadesBlocs": {
+          "label": "Blocs d'estudi (dadesBlocs)",
+          "n_columns": 12,
+          "type": "editableObject",
+          "group": "dadesBasiques",
+          "n_rows": 6,
+          "props": {
+            "data-editable-element": "table",
+            "title": "Detalleu els blocs d'aprenentatge"
+          },
+          "config": {
+            "actions": {
+                    "add_default_row": "Afegir bloc",
+                    "remove_rows": "Eliminar els blocs seleccionats",
+                    "add_default_row_before": "Afegir un bloc abans de la fila seleccionada"
+            },
+            "fields": {
+              "id": {
+                "type": "number"                    
+              },
+              "inici": {
+                "type": "date",
+                "default":"{#_TODAY()_#}"
+              },
+              "final": {
+                "type": "date",
+                "default":"{#_TODAY()_#}"
+              },
+              "nom": {
+                "type": "string"
+              }
+            }
+          }
+        },        
         "notaMinima": {
             "label": "Nota mínima (notaMinima)",
-            "n_columns":3,
-            "group": "avaluacio",
+            "n_columns":2,
+            "group": "dadesBasiques",
             "props": {
                 "required": true,
                 "title": "Indiqueu la nota mínima que cal treure"
             }
         },
-        "isCert": {
-            "type":"checkbox",
-            "label": "(isCert)",
-            "n_columns": 3,
-            "group": "avaluacio",
-            "props": {
-                "required": true,
-                "title": "És Certificat"
-            }
-        },
-        "nivellProvaCert": {
-            "type":"select",
-            "n_columns": 6,
-            "label": "Nivell prova Certificat (nivellProvaCert)",
-            "group": "avaluacio",
-            "props": {
-                "required": false,
-                "title": "Indiqueu el Nivell de la prova de Certificat: A2, B1, B2, C1 O C2"
-            },
-            "config":{
-                "options":[
-                    {"value":"A2"},
-                    {"value":"B1"},
-                    {"value":"B2"},
-                    {"value":"C1"},
-                    {"value":"C2"}
-                ]
-            }
-        },
         "comSerasAvaluatNoCert": {
-            "label": "Com seràs avaluat -No Certificat- (comSerasAvaluatNoCert)",
-            "n_columns": 12,
-            "type": "editableObject",
-            "group": "avaluacio",
-            "n_rows": 5,
-            "props": {
-                "data-editable-element": "table",
-                "title": "Com seràs avaluat -No Certificat-."
-            },
-            "config": {
-                "actions": {
-                    "add_default_row": "Afegir bloc",
-                    "remove_rows": "Eliminar els elements seleccionades",
-                    "add_default_row_before": "Afegir un element abans de la fila seleccionada"
-                },
-                "fields": {
-                    "nom": {
-                        "type": "string"
-                    },
-                    "ponderacio":{
-                        "type": "decimal"
-                    }
-                },
-                "layout": [
-                    {
-                        "defaultCell": {
-                            "width": "5%"
-                        },
-                        "cells": [
-                            {
-                                "name": "nom",
-                                "field": "nom",
-                                "width":"70%",
-                                "editable": true
-                            },
-                            {
-                                "name": "ponderació %",
-                                "field": "ponderacio",
-                                "width":"30%",
-                                "editable": true
-                            }
-                        ]
-                    }
-                ]
-            }
-        },          
+            "type": "hidden"
+        },         
         "comSerasAvaluatCert": {
-            "label": "Com seràs avaluat -Certificat- (comSerasAvaluatCert)",
-            "n_columns": 12,
-            "group": "avaluacio",
-            "props": {
-                "title": "Com seràs avaluat -Certificat-"
-            }
+            "type": "hidden"
         },
         "calendariNoCert": {
             "label": "Calendari -No Certificat- (calendariNoCert)",
             "n_columns": 12,
             "type": "editableObject",
-            "group": "actualitzables",
-            "n_rows": 17,
+            "group": "dadesBasiques",
+            "n_rows": 8,
             "props": {
                 "data-editable-element": "table",
                 "title": "Calendari -No Certificat-."
             },
             "config": {
                 "actions": {
-                    "add_default_row": "Afegir bloc",
+                    "add_default_row": "Afegir activitat",
                     "remove_rows": "Eliminar els elements seleccionades",
                     "add_default_row_before": "Afegir un element abans de la fila seleccionada"
                 },
@@ -243,7 +195,7 @@
                         "type": "number",
                         "mandatory": true,
                         "default": "{#_INC(1)_#}"
-                    },
+                    },                                
                     "tipusActivitat": {
                         "type": "select",
                         "options": ["lectura", "vídeo", "autoavaluació", "fòrum", "qüestionari", "exercicis", "activitat", "valoració"]
@@ -387,9 +339,8 @@
         },
         "semestre": {
             "type": "hidden"
-        },
-        
-        "dataBloc11": {
+        },        
+        "dataPaf11": {
             "type": "hidden"
         },
         "dataCertA2": {
