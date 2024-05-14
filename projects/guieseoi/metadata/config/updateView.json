@@ -33,7 +33,7 @@
         "durada": {
             "type": "hidden"
         },
-        "dedicacio": {
+        "duradaHores": {
             "type": "hidden"
         },
         "descripcio": {
@@ -43,6 +43,9 @@
             "type": "hidden"
         },        
         "coordinador": {
+            "type": "hidden"
+        },       
+        "colaboradors": {
             "type": "hidden"
         },
         "notaMinima": {
@@ -131,13 +134,13 @@
         "nivellcurs": {
             "type": "hidden"
         },
-        "dataPaf11": {
+        "dataProvaNoCert": {
             "type": "hidden"
         },
-        "dataCertA2": {
+        "dataProvaCert": {
             "type": "hidden"
         },
-        "dataCertB1": {
+        "dataProvaOral": {
             "type": "hidden"
         },
         "dataCertB2": {

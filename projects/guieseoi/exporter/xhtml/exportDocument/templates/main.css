@@ -217,79 +217,15 @@ hr {
 
 /* Section 2 */
 
-
-
 .section2 {
   margin: 33px 0 37px 0;
 }
 
-
-
-
 /* Section 3 */
-/* blocs del mòdul*/
-.section3 {
-  margin: 34px 0 56px 0;
-}
 
-.section3 h2 {
-  font-size: 19px;
-  font-weight: bold;
-  text-align: center;
-  padding-bottom: 42px;
-}
-
-.section3 .own_table {
-  margin-top: 32px;
-  margin-bottom: 32px;
-}
-
-.section3 .own_table th {
-  height: 40px;
-  width: 145px;
-  background-color: #be176b;
-  color: #ffffff;
-  font-size: 10.5px;
-  font-weight: bold;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-}
-
-.section3 .own_table td {
-  height: 40px;
-  background-color: #f9c9e1;
-  font-size: 12px;
-  color: #be176b;
-}
-
-/* Adjust the width of the 3rd, 4th, and 5th cells of every row */
-.section3 .own_table td:nth-child(2),
-.section3 .own_table td:nth-child(3) {
-            min-width: 80px;
-        }
-        
-/* Adjust the width of the 3rd, 4th, and 5th cells of every row */
-
-.section3 .own_table td:nth-child(3),
-.section3 .own_table td:nth-child(4),
-.section3 .own_table td:nth-child(4) {
-    min-width: 100px; 
-}
-
-
-.section3 .own_table th:first-of-type {
-  width: 65px;
-  font-size: 12px;
-  padding: 0 5px;
-}
-
-.section3 p span {
-  font-weight: 700;
-  color: #be176b;
-}
 
 /*** Itinerari recomanat */
-/*
+
 .section3 {
   margin: 34px 0 26px 0;
 }
@@ -403,7 +339,7 @@ hr {
   line-height: 1.14;
   text-align: center;
 }
-*/
+
 /*** Distribució horària */
 
 .section3 .requadre_distribucio {
@@ -749,77 +685,6 @@ hr {
   margin-top: -10px;
 }
 
-
-/* Section 41 */
-
-.section41 {
-  margin: 34px 0 56px 0;
-}
-
-.section41 h2 {
-  font-size: 19px;
-  font-weight: bold;
-  text-align: center;
-  padding-bottom: 42px;
-}
-
-.section41 .own_table th {
-  height: 40px;
-  width: 245px;
-  background-color: #be176b;
-  color: #ffffff;
-  font-size: 10.5px;
-  font-weight: bold;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-}
-
-.section41 .own_table td {
-  height: 40px;
-  width: 245px;
-  background-color: #f9c9e1;
-  font-size: 13px;
-  color: #be176b;
-}
-
-.section41 .own_table th[rowspan] {
-  width: 65px;
-  font-size: 12px;
-}
-
-/* Section 42 */
-
-.section42 {
-  margin: 34px 0 56px 0;
-}
-
-.section42 h2 {
-  font-size: 19px;
-  font-weight: bold;
-  text-align: center;
-  padding-bottom: 42px;
-}
-
-
-.section42 h3 {
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  padding-bottom: 32px;
-}
-
-.section42 p {
-  font-size: 16px;
-  text-align: left;
-
-}
-.section42 ul {
-    padding-left: 22px;
-}
-.section42 li {
-    font-size: 15px;
-    text-align: left;
-}
 /* Section 5 */
 
 .section5 {
@@ -856,7 +721,45 @@ hr {
   width: 65px;
   font-size: 12px;
 }
+/* Section 51 */
 
+.section51 {
+  margin: 34px 0 56px 0;
+}
+
+.section51 h2 {
+  font-size: 19px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 42px;
+}
+
+.section51 .own_table th {
+  height: 40px;
+  width: 145px;
+  background-color: #be176b;
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: bold;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.section51 .own_table td {
+  height: 40px;
+  width: 145px;
+  background-color: #f9c9e1;
+  font-size: 13px;
+  color: #be176b;
+}
+.section51 .own_table {
+    margin: 0 auto; /* Establece los márgenes izquierdo y derecho a 'auto', lo que centra horizontalmente la tabla */
+    width: 50%; /* Puedes ajustar este valor según tus preferencias */
+}
+.section51 .own_table th[rowspan] {
+  width: 65px;
+  font-size: 12px;
+}
 /* Section 6 */
 
 .section6 {
@@ -917,7 +820,7 @@ hr {
   padding-bottom: 42px;
 }
 
-.section7 .panell_pafs {
+.section7 .panell_proves {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -934,6 +837,14 @@ hr {
 
 }
 
+.section7 .panell_proves .cert{
+  margin: 0 auto;
+  width: 80%;
+}
+.provaOral h3{
+  text-transform: none;
+}
+
 .section7_icona {
   background-size: contain;
   background-repeat: no-repeat;
@@ -942,15 +853,15 @@ hr {
   margin: 0 auto 10px auto;
 }
 
-#paf-1-icona {
-  background-image: url("img/paf-1-icona.svg");
+#pv-icona {
+  background-image: url("img/pv-icona.svg");
 }
 
-#paf-2-icona {
-  background-image: url("img/paf-2-icona.svg");
+#paf-icona {
+  background-image: url("img/paf-icona.svg");
 }
 
-.section7 .panell_pafs p {
+.section7 .panell_proves p {
   font-size: 14px;
 }
 
@@ -1688,12 +1599,12 @@ hr {
     padding-bottom: 62px;
   }
 
-  .section7 .panell_pafs {
+  .section7 .panell_proves {
     width: 570px;
     margin-bottom: 28px;
   }
 
-  .section7 .panell_pafs p {
+  .section7 .panell_proves p {
     font-size: 15px;
   }
 

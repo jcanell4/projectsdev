@@ -53,7 +53,7 @@
     "fields": {
         "codi_modul": {
             "label": "Codi del mòdul (codi_modul)",
-            "n_columns": 3,
+            "n_columns": 4,
             "group": "main",
             "props": {
                 "required": true,
@@ -62,7 +62,7 @@
         },
         "modul": {
             "type":"select",
-            "n_columns": 2,
+            "n_columns": 4,
             "label": "Mòdul (modul)",
             "group": "main",
             "props": {
@@ -77,19 +77,11 @@
                 ]
             }
         },
-        "moodleCourseId": {
-            "label": "Identificador del curs a moodle (moodleCourseId)",
-            "n_columns": 3,
-            "group": "main",
-            "props": {
-                "required": true,
-                "title": "Indiqueu el valor de l'identificador del curs de moodle al que pertany aquesta guia de l'estudiant. Si no hi poseu un valor correcte no es pujaran les dades al calendari."
-            }
-        },
+
         "isCert": {
             "type":"checkbox",
             "label": "És Certificat? (isCert)",
-            "n_columns": 2,
+            "n_columns": 4,
             "group": "main",
             "props": {
                 "required": true,
@@ -98,7 +90,7 @@
         },
         "durada": {
             "label": "Durada (durada)",
-            "n_columns": 3,
+            "n_columns": 6,
             "group": "main",
             "props": {
                 "required": true,
@@ -108,7 +100,7 @@
         },
         "nivellcurs": {
             "type":"select",
-            "n_columns": 2,
+            "n_columns": 6,
             "label": "Nivell (nivellcurs)",
             "group": "main",
             "props": {
@@ -117,38 +109,49 @@
             },
             "config":{
                 "options":[
-                    {"value":"1A"},
-                    {"value":"1B"},
-                    {"value":"2A"},
-                    {"value":"2B"},
-                    {"value":"3A"},
-                    {"value":"3B"},
-                    {"value":"4A"},
-                    {"value":"4B"},
-                    {"value":"5A"},
-                    {"value":"5B"},
+                    {"value":"A1.1 (1A)"},
+                    {"value":"A1.2 (1B)"},
+                    {"value":"A2.1 (2A)"},
+                    {"value":"A2.2 (2B)"},
+                    {"value":"B1.1 (3A)"},
+                    {"value":"B1.2 (3B)"},
+                    {"value":"B2.1a (4A)"},
+                    {"value":"B2.1b (4B)"},
+                    {"value":"B2.2a (5A)"},
+                    {"value":"B2.2b (5B)"},
                     {"value":"C1"},
                     {"value":"C2"}
                 ]
             }
         },
-        "dedicacio": {
-            "type": "hidden",
-            "label": "Dedicació setmanal (dedicacio)",
+        "duradaHores": {
+            "type": "hidden"
+        },
+        "coordinador": {
+            "label": "Coordinador (coordinador)",
             "n_columns": 3,
             "group": "main",
             "props": {
                 "required": true,
-                "title": "indiqueu el número d'hores de dedicació setmanal"
+                "title": "Indiqueu el nom del coordinador"
             }
         },
-        "coordinador": {
-            "label": "Coordinador (coordinador)",
-            "n_columns": 4,
+        "colaboradors": {
+            "label": "colaboradors (colaboradors)",
+            "n_columns": 3,
             "group": "main",
             "props": {
                 "required": true,
-                "title": "Indiqueu el nom del coordinador"
+                "title": "Si n'hi ha, indiqueu el nom dels col·laboradors."
+            }
+        },        
+        "moodleCourseId": {
+            "label": "Identificador del curs a moodle (moodleCourseId)",
+            "n_columns": 6,
+            "group": "main",
+            "props": {
+                "required": true,
+                "title": "Indiqueu el valor de l'identificador del curs de moodle al que pertany aquesta guia de l'estudiant. Si no hi poseu un valor correcte no es pujaran les dades al calendari."
             }
         },
         "descripcio": {
@@ -185,73 +188,81 @@
               "nom": {
                 "type": "string"
               }
-            }
+            },
+            "layout": [
+              {
+                "defaultCell": {
+                  "width" : "15%"
+                },
+                "cells": [
+                  {
+                    "name": "id",
+                    "field": "id",
+                    "editable": true
+                  },
+
+                  {
+                    "name": "inici",
+                    "field": "inici",
+                    "editable": false
+                  },
+
+                  {
+                    "name": "final",
+                    "field": "final",
+                     "width":"55%",
+                    "editable": false
+                  },
+
+                  {
+                    "name": "nom",
+                    "field": "nom",
+                    "editable": true
+                  }
+                ]
+              }
+            ]
           }
         },   
-        
-        
-        "dataPaf11": {
-            "label": "Data Bloc1 (dataPaf11)",
+             
+        "dataProvaNoCert": {
+            "label": "Data prova final(ProvaNoCert)",
             "n_columns": 4,
             "group": "actualitzables",
             "props": {
                 "required": true,
-                "title": "Indiqueu la data dataPaf11"
+                "readonly": true
             }
         },
-        "dataCertA2": {
-            "label": "Data de la Certificació A1 (dataCertA2)",
+        "dataProvaCert": {
+            "label": "Data de la Certificació(ProvaCert)",
             "n_columns": 4,
             "group": "actualitzables",
             "props": {
                 "required": true,
-                "title": "Indiqueu la data en que es realitzarà la prova de Certificació A1"
+                "readonly": true
             }
         },
-        "dataCertB1": {
-            "label": "Data de la Certificació B1 (dataCertB1)",
+        "dataProvaOral": {
+            "label": "Data de la prova oral(dataProvaOral)",
             "n_columns": 4,
             "group": "actualitzables",
             "props": {
                 "required": true,
-                "title": "Indiqueu la data en que es realitzarà la prova de Certificació B1"
+                "readonly": false
             }
         },
         "dataCertB2": {
-            "label": "Data de la Certificació B2 (dataCertB2)",
-            "n_columns": 4,
-            "group": "actualitzables",
-            "props": {
-                "required": true,
-                "title": "Indiqueu la data en que es realitzarà la prova de Certificació B2"
-            }
+            "type": "hidden"
         },
         "dataCertC1": {
-            "label": "Data de la Certificació C1 (dataCertC1)",
-            "n_columns": 4,
-            "group": "actualitzables",
-            "props": {
-                "required": true,
-                "title": "Indiqueu la data en que es realitzarà la prova de Certificació C1"
-            }
+            "type": "hidden"
         },
         "dataCertC2": {
-            "label": "Data de la Certificació C2 (dataCertC2)",
-            "n_columns": 4,
-            "group": "actualitzables",
-            "props": {
-                "required": true,
-                "title": "Indiqueu la data en que es realitzarà la prova de Certificació C2"
-            }
+            "type": "hidden"
         },
         "dataCert": {
-            "label": "Data de la Certificació (dataCert)",
-            "n_columns": 4,
-            "group": "actualitzables",
-            "props": {
-                "required": true,
-                "title": "Indiqueu la data en que es realitzarà la prova de Certificació"
-            }
+            "type": "hidden"
         },
   
         "notaMinima": {

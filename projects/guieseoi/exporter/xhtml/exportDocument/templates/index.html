@@ -18,7 +18,8 @@
 <!-- Capçalera -->
 <header class="main_header">
     <div class="own_container">
-        <h1>{##modul##}<WIOCCL:IF condition="true=={##isCert##}"> - Amb certificació </WIOCCL:IF></h1>
+        <!-- marjose  <WIOCCL:IF condition="true=={##isCert##}"> - Amb certificació </WIOCCL:IF>-->
+        <h1>{##modul##} {##nivellcurs##} </h1>
     </div>
 </header>
 <!-- /Capçalera -->
@@ -37,29 +38,36 @@
 <!-- Secció 1 -->
 <section class="section section1">
   <div class="own_container">
+
     <div class="section1_container">
       <div class="section1_content_row1">
         <div class="section1_element">
           <div class="section1_icona" id="durada_icona"></div>
           <h3>Dedicació</h3>
-          <p>{##dedicacio##} hores</p>       
+          <p>{##duradaHores##} hores</p>       
         </div>
         <div class="section1_element">
           <div class="section1_icona" id="professor_icona"></div>
+          <div>
+            <WIOCCL:IF condition="!{#_IS_STR_EMPTY(''{##colaboradors##}'')_#}&&!{#_STR_CONTAINS(''nom'',''{##colaboradors##}'')_#}">          
+            <h3>Professors</h3>
+            <p>{##colaboradors##}</p>
+             </WIOCCL:IF>         
+            </div>
           <h3>Coordinador</h3>
-          <p>{##coordinador##} </p>
+          <p>{##coordinador##} </p>          
         </div>
       </div>
     </div>
   </div>
 </section>
 <!-- /Secció 1 -->
-
+  <hr>
 <!-- Secció 2 -->
 <section class="section section2">
-  <hr>
+
   <div class="own_container">
-    {##modul##} {##nivell##}  és un mòdul {##durada##}
+    {##modul##} {##nivellcurs##}  és un mòdul {##durada##}
   </div>
 </section>
 <!-- /Secció 2 -->
@@ -67,10 +75,11 @@
 <hr>
 
 <!-- Secció 3 -->
-<section class="section section3">
+<section class="section section5">
   <div class="own_container">  
-      <h2>Què faràs en aquest mòdul?</h2>
-        <p>El curs s'estructura en blocs que són els següents:</p>
+      
+      <h2>Què faràs en aquest mòdul</h2>
+        <p>El curs s'estructura en els següents blocs:</p>
         <br/>
         <table class="own_table">
           <tr>
@@ -94,17 +103,20 @@
 
 
 <!-- Secció 4 -->
-<section class="section section41">
+<section class="section section51">
   <div class="own_container">
     <h2>Com seràs avaluat</h2>
+
+    <WIOCCL:IF condition="false=={##isCert##}"> 
     <p>L'avaluació del curs es fa de manera continuada, a través dels tests i les tasques de producció oral i escrita proposades durant el curs. </p>
     <p>Per aprovar el curs, és necessari obtenir un resultat final del {##notaMinima##} % o superior.</p>
+    <br/>
     <p>El càlcul del resultat final es fa atenent a la següent ponderació:</p>
+    <br/>
         <table class="own_table">
           <tr>
             <th>NOM</th>
             <th>PONDERACIÓ</th>
-
           </tr>
             <WIOCCL:FOREACH var="itemAvalNoCert" array="{##comSerasAvaluatNoCert##}">   
             <tr>
@@ -113,6 +125,39 @@
             </tr>
             </WIOCCL:FOREACH>
         </table>
+    
+    </WIOCCL:IF>
+    
+    <WIOCCL:IF condition="true=={##isCert##}"> 
+        <p>Per superar aquest mòdul s'ha d'aprovar la prova de  
+        <WIOCCL:IF condition="{#_STR_CONTAINS(''2B'', ''{##nivellcurs##}'')_#}">
+                   <!-- 2del "''A2.2 (2B)''=={##nivellcurs##}">  {##nivellcurs##}==''B1.2 (3B)''">   -->    
+        certificat de Nivell Bàsic. És una prova telemàtica. </p> 
+        </WIOCCL:IF>   
+        <WIOCCL:IF condition="{#_STR_CONTAINS(''3B'', ''{##nivellcurs##}'')_#}">
+        certificat de Nivell Intermedi B1. És una prova presencial.</p>
+        </WIOCCL:IF> 
+        <br/>
+        <WIOCCL:IF condition="{#_STR_CONTAINS(''5B'', ''{##nivellcurs##}'')_#}">
+        certificat de Nivell Intermedi B2. És una prova presencial. </p>
+
+        <br/>
+        </WIOCCL:IF>
+        <WIOCCL:IF condition="{#_STR_CONTAINS(''2B'', ''{##nivellcurs##}'')_#}||{#_STR_CONTAINS(''3B'', ''{##nivellcurs##}'')_#}||{#_STR_CONTAINS(''5B'', ''{##nivellcurs##}'')_#}"> 
+            <p>La prova està constituïda per tasques de comprensió oral, comprensió escrita, expressió i interacció escrita, expressió i interacció oral i ús de la llengua.</p>
+            <br/>
+            <p>Cadascuna de les cinc parts que componen la prova tindrà una ponderació del 20% sobre el total de la puntuació de la prova.</p>                
+            <br/>
+            <p>Per superar la prova de certificació cal obtenir un mínim del 65% de la puntuació total i un mínim del 50% de la puntuació de cadascuna de les cinc parts.</p>      
+        </WIOCCL:IF>
+   
+        <WIOCCL:IF condition="!{#_STR_CONTAINS(''2B'', ''{##nivellcurs##}'')_#}&&!{#_STR_CONTAINS(''3B'', ''{##nivellcurs##}'')_#}&&!{#_STR_CONTAINS(''5B'', ''{##nivellcurs##}'')_#}"> 
+        </p><p>{##comSerasAvaluatCert##}</p>
+        </WIOCCL:IF>
+        <br/>
+        <!-- marjose <p>La prova final és el dia {##dataCertB2##}</p> -->
+    </WIOCCL:IF>
+    </div>
 </section>
 <!-- /Secció 4 -->
 
@@ -122,17 +167,19 @@
 <section class="section section5">
   <div class="own_container">
     <h2>Calendari d’estudi</h2>
+    
+    <WIOCCL:IF condition="false=={##isCert##}"> 
     <table class="own_table">
       <tr>
-        <th></th>
+        <th>Bloc</th>
         <th>Tipus</th>
         <th>Activitat</th>
         <th>Lliurament</th>
         <th>qualificació</th> 
         <th>ponderació</th> 
       </tr>
-<WIOCCL:FOREACH var="itemCal" array="{##calendariNoCert##}">
-
+      
+      <WIOCCL:FOREACH var="itemCal" array="{##calendariNoCert##}">
       <tr>
         <td>{##itemCal[bloc]##}</td>
         <td>{##itemCal[tipusActivitat]##}</td>
@@ -141,12 +188,81 @@
         <td>{#_DATE("{##itemCal[dataQualificacio]##}")_#}</td>
         <td>{##itemCal[ponderacioNota]##}</td>
       </tr>
-
-</WIOCCL:FOREACH>
+      </WIOCCL:FOREACH>
+      
     </table>
+    </WIOCCL:IF>    
+    
+    <WIOCCL:IF condition="true=={##isCert##}"> 
+    <table class="own_table">
+      <tr>
+        <th>Bloc</th>
+        <th>Tipus</th>
+        <th>Activitat</th> 
+        <th>Lliurament</th>
+        <th>Valoració</th>         
+      </tr>
+      <WIOCCL:FOREACH var="itemCal" array="{##calendariNoCert##}">
+      <tr>
+        <td>{##itemCal[bloc]##}</td>
+        <td>{##itemCal[tipusActivitat]##}</td>
+        <td>{##itemCal[activitat]##}</td>
+        <td>{#_DATE("{##itemCal[dataLliurament]##}")_#}</td>
+        <td>{#_DATE("{##itemCal[dataQualificacio]##}")_#}</td>
+      </tr>
+      </WIOCCL:FOREACH>
+    </table>
+    </WIOCCL:IF>
   </div>
 </section>
 <!-- /Secció 5 -->
+
+<WIOCCL:IF condition="false=={##isCert##}"> 
+<!-- Secció 7 Cert-->
+<section class="section section7">
+  <div class="own_container">
+    <h2>Proves finals</h2>
+    <div class="panell_proves">
+        <div>
+        <h3>Prova Oral</h3>
+        <div class="section7_icona" id="pv-icona"></div> 
+         <div class="provaOral">
+             <h3>{##dataProvaOral##}</h3></div>
+	<div class="horizontal_separator"></div>
+        </div>
+        <div class="vertical_separator"></div>
+        <div>
+        <h3>Prova escrita</h3>        
+        <div class="section7_icona" id="paf-icona"></div>
+        <h3>{#_DATE("{##dataProvaNoCert##}")_#}</h3>
+        <div class="horizontal_separator"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Secció 7 -->
+</WIOCCL:IF>
+
+<WIOCCL:IF condition="true=={##isCert##}"> 
+<!-- Secció 7 Cert-->
+<section class="section section7">
+  <div class="own_container">
+    <h2>Prova certificació</h2>
+    <div class="panell_proves">
+        <div class="cert">
+        <div class="section7_icona" id="pv-icona"></div>       
+        <h3>{#_DATE("{##dataProvaCert##}")_#}</h3>
+	<div class="horizontal_separator"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- /Secció 7 -->
+</WIOCCL:IF>
+
 
 
 <hr>
