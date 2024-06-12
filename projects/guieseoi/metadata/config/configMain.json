@@ -237,6 +237,16 @@
                             "mandatory": false,
                             "default":"del 01/01/2000 al 01/01/2020"
                         },
+                        "dataProvaA2": {
+                            "type": "date",
+                            "mandatory": false,
+                            "default":"01/01/2000"
+                        },
+                        "dataProvaB1": {
+                            "type": "date",
+                            "mandatory": false,
+                            "default":"01/01/2000"
+                        },
                         "dataCertB2": {
                             "type": "date",
                             "mandatory": false,

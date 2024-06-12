@@ -251,6 +251,12 @@
                 "required": true,
                 "readonly": false
             }
+        },        
+        "dataProvaA2": {
+            "type": "hidden"
+        },
+        "dataProvaB1": {
+            "type": "hidden"
         },
         "dataCertB2": {
             "type": "hidden"
