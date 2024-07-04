@@ -734,7 +734,7 @@ hr {
   padding-bottom: 42px;
 }
 
-.section51 .own_table th {
+.section51 .own_table_csa th {
   height: 40px;
   width: 145px;
   background-color: #be176b;
@@ -745,18 +745,18 @@ hr {
   text-transform: uppercase;
 }
 
-.section51 .own_table td {
+.section51 .own_table_csa td {
   height: 40px;
   width: 145px;
   background-color: #f9c9e1;
   font-size: 13px;
   color: #be176b;
 }
-.section51 .own_table {
+.section51 .own_table_csa {
     margin: 0 auto; /* Establece los márgenes izquierdo y derecho a 'auto', lo que centra horizontalmente la tabla */
     width: 50%; /* Puedes ajustar este valor según tus preferencias */
 }
-.section51 .own_table th[rowspan] {
+.section51 .own_table_csa th[rowspan] {
   width: 65px;
   font-size: 12px;
 }

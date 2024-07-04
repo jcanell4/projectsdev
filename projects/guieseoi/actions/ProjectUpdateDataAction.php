@@ -4,7 +4,7 @@ if (!defined('DOKU_INC')) die();
 class ProjectUpdateDataAction extends ViewProjectAction {
     //marjose: 
     //s'executa quan s'actualitza cada semestre. 
-    //cal actualitzar-ho amb els camps corresponents
+    //actualitzat amb els camps corresponents: calendari
     
 
     protected function runAction() {
@@ -35,17 +35,11 @@ class ProjectUpdateDataAction extends ViewProjectAction {
             if($restoreData){
                 //La primera vegada aquests camps no s'actualitzen!
                 $calendari = $response["calendari"];
-                $datesAC = $response["datesAC"];
-                $datesEAF = $response["datesEAF"];
-                $datesJT = $response["datesJT"];
             }
             if(ManagerProjectUpdateProcessor::updateAll($arraytaula, $response)){
                 if($restoreData){
                     //La primera vegada aquests camps no s'actualitzen!
                     $response["calendari"] = $calendari;
-                    $response["datesAC"] = $datesAC;
-                    $response["datesEAF"] = $datesEAF;
-                    $response["datesJT"] = $datesJT;
                 }
                 $metaData = [
                     ProjectKeys::KEY_ID_RESOURCE => $this->params[ProjectKeys::KEY_ID],

@@ -131,7 +131,7 @@
                 "title": "Si n'hi ha, indiqueu el nom dels col·laboradors."
             }
         },        
-        "descripcio": {
+        "descripcioConversa": {
             "type": "hidden"
         },
         "dadesBlocs": {
@@ -152,7 +152,7 @@
         "comSerasAvaluatCert": {
             "type": "hidden"
         },
-        "calendariNoCert": {
+        "calendari": {
             "type": "hidden"
         }, 
         "autor": {
@@ -229,16 +229,16 @@
         "dataProvaNoCert": {
             "type": "hidden"
         },
-        "dataProvaCert": {
-            "type": "hidden"
-        },
         "dataProvaOral": {
             "type": "hidden"
+        },
+        "dataProvaCert": {
+            "type": "hidden"
         },        
-        "dataProvaA2": {
+        "dataCertA2": {
             "type": "hidden"
         },
-        "dataProvaB1": {
+        "dataCertB1": {
             "type": "hidden"
         },
         "dataCertB2": {
@@ -248,9 +248,6 @@
             "type": "hidden"
         },
         "dataCertC2": {
-            "type": "hidden"
-        },
-        "dataCert": {
             "type": "hidden"
         }
     }

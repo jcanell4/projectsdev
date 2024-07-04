@@ -90,40 +90,52 @@ class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {
         $ret = array();
         $data = $this->getCurrentDataProject();
         //Per enviar dades al calendari. 
+        // Define the mapping of nivellcurs values to corresponding dataCert values
+        $mapping = array(
+            "A2.2 (2B)" => "dataCertA2",
+            "B1.2 (3B)" => "dataCertB1",
+            "B2.2b (5B)" => "dataCertB2",
+            "C1" => "dataCertC1",
+            "C2" => "dataCertC2"
+        );
         
         if($data["isCert"]){
         //Si és certificat
         //Retornem dades de proves certificació 
-            $ret[] = [
-                "title"=>sprintf("%s - Prova %s", $data["codi_modul"], $data['nivellProvaCert']),
-                "date"=>$data["dataCert"]
-            ];            
-        }else{
-            //Si no és certificat
-            //Retornem dades de entradaDadesBlocs: bloc id, tipus activitat i data de lliurament
-            if(is_string($data["entradaDadesBlocs"])){
-                $dadesBlocs = json_decode($data["entradaDadesBlocs"], true);
+            $ret = array();
+            $ret["title"] = sprintf("%s - Prova %s", $data["codi_modul"], $data['nivellcurs']);    
+           // Check if the value exists in the mapping array
+            if (array_key_exists($data['nivellcurs'], $mapping)) {
+                $ret['date'] = $$mapping[$data['nivellcurs']];
             }else{
-                $dadesBlocs = $data["entradaDadesBlocs"];
-            }
-            foreach ($dadesBlocs as $item) {
-
-                $ret[] = [
-                    "title"=>sprintf("%s bloc%d - inici", $data["codi_modul"], $item["id"]),
-                    "date"=>$item["inici"]
-                ];
-                $ret[] = [
-                    "title"=>sprintf("%s bloc%d - fi", $data["codi_modul"], $item['id']),
-                    "date"=>$item["final"]
-                ];
-
-            }
+                $ret['date'] = $data["dataProvaNoCert"];
+            }            
         }
+        //Per a tots
+        //Retornem dades de entradaDadesBlocs: bloc id, inici i final que és la data de lliurament
+        if(is_string($data["entradaDadesBlocs"])){
+            $dadesBlocs = json_decode($data["entradaDadesBlocs"], true);
+        }else{
+            $dadesBlocs = $data["entradaDadesBlocs"];
+        }
+        foreach ($dadesBlocs as $item) {
+
+            $ret[] = [
+                "title"=>sprintf("%s id%d - inici", $data["codi_modul"], $item["id"]),
+                "date"=>$item["inici"]
+            ];
+            $ret[] = [
+                "title"=>sprintf("%s id%d - fi", $data["codi_modul"], $item['id']),
+                "date"=>$item["final"]
+            ];
+
+        }
+        
         return $ret;
     }
      /* No farà res si no activem acció d'enviar calendari.
      * Però, mentrestant: enviem les dates que a nosaltres es semblen rellevants.
-     * Si després es volgués, implementariem l'acció
+     * Si després es volgués, implementariem l'acció **marjose: mirar quina acció seria
      * *
      */
     

@@ -154,9 +154,7 @@
                 "title": "Indiqueu el valor de l'identificador del curs de moodle al que pertany aquesta guia de l'estudiant. Si no hi poseu un valor correcte no es pujaran les dades al calendari."
             }
         },
-        "descripcio": {
-            "type": "hidden"
-        },
+
         
         "dadesBlocs": {
           "label": "Blocs d'estudi (dadesBlocs)",
@@ -198,25 +196,28 @@
                   {
                     "name": "id",
                     "field": "id",
+                    "width" : "5%",
                     "editable": true
                   },
 
                   {
                     "name": "inici",
                     "field": "inici",
+                    "width" : "15%",
                     "editable": false
                   },
 
                   {
                     "name": "final",
                     "field": "final",
-                     "width":"55%",
+                    "width" : "15%",
                     "editable": false
                   },
 
                   {
                     "name": "nom",
                     "field": "nom",
+                    "width" : "55%",
                     "editable": true
                   }
                 ]
@@ -234,15 +235,6 @@
                 "readonly": true
             }
         },
-        "dataProvaCert": {
-            "label": "Data de la Certificació(ProvaCert)",
-            "n_columns": 4,
-            "group": "actualitzables",
-            "props": {
-                "required": true,
-                "readonly": true
-            }
-        },
         "dataProvaOral": {
             "label": "Data de la prova oral(dataProvaOral)",
             "n_columns": 4,
@@ -251,28 +243,55 @@
                 "required": true,
                 "readonly": false
             }
-        },        
-        "dataProvaA2": {
+        },
+        "descripcioConversa": {
+            "label": "Descripció del servei de conversa (descripcioConversa)",
+            "n_columns": 12,
+            "group": "actualitzables",
+            "props": {
+                "title": "Descripció del servei de conversa"
+            }
+        },
+        "dataProvaCert": {
             "type": "hidden"
         },
-        "dataProvaB1": {
-            "type": "hidden"
+        "dataCertA2": {
+            "n_columns": 2,
+            "group": "avaluacio",
+            "props": {
+                "readonly": true
+            }
+        },
+        "dataCertB1": {
+            "n_columns": 2,
+            "group": "avaluacio",
+            "props": {
+                "readonly": true
+            }
         },
         "dataCertB2": {
-            "type": "hidden"
+            "n_columns": 2,
+            "group": "avaluacio",
+            "props": {
+                "readonly": true
+            }
         },
         "dataCertC1": {
-            "type": "hidden"
+            "n_columns": 2,
+            "group": "avaluacio",
+            "props": {
+                "readonly": true
+            }
         },
         "dataCertC2": {
-            "type": "hidden"
+            "n_columns": 2,
+            "group": "avaluacio",
+            "props": {
+                "readonly": true
+            }
         },
-        "dataCert": {
-            "type": "hidden"
-        },
-  
         "notaMinima": {
-            "label": "Nota mínima (notaMinima)",
+            "label": "notaMinima",
             "n_columns":2,
             "group": "avaluacio",
             "props": {
@@ -313,7 +332,6 @@
                             {
                                 "name": "nom",
                                 "field": "nom",
-                                "width":"70%",
                                 "editable": true
                             },
                             {
@@ -327,22 +345,17 @@
             }
         },
         "comSerasAvaluatCert": {
-            "label": "Per cursos certificats: indiqueu Com seràs avaluat -Certificat- (comSerasAvaluatCert)",
-            "n_columns": 12,
-            "group": "avaluacio",
-            "props": {
-                "title": "Com seràs avaluat -Certificat-"
-            }
+            "type": "hidden"
         },
-        "calendariNoCert": {
-            "label": "Calendari -No Certificat- (calendariNoCert)",
+        "calendari": {
+            "label": "Calendari (calendari)",
             "n_columns": 12,
             "type": "editableObject",
             "group": "actualitzables",
             "n_rows": 8,
             "props": {
                 "data-editable-element": "table",
-                "title": "Calendari -No Certificat-."
+                "title": "Calendari"
             },
             "config": {
                 "actions": {
@@ -375,12 +388,7 @@
                         "type": "date",
                         "default":"{#_TODAY()_#}",
                         "mandatory": true
-                    },
-                    "ponderacioNota": {
-                        "type": "number",
-                        "default": "0",
-                        "mandatory": true
-                    }                                            
+                    }                                           
                 },
                 "layout": [
                     {
@@ -417,14 +425,7 @@
                                 "field": "dataQualificacio",
                                 "width":"10%",
                                 "editable": true
-                            },                            
-                            {
-                                "name": "ponderacio Nota %",
-                                "field": "ponderacioNota",
-                                "width":"10%",
-                                "editable": true
                             }
-
                         ]
                     }
                 ]

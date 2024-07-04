@@ -52,7 +52,7 @@
                     "type": "objectArray",
                     "typeDef":"entradaAvaluacioNoCert"
                 },                
-                "entradaCalendariNoCert": {
+                "entradaCalendari": {
                     "type": "object",
                     "keys": {
                         "bloc": {
@@ -78,17 +78,12 @@
                             "type": "date",
                             "default":"{#_TODAY()_#}",
                             "mandatory": true
-                        },
-                        "ponderacioNota": {
-                            "type": "number",
-                            "default": "0",
-                            "mandatory": true
                         }
                     }
                 },
-                "defCalendariNoCert": {
+                "defCalendari": {
                     "type": "objectArray",
-                    "typeDef":"entradaCalendariNoCert"
+                    "typeDef":"entradaCalendari"
                 },
                 "entradaDadesBlocs": {
                     "type": "object",
@@ -203,8 +198,9 @@
                                 "readonly": true          
                             }                    
                         },                         
-                        "descripcio": {
+                        "descripcioConversa": {
                             "type": "string",
+                            "default": "Durant el curs podreu fer classes de conversa",
                             "mandatory": true
                         },
                         "coordinador": {
@@ -227,22 +223,22 @@
                             "mandatory": true,
                             "default":"01/01/2000"
                         },   
-                        "dataProvaCert": {
-                            "type": "date",
-                            "mandatory": false,
-                            "default":"01/01/2000"
-                        },
                         "dataProvaOral": {
                             "type": "string",
                             "mandatory": false,
                             "default":"del 01/01/2000 al 01/01/2020"
                         },
-                        "dataProvaA2": {
+                        "dataProvaCert": {
                             "type": "date",
                             "mandatory": false,
                             "default":"01/01/2000"
                         },
-                        "dataProvaB1": {
+                        "dataCertA2": {
+                            "type": "date",
+                            "mandatory": false,
+                            "default":"01/01/2000"
+                        },
+                        "dataCertB1": {
                             "type": "date",
                             "mandatory": false,
                             "default":"01/01/2000"
@@ -258,11 +254,6 @@
                             "default":"01/01/2000"
                         },
                         "dataCertC2": {
-                            "type": "date",
-                            "mandatory": false,
-                            "default":"01/01/2000"
-                        },
-                        "dataCert": {
                             "type": "date",
                             "mandatory": false,
                             "default":"01/01/2000"
@@ -298,13 +289,13 @@
                         },
                         "comSerasAvaluatCert": {
                             "type": "string",
-                            "default": "Per mòduls amb certificació, l'avaluació es concreta en aquesta prova de certificació. És una prova que ...",
+                            "default": "La prova està constituïda per tasques de comprensió oral, comprensió escrita, expressió i interacció escrita, expressió i interacció oral i ús de la llengua.",
                             "mandatory": false
                         },
-                        "calendariNoCert": {
-                            "type": "defCalendariNoCert",
+                        "calendari": {
+                            "type": "defCalendari",
                             "default":[
-                                {"bloc":"1","tipusActivitat":"lectura","activitat":"nom de l'activitat","dataLliurament":"","dataQualificacio":"","ponderacioNota":"10"}
+                                {"bloc":"1","tipusActivitat":"lectura","activitat":"nom de l'activitat","dataLliurament":"","dataQualificacio":""}
                             ],
                             "mandatory": true
                         },
