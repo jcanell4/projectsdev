@@ -229,9 +229,12 @@
         "dataProvaNoCert": {
             "type": "hidden"
         },
-        "dataProvaOral": {
+        "dataProvaOral_ini": {
             "type": "hidden"
         },
+        "dataProvaOral_fi": {
+            "type": "hidden"
+        },        
         "dataProvaCert": {
             "type": "hidden"
         },        

@@ -224,8 +224,7 @@
               }
             ]
           }
-        },   
-             
+        },          
         "dataProvaNoCert": {
             "label": "Data prova final(ProvaNoCert)",
             "n_columns": 4,
@@ -235,8 +234,8 @@
                 "readonly": true
             }
         },
-        "dataProvaOral": {
-            "label": "Data de la prova oral(dataProvaOral)",
+        "dataProvaOral_ini": {
+            "label": "Data inici prova oral(dataProvaOral_ini)",
             "n_columns": 4,
             "group": "actualitzables",
             "props": {
@@ -244,6 +243,15 @@
                 "readonly": false
             }
         },
+        "dataProvaOral_fi": {
+            "label": "Data final prova oral(dataProvaOral_final)",
+            "n_columns": 4,
+            "group": "actualitzables",
+            "props": {
+                "required": true,
+                "readonly": false
+            }
+        },         
         "descripcioConversa": {
             "label": "Descripció del servei de conversa (descripcioConversa)",
             "n_columns": 12,

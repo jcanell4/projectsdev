@@ -200,7 +200,7 @@
                         },                         
                         "descripcioConversa": {
                             "type": "string",
-                            "default": "Durant el curs podreu fer classes de conversa",
+                            "default": "Durant el curs podreu participar en activitats de conversa.",
                             "mandatory": true
                         },
                         "coordinador": {
@@ -223,10 +223,15 @@
                             "mandatory": true,
                             "default":"01/01/2000"
                         },   
-                        "dataProvaOral": {
+                        "dataProvaOral_ini": {
                             "type": "string",
                             "mandatory": false,
-                            "default":"del 01/01/2000 al 01/01/2020"
+                            "default":"01/01/2000"
+                        },
+                        "dataProvaOral_fi": {
+                            "type": "string",
+                            "mandatory": false,
+                            "default":"01/01/2020"
                         },
                         "dataProvaCert": {
                             "type": "date",
