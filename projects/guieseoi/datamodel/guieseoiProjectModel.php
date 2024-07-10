@@ -6,73 +6,72 @@
  */
 if (!defined("DOKU_INC")) die();
 
-//class guieseoiProjectModel extends MoodleContentFilesProjectModel {
+//class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {
 //class ptceProjectModel extends MoodleUniqueContentFilesProjectModel {
 //Perquè heretar d'una classe o altre?
-class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {    
+/*
+Hi ha projectes que només tenen un document (continguts.txt) associat a pages
+   -> MoodleUniqueContentFilesProjectModel -> UniqueContentFileProjectModel
+Hi ha projectes que només tenen més d'un document associat a pages
+   -> MoodleMultiContentFilesProjectModel -> MultiContentFilesProjectModel
+*/
+class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {
     public function __construct($persistenceEngine)  {
         parent::__construct($persistenceEngine);
-        $this->needGenerateAction=false;        
+        $this->needGenerateAction=false;
     }
 
-    
-     /* ------------------------------
-     * updateCalculatedFieldsOnRead
-     * Calcula el valor de los campos calculables
-     * @param JSON $data
-     * $originalDataKeyValue és el que ve del client. 
-     * Quan usuari modifica,primer passa pel calculateonread o calculateonsave. el resultat és $data
-     * $originalDataKeyValue és el que ve directament del client 
-     * sense haver passat per les modificacions del calculate (a confirmar que sigui així)
-     * per ara això pot estar buit perquè no cal fer cap càlcul addicional
-     * ------------------------------
-     * public function updateCalculatedFieldsOnRead($data, $originalDataKeyValue=FALSE, $subset=FALSE){}
-     * 
-     */
-   
+    /* ------------------------------
+    * updateCalculatedFieldsOnRead
+    * Calcula el valor de los campos calculables
+    * @param JSON $data
+    * $originalDataKeyValue és el que ve del client.
+    * Quan usuari modifica,primer passa pel calculateonread o calculateonsave. el resultat és $data
+    * $originalDataKeyValue és el que ve directament del client
+    * sense haver passat per les modificacions del calculate (a confirmar que sigui així)
+    * per ara això pot estar buit perquè no cal fer cap càlcul addicional
+    * ------------------------------
+    * public function updateCalculatedFieldsOnRead($data, $originalDataKeyValue=FALSE, $subset=FALSE){}
+    *
+    */
+
     /* ------------------------------
      * getCalendariFieldFromMix
      * Per si més endavant agafa les dades del MIX
      * ------------------------------
     private function getCalendariFieldFromMix(&$values, $taulaCalendari){
         $dataFromMix = false;
-        if(isset($values["moodleCourseId"]) && $values["moodleCourseId"]>0){            
+        if(isset($values["moodleCourseId"]) && $values["moodleCourseId"]>0){
             $dataFromMix = $this->getMixDataLessons($values["moodleCourseId"]);
             if($dataFromMix){
                 //de moment taula buida. Aquesta funció ara no fa res
             }
         }
         $values["dataFromMix"] =$dataFromMix;
-        return $taulaCalendari;        
+        return $taulaCalendari;
     }
     */
 
 
-
-    
-    
-     /* ------------------------------
-     * validateFields
-     * Validem que els camps entrats són consistents.
-     * comprovem el defaultsubset:  ProjectKeys::VAL_DEFAULTSUBSET és 
-     * el subset per defecte, el main.
-     * el responsable està al default subset (al main).
-     * per això, el codi següent no entra mai al if, doncs no hi ha cap
-     * més subset que el main. Però ho deixem per si més endavant hi ha.
-     * $data: són les dades que m'arriben. En format key-value. 
-     * ------------------------------*/
+    /* ------------------------------
+    * validateFields
+    * Validem que els camps entrats són consistents.
+    * comprovem el defaultsubset:  ProjectKeys::VAL_DEFAULTSUBSET és
+    * el subset per defecte, el main.
+    * el responsable està al default subset (al main).
+    * per això, el codi següent no entra mai al if, doncs no hi ha cap
+    * més subset que el main. Però ho deixem per si més endavant hi ha.
+    * $data: són les dades que m'arriben. En format key-value.
+    * ------------------------------*/
     public function validateFields($data = NULL, $subset=FALSE){
-     
-        if($subset!==FALSE && $subset!=ProjectKeys::VAL_DEFAULTSUBSET){
-            parent::validateFields($data, $subset);
-        }else{//aquí estem al main (DEFAULTSUBSET)
-            parent::validateFields($data);
-            $values = is_array($data)?$data:json_decode($data, true);//is_array em retorna el valor de les dades en format array
+        parent::validateFields($data, $subset);
+        if($subset===FALSE || $subset===ProjectKeys::VAL_DEFAULTSUBSET){
+            $values = is_array($data) ? $data : json_decode($data, true);//is_array em retorna el valor de les dades en format array
             //$dadesGuiesEOI = IocCommon::toArrayThroughArrayOrJson($data);//Faria el mateix
 
             //Valida que hi ha un responsable assignat sempre en el moment de guardar
             if (empty($values["responsable"])){
-                throw new InconsistentDataException("No hi ha un responsable assignat. Cap assignar-ho per poder crear aqesta guia.");
+                throw new InconsistentDataException("No hi ha un responsable assignat. Cal assignar-ho per poder crear aquesta guia.");
             }
         }
     }
@@ -89,15 +88,15 @@ class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {
     public function getCalendarDates() {
         $ret = array();
         $data = $this->getCurrentDataProject();
-        //Per enviar dades al calendari. 
-        
+        //Per enviar dades al calendari.
+
         if($data["isCert"]){
         //Si és certificat
-        //Retornem dades de proves certificació 
+        //Retornem dades de proves certificació
             $ret[] = [
                 "title"=>sprintf("%s - Prova %s", $data["codi_modul"], $data['nivellProvaCert']),
                 "date"=>$data["dataCert"]
-            ];            
+            ];
         }else{
             //Si no és certificat
             //Retornem dades de entradaDadesBlocs: bloc id, tipus activitat i data de lliurament
@@ -121,17 +120,16 @@ class guieseoiProjectModel extends MoodleMultiContentFilesProjectModel {
         }
         return $ret;
     }
-     /* No farà res si no activem acció d'enviar calendari.
-     * Però, mentrestant: enviem les dates que a nosaltres es semblen rellevants.
-     * Si després es volgués, implementariem l'acció
-     * *
-     */
-    
+    /* No farà res si no activem acció d'enviar calendari.
+    * Però, mentrestant: enviem les dates que a nosaltres es semblen rellevants.
+    * Si després es volgués, implementariem l'acció
+    * *
+    */
 
     /* ------------------------------
      * getCourseId
-     * Necessari quan vulguem 
-     * actualitzar el calendari de 
+     * Necessari quan vulguem
+     * actualitzar el calendari de
      * l'aula des d'aquí
      * ------------------------------*/
     public function getCourseId() {
