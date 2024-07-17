@@ -1,8 +1,4 @@
 <!doctype html>
-<<<<<<< HEAD:projects/guieseoi/exporter/xhtml/exportDocument/templates/pt_sencer/pt.tpl
-//marjose: cal actualitzar per guieseoi
-=======
->>>>>>> master:projects/ptce_dev/exporter/xhtml/exportDocument/templates/pt_sencer/pt.tpl
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -52,11 +48,7 @@
   <br class="salt_impr">
 
   <div class="container">
-<<<<<<< HEAD:projects/guieseoi/exporter/xhtml/exportDocument/templates/pt_sencer/pt.tpl
-    {##pepitoFitxerContinguts##}  
-=======
     {##fitxercontinguts##}  
->>>>>>> master:projects/ptce_dev/exporter/xhtml/exportDocument/templates/pt_sencer/pt.tpl
     <div id="printbtn" onclick="printDoc()"><span>Descarrega't el PDF</span></div>
   </div>
     

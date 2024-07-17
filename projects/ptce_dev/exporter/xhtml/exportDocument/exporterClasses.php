@@ -1,11 +1,6 @@
 <?php
 /**
-<<<<<<< HEAD:projects/guieseoi/exporter/xhtml/exportDocument/exporterClasses.php
- * *** MARJOSE: TO BE UPDATED ... it should be guieseoi ***
- * projecte: ptfploe ... it should be guieseoi ***
-=======
  * projecte: ptce
->>>>>>> master:projects/ptce_dev/exporter/xhtml/exportDocument/exporterClasses.php
  * exportDocument: clase que renderiza grupos de elementos
  */
 if (!defined('DOKU_INC')) die();
