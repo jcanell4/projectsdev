@@ -1,0 +1,22 @@
+{
+    "typesDefinition": {
+        "btxfinals": {
+            "render": {
+                "typeDef":"btxfinals",
+                "class": "exportDocument",
+                "fields": "ALL",
+                "extraFields": [
+                    {"name":"documentPartsPdf", "valueType":"arrayFields", "value":"documents", "type":"psdom"}, 
+                    {"name":"documentPartsHtml", "valueType":"arrayFields", "value":"documents", "type":"html"}]
+            },
+            "keys": {
+                "documentPartsPdf": {
+                    "render": {"class": "renderFileToPsDom", "styletype":"pt_taula"}
+                },
+                "documentPartsHtml": {
+                    "render": {"class": "renderFile", "styletype":"pt_taula"}
+                }
+            }
+        }
+    }
+}
