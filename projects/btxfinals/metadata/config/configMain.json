@@ -21,9 +21,10 @@
         {
             "main": {
                 "files": {
-                    "fbatx": {"local":"mediadir", "type":"zip", "action":[1], "remoteIndex":"index.html"}
+                    "fbatx": {"local":"mediadir", "type":"zip", "action":[1], "remoteIndex":"index.html"},
+                    "jsonRep": {"local":"mediadir", "type":"json", "action":[0], "remoteDir": "replacedata/", "ftpId": "replace_data_fp_pt"}
                 },
-                "ftpId": "default"
+                "ftpId": "pla_treball"
             }
         }
     ],
